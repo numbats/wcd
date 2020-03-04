@@ -1,0 +1,19 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+ul li {
+  list-style-type: none;
+}
+ul li:before {
+  content: "\f080";
+  font-size: 28px;
+  font-family: "FontAwesome";
+  margin-right: 10px;
+  color: #D93F00;
+}
+ul li li:before {
+  content: "\f200";
+  font-size: 20px;
+  font-family: "FontAwesome";
+  margin-right: 5px;
+  color: #D93F00;
+}
