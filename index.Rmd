@@ -1,11 +1,6 @@
 ---
 title: "ETC5512: Wild Caught Data"
 subtitle: "Semester 1 2020"
-author: 
- - "Didier Nibbering"
- - "Patricia Menéndez"
- - "Emi Tanaka"
- - "Di Cook (Chief Examiner)"
 ---
 
 ```{r setup, include = FALSE}
@@ -20,15 +15,36 @@ library(kableExtra)
 library(glue)
 ```
 
+This is the course website, with information about the consultation times, schedule of topics, lecture notes and computer lab instructions.
+
+## Lecturers 
+
+- Dr Didier Nibbering
+- Dr Patricia Menéndez
+- Dr Emi Tanaka
+- Professor Di Cook (Chief Examiner)
+
+## Tutors
+
+- Cynthia Huang
+- Stephanie Kobakian
+
 ## Expectations 
 
-## Assessments
+- Unless your question is a personal issue or an administrative matter, please do not send us direct email. The moodle discussion forum is appropriate for questions related to the course.
+- For personal or private administrative issues, the email contact is: ETC5512.Clayton-x@monash.edu
+- Lectures are recorded, and you are expected to have either attended the lecture, or watched the recordings fully, prior to the computer lab for the week.
+- Computer labs are not recorded, and attendance is expected.
+- Bring your own laptop to the computer labs. If you **do not** have a laptop you can borrow one from [MoVE](https://www.monash.edu/learning-teaching/innovation/educational-technologies/move)
+- **If you register after the start of the semester** or if you
+  miss a lecture/lab, it is your responsibility to catch up with
+  missed material, learn about due dates for material to be turned in,
+  and getting assigned to a group for team work, as necessary.
 
 ## Tentative Schedule
 
-The lectures are held every week **Wed 2-3pm** and **Wed 4-5pm**.
-
-The tutorial is held every week **Thu 2-3pm**. 
+- Lectures: **Wed 2-3pm** and **Wed 4-5pm**, LTB 92. 
+- Computer labs: **Thu 2-3pm**, LTB 92. Bring your own computer, with necessary software already installed.
 
 There are no lectures or tutorials during the midsemester break.
 
@@ -48,7 +64,7 @@ schedule <- read_csv("materials/schedule.csv") %>%
   Materials = ifelse(is.na(Materials), "", Materials)) %>% 
   select(Week, Lecturer, Slides, Lab, Topic, Materials)
 
-midsem_break <- 6 # after which week
+midsem_break <- 5 # after which week
 
 schedule %>% 
   mutate(Lecturer = cell_spec(
