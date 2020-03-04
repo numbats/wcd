@@ -1,0 +1,17 @@
+---
+title: "Help"
+---
+
+## Consultation
+
+## Cheatsheets
+
+* [RStudio Cheatsheets](https://rstudio.com/resources/cheatsheets/)
+
+## Resources
+
+## Computing Information 
+
+* R version 3.6.1 (2019-07-02) – “Action of the Toes”, install on your computer from https://cran.r-project.org
+* RStudio Desktop 1.2.1335, install on your computer from https://www.rstudio.com/products/rstudio/download/#download
+* Packages will be installed as we need them

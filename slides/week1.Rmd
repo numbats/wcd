@@ -1,0 +1,103 @@
+---
+title: "ETC5512: Wild Caught Data"
+week: "Week X"
+subtitle: "Subject"
+author: "First Last"
+email: "xxx@monash.edu"
+date: "XXth Mar 2020"
+pdflink: ""
+bgimg: "images/bg1.jpg"
+output:
+  xaringan::moon_reader:
+    css:
+      - ninjutsu 
+      - "assets/animate.css"
+      - "assets/monash-logo.css"
+      - "assets/monash-brand.css"
+      - "assets/monash-fonts.css"
+      - "assets/styles.css" # small improvements
+      - "assets/custom.css" # add your own CSS here!
+      - "assets/demo.css" # this should be removed
+    self_contained: false 
+    seal: false 
+    chakra: 'libs/remark-latest.min.js'
+    lib_dir: libs
+    includes:
+      in_header: "assets/custom.html"
+    mathjax: "assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    nature:
+      highlightStyle: github 
+      highlightLanguage: r 
+      highlightLines: true
+      highlightSpans: false 
+      countIncrementalSlides: false
+      slideNumberFormat: '%current%/%total%'
+      navigation:
+        scroll: false 
+        touch: true
+        click: false
+      ratio: '16:9'
+---
+
+
+```{r titleslide, child="components/titleslide.Rmd"}
+```
+
+---
+
+Test fdfsd
+
+---
+
+# Monash EBS Teaching Template
+
+* This is the `xaringan` template for Monash EBS teaching
+
+* It tries to respect the [Monash Brand Guidelines](https://www.monash.edu/brandbook/brand-elements)
+
+---
+
+# Monash Brand Colors
+
+.grid[
+
+.item[
+
+## Primary colors
+
+* <div class="monash-bg-blue inline-box"></div> monash-bg-blue
+* <div class="monash-bg-gray80 inline-box"></div> monash-bg-gray80
+* <div class="monash-bg-gray50 inline-box"></div> monash-bg-gray50
+* <div class="monash-bg-gray10 inline-box"></div> monash-bg-gray10
+* <div class="monash-bg-black inline-box"></div> monash-bg-black 
+* <div class="monash-bg-white inline-box"></div> monash-bg-white 
+
+Removing the "`bg-`" will change the text color instead.
+E.g. .monash-blue[monash-blue].
+
+]
+.item[
+
+## Secondary colors
+
+* <div class="monash-bg-blue2 inline-box"></div> monash-bg-blue2
+* <div class="monash-bg-purple2 inline-box"></div> monash-bg-purple2
+* <div class="monash-bg-fuchsia2 inline-box"></div> monash-bg-fuchsia2
+* <div class="monash-bg-ruby2 inline-box"></div> monash-bg-ruby2
+* <div class="monash-bg-pink2 inline-box"></div> monash-bg-pink2 
+* <div class="monash-bg-red2 inline-box"></div> monash-bg-red2 
+* <div class="monash-bg-orange2 inline-box"></div> monash-bg-orange2
+* <div class="monash-bg-umber2 inline-box"></div> monash-bg-umber2
+* <div class="monash-bg-olive2 inline-box"></div> monash-bg-olive2 
+* <div class="monash-bg-green2 inline-box"></div> monash-bg-green2 
+
+
+]
+]
+
+
+---
+
+
+```{r endslide, child="components/endslide.Rmd"}
+```

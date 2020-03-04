@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5512: Wild Caught Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Didier Nibbering" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+    -->
+    <link rel="icon" href="images/favicon.ico"  type='image/x-icon'/>
+    <link rel="stylesheet" href="assets\animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets\monash-logo.css" type="text/css" />
+    <link rel="stylesheet" href="assets\monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets\monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets\styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets\custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+background-color: #006DAE
+class: middle center hide-slide-number
+
+
+&lt;div class="shade_black"  style="width:60%;right:0;bottom:0;padding:10px;border: dashed 4px white;margin: auto;"&gt;
+&lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; These slides are viewed best by Chrome and occasionally need to be refreshed if elements did not load properly. See &lt;a href=/&gt;here for PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;. 
+&lt;/div&gt;
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+---
+
+
+background-image: url(images/bg1.jpg)
+background-size: cover
+class: hide-slide-number split-70 title-slide
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;
+
+# .monash-blue.outline-text[ETC5512: Wild Caught Data]
+
+&lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;Week 3&lt;/h2&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Macroeconomic data&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Didier Nibbering*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas-envelope"&gt;&lt;/i&gt; didier.nibbering@monash.edu
+
+XXth Mar 2020
+
+&lt;br&gt;
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-image:url('images/large.png');background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+---
+
+# Macroeconomic data
+
+* macroeconomic data dominates the news
+* everyone affected by interest, exchange, and inflation rates
+* data helps voters and governements understand challenges
+
+---
+# Macroeconomic data
+
+* gross domestic product
+* consumper price index
+* unemployment rate
+
+---
+# Macroeconomic data
+Macroeconomics is the study of aggregate behavior
+* How do we measure "the economy as a whole?"
+* Aggregrate micro data into macro data
+* from price of a coffee to price in the whole economy
+
+---
+# Macroeconomic data
+Aggregration
+* Pros
+    * easier to look at one number than millions
+    * comparability across nations/times
+* Cons
+    * throwing away information
+    * easy to miss important details
+
+---
+# Macroeconomic data
+Aggregration
+* Output measures
+    * GDP
+* Price measures
+    * CPI
+* Input measures
+    * Unemployment
+
+---
+# Output measures
+Two major measures of total output in the economy
+* Gross Domestic Product (GDP)
+    * Total value of goods and services produced in the country in a certain
+period of time
+* Gross National Product (GNP)
+    * Total value of goods and services produced by nationals of the country in a certain period of time
+
+&lt;!-- For instance, the cars produced in a Nissan plant in Detroit would count towards the GDP of the USA but the GNP of Japan. --&gt;
+
+---
+# Output measures
+
+Suppose we had the following production process:
+
+Farmer -Wheat-&gt; Miller -Flour-&gt; Baker -Cake-&gt; Consumer
+
+We only count the dollar value of the end use (cake) in GDP.
+
+&lt;!-- The economy has produced wheat,  --&gt;
+&lt;!-- our, and cake, which is eventually --&gt;
+&lt;!-- consumer by the consumer. --&gt;
+&lt;!-- But a large part of the dollar value of cake is made up of  --&gt;
+&lt;!-- our. Counting --&gt;
+&lt;!-- both would overstate the amount of output people actually consume. --&gt;
+
+---
+# Output measures
+
+Suppose that the economy only produced pizza and beer:
+
+INCLUDE TABLE
+
+product|price             |quantity
+       |2019     |2020    |2019     |2020
+-------|---------|--------|---------|---------
+Pizza  |$2/slice |$3/slice|50 slices|40 slices
+Beer   |$1/can   |$1.1/can|400 cans |391 cans
+
+---
+# Output measures
+We can construct nominal GDP as
+
+`\(GDP_t = \sum_i p_{it}\times q_{it}\)`
+
+where 
+
+`\(p_{it}=\)`price of good `\(i\)` in period `\(t\)`
+
+`\(q_{it}=\)`quantity of good `\(i\)` in period `\(t\)`
+
+
+---
+# Output measures
+GDP higher so people are better off on average?
+
+&lt;!-- No! Notice that the consumption of both pizza and beer actually fell between 1997 and 1998. So people are worse off. --&gt;
+
+Only prices increased. Want to make sure that we look at real activity not just price adjustments
+
+---
+
+# Output measures
+Real GDP fixes prices at a base year:
+
+`\(GDP_t = \sum_i p_{ib}\times q_{it}\)`
+
+where 
+
+`\(p_{ib}=\)`price of good `\(i\)` in a fixed base year `\(b\)`
+
+&lt;!-- calculate on whiteboard: real gdp fell! --&gt;
+&lt;!-- look at nominal and real gdp fred --&gt;
+
+---
+# Output measures
+Components of GDP
+
+GDP=Consumption+Investment+Government Spending+Net Exports
+
+&lt;!-- Look at series fred --&gt;
+---
+# Output measures
+Problems real GDP:
+
+Compare output 1960 to output 2020 with 1960 as base year
+
+* Goods that exist in 2020 may not have existed in 1960.
+* Ignores quality changes over time, which may show up in prices.
+* People substitute away from relatively high priced goods.
+
+---
+# Price measures
+* Macroeconomics cares about consumption, not prices
+* Level of the price does not matter
+* However, we do care about inflation
+
+---
+# Price measures
+Inflation: increase in the level of prices
+Important because:
+* Bond holders get paid fixed coupons
+* Workers have annual salaries
+* hyperinflation affects incentives
+
+&lt;!-- Look at nominal and real wages fred --&gt;
+
+---
+# Price measures
+Most commonly used price index is the Consumer Price Index (CPI)
+* weighted average prices that household faces, weighted by the consumption share of each item
+* Build \basket of goods" that households consume (e.g. healthcare, food, gas, video games, etc.) and track price of that basket over time
+
+---
+# Price measures
+Limitations
+* Substitution
+* Rich and poor people face different inflation rates
+* Generally misses sectoral differences: healthcare prices skyrocketing, while food &amp; gas volatile up and down
+
+---
+# Input measures
+* Labor important input production
+* Labor income by largest part of median person's income
+
+&lt;!-- (about 2/3 of firms' expenses are on labor) --&gt;
+
+---
+
+# Input measures
+How do we measure labor?
+* Input to production? Hours and human capital matter
+* Worker well-being? Hours and wage matter
+
+
+Aggregate measures can miss important distributional considerations!
+
+---
+
+# Input measures
+* Employment to population ratio
+* Unemployment rate: people unemployed over people in labor force
+    * To be unemployed, you must not be working currently, and have searched for a job at least once in the last 2 weeks
+    * To be in the labor force, you must be employed or unemployed according to previous definition
+    
+&lt;!--     If you're retired, or a student, or a stay-at-home parent, or just --&gt;
+&lt;!-- playing video games not looking for a job, you are not unemployed. --&gt;
+&lt;!-- Usually 4-6% in U.S.; got as high as 10% during recession. --&gt;
+
+&lt;!-- look at data fred --&gt;
+
+---
+
+# Macroeconomic variables
+
+* stock variables
+    * A stock is a quantity measured at a point in time (investment)
+* flow variables
+    * A flow is a quantity measured per unit of time (capital)
+
+&lt;img src="bath.jpg"  style="width: 600px"/&gt;
+
+&lt;!-- GDP=flow=value of the output of all goods and services produced within the country in a year --&gt;
+&lt;!-- unemp=stock=proportion of the labor force at a point in time --&gt;
+&lt;!-- price index = stock and inlfation=flow --&gt;
+---
+
+# Macroeconomic variables
+
+Economic index
+* price or quantity compared with a base value
+* time series summarising movements in a group of variables
+* base equals 100, index number is 100 times ratio to base value
+
+---
+
+# Macroeconomic variables
+
+Economic indices
+* S&amp;P 500
+* Consumer price index
+* Big Mac Index
+* Cost-of-living index
+
+
+---
+
+# Variable transformations
+
+&lt;!-- https://alfred.stlouisfed.org/series/downloaddata?seid=INDPRO --&gt;
+* Change
+   * x(t) - x(t-1)
+* Change from Year Ago
+   * x(t) - x(t-n_obs_per_yr)
+* Percent Change
+   * ((x(t)/x(t-1)) - 1) x 100
+* Percent Change from Year Ago
+   * ((x(t)/x(t-n_obs_per_yr)) - 1) x 100
+   
+---
+# Variable transformations
+* Compounded Annual Rate of Change
+   * (((x(t)/x(t-1)) x (n_obs_per_yr)) - 1) x 100
+* Continuously Compounded Rate of Change
+   * (ln(x(t)) - ln(x(t-1))) x 100
+* Continuously Compounded Annual Rate of Change
+   * ((ln(x(t)) - ln(x(t-1))) x 100) x n_obs_per_yr
+* Natural Log
+   * ln(x(t))
+
+--- 
+# Seasonal adjustments
+* Seasonal fluctuations may not reflect meaningful economic conditions
+  * Always a spike in consumption spending around Christmas
+  * Spikes in tourism around summer time
+* Statistical bodies adjust for seasonality for you
+
+&lt;!-- FRED data: --&gt;
+&lt;!-- Durable Goods Orders; Not Seasonally Adjusted: Raw Data --&gt;
+&lt;!-- Durable Goods Orders; Seasonally Adjusted --&gt;
+
+
+---
+
+# Database
+An economic database consists of economic data time series from scores of national, international, public, and private sources. 
+
+FRED, Federal Reserve Economic Data, is a U.S. database
+&lt;!-- ALFRED, ArchivaL Federal Reserve Economic Data, is a collection of vintage versions of U.S. economic data. In general, economic data for past observation periods are revised as more accurate estimates become available. As a result, previous vintages of data can be superseded and may no longer be available from various data sources. ALFRED makes it possible to gather data as reported by a source on past dates in history. The Research Division hopes that ALFRED will provide users with the tools they need to reproduce past research, build more accurate forecasting models, and analyze economic policy decisions of the past with data that were available at the time. --&gt;
+
+
+---
+# Revisions
+In general, economic data for past observation periods are revised as more accurate estimates become available.
+
+Revision: a change in value for any reference point of the time series for a statistic when released to the public by an official national or supranational statistical agency. 
+
+---
+# Revisions
+Government statistical agencies
+* release early estimates
+* over time better:
+  * samples
+  * weights
+  * methodology
+* release improved data
+
+---
+# Revisions
+* 1st month: incomplete sample
+* next months: revisions based on more complete samples
+* after year: annual business reports and seasonal factors
+* 5-10 years: methodological and base year revisions
+
+---
+# Vintage
+For a given time series we define vintage as the set of data that represented the latest estimate for each reference point in the time series at a particular moment in time.
+
+--- 
+# Vintage
+* Each column shows the data that one would observe if one used a database at the date shown in the column header; we call this the vintage date.
+* Each row represents the dates for which the economic activity is measured.
+
+&lt;!-- If you start with this number and move from left to right along the same row, you can see how the measure of economic activity for is revised over time as the government statistical agency makes its revisions --&gt;
+&lt;!-- does not mean that the early estimate was only about half of the --&gt;
+&lt;!-- estimate today, but reflects both additional source data and most importantly a change in the base year used in calculating real values of variables. --&gt;
+
+--- 
+
+# Real-time Database
+
+A real-time database is a collection of historical vintages of the same time series, indexed by the date on which each vintage became available to the public. 
+
+ALFRED, ArchivaL Federal Reserve Economic Data, is a collection of vintage versions of U.S. economic data.
+
+&lt;!-- As such, the revision to a given reference point for a time series can be identified in a real-time database as the change in value from an earlier vintage of estimates to a later vintage. --&gt;
+
+&lt;!-- A real-time database is defined as a two dimensional array, with vintage identified in the rows and reference points for the time series as the columns. If the publication schedule of the producer has the same frequency as the periodicity of the indicator (e.g. monthly), then the real-time database will have the appearance of a symmetric triangle as shown in Figure 1 below. However, the symmetric triangle form is only one special case for the appearance of a real-time database, as successive vintages of a time series may be released in between additional points being added. For example, this is often the case for many countries in the release of Gross Domestic Product. In such cases, the real-time database will have the appearance of a stepped triangle5, as illustrated in Figure 2. --&gt;
+
+---
+
+# Forecasting
+
+* use current database
+* real-time forecasters do not have same data 
+* databases revised over time
+
+---
+# Forecasting
+
+discuss impact revisions on forecasts
+* If data revisions are minor and are random, then the
+revisions probably do not matter much for forecasting.
+* data revisions are large and systematic 
+
+&lt;!-- show examples --&gt;
+
+---
+# Forecasting
+
+forecasts in real-time vs forecasts using latest available data
+* changes in the data affect the jumping-off point for forecasts
+* effects on the estimated coefficients of a model
+* changes in the model specification
+* revisions source of forecast uncertainty
+
+&lt;!-- show examples --&gt;
+
+---
+# Forecasting
+
+which vintage should be used to evaluate a set of forecasts?
+* assume that a forecaster attempts to forecast the first release?
+* or forecaster is after some measure of "truth"?
+
+most forecast evaluations require comparing the forecast with
+the "actual," what vintage of the data should be used as "actual"? With a real-time data set at
+hand, nearly any definition of "actual" is possible
+
+---
+# Forecasting
+
+which vintage should be used to evaluate a set of forecasts?
+* use values in the database at the time the research was undertaken
+    * this is problematic if there have been redefinitions and significant changes in methodology that a forecaster would not have known in real time
+* first-release data
+* data that have been subject to at least one annual revision 
+    * so that more accurate survey data have been used to generate the data
+* data that appeared just before a benchmark release 
+    * to get the best value of the underlying economic activity possible while avoiding methodological changes
+
+---
+
+# SPF
+
+
+---
+
+
+background-image: url(images/bg1.jpg)
+background-size: cover
+class: hide-slide-number split-70
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;&lt;br&gt;
+
+# That's it!
+
+.bottom_abs.width100[
+
+Lecturer: Didier Nibbering
+
+Department of Econometrics and Business Statistics&lt;br&gt;
+
+didier.nibbering@monash.edu
+
+XXth Mar 2020
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-image:url('images/large.png');background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

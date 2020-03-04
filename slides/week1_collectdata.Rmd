@@ -1,0 +1,437 @@
+---
+title: "ETC5512: Wild Caught Data"
+week: "Week 1"
+subtitle: "Data collection"
+author: "Didier Nibbering"
+email: "ETC5512.Clayton-x@monash.edu"
+date: "XXth Mar 2020"
+pdflink: ""
+bgimg: "images/bg1.jpg"
+output:
+  xaringan::moon_reader:
+    css:
+      - ninjutsu 
+      - "assets/animate.css"
+      - "assets/monash-logo.css"
+      - "assets/monash-brand.css"
+      - "assets/monash-fonts.css"
+      - "assets/styles.css" # small improvements
+      - "assets/custom.css" # add your own CSS here!
+    #  - "assets/demo.css" # this should be removed
+    self_contained: false 
+    seal: false 
+    chakra: 'libs/remark-latest.min.js'
+    lib_dir: libs
+    includes:
+      in_header: "assets/custom.html"
+    mathjax: "assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    nature:
+      highlightStyle: github 
+      highlightLanguage: r 
+      highlightLines: true
+      highlightSpans: false 
+      countIncrementalSlides: false
+      slideNumberFormat: ''
+      navigation:
+        scroll: false 
+        touch: true
+        click: false
+      ratio: '16:9'
+---
+
+
+```{r titleslide, child="components/titleslide.Rmd"}
+```
+
+---
+class: motivator middle
+# Start with a question?
+
+<!-- look around you in real. question arise. can also do this in data. -->
+<!-- look at data develop better question.  -->
+
+---
+class: motivator middle
+# Start with a question?
+What questions do you have..?
+<br> <br>
+* .. about a virus?
+  * https://opendatahandbook.org/value-stories/en/open-sourcing-genomes/
+<!-- how can we solve corona? -->
+<br> <br>
+* .. about bush fires and floods?
+  * https://www.pmc.gov.au/public-data/open-data
+<br> <br>
+* .. about saving the environment?
+  * http://save-the-rain.com/SR2/#
+<!-- http://opendatatoolkit.worldbank.org/en/essentials.html#uses -->
+
+---
+# Data examples in this unit
+* Dr Nibbering: Macroeconomic
+* Dr Menendez: 
+* Dr Tanaka:
+* Professor Cook: Airline traffic, sports statistics
+
+---
+background-image: url(./images/airlines_overview.jpg)
+background-position: 99% 99%
+background-size: 25%
+class: wider
+# US Airline traffic
+
+```{r eval=FALSE, echo=FALSE}
+devtools::install_github("hadley/emo")
+```
+
+From Professor Di Cook: _Sometimes I start with a data description, and from this questions are generated, and a workflow of operations on the data is designed to extract an answer to the question._ There is *really extensive* `r emo::ji("airplane")` information about every commercial flight that has flown in the USA since the early 1980s. For each flight the variables are scheduled departure time, actual departure time, carrier, plane id, origin, destination, departure delay, delay reason, .... Many, many questions...
+- __What time of day is it more likely to see delays?__ 
+- __What carriers have more efficient performance?__
+- __Where my plane come from and go to next?__
+- __If I have a choice of airports, which might present <br> a lower risk of delay?__
+
+---
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/c/c6/Ash_Barty_%2846174918534%29.jpg)
+background-position: 99% 99%
+background-size: 18%
+class: wider
+# Sports statistics
+
+From Professor Di Cook: Sports statistics are readily available on many web sites. These can be extracted using web scraping tools. Primarily we come to sports with some idea about the game.
+- Tennis: 
+    - What's the relationship between age and winning matches in grand slams?
+    - Is it important to serve fast and hard in order to win matches?
+- Cricket:    
+    - Which team has the best batting statistics?
+    - Could we predict the team that will likely win the match?
+
+---
+class: transition middle
+# Now that you have a question...
+
+<!-- --- -->
+<!-- get rid of this slide -->
+<!-- # How will you collect your data? -->
+<!-- * generate your own data -->
+<!-- * use a data set that already exists -->
+<!-- * catch wild data -->
+
+<!-- add images/examples -->
+
+---
+# Data collection methods
+
+<br> <br>
+* Investigate the relationship between variables
+<br> <br>
+* Explanatory variables explain variation in response variable
+<br> <br>
+* Collect observations on the variables
+
+<!-- Do students from private schools perform better in university? -->
+---
+# Data collection methods
+<br> <br>
+* Observational data
+  * No manipulation of the subjects’ environment
+  * Data are observed and collected on each subject
+  <br> <br>
+* Experimental data
+  * Manipulate the subjects’ environment
+  * Then measure the response variable
+<br> <br>
+<!-- give decision rule between two types -->
+
+---
+class: transition middle
+
+# Observational or experimental data?
+* Description 1:
+<br>
+The Academic Performance Index is computed for all California schools based on standardised testing of students. The data sets contain information and characteristics for 100 schools.
+<br><br>
+* Description 2:
+<br>
+The response is the length of odontoblasts in 60 guinea pigs. Each animal received one of three dose levels of vitamin C by one of two delivery methods.
+<br><br>
+* Description 3:
+<br>
+This data frame contains the responses of 237 Statistics I students at the University of Adelaide to a number of questions.
+
+<!-- give some data: what do they think. -->
+<!-- obs or exp? survey also lots of structure -->
+<!-- make clear that lots of different obs/exp data -->
+
+<!-- --- -->
+<!-- class: refresher  -->
+<!-- unit guide learning goals: make more specific on slide -->
+<!-- # Learning goals -->
+<!-- *  identify difference data collection methods -->
+<!-- *  identify strengths and pitfalls methods -->
+
+---
+# Observational data
+
+Examples
+<br> <br>
+* Surveys of households or firms
+  * Who will win the US Presidential election?
+  <br> <br>
+* Government administrative data
+  * Where can I find the best schools?
+  <br> <br>
+* Data from points of contact between transacting parties
+  * Who are buying my products?
+  
+---
+
+# Observational data
+Who will win the US Presidential election?
+<br> <br>
+* Group of people we want information from
+  * Population
+  <br> <br>
+* Group of people we get information from
+  * Sample
+
+---
+
+# Observational data
+<br> <br>
+Percentage of votes for Republican candidate
+<br> <br>
+* Population
+  * Parameter
+<br> <br>
+* Sample
+  * Statistic
+  
+<!-- draw circle on board and slice which represents sample -->
+<!-- show what parameter and statistic is -->
+
+---
+
+# Observational data
+How well represents the sample the population?
+<br> <br>
+* Simple random sampling scheme 
+    * Every unit same sample probability
+    <br> <br>
+* Stratified multistage cluster sampling 
+    * Large-scale surveys as CPS and PSID
+    <br> <br>
+https://www.census.gov/programs-surveys/cps.html
+<!-- https://www.census.gov/programs-surveys/cps/technical-documentation/methodology/sampling.html -->
+    <br> 
+https://psidonline.isr.umich.edu/
+
+<!-- Explain on whiteboard -cluster sampling - stratified sampling - multistage cluster sampling - stratified multistage cluster sampling- https://en.wikipedia.org/wiki/Multistage_sampling -->
+<!-- Then repeat explanation with next slide -->
+
+
+---
+
+# Observational data
+* Stratified sampling
+ * Nonoverlapping subpopulations that exhaust the population
+ * States or provinces in a country
+ <br> <br>
+* Multistage sampling
+ * Draw PSU at random from strata
+ * Draw SSU at random from selected PSU
+ <br> <br>
+* Cluster sampling
+ * Divide population into representative clusters
+ * Select a cluster as your sample
+
+---
+# Observational data
+Different households have different sample probabilities
+<br> <br>
+* Sampling weights
+<br> <br>
+* Inversely proportional to sample probability
+<br> <br>
+* Used for unbiased estimators population parameters
+
+---
+
+# Observational data
+Biased samples
+<br> <br>
+* Exogenous sampling
+  * Segmenting on socioeconomic factors
+  * Biased if factors correlated with outcome
+  <br> <br>
+* Response-based sampling
+  * Sample probability depends on response
+  * Survey transport choice in sample of PT users
+  <br> <br>
+* Length-biased sampling
+  * Sample the stock vs sample the flow 
+  * Longer duration of employment in stock sample
+
+---
+# Observational data
+Quality Survey data
+<br> <br>
+* Nonresponse
+<br> <br>
+* Missing data
+<br> <br>
+* Mismeasured data
+<br> <br>
+* Sample attrition
+
+---
+# Observational data
+Different formats
+<br> <br>
+* Cross-section data
+<br> <br>
+* Repeated cross-section data
+  * Case-control studies
+<br> <br>
+* Panel or longitudinal data
+  * Cohort studies
+  
+<!-- https://faculty.elgin.edu/dkernler/statistics/ch01/1-2.html -->
+
+---
+class: informative middle
+
+# Observational data
+about student performance
+<!-- http://healthpolicy.ucla.edu/chis/design/Documents/CHIS_2017-2018_MethodologyReport1_SampleDesign.pdf -->
+<!-- https://electionstudies.org/wp-content/uploads/2016/02/anes_timeseries_2016_methodology_report.pdf -->
+
+---
+class: transition middle
+
+# Experimental data
+
+---
+# Experimental data
+<br> <br>
+* Vary causal variable of interest..
+<br> <br>
+* while holding other covariates at controlled settings..
+<br> <br>
+* to observe a response variable
+
+---
+# Experimental data
+<br> <br>
+* Treatment and control group
+<br> <br>
+* Groups randomly selected
+<br> <br>
+* Matching treatment and control groups
+
+---
+# Experimental data
+<br> <br>
+* Placebo effect
+<br> <br>
+* Double-blind experiments
+<br> <br>
+* Confounding variables
+
+---
+
+class: motivator middle
+
+# Experimental data
+
+from lab experiments
+
+---
+# Experimental data
+Wild-caught experiments?
+<br> <br>
+* Standard (laboratory) experiments 
+  * Willing recipients of randomly assigned treatment and passive administrators of a standard protocol
+  <br> <br>
+* Social experiments  
+  * human subjects and treatment administrators are active and forward looking individuals with personal preferences
+
+
+---
+# Experimental data
+Social experiments
+<br> <br>
+* Health insurance with varying copayment rate
+<br> <br>
+* Tax plans with alternative income guarantees
+<br> <br>
+* Job search assistance programs
+
+---
+# Experimental data
+Limitations social experiments
+<br> <br>
+* Cooperation participants
+<br> <br>
+* Ethical objections
+<br> <br>
+* Substitution bias
+<br> <br>
+* Sample attrition
+<br> <br>
+* Hawthorne effect
+
+---
+
+class: motivator middle
+
+# Social experiments
+
+with job training
+
+---
+# Experimental data
+Natural experiments
+<br> <br>
+* Subset of population is subjected to an exogenous variation in a variable, that would ordinarily be subject to endogenous variation
+<br> <br>
+* Generate treatment and control groups in inexpensively and in real-world setting
+
+---
+# Experimental data
+Good natural experiments if
+<br> <br>
+* Genuinely exogenous
+<br> <br>
+* Impact sufficiently large
+<br> <br>
+* Good treatment and control groups
+
+---
+# Experimental data
+Natural experiments
+<br> <br>
+* Administrative rules
+<br> <br>
+* Unanticipated legislation
+<br> <br>
+* Natural events
+
+---
+
+class: motivator middle
+
+# Natural experiments
+
+with twins
+
+---
+
+class: informative middle
+
+# Summary
+
+---
+
+
+```{r endslide, child="components/endslide.Rmd"}
+```

@@ -1,0 +1,69 @@
+---
+title: "ETC5512: Wild Caught Data"
+subtitle: "Semester 1 2020"
+author: 
+ - "Didier Nibbering"
+ - "Patricia Menéndez"
+ - "Emi Tanaka"
+ - "Di Cook (Chief Examiner)"
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  message = FALSE,
+  warning = FALSE
+)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(glue)
+```
+
+## Expectations 
+
+## Assessments
+
+## Tentative Schedule
+
+The lectures are held every week **Wed 2-3pm** and **Wed 4-5pm**.
+
+The tutorial is held every week **Thu 2-3pm**. 
+
+There are no lectures or tutorials during the midsemester break.
+
+```{r}
+schedule <- read_csv("materials/schedule.csv") %>% 
+  mutate(Slides = case_when(
+    !is.na(HTML) & !is.na(PDF) ~ glue("<a class='fa fa-link' href='slides/{HTML}'></a> <a class='fa fa-file-pdf' href='slides/{PDF}'></a>"),
+    !is.na(HTML) ~ glue("<a class='fa fa-link' href='slides/{HTML}'></a>"),
+    !is.na(PDF) ~ glue("<a class='fa fa-file-pdf' href='slides/{PDF}'></a>"),
+    TRUE ~ ""
+  ),
+  Lab = case_when(
+    !is.na(Lab) ~ glue("<a class='fa fa-link' href='{Lab}'></a>"),
+    TRUE ~ ""
+  ),
+  Topic = ifelse(is.na(Topic), "", Topic),
+  Materials = ifelse(is.na(Materials), "", Materials)) %>% 
+  select(Week, Lecturer, Slides, Lab, Topic, Materials)
+
+midsem_break <- 6 # after which week
+
+schedule %>% 
+  mutate(Lecturer = cell_spec(
+    Lecturer, "html",
+    color = factor(Lecturer, unique(Lecturer), c("#8e4f89", "#4269a5", "#39825a", "#dc6141"))
+  )) %>% 
+  kable(escape = FALSE, align = c("c", "c", "c", "c", "l", "l")) %>% 
+  kable_styling(bootstrap_options = "striped",
+                fixed_thead = T) %>% 
+  column_spec(1, width = "0.5cm") %>% 
+  column_spec(2, width = "1cm") %>% 
+  column_spec(3, width = "0.5cm") %>% 
+  group_rows("Midsemester Break", midsem_break + 1, 12, label_row_css = "background-color: #d9e1e8;") %>% 
+  add_indent(1:midsem_break) # this needs to be done to match up with above
+```
+
+
+

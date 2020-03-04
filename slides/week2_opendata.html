@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>ETC5512: Wild Caught Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Didier Nibbering" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+    -->
+    <link rel="icon" href="images/favicon.ico"  type='image/x-icon'/>
+    <link rel="stylesheet" href="assets\animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets\monash-logo.css" type="text/css" />
+    <link rel="stylesheet" href="assets\monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets\monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets\styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets\custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+background-color: #006DAE
+class: middle center hide-slide-number
+
+
+&lt;div class="shade_black"  style="width:60%;right:0;bottom:0;padding:10px;border: dashed 4px white;margin: auto;"&gt;
+&lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; These slides are viewed best by Chrome and occasionally need to be refreshed if elements did not load properly. See &lt;a href=/&gt;here for PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;. 
+&lt;/div&gt;
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+---
+
+
+background-image: url(images/bg1.jpg)
+background-size: cover
+class: hide-slide-number split-70 title-slide
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;
+
+# .monash-blue.outline-text[ETC5512: Wild Caught Data]
+
+&lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;Week 2&lt;/h2&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Open data sources&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Didier Nibbering*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas-envelope"&gt;&lt;/i&gt; didier.nibbering@monash.edu
+
+XXth Mar 2020
+
+&lt;br&gt;
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-image:url('images/large.png');background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+---
+class: motivator middle
+# Examples of open data?
+https://www.globalforestwatch.org/
+
+&lt;!-- farmer in amazon  --&gt;
+&lt;!-- worries about risk of fires --&gt;
+&lt;!-- farmers use controlled fires- clear land and high nutrition in soil --&gt;
+&lt;!-- can get out of hand with weather and ground conditions --&gt;
+
+&lt;!-- open data: global forest watch --&gt;
+&lt;!-- interactive map --&gt;
+&lt;!-- risk of fire - historical data --&gt;
+&lt;!-- keep family safe --&gt;
+&lt;!-- controlled fires --&gt;
+
+---
+
+class: informative middle
+# Open data is...
+
+a raw material for the digital age but, 
+
+unlike coal, timber or diamonds, 
+
+it can be used by anyone and everyone at the same time.
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+https://www.europeandataportal.eu/elearning/en/module1/#/id/co-01
+
+---
+
+# Why open data useful?
+&lt;br&gt;&lt;br&gt;
+* Benefits to governments, businesses and individuals.
+&lt;br&gt;&lt;br&gt;
+* Improves services, grows economies and protects our planet.
+&lt;br&gt;&lt;br&gt;
+* Restrictions will limit its potential.
+
+---
+
+# What makes data open?
+&lt;!-- Open data is measured by what it can be used for, not by how it is made available. --&gt;
+&lt;br&gt;
+* Limitations
+    * No limitations that prevent particular uses.
+    * Anyone free to use, modify, combine and share, even commercially.
+&lt;br&gt;
+* Cost
+    * Free to use does not mean that it must be free to access.
+    * Cost to creating, maintaining and publishing usable data.
+    * Live data and big data can incur ongoing costs.
+&lt;br&gt;
+* Reuse
+    * Free to use, reuse and redistribute it - even commercially.
+    
+---
+
+# Definition open data
+Open data can be freely used, modified, and shared by anyone for any purpose
+&lt;br&gt;&lt;br&gt;
+There are two dimensions of data openness:
+* The data must be legally open, which means they must be placed in the public domain or under liberal terms of use with minimal restrictions.
+* The data must be technically open, which means they must be published in electronic formats that are machine readable and non-proprietary, so that anyone can access and use the data using common, freely available software tools. Data must also be publicly available and accessible on a public server, without password or firewall restrictions. 
+&lt;br&gt;&lt;br&gt;
+http://opendefinition.org/
+
+---
+# Why license open data?
+&lt;br&gt;&lt;br&gt;
+* Tells anyone that they can access, use and share data.
+&lt;br&gt;&lt;br&gt;
+* Unless you have a licence, data may be 'publicly available', but users will not have permission to access, use and share it under copyright or database laws.
+
+&lt;!-- Organizations and governments use Open Data licenses to clearly explain the conditions under which their data may be used.  --&gt;
+
+---
+# Open data licenses
+&lt;!-- Many licenses include both a summary version, intended to convey the most important concepts to all users, and a detailed version that provides the complete legal foundation. Examples include: --&gt;
+
+* Standard re-usable license: consistent and broadly recognized terms of use
+  * Creative Commons, particularly CC-By and CC0 https://creativecommons.org/
+  * Open Database License https://opendatacommons.org/licenses/odbl/
+* Bespoke licenses: governments and international organizations developed 
+  * UK Open Government License http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+  * The World Bank Terms of Use https://data.worldbank.org/summary-terms-of-use
+
+&lt;!-- Standard licenses can offer several advantages over bespoke licenses, including greater recognition among users, increased interoperability, and greater ease of compliance. --&gt;
+
+---
+
+# Open data Machine Readability
+
+&lt;br&gt;&lt;br&gt;
+* Documents 
+  * static and frozen in their format
+  &lt;br&gt;&lt;br&gt;
+* Data 
+  * dynamic and can be open to further processing
+&lt;br&gt;&lt;br&gt;
+https://www.data.gov/developers/blog/primer-machine-readability-online-documents-and-data
+
+---
+# Open data Machine Readability
+
+&lt;br&gt;&lt;br&gt;
+.grid[
+.item[
+&lt;center&gt;
+&lt;img src="milk.jpg"  width= "400px"/&gt;
+&lt;/center&gt;
+]
+.item[
+&lt;center&gt;
+&lt;img src="Example_barcode.png"  width= "400px"/&gt;
+&lt;/center&gt;
+]]
+
+---
+
+# Open data Machine Readability
+
+&lt;br&gt;&lt;br&gt;
+.grid[
+.item[
+&lt;center&gt;
+&lt;img src="milk.jpg"  width= "400px"/&gt;
+&lt;/center&gt;
+]
+.item[
+&lt;center&gt;
+&lt;img src="Example_barcode.png"  width= "400px"/&gt;
+&lt;/center&gt;
+]]
+
+---
+
+# Metadata: data about data
+&lt;br&gt;&lt;br&gt;
+Information necessary to use the data
+&lt;br&gt;&lt;br&gt;
+* Source
+* Structure
+* Underlying methodology
+* Topical
+* Geographic and/or temporal coverage
+* License
+* When it was last updated 
+* How it is maintained 
+
+---
+
+# Metadata: data about data
+&lt;br&gt;&lt;br&gt;
+* Dublin Core Metadata Initiative (DCMI) provides a framework and core vocabulary of metadata terms.
+  * https://www.dublincore.org/
+  &lt;br&gt;&lt;br&gt;
+* Governments develop metadata models to provide further uniformity to government-wide Open Data initiatives. 
+  * https://project-open-data.cio.gov/v1.1/schema/
+  
+---
+class: informative middle
+
+# Metadata: example
+
+* https://open.canada.ca/data/en/dataset/4a1b260a-7ac4-4985-80a0-603bfe4aec11
+&lt;br&gt;&lt;br&gt;
+* https://data.worldbank.org/ 
+
+&lt;!-- Title: what data contains and where it comes from. --&gt;
+&lt;!-- Description: details to quickly understand whether data is relevant to you --&gt;
+&lt;!-- publisher: dataset originated, who is repsonsible for maintaining, credibility --&gt;
+&lt;!-- license: --&gt;
+&lt;!-- contact information: questions or incomplete metadata --&gt;
+&lt;!-- frequency: interval data is updated. check for updates? data out of date? --&gt;
+&lt;!-- date modified: relevant for your work? --&gt;
+&lt;!-- spatial coverage: geographic area data is relevant --&gt;
+&lt;!-- temporal coverage: --&gt;
+&lt;!-- open data formats --&gt;
+
+&lt;!-- Maternal mortality world bank data lesson 2--&gt;
+&lt;!-- look at different download formats --&gt;
+---
+
+# Open data quality
+&lt;br&gt;&lt;br&gt;
+Legal requirements:
+&lt;br&gt;&lt;br&gt;
+* Protect sensitive information like personal data.
+* Preserve the rights of data owners.
+* Promote correct use of the data.
+
+&lt;!-- In addition to the open licence, there are three legal requirements that need to be considered. You must: --&gt;
+
+&lt;!-- Refer to week 1 observational data. individual characteristics.  --&gt;
+  &lt;!-- 538 : 41 percent of fliers think you are rude. airline travel data.  --&gt;
+  
+---
+# Open data quality
+
+&lt;br&gt;&lt;br&gt;
+Practical requirements:
+&lt;br&gt;&lt;br&gt;
+* Link to the data from their website.
+* Update the data regularly if it changes.
+* Commit to continue to make the data available.
+
+
+---
+# Open data quality
+&lt;br&gt;&lt;br&gt;
+Technical requirements:
+&lt;br&gt;&lt;br&gt;
+* The format in which the data is published.
+* The structure of the data.
+* The channels through which the data is available.
+
+---
+
+# Five star open data scheme
+&lt;br&gt;&lt;br&gt;
+* 1 star - An open license
+* 2 stars - Re-usable format
+* 3 stars - Open format 
+* 4 stars - use URIs
+* 5 stars - Link data
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+https://5stardata.info/en/
+
+---
+# Cleaning data
+&lt;br&gt;&lt;br&gt;
+Common pittfalls wild data.
+&lt;br&gt;&lt;br&gt;
+* Mixed date formats
+    american/european
+* Multiple representations
+    differences in abbreviations, capitalisation, spacing
+* Duplicate records
+* Redundant data
+* Mixed numerical scales 
+* Spelling errors
+* Missing values
+
+---
+
+# Why do we need open data?
+
+
+* Help make governments more transparent.
+    * Open data allowed citizens in Canada to save the government billions in fraudulent charitable donations
+* Building new business opportunities
+    * Transport for London has released open data that developers have used to build over 800 transport apps.
+* Protecting the planet
+    * Open data about weather can provide an early warning system for environmental disasters
+    * Open data is also helping consumers to understand their personal impacts on the environment
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;   
+https://opendatahandbook.org/guide/en/why-open-data/
+
+---
+class: informative middle
+
+# Open data sources
+&lt;br&gt;&lt;br&gt; 
+* http://dataportals.org/search 
+&lt;br&gt;&lt;br&gt; 
+* http://data.un.org/
+&lt;br&gt;&lt;br&gt; 
+* https://datacatalog.worldbank.org/
+
+---
+# Open data Australia: 
+&lt;br&gt;&lt;br&gt; 
+* http://www.opendata500.com/au/
+&lt;br&gt;&lt;br&gt; 
+* https://opendataimpactmap.org/eap
+
+---
+
+# Government data 
+&lt;br&gt;&lt;br&gt; 
+* http://www.data.gov.au/
+&lt;br&gt;&lt;br&gt; 
+* https://www.data.vic.gov.au/
+&lt;br&gt;&lt;br&gt; 
+* https://data.melbourne.vic.gov.au/
+
+&lt;!-- Metadata with good example -&gt; develop case in lecture with australian data (for instance https://data.gov.au/data/dataset/australia-s-merchandise-trade-by-country-and-sitc-to-fy2017) --&gt;
+&lt;!-- and go over metadata and licenses. --&gt;
+
+---
+class: informative middle
+
+# Open data
+&lt;br&gt;&lt;br&gt; 
+Open data can be freely used, modified, and shared by anyone for any purpose
+&lt;br&gt;&lt;br&gt; 
+Does not say anything about quality data!
+
+---
+class: refresher middle
+
+# Wild-caught data
+
+The data can be freely used, modified, and shared by anyone for any purpose
+&lt;br&gt;&lt;br&gt; 
+AND
+&lt;br&gt;&lt;br&gt; 
+The data source is traceable, the data collection is transparent, and the data is updated as new measurements arrive. In case of data processing, the process is clearly described and reproducible. 
+
+
+---
+
+
+background-image: url(images/bg1.jpg)
+background-size: cover
+class: hide-slide-number split-70
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;&lt;br&gt;
+
+# That's it!
+
+.bottom_abs.width100[
+
+Lecturer: Didier Nibbering
+
+Department of Econometrics and Business Statistics&lt;br&gt;
+
+didier.nibbering@monash.edu
+
+XXth Mar 2020
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-image:url('images/large.png');background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
