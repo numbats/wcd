@@ -17,3 +17,24 @@ ul li li:before {
   margin-right: 5px;
   color: #D93F00;
 }
+
+.tip{
+    padding: 0.35em;
+    margin: 0.35em 0;
+    padding-left: 10px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-image: url("blub.png");
+    min-height: 50px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: dashed 5px #1f5386;
+    width: 100%;
+    display: table;
+    margin: 0 auto;
+  }
+  
+.tip > ul li::before {
+  color: #003F7F;
+}
