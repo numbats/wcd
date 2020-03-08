@@ -4,7 +4,6 @@ week: "Week 1"
 subtitle: "Data collection"
 author: "Didier Nibbering"
 email: "ETC5512.Clayton-x@monash.edu"
-date: "XXth Mar 2020"
 pdflink: ""
 bgimg: "images/bg1.jpg"
 output:
@@ -68,12 +67,85 @@ What questions do you have..?
 
 ---
 # Data examples in this unit
-* Dr Nibbering: Macroeconomic
+* Dr Nibbering: 
+  * Macroeconomic data
 * Dr Menendez: 
-* Dr Tanaka:
-* Professor Cook: Airline traffic, sports statistics
+  * Great Barrier Reef data
+* Dr Tanaka: 
+  * Australian census and election
+  * International student assessment
+* Professor Cook: 
+  * Airline traffic
+  * Sports statistics
 
 ---
+
+# Macroeconomic data
+<br> <br>
+* Macroeconomic data dominates the news
+<br> <br>
+* Everyone affected by interest, exchange, and inflation rates
+<br> <br>
+* Data helps voters and governments understand challenges
+
+
+---
+
+# Great Barrier Reef data
+
+How do government organizations collect and use data?
+* investigate the state of the Great Barrier Reef (GBR)
+* data collected by the Australian Institute of Marine Science
+
+<center>
+<img src="images/263_nerp-te-image2-1-1_0.jpeg" width="65%">
+</center>
+
+<!-- In the second block of the course we will delve into how government organizations collect and use data. -->
+<!-- In particular, we will be investigating the state of the Great Barrier Reef (GBR) by looking at -->
+<!-- data collected by the Australian Institute of Marine Science which is regularly used for policy and decision making. -->
+
+---
+
+class: wider
+
+# Australian census and election
+
+We'll delve into "fresh and local" government data to uncover insights about the Aussie demographic.
+
+<br>
+
+.pull-left[
+
+Why does ACT have the highest weekly earnings?
+
+<center>
+<img src="images/abs_income.jpg" width="65%">
+</center>
+]
+
+--
+
+.pull-right[
+
+Not all statistics are insightful!
+<img src="images/abs_joke.png" width="80%">
+]
+
+---
+
+class: wider
+
+# International student assessment
+
+
+<img src="images/pisa-article.png" width = "100%"/>
+
+Source: [The Conversation](https://theconversation.com/girls-consistently-outperform-boys-in-reading-skills-but-could-this-be-changing-129822)
+
+
+---
+
 background-image: url(./images/airlines_overview.jpg)
 background-position: 99% 99%
 background-size: 25%
