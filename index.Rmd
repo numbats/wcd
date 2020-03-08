@@ -54,13 +54,13 @@ There are no lectures or tutorials during the midsemester break.
 ```{r}
 schedule <- read_csv("materials/schedule.csv") %>% 
   mutate(Slides = case_when(
-    !is.na(HTML) & !is.na(PDF) ~ glue("<a class='fa fa-link' href='slides/{HTML}'></a> <a class='fa fa-file-pdf' href='slides/{PDF}'></a>"),
-    !is.na(HTML) ~ glue("<a class='fa fa-link' href='slides/{HTML}'></a>"),
-    !is.na(PDF) ~ glue("<a class='fa fa-file-pdf' href='slides/{PDF}'></a>"),
+    !is.na(HTML) & !is.na(PDF) ~ glue("<a class='fa fa-link' href='slides/{HTML}' target='_blank'></a> <a class='fa fa-file-pdf' href='slides/{PDF}' target='_blank'></a>"),
+    !is.na(HTML) ~ glue("<a class='fa fa-link' href='slides/{HTML}' target='_blank'></a>"),
+    !is.na(PDF) ~ glue("<a class='fa fa-file-pdf' href='slides/{PDF}' target='_blank'></a>"),
     TRUE ~ ""
   ),
   Lab = case_when(
-    !is.na(Lab) ~ glue("<a class='fa fa-link' href='{Lab}'></a>"),
+    !is.na(Lab) ~ glue("<a class='fa fa-link' href='{Lab}' target='_blank'></a>"),
     TRUE ~ ""
   ),
   Topic = ifelse(is.na(Topic), "", Topic),
