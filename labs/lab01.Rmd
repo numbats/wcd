@@ -1,0 +1,30 @@
+---
+title: 'ETC5512: Instructions for Lab 1'
+author: "Didier Nibbering"
+date: "Week 1"
+output: html_document
+---
+  
+# Objectives
+  
+In this tutorial, you will learn 
+
+- Definitions, sources and examples of Open Data
+- Using and accessing open data sources
+
+# Online tutorial
+
+This week we have an online tutorial. This tutorial will prepare you for the material of next week.
+Please follow the following steps
+
+1. Enter the address https://olc.worldbank.org/ in your browser.
+
+2. Click on "Register" and create a profile.
+
+3. Once you login, the following link can be used to enroll in the course Open Data for Data Users (Self-Paced), 
+https://olc.worldbank.org/content/open-data-data-users-self-paced
+
+4. Pease allow the pop up blocker at the browser settings to run the course successfully.
+
+5. Follow the whole course and answer the questions througout.
+
