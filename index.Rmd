@@ -53,8 +53,8 @@ This is the course website, with information about the consultation times, sched
 
 ## Tentative Schedule
 
-- Lectures: **Wed 2-3pm** and **Wed 4-5pm**, LTB 92. 
-- Computer labs: **Thu 2-3pm**, LTB 92. Bring your own computer, with necessary software already installed.
+- Lectures: **Wed 2-3pm** (room 393) and **Wed 4-5pm** (room 304), LTB 92. 
+- Computer labs: **Thu 2-3pm**, Room 335, LTB 92. Bring your own computer, with necessary software already installed.
 
 There are no lectures or tutorials during the midsemester break.
 
