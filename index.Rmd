@@ -73,8 +73,9 @@ schedule <- read_csv("materials/schedule.csv") %>%
     TRUE ~ ""
   ),
   Topic = ifelse(is.na(Topic), "", Topic),
-  Materials = ifelse(is.na(Materials), "", Materials)) %>% 
-  select(Week, Lecturer, Slides, Lab, Topic, Materials)
+  Materials = ifelse(is.na(Materials), "", Materials),
+  Assessment = ifelse(is.na(Assessment), "", Assessment)) %>% 
+  select(Week, Lecturer, Slides, Lab, Topic, Materials, Assessment)
 
 midsem_break <- 5 # after which week
 
