@@ -1,6 +1,6 @@
 Week,Lecturer,HTML,PDF,Lab,Topic,Materials,Assessment
 1,Didier,week1_collectdata.html,week1_collectdata.pdf,lab01.html,Introduction to data collection methods, Extra readings: <a href="http://www.centroportici.unina.it/centro/Cameron&Trivedi.pdf"> Chapter 3 Cameron&Trivedi </a> and <a href="https://monash.hosted.exlibrisgroup.com/permalink/f/31uhmh/catau51339302880001751"> Byrne on Data collection </a>  ,
-2,Didier,week2_opendata.html,week2_opendata.pdf,,"Open data: definitions, sources and examples", Extra readings: <a href="http://opendatatoolkit.worldbank.org/en/essentials.html"> Worldbank Open Data Essentials </a> and <a href="https://interactions.acm.org/archive/view/march-april-2013/data-in-the-wild"> Article about wild data </a>,
+2,Didier,week2_opendata.html,week2_opendata.pdf,lab02.html,"Open data: definitions, sources and examples", Extra readings: <a href="http://opendatatoolkit.worldbank.org/en/essentials.html"> Worldbank Open Data Essentials </a> and <a href="https://interactions.acm.org/archive/view/march-april-2013/data-in-the-wild"> Article about wild data </a>,
 3,Didier,week3_macro.html,week3_macro.pdf,,Case study: macroeconomic data, Extra readings: <a href="https://doi.org/10.1016/S0304-4076(01)00072-0"> Article about real-time data </a> and <a href="https://doi.org/10.1080/07350015.2015.1086655"> Article about FRED-MD </a>, Assignment 1 available Mar 27
 4,Patricia,,,,Data ethics,,Assignment 1 **due Apr 5 11:55pm**
 5,Patricia,,,,Case study: monitoring the Great Barrier Reef ,,
