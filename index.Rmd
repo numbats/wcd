@@ -32,10 +32,12 @@ This is the course website, with information about the consultation times, sched
 
 ## Consultations
 
-- Instructor: Wed 3:00-4:00 (in their office)
-- Stephanie: Mon 1:30-2:30, Menzies W1105 or W1106
-- Asghar: Tue 10:30-11:30, Menzies W1105 or W1106 
-- Cynthia: Thu 10:30-11:30, Menzies W1105 or W1106
+**ALL CONSULTATIONS WILL BE DONE ONLINE** using zoom. Check moodle for the links.
+
+- Instructor: Wed 3:00-4:00 
+- Stephanie: Mon 1:30-2:30
+- Asghar: Tue 10:30-11:30 
+- Cynthia: Thu 10:30-11:30
 
 ## Expectations 
 
@@ -53,8 +55,8 @@ This is the course website, with information about the consultation times, sched
 
 ## Tentative Schedule
 
-- Lectures: **Wed 2-3pm** and **Wed 4-5pm**, LTB 92. 
-- Computer labs: **Thu 2-3pm**, LTB 92. Bring your own computer, with necessary software already installed.
+- Lectures: **Wed 2-3pm** (room 393) and **Wed 4-5pm** (room 304), LTB 92. 
+- Computer labs: **Thu 2-3pm**, **ON ZOOM** (check for links in moodle). Bring your own computer, with necessary software already installed.
 
 There are no lectures or tutorials during the midsemester break.
 
