@@ -1,0 +1,82 @@
+---
+title: 'ETC5512: Solutions for Lab 2'
+author: "Didier Nibbering"
+date: "Week 2"
+output: html_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE, warning=FALSE, message=FALSE)
+options(width=80,digits=3)
+```
+
+```{r loadpackages}
+library(tidyverse)
+```
+
+# Exercise 2A: download data
+
+```{r A1}
+edu <- read.csv('ACS_10_5YR_S1501_with_ann.csv', header = T)
+```
+
+# Exercise 2B: data collection
+
+  1. Stratified sampling
+  
+      https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_ch04_2014.pdf#
+  
+  2. 31,552+2,138
+ 
+      https://www.census.gov/acs/www/methodology/sample-size-and-data-quality/sample-size/index.php
+  
+  3. 94.0. The coverage rate is the ratio of the ACS population estimate of Texas to the independent estimate for Texas, times 100. The weights of the people from Texas need to be adjusted upwards.
+  
+     https://www.census.gov/programs-surveys/acs/methodology/sample-size-and-data-quality/coverage-rates-definitions.html
+  
+  4. Coverage error, Nonresponse error, Measurement error, Processing error
+  
+      https://www2.census.gov/programs-surveys/acs/methodology/design_and_methodology/acs_design_methodology_ch15_2014.pdf?
+
+
+# Exercise 2C: data collection
+
+  1. Topic: Educational Attainment
+  2. Source: U.S. Census Bureau, 2006-2010 American Community Survey
+  3. Geographic coverage: All counties within Alabama, Kentucky, Missouri, South Carolina, Texas, West Virginia
+  4. Temporal coverage: 2010
+  5. License: https://catalog.data.gov/dataset/american-community-survey 
+
+# Exercise 2D: data analysis
+
+1-3. 
+```{r 1D1}
+edu_clean <- edu %>%
+  select(County = GEO.display.label, PercentBachelorOrHigher = HC01_EST_VC17) %>% 
+  slice(-1) %>% 
+  mutate(PercentBachelorOrHigher=
+           as.numeric(levels(PercentBachelorOrHigher))[PercentBachelorOrHigher]) %>% 
+  drop_na()
+```
+4-6.
+```{r 1D4, eval=FALSE}
+edu_clean %>% arrange(desc(PercentBachelorOrHigher))
+edu_clean %>% arrange((PercentBachelorOrHigher))
+mean(edu_clean$PercentBachelorOrHigher)
+sd(edu_clean$PercentBachelorOrHigher)
+```
+7.  
+No observations available in 2017
+  
+# Exercise 2E: merge data 
+
+```{r 1E1}
+age <- read.csv('DEC_10_SF1_QTP1_with_ann.csv', header = T)
+age_clean <- age %>%
+  select(County = GEO.display.label, Percentunder18 = SUBHD0201_S21) %>% 
+  slice(-1) %>% 
+  mutate(Percentunder18=
+                         as.numeric(levels(Percentunder18))[Percentunder18]) %>% 
+  drop_na()
+edu_age <- inner_join(edu_clean, age_clean, "County")
+```
