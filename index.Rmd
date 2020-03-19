@@ -69,7 +69,7 @@ schedule <- read_csv("materials/schedule.csv") %>%
     TRUE ~ ""
   ),
   Lab = case_when(
-    !is.na(Lab) ~ glue("<a class='fa fa-link' href='labs/{Lab}' target='_blank'></a>"),
+    !is.na(Lab) ~ glue("<a class='fa fa-tasks' href='labs/{Lab}.html' target='_blank'></a> <a class='fa fa-lightbulb' href='labs/{Lab}sol.html' target='_blank'></a>"),
     TRUE ~ ""
   ),
   Topic = ifelse(is.na(Topic), "", Topic),
@@ -89,7 +89,7 @@ schedule %>%
                 fixed_thead = T) %>% 
   column_spec(1, width = "0.5cm") %>% 
   column_spec(2, width = "1cm") %>% 
-  column_spec(3, width = "0.5cm") %>% 
+  column_spec(3, width = "1cm") %>% 
   group_rows("Midsemester Break", midsem_break + 1, 12, label_row_css = "background-color: #d9e1e8;") %>% 
   add_indent(1:midsem_break) # this needs to be done to match up with above
 ```
