@@ -30,7 +30,7 @@ output:
       highlightLines: true
       highlightSpans: false 
       countIncrementalSlides: false
-      slideNumberFormat: ''
+      slideNumberFormat: '%current%/%total%'
       navigation:
         scroll: false 
         touch: true
