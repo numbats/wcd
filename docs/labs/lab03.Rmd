@@ -1,0 +1,76 @@
+---
+title: 'ETC5512: Instructions for Lab 3'
+author: "Didier Nibbering"
+date: "Week 3"
+output: html_document
+---
+
+
+# Objectives
+  
+In this tutorial, you will learn 
+
+- to download macroeconomic data
+- assess the collection methods and the quality of the data
+- write computer code to wrangle and analyse data
+
+
+# Exercise 3A: Survey of Professional forecasters
+
+Download the individual responses for the Survey of Processional forecasters for U.S. nominal gross domestic product. The Survey of Processional forecasters can be found here: https://www.philadelphiafed.org/research-and-data/real-time-center/survey-of-professional-forecasters
+
+- Select "Download one variable at a time"
+- Select "Nominal Gross National Product/Gross Domestic Product (NGDP)". Note that you can find "Documentation.pdf" here. 
+- Select "Individual Responses"
+- This will download the file "Individual_NGDP.xlsx"
+
+Use the lecture materials and the Survey documentation to answer the following questions:
+
+1. What is the source for the real-time  historical values for nominal gross domestic product?
+2. Explain the difference between the data prior to 1992, and after 1992.
+3. Why is the data for nominal gross domestic product seasonally adjusted?
+4. Is nominal gross domestic product a stock or a flow variable? 
+5. Discuss whether nominal gross domestic product is a good measure for growth of production.
+6. Consider the forecasts for nominal gross domestic product for the first quarter of 2005. What was the deadline date for submitting the forecasts?
+
+Use the downloaded file "Individual_NGDP.xlsx" to answer the following questions:
+
+7. Put the downloaded file in your working directory and use read_excel to load the data in your workspace
+```{r A7, eval = FALSE}
+library(tidyverse)
+library(readxl)
+spf <- read_excel(???,sheet=1)
+```
+8. Select the forecasts (nowcasts) for nominal gross domestic product for the first quarter of 2005.
+```{r A8, eval=FALSE}
+spf2005Q1for <- spf %>% filter(YEAR==???,QUARTER==???) %>% 
+  mutate(forecast=as.double(???)) %>% 
+  select(???,???) %>% drop_na()  
+```  
+9. What is the mean forecast for the first quarter of 2005?
+10. Who is the most optimistic forecaster?
+  
+  
+# Exercise 3B: Real-time data vintages
+  
+Use the ALFRED package to access the ALFRED database. Download all the vintages for the nominal gross domestic product in the first quarter of 2005.
+```{r B,eval=FALSE}
+library(alfred)
+fred2005Q1vin <- as_tibble(get_alfred_series(???, 
+                                             observation_start = ???,
+                                             observation_end = ???,
+                                 realtime_start = ???, 
+                                 realtime_end = ???))
+```
+
+1. What is the source of the ALFRED nominal gross domestic product data?
+2. Provide the license of the ALFRED data.
+3. What is the earliest vintage in ALFRED after the survey submission of the Survey of Professional Forecasters?
+4. Plot the values for nominal gross domestic product in the different vintages over time.
+```{r B4,eval=FALSE}
+fred2005Q1vin %>% ggplot(aes(y=???,x=???))+geom_line()
+```
+5. How can the observed pattern be explained?
+  
+  
+
