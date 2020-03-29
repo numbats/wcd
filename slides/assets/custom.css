@@ -38,3 +38,5 @@ ul li li:before {
 .tip > ul li::before {
   color: #003F7F;
 }
+
+.motivator ul li { text-align:  left; }
