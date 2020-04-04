@@ -77,7 +77,7 @@ schedule <- read_csv("materials/schedule.csv") %>%
   Assessment = ifelse(is.na(Assessment), "", Assessment)) %>% 
   select(Week, Lecturer, Slides, Lab, Topic, Materials, Assessment)
 
-midsem_break <- 5 # after which week
+midsem_break <- 4 # after which week
 
 schedule %>% 
   mutate(Lecturer = cell_spec(
