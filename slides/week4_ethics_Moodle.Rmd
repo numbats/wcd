@@ -49,7 +49,7 @@ output:
 <br>
 <br>
 .info-box[
-- Some of the materials that we will be using in Week 4 lecture and tutorial are copyrighted. Becuase of that, all the materials for the week, will be placed in Moodle.
+- Some of the materials that we will be using in Week 4 lecture and tutorial are copyrighted. Because of that, all the materials for the week, will be placed in Moodle.
 - Materials for Week 5 and Week 6 will be placed on this website as usual.
 ]
 
