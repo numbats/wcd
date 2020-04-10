@@ -1,0 +1,77 @@
+---
+title: 'ETC5512: Solutions for Lab 3'
+author: "Didier Nibbering"
+date: "Week 3"
+output: html_document
+---
+
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache=TRUE, warning=FALSE, message=FALSE)
+options(width=80,digits=3)
+```
+
+```{r loadpackages}
+library(tidyverse)
+library(readxl)
+library(alfred)
+```
+
+# Exercise 3A: Survey of Professional forecasters
+  
+  1. U.S. Bureau of Economic Analysis
+  
+    https://www.philadelphiafed.org/-/media/research-and-data/real-time-center/survey-of-professional-forecasters/spf-documentation.pdf?la=en
+  
+  2. Prior to 1992 the values are forecasts for nominal GNP, after 1992 nominal GDP. GNP is the total value of goods and services produced by nationals of the country in a certain period of time. GDP is the total value of goods and services produced in the country in a certain period of time.
+  3. Seasonal fluctuations may not reflect economic conditions
+  4. Flow variable.
+  5. No. It also includes inflation.
+  6. Deadline date: 2/9/05
+  
+    https://www.philadelphiafed.org/-/media/research-and-data/real-time-center/survey-of-professional-forecasters/spf-release-dates.txt?la=en
+  
+  7. 
+```{r A7}
+spf <- read_excel("Individual_NGDP.xlsx",sheet=1)
+```
+  
+  8. 
+```{r A8}
+spf2005Q1for <- spf %>% filter(YEAR==2005,QUARTER==1) %>% 
+  mutate(forecast=as.double(NGDP2)) %>% 
+  select(ID,forecast) %>% drop_na()  
+```  
+  9. What is the mean forecast for the first quarter of 2005?
+```{r A9}
+mean(spf2005Q1for$forecast)
+```
+  10 Forecaster with ID 99
+```{r A10}
+spf2005Q1for %>% arrange(desc(forecast))
+```
+
+# Exercise 3B: Real-time data vintages
+
+```{r B}
+library(alfred)
+fred2005Q1vin <- as_tibble(get_alfred_series("GDP", 
+                                             observation_start = "2005-01-01",
+                                             observation_end = "2005-01-01"))
+```
+
+  1. U.S. Bureau of Economic Analysis
+  
+    https://alfred.stlouisfed.org/series?seid=GDP
+  
+  2. https://research.stlouisfed.org/fred_terms.html
+  3. vintage 2005-04-28
+  4. 
+```{r B4}
+fred2005Q1vin %>% ggplot(aes(y=GDP,x=realtime_period))+geom_line()
+```
+  5. The comprehensive revisions in 2009 and 2013 incorporated changes in definitions, classifications, statistical methods, source data, and presentation. The other changes may be due to improved samples, data, and seasonal factors.
+  
+
+
+
+
