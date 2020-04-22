@@ -762,21 +762,21 @@ knitr::include_graphics("images/st3.png")
 # Step 4
 Create a new project and then 
 
-```{r out.width = '100%', echo = FALSE, fig.align = "center"}
+```{r out.width = '90%', echo = FALSE, fig.align = "center"}
 knitr::include_graphics("images/st4.png")
 ```
 
 ---
 # Step 5
 
-```{r out.width = '100%', echo = FALSE, fig.align = "center"}
+```{r out.width = '60%', echo = FALSE, fig.align = "center"}
 knitr::include_graphics("images/st5.png")
 ```
 
 ---
 # Step 6
 
-```{r out.width = '100%', echo = FALSE, fig.align = "center"}
+```{r out.width = '60%', echo = FALSE, fig.align = "center"}
 knitr::include_graphics("images/st6.png")
 ```
 
