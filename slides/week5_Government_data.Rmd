@@ -2,9 +2,9 @@
 title: "ETC5512: Wild Caught Data"
 week: "Week 5"
 subtitle: "Let's look at the Great Barrier Reef"
-author: "Patricia Menendez"
+author: "Patricia Menéndez"
 email: "ETC5512.Clayton-x@monash.edu"
-date: "XXth Mar 2020"
+date: "22nd April 2020"
 pdflink: ""
 bgimg: "images/nicolas-weldingh-VlLpLEuIQaE-unsplash.jpg"
 output:
