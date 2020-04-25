@@ -25,8 +25,6 @@ library(rgdal)
 
 ```
 
-
-
 # Exercise 1: Data 
 
 
@@ -44,7 +42,6 @@ mmp <- read_csv("Data/mmp_hc_sc_a_by_site/mmp_hc_sc_a_by_site.csv", col_types = 
 ```
 
 # Exercise 2: Create a report and read the data
-
 
 ## LTMP colored by SHELF
 ```{r , echo = TRUE, eval = TRUE}
@@ -92,9 +89,7 @@ ggplot(data = mmp,
   
 ```
 
-
 # Exercise 3: Creating maps using leaflet
-
 
 ## MMP 
 
@@ -150,9 +145,6 @@ ltmp_locations
 mapshot(ltmp_locations,  file = paste0(getwd(), "/Tutorial5_Images/ltmp_locations.png"))
 ```
 
-
-
-
 ## Exercise 4: Creating maps using shape files
 
 ## Maps with Great Barrier Reef Marine Park Boundary
@@ -172,7 +164,6 @@ ggplot() +
   ggtitle("MMP sampling locations")
 
 ```
-
 
 
 ```{r LTMP_samplingGBRMPBoundary}
@@ -196,7 +187,6 @@ ggplot() +
 
 
 ```
-
 
 ## Maps with Great Barrier Reef Fetures
 
