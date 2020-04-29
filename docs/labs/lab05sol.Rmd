@@ -1,0 +1,222 @@
+---
+title: "ETC5512: Solutions for Lab 5"
+author: "Patricia Menéndez"
+output:
+  html_document: default
+  pdf_document: default
+keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.path = "Tutorial5_Images/", cache = TRUE, fig.width = 8, fig.height = 8)
+
+```
+
+# Reading libraries
+
+```{r , message = FALSE, warning = FALSE}
+library(tidyverse)
+library(leaflet)
+library(ggmap)
+library(readr)
+library(mapview)
+library(viridis)
+library(rgdal)
+
+```
+
+# Exercise 1: Data 
+
+
+```{r}
+# LTMP data
+ltmp <- read_csv(file = "Data/ltmp_hc_sc_a_by_site/ltmp_hc_sc_a_by_site.csv", col_types = cols())
+str(ltmp)
+
+```
+
+
+```{r}
+#MMP data
+mmp <- read_csv("Data/mmp_hc_sc_a_by_site/mmp_hc_sc_a_by_site.csv", col_types = cols())
+```
+
+# Exercise 2: Create a report and read the data
+
+## LTMP colored by SHELF
+```{r , echo = TRUE, eval = TRUE}
+ggplot(data = ltmp,
+       aes(
+         x = LONGITUDE,
+         y = LATITUDE, 
+         color = SHELF)
+       ) +
+  geom_point() +
+  theme_bw() +
+  ggtitle("LTMP sampling locations")
+  
+```
+
+## LTMP colored by SECTOR
+
+```{r , echo = TRUE, , fig.align = "center"}
+ggplot(data = ltmp,
+       aes(
+         x = LONGITUDE,
+         y = LATITUDE, 
+         color = SECTOR)
+       ) +
+  geom_point() +
+  theme_bw() +
+  ggtitle("LTMP sampling locations")
+```
+
+
+## MMP
+
+```{r , echo = TRUE, , fig.align = "center"}
+
+mmp <- read_csv(file = "Data/mmp_hc_sc_a_by_site/mmp_hc_sc_a_by_site.csv", col_types = cols())
+ggplot(data = mmp,
+       aes(
+         x = LONGITUDE,
+         y = LATITUDE, 
+         color = NRM_REGION)
+       ) +
+  geom_point() +
+  theme_bw() +
+  ggtitle("MMP sampling locations")
+  
+```
+
+# Exercise 3: Creating maps using leaflet
+
+## MMP 
+
+```{r MMPleaflet_map}
+# Map for MMP sampling locations
+cb_bbox <- make_bbox(lon = mmp$LONGITUDE, 
+                     mmp$LATITUDE, f = 0.9) 
+
+mmp_locations = leaflet(data = mmp) %>%
+  # Base group
+  addProviderTiles(providers$Esri.WorldImagery, group="Satellite") %>%
+  # Add reciever location data
+  addCircles(
+    lng = mmp$LONGITUDE, 
+    lat = mmp$LATITUDE, 
+    fill=TRUE, color="yellow",
+    weight= 2,
+    radius = 2,
+    #color = ~pal(col),
+    stroke = FALSE, fillOpacity = 0.8)
+
+mmp_locations
+
+mapshot(mmp_locations,  file = paste0(getwd(), "/Tutorial5_Images/mmp_locations.png"))
+```
+
+##LTMP
+
+
+```{r LTMPleaflet_map}
+# Map for MMP sampling locations
+cb_bbox <- make_bbox(lon = ltmp$LONGITUDE, 
+                     ltmp$LATITUDE, f = 0.9) 
+
+#pal <- colorNumeric(c("red", "green", "blue"), 1:10)
+
+ltmp_locations = leaflet(data = ltmp) %>%
+  # Base group
+  addProviderTiles(providers$Esri.WorldImagery, group="Satellite") %>%
+  # Add reciever location data
+  addCircles(
+    lng = ltmp$LONGITUDE, 
+    lat = ltmp$LATITUDE, 
+    fill=TRUE, color="yellow",
+    weight=2,
+    radius = 2,
+    #color = ~pal(col),
+    stroke = FALSE, fillOpacity = 0.8)
+
+ltmp_locations
+
+
+mapshot(ltmp_locations,  file = paste0(getwd(), "/Tutorial5_Images/ltmp_locations.png"))
+```
+
+## Exercise 4: Creating maps using shape files
+
+## Maps with Great Barrier Reef Marine Park Boundary
+
+```{r MMP_samplingGBRMPBoundary}
+
+
+shp <- readOGR(dsn = file.path(paste(getwd(),"/Data", sep=""), "Great_Barrier_Reef_Marine_Park_Boundary.shp") , stringsAsFactors = F)
+#shp <- readOGR(dsn = file.path("/Users/pmen0008/Google Drive/ETC5512/Wild_Caught_Data/Demo data", "Great_Barrier_Reef_Marine_Park_Boundary.shp") , stringsAsFactors = F)
+summary(shp@data)
+
+
+ggplot() + 
+  geom_polygon(data = shp, aes(x = long, y = lat, group = group), colour = "black", fill = NA) +
+  geom_point(data = mmp, aes(x = LONGITUDE, y = LATITUDE, color = NRM_REGION)) +
+  theme(legend.position="top") +
+  ggtitle("MMP sampling locations")
+
+```
+
+
+```{r LTMP_samplingGBRMPBoundary}
+require(rgdal)
+require(ggplot2)
+
+
+shp <- readOGR(dsn = file.path(paste(getwd(),"/Data", sep=""), "Great_Barrier_Reef_Marine_Park_Boundary.shp") , stringsAsFactors = F)
+summary(shp@data)
+
+
+ggplot() + 
+  geom_polygon(data = shp, aes(x = long, y = lat, group = group), colour = "black", fill = NA) +
+  geom_point(data = ltmp, aes(x = LONGITUDE, y = LATITUDE, color = SHELF)) +
+  theme_bw() +
+  theme(legend.position="top") +
+  ggtitle("LTMP sampling locations")
+
+  
+
+
+
+```
+
+## Maps with Great Barrier Reef Fetures
+
+```{r  MMP_samplingGBRfeatures}
+shp2 <- readOGR(dsn = file.path(paste(getwd(),"/Data", sep=""), "Great_Barrier_Reef_Features.shp") , stringsAsFactors = F)
+summary(shp2@data)
+
+ggplot() + 
+  geom_polygon(data = shp2, aes(x = long, y = lat, group = group), colour = "black", fill = NA) +
+  geom_point(data = mmp, aes(x = LONGITUDE, y = LATITUDE, color = NRM_REGION)) +
+  theme_gray() +
+  theme(legend.position="bottom") +
+  ggtitle("MMP sampling locations")
+
+
+```
+
+```{r LTMP_samplingGBRfeatures , }
+shp2 <- readOGR(dsn = file.path(paste(getwd(),"/Data", sep=""), "Great_Barrier_Reef_Features.shp") , stringsAsFactors = F)
+summary(shp2@data)
+
+ggplot() + 
+  geom_polygon(data = shp2, aes(x = long, y = lat, group = group), colour = "grey", fill = NA) +
+  geom_point(data = ltmp, aes(x = LONGITUDE, y = LATITUDE, color = SHELF)) +
+  theme_light() +
+  theme(legend.position="bottom") +
+  scale_color_viridis(discrete=TRUE) +  
+  ggtitle("LTMP sampling locations")
+
+
+```
+
+
