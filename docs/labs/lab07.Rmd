@@ -1,0 +1,504 @@
+---
+title: 'ETC5512: Instructions for Lab 7'
+author: "Emi Tanaka"
+date: "Week 7"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+   eval = FALSE
+)
+```
+
+
+**<span style="color:red">Please do [Preparation](#preparation) *before* the tutorial!</span>**
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will learn 
+
+- a bit about how to structure your projects
+- to wrangle messy data into tidy data
+- to integrate data from different sources for exploratory analysis
+- to draw chloropleth maps and cartograms 
+
+
+## `r emo::ji("wrench")` Preparation  
+
+1. **Set up your project folder**
+
+   * RStudio > New Project > New Directory > New Project
+   
+     Save it in a directory of your choosing. 
+   
+     You can call the project what you like, e.g. `etc5512-week07`.
+   
+   * Create folders called `data`, `analysis` and `notes` in the project root directory.
+   
+   * Add the <a href="https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2901.0Main%20Features802016/$FILE/2016%20Census%20Sample%20Household%20Form.pdf" download>2016 Census Sample Household Form</a> under `notes` folder.
+   
+   * Add a <a href="https://github.com/numbats/wcd/raw/master/materials/analysis.Rmd" download>sample analysis Rmd</a>file under `analysis` folder.
+   
+   * Add a <a href="https://github.com/numbats/wcd/raw/master/materials/README.md" download>README.md</a> file in the project root directory. The easiest way to do this is to run the R command `usethis::use_readme_md()` from your project.
+
+
+1. **Getting the census data**
+  
+   * Go to https://datapacks.censusdata.abs.gov.au/datapacks/ selecting the following options:
+     * 2016 Census Datapacks
+     * General Community Profile 
+     * All geographies
+     * Vic 
+
+     The downloaded file would be called `2016_GCP_ALL_for_Vic_short-header.zip` with size of 118 MB.
+   
+   * Unzip this file and save the folder in under `data` folder.
+   
+
+1. **Getting the election data**
+
+   * Go to https://results.aec.gov.au/ then select from the left side bar
+      * 2019 federal election
+      * Downloads
+      
+     Scroll down and download the CSV file from *Distribution of preferences by candidate by division*. The file is named `HouseDopByDivisionDownload-24310.csv` (or you can downlaod by clicking [here](https://results.aec.gov.au/24310/Website/Downloads/HouseDopByDivisionDownload-24310.csv)).
+   
+   * Save this csv file in your project directory under the `data` folder.
+    
+
+1. **Installing relevant R-packages**
+
+```{r, eval = FALSE}
+install.packages(c("remotes", "usethis", "here", "skimr", "mgcv"))
+# emitanaka should normally be replaced by reopenscilabs
+remotes::install_github("emitanaka/eechidna")
+```
+
+5. **Check your project structure**
+
+   Your project structure should look like below.
+
+```
+etc5512-week07
+├── README.md
+├── analysis
+│   └── exercise.Rmd
+├── data
+│   ├── 2016_GCP_ALL_for_Vic_short-header
+│   │   └── 2016\ Census\ GCP\ All\ Geographies\ for\ VIC
+│   │       ├── SA1
+│   │       │   └── VIC
+│   │       │       ├── 2016Census_G17A_VIC_SA1.csv
+│   │       │       ├── 2016Census_G17B_VIC_SA1.csv
+│   │       │       └── 2016Census_G17C_VIC_SA1.csv
+│   │       └── STE
+│   │           └── VIC
+│   │               ├── 2016Census_G17A_VIC_STE.csv
+│   │               ├── 2016Census_G17B_VIC_STE.csv
+│   │               └── 2016Census_G17C_VIC_STE.csv
+│   └── HouseDopByDivisionDownload-24310.csv
+├── etc5512-week07.Rproj
+└── notes
+    └── 2016\ Census\ Sample\ Household\ Form.pdf
+```
+
+   * Note that it's not desirable to have spaces in your file or folder name, as you may need escape spaces by preceding with `\` like above
+   * <span style="color:red">Put your analysis from the exercises into the `analysis/exercise.Rmd`.</span>
+   * **_Troubleshooting_**: if you have an issue downloading datasets, installing software, running commands, and so on then you can make a permanent copy of [this RStudio Cloud project](https://rstudio.cloud/project/1218894) instead.
+    
+## `r emo::ji("lifter")` Exercise 7A
+
+**Tidy your census data**
+
+In the `setup` chunk, load the following packages.  
+```{r library, eval = TRUE, message = FALSE}
+library(tidyverse)
+library(eechidna)
+# sometimes stats::filter is used instead of dplyr::filter
+# so we explictly define which `filter` here
+filter <- dplyr::filter
+```
+
+To load the data we will use the `here` function from the `here` package `r emo::ji("package")`. Note that we can use a function from a package without loading the package (i.e. without `library(package)`) by using the form `package::function`. The path argument parsed to `here::here` will be referenced with respect to `Rproj` is. This is particularly helpful if your project structure becomes deeply nested. 
+
+```
+etc5512-week07
+├── analysis
+│   └── exercise.Rmd      # << analysis are here
+├── data                  # << data are here 
+│               
+│  
+├── etc5512-week07.Rproj  # << make reference point `here`
+```
+
+
+```{r data, eval = T}
+STE_path <- here::here("data/2016_GCP_ALL_for_Vic_short-header/2016 Census GCP All Geographies for VIC/STE/VIC/")
+filenames <- paste0(STE_path, "2016Census_G17", c("A", "B", "C"), "_VIC_STE.csv")
+STE_G17A_df <- read_csv(filenames[1], col_types = list())
+STE_G17B_df <- read_csv(filenames[2], col_types = list())
+STE_G17C_df <- read_csv(filenames[3], col_types = list())
+
+SA1_path <- here::here("data/2016_GCP_ALL_for_Vic_short-header/2016 Census GCP All Geographies for VIC/SA1/VIC/")
+filenames <- paste0(SA1_path, "2016Census_G17", c("A", "B", "C"), "_VIC_SA1.csv")
+SA1_G17A_df <- read_csv(filenames[1], col_types = list())
+SA1_G17B_df <- read_csv(filenames[2], col_types = list())
+SA1_G17C_df <- read_csv(filenames[3], col_types = list())
+```
+
+First focus on `STE_G17A_df` alone. 
+
+To examine the data in the first instance use `skimr::skim`.
+
+```{r}
+skimr::skim(STE_G17A_df)
+```
+* How many rows and columns does `STE_G17A_df` contain?
+* Remove any columns with the header that contains the strings `Tot` (totals) or `PI_NS` (personal income not stated).
+* Wrangle your data so that it has the columns: `count`, `sex`, `age_min`, `age_max` `income_min`, and `income_max`. Below in the hint is some code to get you started (you will need to replace all the `...`s). For those with no upper bound (e.g. 85 over, 3000 or more), you can use `Inf` in R to signify $\infty$.
+
+<details style = "padding-left:50px;">
+<summary>Hint</summary>
+```{r}
+STE_G17A_tidy_df <- pivot_longer(STE_G17A_df, -STE_CODE_2016, 
+                                 names_to = "category", values_to = "count") %>% 
+   filter(!str_detect(category, "Tot") | ... ) %>% 
+   mutate(  sex = case_when(
+                    str_starts(category, "M") ~ "male",
+                    str_starts(category, "F") ~ "female",
+                    str_starts(category, "P") ~ "both"),
+        age_min = case_when(
+                    str_detect(category, "85_yrs_ovr") ~ 85,
+                    str_detect(category, "85ov") ~ 85,
+                    # use regular expression or otherwise for rest
+                    TRUE ~ as.numeric(str_match(category, ".+_([0-9]+)_[0-9]+_yrs")[, 2])),
+        age_max = case_when(...),
+     income_min = case_when(...),
+     income_max = case_when(...))
+```
+</details>
+
+
+The first 10 rows of `STE_G17A_tidy_df` should look similar to below.
+
+
+```{r, echo = FALSE, eval = TRUE}
+STE_G17_tidy_list <- map(list(STE_G17A_df, STE_G17B_df, STE_G17C_df), 
+                        function(df) {
+                           df %>% 
+                             pivot_longer(-STE_CODE_2016,
+                                          names_to = "category",
+                                          values_to = "count") %>% 
+                             filter(!str_detect(category, "Tot") & !str_detect(category, "PI_NS")) %>% 
+                             mutate(
+                               sex = case_when(
+                                 str_starts(category, "M") ~ "male",
+                                 str_starts(category, "F") ~ "female",
+                                 str_starts(category, "P") ~ "both"),
+                               income_min = case_when(
+                                 str_detect(category, "Neg_Nil_income") ~ 0,
+                                 str_detect(category, "Negtve_Nil_incme") ~ 0,
+                                 str_detect(category, "Neg_Nil_incme") ~ 0,
+                                 TRUE ~ as.numeric(str_match(category, "[PFM]_([0-9]+)")[, 2])
+                               ),
+                               income_max = case_when(
+                                 str_detect(category, "Neg_Nil_income") ~ 0,
+                                 str_detect(category, "Negtve_Nil_incme") ~ 0,
+                                 str_detect(category, "Neg_Nil_incme") ~ 0,
+                                 str_detect(category, "3000_more") ~ Inf,
+                                 TRUE ~ as.numeric(str_match(category, "[PFM]_[0-9]+_([0-9]+)")[, 2])
+                               ),
+                               age_min = case_when(
+                                 str_detect(category, "85_yrs_ovr") ~ 85,
+                                 str_detect(category, "85ov") ~ 85,
+                                 TRUE ~ as.numeric(str_match(category, ".+_([0-9]+)_[0-9]+_yrs")[, 2])
+                               ),
+                               age_max = case_when(
+                                 str_detect(category, "85_yrs_ovr") ~ Inf, 
+                                 str_detect(category, "85ov") ~ Inf,
+                                 TRUE ~ as.numeric(str_match(category, ".+_[0-9]+_([0-9]+)_yrs")[, 2])
+                               ))
+                        })
+STE_G17_tidy_df <- map_dfr(STE_G17_tidy_list, ~.x)
+
+
+SA1_G17_tidy_df <- map_dfr(list(SA1_G17A_df, SA1_G17B_df, SA1_G17C_df), 
+                        function(df) {
+                           df %>% 
+                             pivot_longer(-SA1_7DIGITCODE_2016,
+                                          names_to = "category",
+                                          values_to = "count") %>% 
+                             filter(!str_detect(category, "Tot") & !str_detect(category, "PI_NS")) %>% 
+                             mutate(
+                               sex = case_when(
+                                 str_starts(category, "M") ~ "male",
+                                 str_starts(category, "F") ~ "female",
+                                 str_starts(category, "P") ~ "both"),
+                               income_min = case_when(
+                                 str_detect(category, "Neg_Nil_income") ~ 0,
+                                 str_detect(category, "Negtve_Nil_incme") ~ 0,
+                                 str_detect(category, "Neg_Nil_incme") ~ 0,
+                                 TRUE ~ as.numeric(str_match(category, "[PFM]_([0-9]+)")[, 2])
+                               ),
+                               income_max = case_when(
+                                 str_detect(category, "Neg_Nil_income") ~ 0,
+                                 str_detect(category, "Negtve_Nil_incme") ~ 0,
+                                 str_detect(category, "Neg_Nil_incme") ~ 0,
+                                 str_detect(category, "3000_more") ~ Inf,
+                                 TRUE ~ as.numeric(str_match(category, "[PFM]_[0-9]+_([0-9]+)")[, 2])
+                               ),
+                               age_min = case_when(
+                                 str_detect(category, "85_yrs_ovr") ~ 85,
+                                 str_detect(category, "85ov") ~ 85,
+                                 TRUE ~ as.numeric(str_match(category, ".+_([0-9]+)_[0-9]+_yrs")[, 2])
+                               ),
+                               age_max = case_when(
+                                 str_detect(category, "85_yrs_ovr") ~ Inf, 
+                                 str_detect(category, "85ov") ~ Inf,
+                                 TRUE ~ as.numeric(str_match(category, ".+_[0-9]+_([0-9]+)_yrs")[, 2])
+                               ))
+                        })
+
+                           
+STE_G17_tidy_list[[1]] %>% head(10) %>% knitr::kable()
+```
+
+
+* Repeat to make `STE_G17B_df` and `STE_G17C_df` tidy.
+* Combine `STE_G17A_tidy_df`, `STE_G17B_tidy_df` and `STE_G17C_tidy_df` data by bindng rows and save it to the variable `STE_G17_tidy_df`.
+
+<details style = "padding-left:50px;">
+<summary>Hint</summary>
+```{r}
+STE_G17_tidy_df <- bind_rows(STE_G17A_tidy_df, 
+                             STE_G17B_tidy_df,
+                             STE_G17C_tidy_df)
+```
+</details>
+
+* Repeat now to get `SA1_G17_tidy_df`.
+
+
+## `r emo::ji("running")` Exercise 7B
+
+**Quality check your census data**
+
+* According to the data from 7A, how many people are there in Victoria? If you check [http://www.population.net.au](http://www.population.net.au/population-of-victoria/), there are 6.03 million people in 2016 at Victoria. Does it look right? Are we missing some people in the data? If so, what kinds of people are we missing?
+* What is the minimum and maximum of values for `count`? Do the range and categories for each column look right?
+* Draw a barplot (using `ggplot` or otherwise) of the number people in Victoria by:
+  1. sex
+  2. age group
+  3. income group
+  4. sex and age group
+  5. sex and income group
+  6. age and income group
+  7. sex, age and income group
+
+<details style = "padding-left:50px;">
+<summary>Hint: click here for a code for the 7th barplot </summary>
+  
+```{r, eval = TRUE}
+STE_G17_tidy_df %>% 
+   # remove `both` (should be a combination of female + male)
+   filter(sex!="both") %>% 
+   # make pretty age and income factors 
+   mutate(income = fct_reorder(paste0(scales::dollar(income_min, big.mark = ""), "-", income_max), income_min),
+          income = fct_recode(income, 
+                              "Nil or negative" = "$0-0",
+                              "$3000 or more" = "$3000-Inf"),
+             age = fct_reorder(paste0(age_min, "-", age_max), age_min),
+             age = fct_recode(age, "over 85" = "85-Inf")) %>% 
+   # plot
+   ggplot(aes(x = age, y = count, fill = sex)) + 
+      geom_col(position = "dodge") + 
+   facet_wrap(~income) + 
+   # let's not use the default theme
+   theme_bw(base_size = 12) + 
+   theme(axis.text.x = element_text(angle = 90, vjust = 0.3)) + 
+   ggtitle("Income, sex & age distribution in Victoria from 2016 Census") 
+
+   
+```
+  
+  
+</details>
+  
+* Do the graphs look right? Discuss with your classmates.
+
+
+
+## `r emo::ji("dancing")` Exercise 7C
+
+**Extract statistics from your tidy census data**
+
+According to the 2016 Census data:
+
+* How many women in Victoria are aged between 15-54 years old?
+* What is the proportion of people in Victoria that are 25-34 years old (inclusive) and earn $1750 or more per week?
+* Suppose I randomly select a man from all the man aged 25-44 years old in Victoria. What is the probability that the man I selected earns less than $1500 per week?
+
+
+
+## `r emo::ji("fencing")` Exercise 7D
+
+**Map the election data**
+
+We will next draw a map of Victoria and color the electorate districts with the political party that won that district in the 2019 federal election.
+
+* First, import the election data and map data as below.
+
+```{r, eval = TRUE}
+election_2019_df <- read_csv(here::here("data/HouseDopByDivisionDownload-24310.csv"), 
+                        skip = 1, # first row is meta data
+                        # below *explicitly* defines the column types
+                        # note e.g. DivisionID is normally read as numeric  
+                        # but we specify it should be read as character
+                        col_types = cols(
+                             StateAb = col_character(),
+                             DivisionID = col_character(),
+                             DivisionNm = col_character(),
+                             CountNumber = col_double(),
+                             BallotPosition = col_character(),
+                             CandidateID = col_character(),
+                             Surname = col_character(),
+                             GivenNm = col_character(),
+                             PartyAb = col_character(),
+                             PartyNm = col_character(),
+                             Elected = col_character(),
+                             HistoricElected = col_character(),
+                             CalculationType = col_character(),
+                             CalculationValue = col_double())) %>% 
+   # select winning candidate only 
+   filter(CalculationType == "Preference Count" & 
+             Elected == "Y" & 
+             CountNumber == 0) %>% 
+   # make division name upper case so 
+   # it can be joined later with map data
+   mutate(elect_div = toupper(DivisionNm)) %>% 
+   # select only the variables needed
+   select(elect_div, PartyAb)
+
+# map data from the eechidna package
+nat_map19 <- nat_map_download(2019) 
+
+# define the political colors (feel free to change)
+party_colors <- c("ALP" = "#DE3533", "LNP" = "#ADD8E6", 
+                  "KAP" = "#8B0000", "GRN" = "#10C25B", 
+                  "GVIC" = "#10C25B", "XEN" = "#ff6300", 
+                  "LP" = "#0047AB", "NP" = "#0a9cca", 
+                  "IND" = "#000000")
+```
+* Next subset the `nat_map19` data to Victoria only and add a column `PartyAb` that corresponds to the 2019 federal election winner of that district. Save this data to a variable named `vic_map19`.
+
+<details style = "padding-left:50px;">
+<summary>Solution</summary>
+```{r, eval = TRUE}
+vic_map19 <- nat_map19 %>% 
+   filter(state == "VIC") %>% 
+   left_join(election_2019_df, by = "elect_div")
+```
+</details>
+
+
+```{r vicmap19, echo = F}
+plot_vic_map19 <- ggplot(vic_map19, aes(long, lat)) + 
+     geom_polygon(aes(group = group, fill = PartyAb), 
+                  color = "white") + 
+     theme_void() + 
+     coord_equal() + 
+     scale_fill_manual(values = party_colors) + 
+   ggtitle("Winners of Australian Federal Election in 2019", 
+           subtitle = "Victoria")
+plot_vic_map19
+```
+
+* Draw a map that looks like below using `vic_map19`.
+
+
+```{r vicmap19, eval = T, echo = F}
+```
+
+<details style = "padding-left:50px;">
+<summary>Solution</summary>
+
+```{r vicmap19, eval = F, echo = T}
+```
+
+</details>
+
+
+
+
+
+
+## `r emo::ji("snowboarder")` Exercise 7E
+
+
+**Integrate data from different sources**
+
+We will be using the SA1 2016 Census to map income data onto the map. The SA1 border shape files can be found [here](https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument) but we will use the processed data with the centroids of SA1 regions already calculated for you. For those interested, you can find out the script that was used to process the data [here](https://github.com/ropenscilabs/eechidna/blob/master/data-raw/imputing-using-sa1/mapping-CD-to-electorate.R).
+
+* Import the centroids data as below.
+
+```{r, eval = TRUE}
+# loads the variable `centroids_sa1_2016` with the centroids of SA1 for 2016 census
+load(url("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/centroids_sa1_2016.rda"))
+# change to a tidy data frame
+centroids_sa1_2016_df <- centroids_sa1_2016$data %>% 
+  mutate(long = centroids_sa1_2016$centroids@coords[, 1],
+         lat  = centroids_sa1_2016$centroids@coords[, 2])
+```
+
+* Examine the centroids_sa1_2016_df 
+
+```{r}
+skimr::skim(centroids_sa1_2016_df)
+```
+
+* Filter the centroids data so only centroids located within Victoria are saved. The `mgcv::in.out` function is useful to find out if a point is located within a given polygon.
+
+<details style = "padding-left:50px;">
+<summary>Solution</summary>
+
+```{r, eval = TRUE}
+# get an indicator 
+ind <- mgcv::in.out(as.matrix(select(vic_map19, long, lat)),
+                    as.matrix(select(centroids_sa1_2016_df, long, lat)))
+centroids_vic_sa1_2016_df <- centroids_sa1_2016_df %>% 
+   filter(ind) %>% 
+   # change SA1_7DIGIT to numeric from factor
+   # so columns can be joined later
+   mutate(SA1_7DIGIT = as.numeric(as.character(SA1_7DIGIT)))
+```
+
+</details>
+
+* Finally, we want to superimpose a point at each SA1 centroid that indicates if the population of those that are aged 45 or over is larger than population of 15-44 years old in that election district. The final map should look like below.
+
+```{r final_map, eval = TRUE, echo = FALSE}
+aggregate_df <- SA1_G17_tidy_df %>% 
+   mutate(older = ifelse(age_min >= 45, "older", "younger")) %>% 
+   filter(sex == "both") %>% 
+   group_by(SA1_7DIGITCODE_2016, older) %>% 
+   summarise(count = sum(count)) %>% 
+   pivot_wider(SA1_7DIGITCODE_2016, names_from = older, values_from = count) %>% 
+   right_join(centroids_vic_sa1_2016_df, c("SA1_7DIGITCODE_2016"="SA1_7DIGIT"))
+
+plot_vic_map19 +
+   geom_point(data = aggregate_df, 
+              aes(x = long, y = lat, color = older > younger), 
+              alpha = 1/2) +
+   scale_color_manual(values = c("TRUE" = "purple", "FALSE" = "pink"))
+```
+
+<details style = "padding-left:50px;">
+<summary>Solution</summary>
+```{r final_map}
+```
+</details>
+
+* From the above plot, the points around the city region is too dense to be very informative but do you notice anything for regional areas? Discuss with your classmates. You may try changing the threshold of 45 years to another age.
+
