@@ -208,10 +208,16 @@ class: center
 
 ---
 
+# Wild Data
+
+
+<br><br><br>
 
 <center>
 <img class = "border-box" src="images/wild-vs-domesticated.jpg"/>
 </center>
+
+And if you thought koala was cuddly and cute... [<i class="fab fa-youtube"></i>](https://www.youtube.com/watch?v=J6hLIP06I_8)
 
 
 ---
@@ -835,7 +841,7 @@ ggplot(data = map_winners) +
 
 ---
 
-# Choloropleth Map
+# Choropleth Map
 
 Which party won from looking at this map and by how much?
 
