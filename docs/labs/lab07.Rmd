@@ -23,7 +23,7 @@ In this tutorial, you will learn
 - a bit about how to structure your projects
 - to wrangle messy data into tidy data
 - to integrate data from different sources for exploratory analysis
-- to draw chloropleth maps and cartograms 
+- to draw choropleth maps and cartograms 
 
 
 ## `r emo::ji("wrench")` Preparation  
