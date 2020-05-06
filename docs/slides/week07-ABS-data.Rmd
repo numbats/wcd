@@ -516,7 +516,7 @@ DT::datatable(tibble::tibble(age_min = 15, age_max = 19, gender = "female",
 # Raw Data vs. Aggregated Data
 
 * Although the data collected was from individual households surveying each person in the household (see sample form [here](https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2901.0Main%20Features802016/$FILE/2016%20Census%20Sample%20Household%20Form.pdf)), the downloaded data are .monash-blue[aggregated].
-* Aggregated data presents summary statistics from the *raw data*. When the only summay statistics are counts then it is generally called *frequency data*.
+* Aggregated data presents summary statistics from the *raw data*. When the only summary statistics are counts then it is generally called *frequency data*.
 * The raw data collected would be similar to the form
 
 ```{r, echo = FALSE}
@@ -609,7 +609,7 @@ class: transition middle center
 
 .grid[
 .item[
-* Parliament of Australia comprsises two houses: 
+* Parliament of Australia comprises two houses: 
   * Senate (upper house) comprising 76 senators
   * House of Representatives (lower house) comprising 151 members
 * Government is formed by the party or coalition with majority of the seats in the lower house
@@ -641,7 +641,7 @@ class: wider
 # Ballots
 
 * House of Representatives uses the instant-runoff voting system
-* Senate uses the single tranferable voting system
+* Senate uses the single transferable voting system
 
 <center>
 <img class = "border-box" src="images/hor-paper.jpg">.white[Senate]<img class = "border-box" src="images/senate-atl-sample.png">
@@ -940,7 +940,7 @@ count: false
 <img src='images/electoral_map_monash_age35.png' width = "80%">
 </center>
 
-There is a clear cluster of younger people (< 35 years old) centered around Monash clayton campus.
+There is a clear cluster of younger people (< 35 years old) centered around Monash Clayton campus.
 
 ---
 

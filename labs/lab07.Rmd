@@ -439,7 +439,7 @@ plot_vic_map19
 
 **Integrate data from different sources**
 
-We will be using the SA1 2016 Census to map income data onto the map. The SA1 border shape files can be found [here](https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument) but we will use the processed data with the centroids of SA1 regions already calculated for you. For those interested, you can find out the script that was used to process the data [here](https://github.com/ropenscilabs/eechidna/blob/master/data-raw/imputing-using-sa1/mapping-CD-to-electorate.R).
+We will be using the SA1 2016 Census to map the age data in `SA1_G17_tidy_df`  onto the map. The SA1 border shape files can be found [here](https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/1270.0.55.001July%202016?OpenDocument) but we will use the processed data with the centroids of SA1 regions already calculated for you. For those interested, you can find out the script that was used to process the data [here](https://github.com/ropenscilabs/eechidna/blob/master/data-raw/imputing-using-sa1/mapping-CD-to-electorate.R).
 
 * Import the centroids data as below.
 
