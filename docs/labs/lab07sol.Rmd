@@ -1,0 +1,338 @@
+---
+title: 'ETC5512: Solutions for Lab 7'
+author: "Emi Tanaka"
+date: "Week 7"
+output: 
+  html_document:
+    toc: true
+---
+
+## `r emo::ji("lifter")` Exercise 7A
+
+```{r setup}
+library(tidyverse)
+library(eechidna)
+# sometimes stats::filter is used instead of dplyr::filter
+# so we explictly define which `filter` here
+filter <- dplyr::filter
+```
+
+```{r census-data}
+STE_path <- here::here("data/2016_GCP_ALL_for_Vic_short-header/2016 Census GCP All Geographies for VIC/STE/VIC/")
+filenames <- paste0(STE_path, "2016Census_G17", c("A", "B", "C"), "_VIC_STE.csv")
+STE_G17A_df <- read_csv(filenames[1], col_types = list())
+STE_G17B_df <- read_csv(filenames[2], col_types = list())
+STE_G17C_df <- read_csv(filenames[3], col_types = list())
+
+SA1_path <- here::here("data/2016_GCP_ALL_for_Vic_short-header/2016 Census GCP All Geographies for VIC/SA1/VIC/")
+filenames <- paste0(SA1_path, "2016Census_G17", c("A", "B", "C"), "_VIC_SA1.csv")
+SA1_G17A_df <- read_csv(filenames[1], col_types = list())
+SA1_G17B_df <- read_csv(filenames[2], col_types = list())
+SA1_G17C_df <- read_csv(filenames[3], col_types = list())
+```
+
+* There are `r nrow(STE_G17A_df)` row and `r ncol(STE_G17A_df)` columns.
+* To reduce repetition in my code, I'm using a functional programming approach using `purrr` (which contains the `map` functions). This is more advanced programming so feel free to just to repeat yourself for now!
+
+
+```{r tidyG17}
+# first make a function to clean any G17 tables 
+# note the first column has a different name corresponding to the area code
+# parse this first column name as `id` 
+clean_G17 <- function(df, id) {
+   df %>% 
+      pivot_longer(-{{ id }}, names_to = "category", values_to = "count") %>% 
+      filter(!str_detect(category, "Tot") & !str_detect(category, "PI_NS")) %>% 
+      mutate(
+         sex = case_when(
+            str_starts(category, "M") ~ "male",
+            str_starts(category, "F") ~ "female",
+            str_starts(category, "P") ~ "both"),
+         income_min = case_when(
+            str_detect(category, "Neg_Nil_income") ~ 0,
+            str_detect(category, "Negtve_Nil_incme") ~ 0,
+            str_detect(category, "Neg_Nil_incme") ~ 0,
+            TRUE ~ as.numeric(str_match(category, "[PFM]_([0-9]+)")[, 2])
+         ),
+         income_max = case_when(
+            str_detect(category, "Neg_Nil_income") ~ 0,
+            str_detect(category, "Negtve_Nil_incme") ~ 0,
+            str_detect(category, "Neg_Nil_incme") ~ 0,
+            str_detect(category, "3000_more") ~ Inf,
+            TRUE ~ as.numeric(str_match(category, "[PFM]_[0-9]+_([0-9]+)")[, 2])
+         ),
+         age_min = case_when(
+            str_detect(category, "85_yrs_ovr") ~ 85,
+            str_detect(category, "85ov") ~ 85,
+            TRUE ~ as.numeric(str_match(category, ".+_([0-9]+)_[0-9]+_yrs")[, 2])
+         ),
+         age_max = case_when(
+            str_detect(category, "85_yrs_ovr") ~ Inf, 
+            str_detect(category, "85ov") ~ Inf,
+            TRUE ~ as.numeric(str_match(category, ".+_[0-9]+_([0-9]+)_yrs")[, 2])
+         ))
+}
+
+# purrr::map_dfr (part of tidyverse) will iterate each df in list and apply cleaning function
+# the `_dfr` part signifies that the return output will be concatenated as data frame by row
+STE_G17_tidy_df <- map_dfr(list(STE_G17A_df, STE_G17B_df, STE_G17C_df), ~clean_G17(.x, STE_CODE_2016))
+SA1_G17_tidy_df <- map_dfr(list(SA1_G17A_df, SA1_G17B_df, SA1_G17C_df), ~clean_G17(.x, SA1_7DIGITCODE_2016))
+```
+
+## `r emo::ji("running")` Exercise 7B
+
+```{r vicpopsize}
+vic_pop_sizes <- map_dbl(list(STE_G17_tidy_df, SA1_G17_tidy_df), ~{
+                        .x %>% 
+                           filter(sex == "both") %>% 
+                           pull(count) %>% 
+                           sum() 
+                        }) %>% 
+   setNames(nm = c("STE", "SA1"))
+```
+* If we use the `STE` data, we have `r scales::comma(vic_pop_sizes["STE"])` people *over 15 years old* but in `SA1` data, we have `r scales::comma(vic_pop_sizes["STE"])`. The difference of `r vic_pop_sizes["STE"] - vic_pop_sizes["STA"]` is likely attributed to the small random adjustments to the counts (for confidentiality). In particular, SA1 represents a smaller region and thus small numbers are likely to identify particular individuals. It is not surprising then that there will be more adjustments made to SA1 data. The STE data is aggregated at state level so it would more accurately reflect the true number of people over 15 years old. This does not reflect the total population in Victoria, however, as it does not account for those under 15 years old. The population size by age in Victoria from 2016 census can be found [here](https://quickstats.censusdata.abs.gov.au/census_services/getproduct/census/2016/quickstat/2?opendocument).
+
+
+* The minimum and maximum values of `count`is `r min(STE_G17_tidy_df$count)` and `r max(STE_G17_tidy_df$count)` (for STE, or `r min(SA1_G17_tidy_df$count)` and `r max(SA1_G17_tidy_df$count)`). Studying the five number summaries (min, Q1, median, Q2, max) from the `skimr::skim` output does not suggest anything unusual.
+
+```{r summaryG17, warning = FALSE}
+skimr::skim(STE_G17_tidy_df)
+skimr::skim(SA1_G17_tidy_df)
+```
+
+
+* Before drawing the boxplots, we'll just wrangle the data to remove the redundant rows and make labels that are more pretty for the graph. You could also consider merging the 15-19 and 20-24 years old together so that the range is the same as other categories (except the one over 85 years old). The code and output are all shown below. There are a number of things you may notice from the graphs, such as, there are more females than males in almost all age groups in Victoria; higher income earners are still male dominant (even in younger age groups); females do appear to live longer.
+  
+```{r prettify4plot}
+STE_G17_tidy2_df <- STE_G17_tidy_df %>% 
+   # remove `both` (should be a combination of female + male)
+   filter(sex!="both") %>% 
+   # make pretty age and income factors 
+   mutate(income = fct_reorder(paste0(scales::dollar(income_min, big.mark = ""), "-", income_max), income_min),
+          income = fct_recode(income, 
+                              "Nil or negative" = "$0-0",
+                              "$3000 or more" = "$3000-Inf"),
+             age = fct_reorder(paste0(age_min, "-", age_max), age_min),
+             age = fct_recode(age, "over 85" = "85-Inf"))
+```
+
+```{r plot1}
+STE_G17_tidy2_df %>% 
+   group_by(sex) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = sex, y = count)) + 
+      ggtitle("1. Sex distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12)
+```
+
+```{r plot2}
+STE_G17_tidy2_df %>% 
+   group_by(age) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = age, y = count)) + 
+      ggtitle("2. Age distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12)
+```
+
+```{r plot3}
+STE_G17_tidy2_df %>% 
+   group_by(income) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = income, y = count)) + 
+      ggtitle("3. Income distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12) + 
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.3))
+```
+
+```{r plot4}
+STE_G17_tidy2_df %>% 
+   group_by(sex, age) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = age, y = count, fill = sex), position = "dodge") +
+      ggtitle("4. Sex & age distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12)
+```
+
+```{r plot5}
+STE_G17_tidy2_df %>% 
+   group_by(sex, income) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = income, y = count, fill = sex), position = "dodge") +
+      ggtitle("5. Sex & income distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12) + 
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.3))
+```
+
+```{r plot6}
+STE_G17_tidy2_df %>% 
+   group_by(age, income) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = age, y = count), position = "dodge") +
+      facet_wrap(~income) + 
+      ggtitle("6. Age & income distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12) +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.3))
+```
+
+```{r plot7}
+STE_G17_tidy2_df %>% 
+   ggplot(aes(x = age, y = count, fill = sex)) + 
+      geom_col(position = "dodge") + 
+   facet_wrap(~income) + 
+   theme_bw(base_size = 12) + 
+   theme(axis.text.x = element_text(angle = 90, vjust = 0.3)) + 
+   ggtitle("7. Income, sex & age distribution in Victoria from 2016 Census") 
+```
+
+
+
+## `r emo::ji("dancing")` Exercise 7C
+
+
+We will use the STE data to extract the relevant statistics. 
+```{r counts}
+n_women_15_54 <- STE_G17_tidy_df %>% 
+   filter(age_min >=15 & age_max <= 54 & sex == "female") %>% 
+   pull(count) %>% 
+   sum()
+
+n_vic <- 5926624 # This number needs to be extracted from https://quickstats.censusdata.abs.gov.au/census_services/getproduct/census/2016/quickstat/2?opendocument
+
+n_people_25_34_earn_1750_or_more <-  STE_G17_tidy_df %>% 
+   filter(age_min >=25 & age_max <= 34 & sex == "both" & income_min >= 1750) %>% 
+   pull(count) %>% 
+   sum()
+
+n_man_25_44 <-  STE_G17_tidy_df %>% 
+   filter(age_min >=25 & age_max <= 44 & sex == "male") %>% 
+   pull(count) %>% 
+   sum()
+
+n_man_25_44_earn_1500_or_less <-  STE_G17_tidy_df %>% 
+   filter(age_min >=25 & age_max <= 44 & sex == "male" & income_max <= 1500) %>% 
+   pull(count) %>% 
+   sum()
+```
+According to the 2016 Census data:
+
+* There are `r scales::comma(n_women_15_54)` women in Victoria are aged between 15-54 years old.
+* The proportion of people in Victoria that are 25-34 years old (inclusive) and earn $1750 or more per week is `r n_people_25_34_earn_1750_or_more / n_vic`.
+* If I randomly select a man from all the man aged 25-44 years old in Victoria,  the probability that the man I selected earns less than $1500 per week is `r n_man_25_44_earn_1500_or_less / n_man_25_44`.
+
+
+## `r emo::ji("fencing")` Exercise 7D
+
+
+```{r election-data, eval = TRUE}
+election_2019_df <- read_csv(here::here("data/HouseDopByDivisionDownload-24310.csv"), 
+                        skip = 1, # first row is meta data
+                        # below *explicitly* defines the column types
+                        # note e.g. DivisionID is normally read as numeric  
+                        # but we specify it should be read as character
+                        col_types = cols(
+                             StateAb = col_character(),
+                             DivisionID = col_character(),
+                             DivisionNm = col_character(),
+                             CountNumber = col_double(),
+                             BallotPosition = col_character(),
+                             CandidateID = col_character(),
+                             Surname = col_character(),
+                             GivenNm = col_character(),
+                             PartyAb = col_character(),
+                             PartyNm = col_character(),
+                             Elected = col_character(),
+                             HistoricElected = col_character(),
+                             CalculationType = col_character(),
+                             CalculationValue = col_double())) %>% 
+   # select winning candidate only 
+   filter(CalculationType == "Preference Count" & 
+             Elected == "Y" & 
+             CountNumber == 0) %>% 
+   # make division name upper case so 
+   # it can be joined later with map data
+   mutate(elect_div = toupper(DivisionNm)) %>% 
+   # select only the variables needed
+   select(elect_div, PartyAb)
+
+# map data from the eechidna package
+nat_map19 <- nat_map_download(2019) 
+
+# define the political colors (feel free to change)
+party_colors <- c("ALP" = "#DE3533", "LNP" = "#ADD8E6", 
+                  "KAP" = "#8B0000", "GRN" = "#10C25B", 
+                  "GVIC" = "#10C25B", "XEN" = "#ff6300", 
+                  "LP" = "#0047AB", "NP" = "#0a9cca", 
+                  "IND" = "#000000")
+
+vic_map19 <- nat_map19 %>% 
+   filter(state == "VIC") %>% 
+   left_join(election_2019_df, by = "elect_div")
+```
+
+
+```{r vicmap19, echo = F}
+plot_vic_map19 <- ggplot(vic_map19, aes(long, lat)) + 
+     geom_polygon(aes(group = group, fill = PartyAb), 
+                  color = "white") + 
+     theme_void() + 
+     coord_equal() + 
+     scale_fill_manual(values = party_colors) + 
+   ggtitle("Winners of Australian Federal Election in 2019", 
+           subtitle = "Victoria")
+plot_vic_map19
+```
+
+
+## `r emo::ji("snowboarder")` Exercise 7E
+
+
+**Integrate data from different sources**
+
+```{r centroids-data}
+# loads the variable `centroids_sa1_2016` with the centroids of SA1 for 2016 census
+load(url("https://github.com/ropenscilabs/eechidna/raw/master/extra-data/centroids_sa1_2016.rda"))
+# change to a tidy data frame
+centroids_sa1_2016_df <- centroids_sa1_2016$data %>% 
+  mutate(long = centroids_sa1_2016$centroids@coords[, 1],
+         lat  = centroids_sa1_2016$centroids@coords[, 2])
+```
+
+```{r skim-centroids}
+skimr::skim(centroids_sa1_2016_df)
+```
+
+```{r vic-centroids}
+# get an indicator 
+ind <- mgcv::in.out(as.matrix(select(vic_map19, long, lat)),
+                    as.matrix(select(centroids_sa1_2016_df, long, lat)))
+centroids_vic_sa1_2016_df <- centroids_sa1_2016_df %>% 
+   filter(ind) %>% 
+   # change SA1_7DIGIT to numeric from factor
+   # so columns can be joined later
+   mutate(SA1_7DIGIT = as.numeric(as.character(SA1_7DIGIT)))
+```
+
+```{r final_map}
+aggregate_df <- SA1_G17_tidy_df %>% 
+   mutate(older = ifelse(age_min >= 45, "older", "younger")) %>% 
+   filter(sex == "both") %>% 
+   group_by(SA1_7DIGITCODE_2016, older) %>% 
+   summarise(count = sum(count)) %>% 
+   pivot_wider(SA1_7DIGITCODE_2016, names_from = older, values_from = count) %>% 
+   right_join(centroids_vic_sa1_2016_df, c("SA1_7DIGITCODE_2016"="SA1_7DIGIT"))
+
+plot_vic_map19 +
+   geom_point(data = aggregate_df, 
+              aes(x = long, y = lat, color = older > younger), 
+              alpha = 1/2) +
+   scale_color_manual(values = c("TRUE" = "purple", "FALSE" = "pink"))
+```
+
+The regional areas have an older population. This could be because tertiary education and certain career opportunites are only available in urban areas. There indeed seems to be more younger people around the inner city but as there are too many points in the location, it requires more careful examination.
+
