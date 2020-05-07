@@ -40,7 +40,7 @@ In this tutorial, you will learn
    
    * Add the <a href="https://www.abs.gov.au/ausstats/abs@.nsf/Lookup/2901.0Main%20Features802016/$FILE/2016%20Census%20Sample%20Household%20Form.pdf" download>2016 Census Sample Household Form</a> under `notes` folder.
    
-   * Add a <a href="https://github.com/numbats/wcd/raw/master/materials/analysis.Rmd" download>sample analysis Rmd</a>file under `analysis` folder.
+   * Add a <a href="https://github.com/numbats/wcd/raw/master/materials/analysis.Rmd" download>sample analysis Rmd</a> file under `analysis` folder.
    
    * Add a <a href="https://github.com/numbats/wcd/raw/master/materials/README.md" download>README.md</a> file in the project root directory. The easiest way to do this is to run the R command `usethis::use_readme_md()` from your project.
 
