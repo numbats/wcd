@@ -42,7 +42,7 @@ In this tutorial, you will learn to
    * [OPTIONAL] The downloaded file should be called `CY07_STU_QQQ.zip` is about 494MB. Unzip and place the extracted file `CY07_MSU_STU_QQQ.sav` into the `data` folder.
    * Download a smaller version of this data set (about 60MB) [here](https://github.com/numbats/wcd/raw/master/data/pisa2018.rds) and place it into a `data` folder.
    
-1. **Install `haven` R-package**
+1. **Install `haven` and `nullabor` R-packages**
 
 ```{r, eval = FALSE}
 install.packages("haven", "nullabor")

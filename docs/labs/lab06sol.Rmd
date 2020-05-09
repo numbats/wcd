@@ -1,9 +1,8 @@
 ---
-title: 'ETC5512: Instructions for Lab 6'
+title: 'ETC5512: Solutions for Lab 6'
 author: "Patricia Menéndez"
 output:
   html_document: default
-  pdf_document: default
 keep_md: yes
 ---
 
@@ -26,7 +25,7 @@ library(lubridate)
 
 ```
 
-# Lab Objectives
+# Tutorial Objectives
 
 - Explore LTMP data measurements for  hard coral cover and algae cover. 
 - Visualize variability in mean estimates.
@@ -45,6 +44,8 @@ library(lubridate)
 ```{r , message = FALSE, warning = FALSE}
 # LTMP data
 ltmp <- read_csv(file = "Data/ltmp_hc_sc_a_by_site/ltmp_hc_sc_a_by_site.csv", col_types = cols())
+
+
 ```
 - Add an R code chunk to include the relevant R libraries at the top of the *tutorial6.Rmd* file.
 - Prepare the data so that you can create the following figures and discuss the differences between those graphs:
@@ -66,7 +67,7 @@ ltmp %>% dplyr::filter(GROUP_CODE == "Hard Coral",
 
 
 
-```{r , echo = FALSE}
+```{r , echo = TRUE}
 
 plot1dat = ltmp %>% dplyr::filter(GROUP_CODE == "Hard Coral",
                            SECTOR == "CA",
@@ -104,7 +105,7 @@ ggplot(plot1dat, aes( x = Year, y = covermean)) +
 ```
 
 
-```{r , echo = FALSE}
+```{r , echo = TRUE}
 
 plot2dat = ltmp %>% dplyr::filter(GROUP_CODE == "Hard Coral",
                            SECTOR == "CA",
@@ -132,7 +133,7 @@ the *LOW ISLANDS REEF*.
 - Group the data set by *Year* and *GROUP_CODE* and compute for those groups the mean and stand deviation for the *COVER* variable.  Your data should look like this:
 
 
-```{r, eval = TRUE, echo = FALSE}
+```{r, eval = TRUE, echo = TRUE}
 regdata = ltmp %>% dplyr::filter(GROUP_CODE %in% c("Hard Coral", "Algae"),
                        REEF_NAME == "FITZROY ISLAND REEF") %>%
   mutate(Year = year(SAMPLE_DATE)) %>%
@@ -145,7 +146,7 @@ head(regdata)
 
 - Convert your data into wide format so that you have two new columns where *Hard Coral* and *Algae* cover values are stored. Your data should look like this:
 
-```{r , echo = FALSE}
+```{r , echo = TRUE}
 regdataWF = ltmp %>% dplyr::filter(GROUP_CODE %in% c("Hard Coral", "Algae"),
                        REEF_NAME == "LOW ISLANDS REEF") %>% 
   mutate(Year = year(SAMPLE_DATE)) %>%
@@ -158,7 +159,7 @@ head(regdataWF)
 ```
 - Plot your newly created data to produce the following figure:
 
-```{r , echo = FALSE}
+```{r }
 
 ggplot(regdataWF, aes(x = `Hard Coral`, y = Algae)) +
   geom_point() 
@@ -172,13 +173,13 @@ ggplot(regdataWF, aes(x = `Hard Coral`, y = Algae)) +
 
 
 
-```{r  , echo = FALSE}
+```{r  , echo = TRUE}
 
 reg = lm(Algae ~ `Hard Coral`, data = regdataWF )
 ```
 
 
-```{r , echo = FALSE}
+```{r , echo = TRUE}
 regdataWF$predicted <- predict(reg)
 regdataWF$residuals <- residuals(reg)
 ```
