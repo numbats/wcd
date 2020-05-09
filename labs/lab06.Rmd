@@ -2,8 +2,8 @@
 title: 'ETC5512: Instructions for Lab 6'
 author: "Patricia Menéndez"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 keep_md: yes
 ---
 
@@ -57,8 +57,9 @@ ltmp %>% dplyr::filter(GROUP_CODE == "Hard Coral",
                     mutate(REEF_NAME = as.factor(REEF_NAME),
                     Year = year(XX)) %>%
                    group_by(SECTOR, SHELF, Year) %>%
-  summarize_at(vars(XX), list(covermean = XX, coversd = XX)) %>%
-  mutate(samplesize = n()) %>%
+  summarise(covermean = mean(XX, na.rm = TRUE),
+                        coversd = sd(XX, na.rm = TRUE),
+                        samplesize = n()) %>%
   mutate(upper = covermean + coversd/sqrt(samplesize),
          lower = covermean - coversd/sqrt(samplesize))
 ```
