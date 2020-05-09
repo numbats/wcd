@@ -409,8 +409,9 @@ ltmp &lt;- read_csv(file = &quot;Data/ltmp_hc_sc_a_by_site/ltmp_hc_sc_a_by_site.
                     mutate(REEF_NAME = as.factor(REEF_NAME),
                     Year = year(XX)) %&gt;%
                    group_by(SECTOR, SHELF, Year) %&gt;%
-  summarize_at(vars(XX), list(covermean = XX, coversd = XX)) %&gt;%
-  mutate(samplesize = n()) %&gt;%
+  summarise(covermean = mean(XX, na.rm = TRUE),
+                        coversd = sd(XX, na.rm = TRUE),
+                        samplesize = n()) %&gt;%
   mutate(upper = covermean + coversd/sqrt(samplesize),
          lower = covermean - coversd/sqrt(samplesize))</code></pre>
 <pre class="r"><code>plot1dat = ltmp %&gt;% dplyr::filter(GROUP_CODE == &quot;Hard Coral&quot;,

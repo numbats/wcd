@@ -58,8 +58,9 @@ ltmp %>% dplyr::filter(GROUP_CODE == "Hard Coral",
                     mutate(REEF_NAME = as.factor(REEF_NAME),
                     Year = year(XX)) %>%
                    group_by(SECTOR, SHELF, Year) %>%
-  summarize_at(vars(XX), list(covermean = XX, coversd = XX)) %>%
-  mutate(samplesize = n()) %>%
+  summarise(covermean = mean(XX, na.rm = TRUE),
+                        coversd = sd(XX, na.rm = TRUE),
+                        samplesize = n()) %>%
   mutate(upper = covermean + coversd/sqrt(samplesize),
          lower = covermean - coversd/sqrt(samplesize))
 ```
