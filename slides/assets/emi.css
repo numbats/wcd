@@ -23,7 +23,10 @@ ul li:before {
   height: 600px;
 }
 
-.
+.scroll-900 {
+  overflow-y: scroll;
+  height: 790px;
+}
 
 pre {
   text-align: left;!important
@@ -33,3 +36,8 @@ pre {
   content: "";
 }
 
+.info-box {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
