@@ -1,0 +1,274 @@
+---
+title: 'ETC5512: Solutions for Lab 8'
+author: "Emi Tanaka"
+date: "Week 8"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+set.seed(1)
+filter <- dplyr::filter
+```
+
+
+
+## `r emo::ji("school")` Exercise 8A
+
+**Interrogate the PISA data**
+
+```{r data, message = FALSE}
+library(tidyverse)
+library(haven)
+pisa2018 <- readRDS(here::here("data", "pisa2018.rds")) %>% 
+   rename(country = CNT, sex = ST004D01T, birth_year = ST003D03T)
+```
+
+
+(a) The number of students who participated by country/region is given below.
+
+```{r count}
+pisa2018 %>% 
+   group_by(country) %>% 
+   tally() %>%  # shortcut for summarise(n = n())
+   knitr::kable(col.names = c("Country", "Number of particpating students"))
+```
+
+
+(b)
+```{r boot-fns}
+ncountry <- length(unique(pisa2018$country))
+
+compute_diff <- function(sex, score, weight) {
+   df <- tibble(sex = droplevels(sex), score, weight)
+   df %>% 
+      group_by(sex) %>% 
+      summarise(avg = weighted.mean(score, weight)) %>% 
+      pivot_wider(names_from = sex, values_from = avg) %>% 
+      mutate(diff = Female - Male) %>% 
+      pull(diff)
+}
+
+bootstrap_ci <- function(sex, score, weight, times = 100) {
+   df <- tibble(sex = droplevels(sex), score, weight)
+   avg <- compute_diff(sex, score, weight)
+   boot_means <- map_dbl(1:times, ~{
+         boot_df <- df %>%
+           # resample within sex so that the number of girls & boys remain the same
+           group_by(sex) %>% 
+           sample_n(size = n(), replace = TRUE)
+         with(boot_df, compute_diff(sex, score, weight))
+      })
+   setNames(c(avg, sort(boot_means)[c(5, 95)]), c("avg", "lower", "upper"))
+}
+```
+
+
+```{r dotplot, fig.height = 12, cache = TRUE}
+math_df <- pisa2018 %>% 
+   filter(!is.na(sex) & !is.na(PV1MATH)) %>% 
+   group_by(country) %>% 
+   summarise(math_ci = list(bootstrap_ci(sex, PV1MATH, SENWT))) %>% 
+   unnest_wider(math_ci) %>% 
+   ungroup() %>% 
+   mutate(country = fct_reorder(country, avg)) 
+
+ggplot(math_df, aes(avg, country)) + 
+   geom_point() + 
+   geom_errorbar(aes(xmin = lower, 
+                     xmax = upper)) +
+   geom_vline(xintercept = 0, color = "red") + 
+   labs(title = "b. Mean math score gender gap by country",
+        y = "", x = "Mean difference between genders (Girl - Boy) in math score ")
+```
+(c) The number of students who conducted the test with `BOOKID` as Form 1-12 or 67-78 (i.e. the number of students who sat for a test that included a maths component) by each country are given below. 
+
+
+```{r count-maths}
+pisa2018 %>% 
+   filter(BOOKID %in% paste("Form", c(1:12, 67:78))) %>% 
+   group_by(country) %>% 
+   tally() %>% 
+   knitr::kable(col.names = c("Country", "Number of students who undertook the maths component"))
+```
+
+
+(d)
+
+```{r dotplot2, fig.height = 12, cache = TRUE}
+math2_df <- pisa2018 %>% 
+   filter(!is.na(sex) & !is.na(PV1MATH)) %>% 
+   filter(BOOKID %in% paste("Form", c(1:12, 67:78))) %>% 
+   group_by(country) %>% 
+   summarise(math_ci = list(bootstrap_ci(sex, PV1MATH, SENWT))) %>% 
+   unnest_wider(math_ci) %>% 
+   ungroup() %>% 
+   mutate(country = fct_reorder(country, avg)) 
+
+ggplot(math2_df, aes(avg, country)) + 
+   geom_point() +
+   geom_errorbar(aes(xmin = lower, 
+                     xmax = upper)) +
+   geom_vline(xintercept = 0, color = "red") + 
+   labs(title = "d. Mean math score gender gap by country (for students who took the maths test)",
+        y = "", x = "Mean difference between genders (Girl - Boy) in math score")
+```
+
+
+
+
+## `r emo::ji("student")` Exercise 8B
+
+From the plots we can see that girls in general perform better than boys in reading and science!
+
+```{r scie-data, fig.height = 12, cache = TRUE}
+scie_df <- pisa2018 %>% 
+   filter(!is.na(sex) & !is.na(PV1SCIE)) %>% 
+   group_by(country) %>% 
+   summarise(scie_ci = list(bootstrap_ci(sex, PV1SCIE, SENWT))) %>% 
+   unnest_wider(scie_ci) %>% 
+   ungroup() %>% 
+   mutate(country = fct_reorder(country, avg))
+```
+
+```{r scie-dotplot, fig.height = 12, cache = TRUE}
+ggplot(scie_df, aes(avg, country)) + 
+   geom_point() + 
+   geom_errorbar(aes(xmin = lower, 
+                     xmax = upper)) +
+   geom_vline(xintercept = 0, color = "red") + 
+   labs(title = "Mean science score gender gap by country",
+        y = "", x = "Mean difference between genders (Girl - Boy) in science score")
+```
+
+
+```{r read-data, fig.height = 12, cache = TRUE}
+read_df <- pisa2018 %>% 
+   filter(!is.na(sex) & !is.na(PV1READ)) %>% 
+   group_by(country) %>% 
+   summarise(read_ci = list(bootstrap_ci(sex, PV1READ, SENWT))) %>% 
+   unnest_wider(read_ci) %>% 
+   ungroup() %>% 
+   mutate(country = fct_reorder(country, avg))
+```
+
+```{r read-dotplot, fig.height = 12, cache = TRUE}
+ggplot(read_df, aes(avg, country)) + 
+   geom_point() + 
+   geom_errorbar(aes(xmin = lower, 
+                     xmax = upper)) +
+   geom_vline(xintercept = 0, color = "red") + 
+   labs(title = "Mean reading score gender gap by country",
+        y = "", x = "Mean difference between genders (Girl - Boy) in reading score")
+```
+
+
+## `r emo::ji("teacher")` Exercise 8C
+
+```{r better-plot, fig.height = 12, warning = FALSE, cache = T}
+math_df %>% 
+   mutate(color = case_when(
+      avg > 0 & lower > 0 ~ "purple",
+      avg < 0 & upper < 0 ~ "blue",
+      TRUE ~ "black"
+   )) %>% 
+   ggplot(aes(avg, country)) + 
+   geom_errorbar(aes(xmin = lower, 
+                     xmax = upper,
+                     color = I(color))) + 
+   geom_point() + 
+   geom_vline(xintercept = 0, color = "red") + 
+   labs(x = "The difference in mean math scores by gender",
+        y = "") + 
+   scale_x_continuous(breaks = seq(-20, 20, by = 5),
+                      labels = c(seq(20, 0, by = -5), seq(5, 20, by = 5))) + 
+   annotate("text", label = c("Boys higher", "Girls higher"), 
+            x = c(-10, 10), y = -2) + 
+   ggtitle("Gender gap in math scores by country") +
+   coord_cartesian(clip = "off", ylim = c(1, ncountry - 1)) + 
+   theme(plot.margin = unit(c(1,1,3,1), "lines"),
+         axis.title.x = element_text(size = 14, face = "bold", margin = unit(c(3, 0, 0, 0), "lines")),
+         plot.title = element_text(size = 18, face = "bold"))
+```
+
+
+
+## `r emo::ji("graduate")` Exercise 8D
+
+```{r sim-data}
+set.seed(2020) 
+b0 <- 1 # true intercept
+b1 <- 2 # true slope
+gvec <- 1:4 # true effects by category
+n <- 20 # number of observations
+sim_df <- tibble(id = 1:n) %>% 
+   mutate(       x = runif(n(), 0, 10),                             # making the continuous variable
+          category = factor(rep(c("A", "B", "C", "D"), each = n/4)), # making the categorical variable
+                y1 = b0 + b1 * x + rnorm(n(), 0, 1),                              # data 1
+                y2 = gvec[as.numeric(category)] + rnorm(n(), 0, 1))    # data 2
+```
+
+```{r ls-est}
+est1 <- coef(lm(y1 ~ x, data = sim_df))
+est2 <- coef(lm(y2 ~ -1 + category, data = sim_df))
+```
+
+
+(a) The least squares estimates of the model parameters are: $\hat{\beta}_0 =$ `r est1[1]`, $\hat{\beta}_1 =$ `r est1[2]`, $\hat{\gamma}_1 =$ `r est2[1]`, $\hat{\gamma}_2 =$ `r est2[2]`, $\hat{\gamma}_3 =$ `r est2[3]` and $\hat{\gamma}_4 =$ `r est2[4]`. 
+
+
+```{r sim-data2, echo = F}
+n <- 1000 # number of observations
+sim2_df <- tibble(id = 1:n) %>% 
+   mutate(       x = runif(n(), 0, 10),                             # making the continuous variable
+          category = factor(rep(c("A", "B", "C", "D"), each = n/4)), # making the categorical variable
+                y1 = b0 + b1 * x + rnorm(n(), 0, 1),                              # data 1
+                y2 = gvec[as.numeric(category)] + rnorm(n(), 0, 1))    # data 2
+
+est1v2 <- coef(lm(y1 ~ x, data = sim2_df))
+est2v2 <- coef(lm(y2 ~ -1 + category, data = sim2_df))
+```
+
+
+(b) The least squares estimates of the model parameters if we increase the sample size from 20 to 1000 are: $\hat{\beta}_0 =$ `r est1v2[1]`, $\hat{\beta}_1 =$ `r est1v2[2]`, $\hat{\gamma}_1 =$ `r est2v2[1]`, $\hat{\gamma}_2 =$ `r est2v2[2]`, $\hat{\gamma}_3 =$ `r est2v2[3]` and $\hat{\gamma}_4 =$ `r est2v2[4]`. These values are much closer to the true values than when the sample size was 20. 
+
+```{r sim-data2, eval = FALSE}
+```
+
+
+
+
+
+## `r emo::ji("books")` Exercise 8E
+
+
+**Visual inference**
+
+```{r nullabor, warning = FALSE}
+library(nullabor)
+set.seed(2020)
+
+df <- pisa2018 %>% 
+   filter(!is.na(birth_year)) %>% 
+   mutate(birth_year = as.character(birth_year)) %>% 
+   group_by(country, birth_year) %>% 
+   summarise(math_score = weighted.mean(PV1MATH, SENWT, na.rm = T)) %>% 
+   filter(birth_year != 2001 ) %>%   # since only one country
+   ungroup()
+
+
+lineup(null_permute("math_score"), df) %>% 
+   ggplot(aes(birth_year, math_score, group = country)) + 
+   geom_point() + 
+   geom_line() + 
+   facet_wrap(~.sample) + 
+   labs(x = "Birth Year", y = "Average Math Score")
+```
+
+
+```{r decrypt}
+decrypt("E0Ui w676 VQ rnqV7VnQ 2O")
+```
+
