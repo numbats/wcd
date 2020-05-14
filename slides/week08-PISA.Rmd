@@ -1010,13 +1010,13 @@ class: wider
 
 # Line up for simulated data 2
 
-```{r nullabor2, echo = FALSE, fig.height = 7, fig.width = 15, warning = FALSE}
+```{r nullabor2, echo = FALSE, fig.height = 7, fig.width = 15}
 method2 <- null_dist("residual", "norm", 
               params = 
                 list(mean = 0, 
                      sd = summary(fit2)$sigma))
-sim2_df$residual <- fit2$residuals
-null2_df <- lineup(method2, sim2_df)
+sim_df$residual <- fit2$residuals
+null2_df <- lineup(method2, sim_df)
 ggplot(null2_df, aes(x, residual)) + 
   geom_point() + 
   geom_hline(yintercept = 0, color = "red") + 

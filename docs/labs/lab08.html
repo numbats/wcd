@@ -431,7 +431,7 @@ summary {
 library(haven)
 pisa2018 &lt;- readRDS(here::here(&quot;data&quot;, &quot;pisa2018.rds&quot;))
 # OR 
-# pisa2018 &lt;- read_csv(here::here(&quot;data&quot;, &quot;CY07_MSU_STU_QQQ.sav&quot;))</code></pre>
+# pisa2018 &lt;- read_sav(here::here(&quot;data&quot;, &quot;CY07_MSU_STU_QQQ.sav&quot;))</code></pre>
 <ol style="list-style-type: lower-alpha">
 <li>How many students participated by each country/region?</li>
 <li>Draw a dot plot with mean differences of math scores (based on <code>PV1MATH</code>) by gender for each country with error bars based on 5% and 95% quantiles from 100 bootstrap mean differences.</li>

@@ -77,7 +77,7 @@ library(tidyverse)
 library(haven)
 pisa2018 <- readRDS(here::here("data", "pisa2018.rds"))
 # OR 
-# pisa2018 <- read_csv(here::here("data", "CY07_MSU_STU_QQQ.sav"))
+# pisa2018 <- read_sav(here::here("data", "CY07_MSU_STU_QQQ.sav"))
 ```
 
 
