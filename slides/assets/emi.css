@@ -41,3 +41,37 @@ pre {
   margin-right: 10px;
   margin-top: 10px;
 }
+
+.border-right {
+  border-right: 2px solid black;
+}
+
+.circle-it {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+
+    background: #fff;
+    color: #666;
+    text-align: center;
+
+    font: 30px Arial, sans-serif;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 24px!important;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:hover {background-color: #ddd;}
+th {
+  background-color: #006DAE!important;
+  color: white!important;
+}
+
+
+
+
