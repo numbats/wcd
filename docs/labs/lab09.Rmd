@@ -1,0 +1,228 @@
+---
+title: 'ETC5512: Instructions for Lab 9'
+author: "Emi Tanaka"
+date: "Week 9"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+set.seed(1)
+filter <- dplyr::filter
+```
+
+
+**<span style="color:red">Please do [Preparation](#preparation) *before* the tutorial!</span>**
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will learn to
+
+- critically evaluate claims from experimental or observational data
+- think critically about designing an experiment
+- identify experimental units, observational units and treatments of comparative experiments
+- conduct analysis of (simple) comparative experiments using linear model and/or ANOVA
+
+## `r emo::ji("wrench")` Preparation  
+
+   
+1. **Set up your project folder**
+
+   Prepare a project calling it say `etc5512-week09` with folders `data` and `analysis` in the project root directory. 
+   
+   
+1. **Getting the UK death data**
+   * The data for weekly registered death in England and Wales is available at [Office for National Statistics](https://www.ons.gov.uk/peoplepopulationandcommunity/birthsdeathsandmarriages/deaths/datasets/weeklyprovisionalfiguresondeathsregisteredinenglandandwales).
+   * Download all excel files from 2015 to 2020 and place these in the excel files. 
+   * Remember that you should not modify the contents of data on the excel sheet itself. Any wrangling should be done in R so all modifications are traceable and reproducible from the original data.
+   
+1. **Get the experimental data**
+   
+   * The **`GRAINS.DAT`** from the experiment in [Baldwin et al. (2010)](https://www.ncbi.nlm.nih.gov/pubmed/20615118) with data from *Statistical Methods in Biology* by Welham et al. (2015) can be downloaded [here](https://raw.githubusercontent.com/numbats/wcd/master/data/GRAINS.DAT). The description of the experiment is provided in Exercise 9D. The file contains the unit number (`DEar`), the treatment applied (`Treatment`) and the number of grains (`Grains`) for each ear. 
+   * The **`SIZE.DAT`** from the experiment in [Wright (2013)](http://wrap.warwick.ac.uk/57266/) with data from *Statistical Methods in Biology* by Welham et al. (2015) can be downloaded [here](https://raw.githubusercontent.com/numbats/wcd/master/data/SIZE.DAT). The description of the experiment is also provided in Exercise 9D. The file contains the ID number (`ID`), incubator number (`Incubator`), occasion number (`Occasion`), dish number (`Dish`), temperature (`Temperature`) and colony size measurement (`Size`). 
+   <!-- * [**CAIGE Bread Wheat Yield Trial 2019**](http://www.caigeproject.org.au/germplasm-evaluation/bread/yield-trial-australia/yield-trial-australia-2019/) -->
+   <!--    * Download the Yield data for either Narrabri, Swan Hill or Corrigin. -->
+
+4. **Check your project structure**
+
+   Your project structure should look like below.
+   
+```
+etc5512-week09
+├── README.md
+├── analysis
+│   └── exercise.Rmd
+├── data
+│   ├── GRAINS.DAT
+│   ├── SIZE.DAT
+│   ├── publishedweek182020.xlsx
+│   ├── publishedweek2015.xls
+│   ├── publishedweek522016.xls
+│   ├── publishedweek522017.xls
+│   ├── publishedweek522018withupdatedrespiratoryrow.xls
+│   └── publishedweek522019.xls
+└── etc5512-week09.Rproj
+```
+
+
+   * **_Troubleshooting_**: if you have an issue downloading datasets, installing software, running commands, and so on then you can make a permanent copy of [this RStudio Cloud project](https://rstudio.cloud/project/1285062) instead.
+    
+## `r emo::ji("art")` Exercise 9A
+
+**Critically evaluate claims from data**
+
+(Modified from Statistics by Freedman et al., 2007)
+
+Breast cancer is one of the most common cancer affecting Australian women. Early detection is key to higher success in treatment. The first large-scale trial to compare screening programs for breast cancer, conducted by Health Insurance Plan (HIP) of Greater New York, started in 1963. 62,000 women aged 40-64 were divided at random into two equal groups. In the treatment group, women were encouraged to come in for annual screening, including examination by a doctor and have X-rays. About 20,200 in the treatment group did come in for the screening; but 10,800 refused. The control group was offered the usual health care. All the women were followed for many years. 
+
+```{r death-table, echo = FALSE, message = FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+tibble(Group = c("Examined", "Refused", "Total", "Control group"),
+       Participants = c("20,200", "10,800", "31,000", "31,000"),
+       BNumber = c(23, 16, 39, 63),
+       BRate = c(1.1, 1.5, 1.3, 2.0),
+       ONumber = c(428, 409, 837, 879),
+       ORate = c(21, 38, 27, 28)) %>% 
+   mutate(Group = ifelse(Group == "Control group", cell_spec(Group, bold = TRUE), Group)) %>% 
+   kable(escape = F, col.names = c("", "", "Number", "Rate", "Number", "Rate"), caption = "Deaths in the first 5 years of the HIP screening trial by cause. Rates are per 1,000 women.") %>% 
+   kable_styling(c("striped")) %>% 
+   add_header_above(c(" " = 2, "Breast cancer" = 2, "All other" = 2)) %>% 
+   add_header_above(c(" " = 2, "Cause of death" = 4)) %>% 
+   pack_rows("Treatment group", 1, 3, 
+             label_row_css = "") %>% 
+   add_indent(1:2)
+```
+Epidemiologists who worked on the study found that 
+
+(i) screening had little impact on diseases other than breast cancer;
+(ii) poorer women were less likely to accept screening than richer ones; and
+(iii) most diseases fall more heavily on the poor than the rich.
+
+Discuss the following questions.
+
+(a) Does screening save lives? What number from the table supports your point?
+(b) Why is the total death rate from all other causes in the treatment group about the same as the rate in the control group?
+(c) Breast cancer affects affects the rich more than the poor. What number from the table confirms this association between breast cancer and income?
+(d) The death rate among women who accepted screening is about half the death rate among women who refused. Did screening cut the death rate in half? If not, why is there a difference in death rates?
+(e) To show that screening reduces the risk from breast cancer, a scientist compares the death rate between the examined (1.1) and refused treatment group (1.5) and alleges that this is comparison is fine as it the data is from a well designed experiment. Is this a good comparison? 
+(f) A scientist claims that encouraging women to come in for breast cancer screening increases their health consciousness, so these women take better care of themselves and live longer for that reason. Is the result in the table consistent with this claim?
+
+
+## `r emo::ji("artist")` Exercise 9B
+
+**Coronovirus & excess deaths**
+
+<details>
+<summary>Hint for reading data</summary>
+
+```{r uk-deaths}
+library(tidyverse)
+library(readxl)
+
+# make dictionaries
+fns <- c("2015" = "publishedweek2015.xls", "2016" = "publishedweek522016.xls",
+         "2017" = "publishedweek522017.xls", 
+         "2018" = "publishedweek522018withupdatedrespiratoryrow.xls",
+         "2019" =  "publishedweek522019.xls", "2020" = "publishedweek182020.xlsx")
+cols_to_ignore <- c("2015" = 1, "2016" = 2, "2017" = 2, "2018" = 2, "2019" = 2, "2020" = 2)
+sheet_nms <- c("2015" = "Weekly Figures 2015", "2016" = "Weekly figures 2016",
+               "2017" = "Weekly figures 2017", "2018" = "Weekly figures 2018",
+               "2019" = "Weekly figures 2019", "2020" = "Weekly figures 2020")
+n_wks <- c("2015" = 53, "2016" = 52, "2017" = 52, "2018" = 52, "2019" = 52, "2020" = 18) 
+n_skip <- c("2015" = 5, "2016" = 5, "2017" = 5, "2018" = 5, "2019" = 5, "2020" = 8)
+
+death_df <- map_dfr(as.character(2015:2020), function(year) {
+      col_names <- c(paste0("ignore", 1:cols_to_ignore[year]), paste0("wk", 1:n_wks[year]))
+      read_excel(here::here("data", fns[year]),
+            sheet = sheet_nms[year],
+            skip = n_skip[year], n_max = 1, col_names = col_names) %>% 
+         select(-starts_with("ignore")) %>% 
+         pivot_longer(everything(), names_to = "week", values_to = "count") %>% 
+         mutate(year = year) 
+   }) %>% 
+   mutate(weekno = parse_number(week))
+
+```
+</details>
+
+The plot below show the number of registered deaths in England and Wales for 2020 (the red line) and the average number of registered deaths over the past 5 years (the black line). The top and bottom boundaries of the blue shaded area are the minimum and maximum number of registered deaths in the past 5 years. 
+
+```{r death-plot, echo = FALSE}
+death2020 <- death_df %>% filter(year == "2020")
+death5yravg <- death_df %>% 
+   filter(year!="2020") %>% 
+   group_by(weekno) %>% 
+   summarise(count_min = min(count), 
+             count_max = max(count),
+             count = mean(count)) %>% 
+   ungroup() %>% 
+   filter(weekno < 19)
+
+death_combine_df <- death5yravg %>% 
+   mutate(year = "Past 5 year average") %>% 
+   select(weekno, year, count) %>% 
+   rbind(select(death2020, weekno, year, count))
+   
+ggplot(data = death2020, aes(x = weekno)) + 
+   geom_point(aes(y = count), color = "red") + 
+   geom_line(data = death_combine_df, aes(y = count, color = year)) + 
+   scale_color_manual(name = "", values = c("red", "black")) + 
+   geom_ribbon(data = death5yravg, aes(ymin = count_min, ymax = count_max), 
+               fill = "blue", alpha = 0.2) + 
+   annotate("text", x = 17, y = death2020$count[18] - 10, label = death2020$count[18], color = "red") + 
+   annotate("point", x = 18, y = death5yravg$count[18]) + 
+   annotate("text", x = 17, y = death5yravg$count[18] - 10, label = death5yravg$count[18]) +
+   annotate("line", x = 18, y = c(death5yravg$count[18], death2020$count[18]),
+            arrow = arrow(ends = "both", length = unit(0.1, "inches")), color = "blue") + 
+   annotate("text", x = 17, y = mean(c(death5yravg$count[18], death2020$count[18])),
+            color = "blue", label = "excess\n deaths") +
+   theme_bw(base_size = 14) + labs(y = "Number of registered deaths", x = "Week Number", title = "Number or registered deaths in England and Wales", caption = "The blue shaded area is the minimum and maximum number\n of deaths in that week from the past 5 years") + 
+   theme(legend.position = "bottom")
+```
+
+(a) Recreate the same (or similar) plot as above using `ggplot2`.
+<details>
+<summary>Hint</summary>
+You can draw the blue shaded area using `geom_ribbon`.
+</details>
+(b) World Health Organisation announced that Coronavirus disease (COVID-19) as a pandemic in March 2020. Over 300,000 deaths worldwide have been recorded as due to COVID-19. For England and Wales, the observed excess death in week 18 compared to the average of the last 5 years is `r death2020$count[18] - death5yravg$count[18]`. Would it be correct that these excess deaths are due to coronavirus and hence `r death2020$count[18] - death5yravg$count[18]` is an estimate of the number of people who died due to COVID-19 in England and Wales in week 18? Discuss why or why not.
+
+
+## `r emo::ji("lab")` Exercise 9C
+
+**Design an experiment**
+
+A bakery has a choice of using 3 different brands of flours to make their flagship sponge cake. The owner of the bakery wants to select the brand of flour that optimises the taste of the sponge cake. The owner is willing to bake a maximum of 6 cakes for this experiment and can gather 20 customers as tasters. The bakery has 2 ovens that can comfortably cook 3 cakes at once. The owner believes that the cake will be all evenly cooked in the oven but thinks that newer oven makes the cake taste better. Produce a plan of how to conduct the experiment to determine which brand of flours will be optimal for the owner. You may assume that a single cake can be divided into 20 bite size pieces for tasting.
+
+* Note: there is no one correct answer for this. 
+* Make sure your design of experiment is reproducible.
+
+
+## `r emo::ji("plant")` Exercise 9D
+
+**Analysis of comparative experiments**
+
+For each of the experiments below, 
+
+i. identify what the experimental units, observational units and treatments are and how many there are;
+ii. propose an appropriate model for analysis;
+iii. test if any treatments are significantly different; and
+iv. if any treatment is different, identify which is the "best".
+
+(Modified from Statistical Methods in Biology by Welham et al., 2015)
+
+(a) A  laboratory  experiment  investigated  the  effect  of  different  treatments  on  grain production in wheat ears infected with *Fusarium graminearum*.  Single  wheat  ears  on  30  separate  plants  were  inoculated  with  *F.  graminearum*.  Four  treatments  (labelled  A–D)  and  a  negative  (untreated)  control were then randomly allocated to the inoculated ears. The number of grains in the region above the inoculation position of each ear was counted. The data is in the `GRAINS.DAT` file.
+
+(b) An experiment used three incubators to compare growth of fungal colonies of Metarhizium anisopliae at three temperatures (23°C, 30°C and 35°C). The experiment was repeated on three separate occasions. Temperatures were randomly allocated to incubators so that each incubator ran once at each temperature. Small fungal plugs were placed in Petri  dishes  and  three  dishes  were  placed  in  each  incubator  on  each  occasion.  The  sizes  of  the  fungal  colonies  were  recorded  after  four  days.  This data is in the `SIZE.DAT` file. What can you say about the effect of temperature on the growth of these fungal colonies?
+
+
+<!-- ## `r emo::ji("grain")` Exercise 9E -->
+
+
+<!-- **Food for thought: modifying planned analysis post-experiment** -->
+
+
