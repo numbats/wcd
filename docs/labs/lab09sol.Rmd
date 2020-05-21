@@ -1,0 +1,248 @@
+---
+title: 'ETC5512: Solutions for Lab 9'
+author: "Emi Tanaka"
+date: "Week 9"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+set.seed(1)
+filter <- dplyr::filter
+```
+
+## `r emo::ji("art")` Exercise 9A
+
+```{r death-table, echo = FALSE, message = FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+tibble(Group = c("Examined", "Refused", "Total", "Control group"),
+       Participants = c("20,200", "10,800", "31,000", "31,000"),
+       BNumber = c(23, 16, 39, 63),
+       BRate = c(1.1, 1.5, 1.3, 2.0),
+       ONumber = c(428, 409, 837, 879),
+       ORate = c(21, 38, 27, 28)) %>% 
+   mutate(Group = ifelse(Group == "Control group", cell_spec(Group, bold = TRUE), Group)) %>% 
+   kable(escape = F, col.names = c("", "", "Number", "Rate", "Number", "Rate"), caption = "Deaths in the first 5 years of the HIP screening trial by cause. Rates are per 1,000 women.") %>% 
+   kable_styling(c("striped")) %>% 
+   add_header_above(c(" " = 2, "Breast cancer" = 2, "All other" = 2)) %>% 
+   add_header_above(c(" " = 2, "Cause of death" = 4)) %>% 
+   pack_rows("Treatment group", 1, 3, 
+             label_row_css = "") %>% 
+   add_indent(1:2)
+```
+
+(a) The data supports evidence that the screening save lives as indicated by the lower death rate in the total treatment group (1.3) compared to the control group (2.0).
+(b) Screening is only for breast cancer so it should make little change for the death rate due to other causes if the treatment and control group were properly assigned. 
+(c) According to the epidemiologists, poorer women were less likely to accept screening than richer one. Thus the people who refused treatment are likely to be poor, while the control group will have a mix of rich and poor women. Hence on average, the people who refused treatment are poorer than the people in the control group; yet the death rate due to breast cancner is higher in the latter group (2.0 vs 1.5) even if both groups did not receive the screening treatment. 
+(d) The women who refused treatment are likely to be poorer and thus more vulnerable to other diseases. Hence why the death rate in the group that refused treatment is higher. 
+(e) Although the data is obtained from an experiment, the comparison between the "examined" and "refused" groups is observational as it was the women themselves who decide whether to be examined or not. Additionally, there is confounding between the "refused" group and variables like income and education, thus the two groups cannot be distinguished purely based on the screening treatment alone. 
+(f) This is not supported by the data as the death rate from other causes from the treatment group (27) is about the same in the control group (28).
+
+
+## `r emo::ji("artist")` Exercise 9B
+
+**Coronovirus & excess deaths**
+
+```{r uk-death-data}
+library(tidyverse)
+library(readxl)
+
+# make dictionaries
+fns <- c("2015" = "publishedweek2015.xls", "2016" = "publishedweek522016.xls",
+         "2017" = "publishedweek522017.xls", 
+         "2018" = "publishedweek522018withupdatedrespiratoryrow.xls",
+         "2019" =  "publishedweek522019.xls", "2020" = "publishedweek182020.xlsx")
+cols_to_ignore <- c("2015" = 1, "2016" = 2, "2017" = 2, "2018" = 2, "2019" = 2, "2020" = 2)
+sheet_nms <- c("2015" = "Weekly Figures 2015", "2016" = "Weekly figures 2016",
+               "2017" = "Weekly figures 2017", "2018" = "Weekly figures 2018",
+               "2019" = "Weekly figures 2019", "2020" = "Weekly figures 2020")
+n_wks <- c("2015" = 53, "2016" = 52, "2017" = 52, "2018" = 52, "2019" = 52, "2020" = 18) 
+n_skip <- c("2015" = 5, "2016" = 5, "2017" = 5, "2018" = 5, "2019" = 5, "2020" = 8)
+
+death_df <- map_dfr(as.character(2015:2020), function(year) {
+      col_names <- c(paste0("ignore", 1:cols_to_ignore[year]), paste0("wk", 1:n_wks[year]))
+      read_excel(here::here("data", fns[year]),
+            sheet = sheet_nms[year],
+            skip = n_skip[year], n_max = 1, col_names = col_names) %>% 
+         select(-starts_with("ignore")) %>% 
+         pivot_longer(everything(), names_to = "week", values_to = "count") %>% 
+         mutate(year = year) 
+   }) %>% 
+   mutate(weekno = parse_number(week))
+
+```
+
+```{r death-plot}
+death2020 <- death_df %>% filter(year == "2020")
+death5yravg <- death_df %>% 
+   filter(year!="2020") %>% 
+   group_by(weekno) %>% 
+   summarise(count_min = min(count), 
+             count_max = max(count),
+             count = mean(count)) %>% 
+   ungroup() %>% 
+   filter(weekno < 19)
+
+death_combine_df <- death5yravg %>% 
+   mutate(year = "Past 5 year average") %>% 
+   select(weekno, year, count) %>% 
+   rbind(select(death2020, weekno, year, count))
+   
+ggplot(data = death2020, aes(x = weekno)) + 
+   geom_point(aes(y = count), color = "red") + 
+   geom_line(data = death_combine_df, aes(y = count, color = year)) + 
+   scale_color_manual(name = "", values = c("red", "black")) + 
+   geom_ribbon(data = death5yravg, aes(ymin = count_min, ymax = count_max), 
+               fill = "blue", alpha = 0.2) + 
+   annotate("text", x = 17, y = death2020$count[18] - 10, 
+            label = death2020$count[18], color = "red") + 
+   annotate("point", x = 18, y = death5yravg$count[18]) + 
+   annotate("text", x = 17, y = death5yravg$count[18] - 10, 
+            label = death5yravg$count[18]) +
+   annotate("line", x = 18, y = c(death5yravg$count[18], death2020$count[18]),
+            arrow = arrow(ends = "both", length = unit(0.1, "inches")),
+            color = "blue") + 
+   annotate("text", x = 17, 
+            y = mean(c(death5yravg$count[18], death2020$count[18])),
+            color = "blue", label = "excess\n deaths") +
+   theme_bw(base_size = 14) + 
+   labs(y = "Number of registered deaths", 
+        x = "Week Number", 
+        title = "(a) Number or registered deaths in England and Wales", 
+        caption = "The blue shaded area is the minimum and maximum number\n of deaths in that week from the past 5 years") + 
+   theme(legend.position = "bottom")
+```
+
+(b) The excess death in England and Wales during the March-May period can be used as an estimate to the number of death due to COVID-19, however, how good the estimate is will depend a number of factors.  For one, the excess death is much higher than the number of confirmed death due to COVID-19. This may be due to some deaths due to COVID-19 being officially recorded as other reasons; lack of testing equipments; capacity to test and so on. There is also implicit assumption that the death rates due to other causes are the same as the past. This may not be the case. There has been constant media reminder about physical distancing and better hygeine practices; and UK has been in strict lockdown since March 23rd 2020. Due to this, death rate of other infectious diseases may have lowered. The strict lockdown also means that there is less travelling and thus motor accidents may be down. 
+
+
+## `r emo::ji("lab")` Exercise 9C
+
+**Design an experiment**
+
+The factors that may influence the response (the taster's score) are:
+
+1. the brand of flour (i.e. the treatment),
+2. the oven,
+4. the customer that is doing the tasting, and
+5. the order of the cake given to the customer for tasting.
+
+We can make two cakes for each brand of flour - one baked in each oven. We can then divide each cake into 20 pieces (thus there will be a total of 120 pieces) and give 6 pieces (one from each cake) to each customer. We have balanced out the brand to oven and the cake to customer but this is not possible with the order of the cake piece. We randomise the order the cake piece is given to the customer as below. 
+
+
+```{r}
+set.seed(2020)
+# the brands of flour
+flour <- c("A", "B", "C") 
+# first there are two ovens
+tibble(oven = 1:2) %>% 
+   # make cakes from each flour
+   mutate(cake = list(flour)) %>% 
+   # take out the cake
+   unnest(cake) %>% 
+   # label cakes uniquely
+   mutate(cakeid = 1:6) %>% 
+   # then cut into 20 pieces
+   mutate(piece = list(1:20)) %>% 
+   # get out each piece
+   unnest(piece) %>% 
+   # label each piece uniquely
+   mutate(id = 1:n()) %>% 
+   # group pieces by cake 
+   group_by(cakeid) %>% 
+   # then assign one customer to each piece randomly
+   mutate(customer = sample(1:20)) %>% 
+   # now to determine ordering
+   ungroup() %>% 
+   group_by(customer) %>% 
+   mutate(order = sample(1:n())) %>% 
+   arrange(customer, order) %>% 
+   # now print to table
+   DT::datatable()
+
+```
+
+The above requires the experimenter (likely owner) to label their cakes from 1 to 6 and then the pieces from each cake from 1 to 20 for cake 1, 21 to 40 for cake 2, ..., 101 to 120 for cake 6. Then the table presented above show the customer number (`customer`) and the order (`order`) the cake pieces (`id`) should be given.
+
+There can be other valid design of experiments, for example to restrict randomisation such that the ordering is not biased with a particular brand of flour.
+
+
+## `r emo::ji("plant")` Exercise 9D
+
+**Analysis of comparative experiments**
+
+
+(a) `GRAINS.DAT`
+
+```{r}
+grains_df <- read.table(here::here("data/GRAINS.DAT"), header = TRUE)
+glimpse(grains_df)
+```
+
+
+      i. The experimental units are the wheat ears. There are 30 experimental units. The observational units are the the same as the experimental units. There are 5 treatments (4 labelled A-D and 1 control).
+
+     ii. The experiment appears to be unstructured and `DEar` indexes the observational units. Looking at the graph below, it may be more appropriate to used the square root transformation of the response. Thus, a proposed model is `sqrt(Grains) ~ Treatment`.
+     
+```{r, warning = FALSE, message = FALSE}
+ggplot(grains_df) + 
+   geom_histogram(aes(Grains), fill = "blue") 
+
+ggplot(grains_df) + 
+   geom_histogram(aes(sqrt(Grains)), fill = "red")
+```
+     
+     iii. Provided model assumptions are satisfied, from the $p$-value below, we have strong evidence to believe that at least one treatment is different to others.
+
+```{r}
+anova(lm(sqrt(Grains) ~ Treatment, data = grains_df))
+```
+      iv. It is clear from below that the treatment A is the most effective in increasing the number of grains.
+      
+```{r trt-means}
+fit <- lm(sqrt(Grains) ~ -1 + Treatment, data = grains_df)
+coef(fit)
+# above are the same as the treatment means!
+grains_df %>% 
+   group_by(Treatment) %>% 
+   summarise(mean(sqrt(Grains)))
+```
+
+
+     
+(b) `SIZE.DAT`
+
+```{r}
+size_df <- read.table(here::here("data/SIZE.DAT"), header = TRUE) %>% 
+   mutate_if(is.integer, as.factor)
+glimpse(size_df)
+```
+
+i. The experimental units are incubators. There are in total 9 experimental units. The observational units are the Petri dishes. There are 27 observational units. The treatments are the 3 tempatures.
+ii. From the description we can see that the `Incubator` is nested within `Occasion` and `Dish` is nested within `Incubator`. From below, we can see that there is a clear bivariate distribution for the response. More investigation will be required for the appropriate model but based on the design of the experiment, we can propose the following model for now: `Size ~ Temperature + Error(Occasion/Incubator/Dish)`.
+
+```{r, message = FALSE}
+ggplot(size_df, aes(Size)) + geom_histogram() 
+```
+
+iii. Provided that the model assumptions are satisfied, we can see from the result below that the temperatures make a difference to growth of the fungal colonies.
+
+```{r}
+summary(aov(Size ~ Temperature + Error(Occasion/Incubator/Dish), 
+      data = size_df))
+```
+
+iv. Below 23°C temperature is considered baseline so the numbers 0.65 and -9.19 for 30°C and 35°C, respectively, are in comparison with 23°C (i.e. $trt23 - trt30 = 0.65$, $trt23 - trt35 = -9.19$). The mean difference between 30°C and 35°C is calculated as 
+$$(trt23 - trt30) - (trt23 - trt35) = trt35 - trt30 = 0.65 - (-9.19) = 9.84.$$
+So clearly a temperature of 35°C is optimal (out of those tested) for the growth of the colony with not much difference between 23°C and 30°C.
+
+```{r}
+fit <- aov(Size ~ Temperature + Error(Occasion/Incubator/Dish), 
+           data = size_df)
+coef(fit)
+```
+
