@@ -1,0 +1,11 @@
+---
+title: "ETC5512 Week 7"
+author: "Emi Tanaka"
+date: "06/05/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
