@@ -319,7 +319,7 @@ class: motivator
 ---
 # Ghost flights
 
-<img src="images/data-expo/airlines_ghosts.jpg"  style="width: 1200px"/>
+<img src="images/data-expo/airlines_ghosts.jpg"  style="width: 1000px"/>
 
 ---
 # Ghost flights, wasted fuel
