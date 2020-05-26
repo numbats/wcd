@@ -224,7 +224,10 @@ class: refresher
 - Why was delay chosen?
 
 
-`r countdown::countdown(0, 30)`
+```{r}
+library(countdown)
+countdown(minutes = 0, seconds = 32, left = "0")
+```
 
 ---
 
