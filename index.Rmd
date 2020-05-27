@@ -69,7 +69,7 @@ schedule <- read_csv("materials/schedule.csv") %>%
     TRUE ~ ""
   ),
   Lab = case_when(
-    !is.na(Lab) ~ glue("<a class='fa fa-tasks' href='labs/{Lab}.html' target='_blank'></a> <a class='fa fa-lightbulb' href='labs/{Lab}sol.html' target='_blank'></a> <a class='fa fa-laptop' href='labs/{Lab}sol.Rmd' target='_blank'></a>"),
+    !is.na(Lab) ~ glue("<a class='fa fa-tasks' href='labs/{Lab}.html' target='_blank'></a> <a class='fa fa-wrench' href='labs/{Lab}.Rmd' target='_blank'></a> <a class='fa fa-lightbulb' href='labs/{Lab}sol.html' target='_blank'></a> <a class='fa fa-laptop' href='labs/{Lab}sol.Rmd' target='_blank'></a>"),
     TRUE ~ ""
   ),
   Topic = ifelse(is.na(Topic), "", Topic),

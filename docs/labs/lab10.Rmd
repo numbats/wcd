@@ -226,12 +226,10 @@ feb1_flights <- feb1_flights %>%
                            substr(DepTime, 1, 2),":", 
                            substr(DepTime, 3, 4), ":00"))
 # Can't keep datetime with different time zones in the same variable
-feb1_flights <- feb1_flights %>% mutate(DateTime_NY = ymd_hms(DateTime, tz="America/New_York"))
-for (i in 1:nrow(feb1_flights)) {
-  dt = ymd_hms(feb1_flights$DateTime[i], tz=feb1_flights$origin_tz[i])
-  dt = with_tz(dt, tz="America/New_York")
-  feb1_flights$DateTime_NY[i] <- dt
-}
+feb1_flights <- feb1_flights %>%
+  mutate(
+    DateTime_NY = force_tzs(ymd_hms(DateTime),
+      tzones = origin_tz, tzone_out = "America/New_York"))
 
 # Now break into four time categories
 feb1_flights <- feb1_flights %>% 
