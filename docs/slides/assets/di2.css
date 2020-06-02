@@ -10,13 +10,20 @@ li {
 }
 
 ul li:before {
-  content: "\f140";
+  content: "\f1e3";
   font-size: 28px;
   font-family: "FontAwesome";
   margin-right: 10px;
   color: #D93F00;
 }
 
+ul li li:before {
+  content: "\f140";
+  font-size: 28px;
+  font-family: "FontAwesome";
+  margin-right: 10px;
+  color: #D93F00;
+}
 .grid2, .grid2-col, .grid2-row {
   display: grid;
   margin-left: 1em;
