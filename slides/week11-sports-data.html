@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>ETC5512: Wild Caught Data</title>
     <meta charset="utf-8" />
@@ -77,7 +77,7 @@ Department of Econometrics and Business Statistics
 
 
 &lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
-&lt;div class="background-image" style="background-image:url('images/large.jpg');background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;div class="background-image" style="background-image:url('images/large.png');background-position: center;background-size:cover;margin-left:3px;"&gt;
 &lt;svg class="clip-svg absolute"&gt;
 &lt;defs&gt;
 &lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
@@ -125,7 +125,7 @@ background-size: cover
 ---
 # WTA
 
-&lt;iframe src="https://www.wtatennis.com/stats" width="100%" height="600px"&gt;&lt;/iframe&gt;
+&lt;a href="https://www.wtatennis.com/stats"&gt; &lt;img src="images/tennis/wta_site.png" width="80%"&gt; &lt;/a&gt;
 
 .footnote[Source: https://www.wtatennis.com/stats]
 ---
@@ -135,7 +135,7 @@ background-size: cover
 &lt;img src="images/tennis/wta_rankings.png" width="1050px"&gt;
 ]
 --
-`html` is text, very long-winded, but nicely organised by tags. Web scraping allows harvesting data provided in web pages, by extracting the data components of the text. 
+`html` is text, verbose, but nicely organised by tags. Web scraping allows harvesting data provided in web pages, by extracting the data components of the text. 
 
 ---
 
@@ -165,10 +165,6 @@ background-size: cover
 ]
 
 ---
-
-&lt;iframe src="https://giphy.com/embed/mA155PlFvQITe" width="643" height="540" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://giphy.com/gifs/phew-mA155PlFvQITe"&gt;via GIPHY&lt;/a&gt;&lt;/p&gt;
-
----
 class: motivator
 
 That took me about a half day to work out. 
@@ -188,7 +184,7 @@ That took me about a half day to work out.
 
 # ATP
 
-&lt;iframe src="https://www.atptour.com/en/rankings/singles" width="100%" height="600px"&gt;&lt;/iframe&gt;
+&lt;a href="https://www.atptour.com/en/rankings/singles"&gt; &lt;img src="images/tennis/atp_site.png" width="80%"&gt; &lt;/a&gt;
 
 .footnote[Source: https://www.atptour.com/en/rankings/singles]
 
@@ -209,30 +205,20 @@ atp_rankings &lt;- html_node(atp_html, "table") %&gt;%
 .font_smaller2[
 
 ```
-## # A tibble: 28 x 6
-##    Player                 Age Points `Tourn Played` `Points Droppin… `Next Best`
-##    &lt;chr&gt;                &lt;int&gt; &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;                  &lt;int&gt;
-##  1 Dominic Thiem           26 7,045              21 1,000                     90
-##  2 Daniil Medvedev         24 5,890              23 45                        45
-##  3 Stefanos Tsitsipas      21 4,745              26 10                        90
-##  4 Alexander Zverev        22 3,630              25 45                        45
-##  5 David Goffin            29 2,555              27 10                        45
-##  6 Roberto Bautista Ag…    31 2,360              23 10                        45
-##  7 Diego Schwartzman       27 2,265              23 45                        45
-##  8 Andrey Rublev           22 2,234              24 53                        45
-##  9 Denis Shapovalov        20 2,075              27 90                        45
-## 10 Felix Auger-Aliassi…    19 1,771              26 45                        45
-## 11 Benoit Paire            30 1,738              32 10                        45
-## 12 Dusan Lajovic           29 1,695              27 25                        20
-## 13 Taylor Fritz            22 1,510              31 10                        45
-## 14 Filip Krajinovic        28 1,343              21 106                       20
-## 15 Borna Coric             23 1,320              24 10                        45
-## 16 Jan-Lennard Struff      29 1,315              27 90                        45
-## 17 Adrian Mannarino        31 1,191              30 25                        20
-## 18 Albert Ramos-Vinolas    32 1,130              31 45                        45
-## 19 Ugo Humbert             21 1,111              31 26                        20
-## 20 Miomir Kecmanovic       20 1,028              26 188                       20
-## # … with 8 more rows
+## # A tibble: 100 x 6
+##    Player               Age Points `Tourn Played` `Points Dropping` `Next Best`
+##    &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;           &lt;int&gt; &lt;chr&gt;                   &lt;int&gt;
+##  1 Novak Djokovic        32 10,220             18 45                          0
+##  2 Rafael Nadal          33 9,850              18 360                         0
+##  3 Dominic Thiem         26 7,045              21 1,000                      90
+##  4 Roger Federer         38 6,630              16 600                         0
+##  5 Daniil Medvedev       24 5,890              23 45                         45
+##  6 Stefanos Tsitsipas    21 4,745              26 10                         90
+##  7 Alexander Zverev      22 3,630              25 45                         45
+##  8 Matteo Berrettini     23 2,860              21 135                        10
+##  9 Gael Monfils          33 2,860              22 180                         0
+## 10 David Goffin          29 2,555              27 10                         45
+## # … with 90 more rows
 ```
 ]
 
@@ -369,7 +355,7 @@ Smashes are important, but only up to a point! The players who are successful ar
 
 # ATP terms and conditions
 
-&lt;iframe src="https://www.atptour.com/en/terms-and-conditions" width="100%" height="600px"&gt; &lt;/iframe&gt;
+&lt;a href="https://www.atptour.com/en/terms-and-conditions"&gt; &lt;img src="images/tennis/atp_terms.png" width="80%" &gt; &lt;/a&gt;
 
 ---
 
@@ -492,7 +478,7 @@ class: split-50
 # Beginners guide to html
 
 &lt;a href="https://htmldog.com/guides/html/beginner/"&gt; 
-&lt;img src="images/tennis/html.png" height="600px"&gt; &lt;/a&gt;
+&lt;img src="images/tennis/html.png" width="100%"&gt; &lt;/a&gt;
 
 .footnote[Source: https://htmldog.com/guides/html/beginner/]
 
@@ -515,17 +501,14 @@ class: split-50
 &lt;br&gt;
 &lt;br&gt;
 
-&lt;iframe src="https://giphy.com/embed/ZsZmffS4YS5yw" width="480" height="312" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://giphy.com/gifs/car-80s-deal-with-it-ZsZmffS4YS5yw"&gt;via GIPHY&lt;/a&gt;&lt;/p&gt;
 ]
 ---
 
 # Intro to css
 
 &lt;a href="https://htmldog.com/guides/css/beginner/"&gt; 
-&lt;img src="images/tennis/html.png" height="600px"&gt; &lt;/a&gt;
+&lt;img src="images/tennis/css.png" width="100%"&gt; &lt;/a&gt;
 
-
-&lt;br&gt;
 
 Fun interactive way to learn about css selectors at http://flukeout.github.io/. 
 
@@ -730,9 +713,6 @@ aflw &lt;- get_aflw_match_data(start_year = 2020)
 ---
 
 &lt;a href="https://jacquietran.github.io/2019_may_rladies_akl/R/#1"&gt;   &lt;img src="images/tennis/jacqui_tran.png" width="100%" height="600px"&gt; &lt;/a&gt;
-
----
-
 
 ---
     </textarea>
