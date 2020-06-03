@@ -78,7 +78,9 @@ a {
 .footnote {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  margin-left: -6em;
+  margin-right: -4em;
+  width: calc(100% + 8em);
   padding-left:5px;
   padding-right:5px;
   padding-top: 2px;
@@ -88,6 +90,10 @@ a {
   font-size: 18pt;
   /*border-top: solid 1px #0081c7;*/
 }
+
+.footnote a {
+  color: white!important;
+} 
 
 
 
@@ -181,7 +187,7 @@ li { margin: 10px 0; }
   text-shadow: 0 0 20px #000;
 }
 
-.info-box {
+.box, .info-box {
   position: relative;
   margin: auto;
   color: black;
@@ -195,6 +201,11 @@ li { margin: 10px 0; }
   border-radius: 7px;
 }
 
+.box {
+  background-color: #D93F00;
+  color: white;
+}
+
 .info-box:before {
   position: absolute;
   content: url("../images/info-circle.png");
@@ -206,6 +217,7 @@ li { margin: 10px 0; }
   font-size: 12pt;
   background-color: #f2f2f2;
 }
+
 
 
 

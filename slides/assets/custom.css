@@ -39,4 +39,23 @@ ul li li:before {
   color: #003F7F;
 }
 
-ul { text-align:  left; }
+.motivator ul {
+  text-align: left;
+}
+
+/* change the font for data table */
+
+table {
+  font-size: 18pt;
+}
+
+thead {
+  background-color: #027EB6;
+  color: white;
+}
+
+.dataTables_wrapper, table.dataTable, .dataTables_scroll {
+  height: inherit;
+}
+
+

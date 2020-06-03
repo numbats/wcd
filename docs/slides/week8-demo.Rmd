@@ -1,0 +1,207 @@
+---
+title: "ETC5512 Week 8"
+author: "Emi Tanaka"
+date: "13/05/2020"
+output: html_document
+---
+
+```{r setup, cache = TRUE, cache.lazy = FALSE, message = FALSE}
+library(tidyverse)
+library(haven)
+pisa2018 <- read_sav(here::here("data", "CY07_MSU_STU_QQQ.sav")) %>% 
+                as_factor()
+```
+
+```{r dimension}
+dim(pisa2018)
+glimpse(pisa2018)
+```
+
+```{r ridge-plot}
+pisa2018 %>% 
+  select(PV1MATH:PV10MATH) %>% 
+  pivot_longer(PV1MATH:PV10MATH, 
+               names_to = "Number", 
+               values_to = "Value") %>% 
+  # reorder factor so it is PV1MATH, ..., PV10MATH
+  mutate(Number = fct_reorder(Number, Number, 
+         function(x) unique(parse_number(x)))) %>% 
+  ggplot(aes(x = Value, y = Number)) + 
+  labs(y = "") + 
+  ggridges::geom_density_ridges() +  
+    theme_classic(base_size = 18)
+```
+
+```{r pivot}
+knitr::include_graphics("images/tidyr-spread-gather.gif")
+```
+
+
+```{r clean}
+pisa2018c <- pisa2018 %>% 
+  rename(sex = ST004D01T, country = CNT) %>% 
+  filter(!is.na(sex)) %>% # filter two Canadian students where sex is missing
+  filter(!is.na(PV1MATH)) %>%  # Vietnam is missing scores
+  mutate(country = case_when(
+    country == "Brunei Darussalam" ~ "Brunei",
+    country == "United Kingdom" ~ "UK",
+    country %in% c("Hong Kong", "B-S-J-Z (China)") ~ "China",
+    country == "Korea" ~ "South Korea",
+    country == "North Macedonia" ~ "Macedonia",
+    country == "Baku (Azerbaijan)" ~ "Baku",
+    country %in% c("Moscow Region (RUS)", "Tatarstan (RUS)", 
+                   "Russian Federation") ~ "Russia",
+    country == "Slovak Republic" ~ "Slovakia",
+    country == "Chinese Taipei" ~ "Taiwan",
+    country == "United States" ~ "USA", 
+    TRUE ~ as.character(country)))
+```
+
+```{r plot1}
+pisa2018c %>% 
+  group_by(country, sex) %>% 
+  summarise(avg = mean(PV1MATH)) %>% 
+  ungroup() %>% 
+  pivot_wider(country, names_from = sex, 
+              values_from = avg)# %>% 
+  mutate(diff = Female - Male,
+         country = fct_reorder(country, diff)) %>% 
+  ggplot(aes(x = diff, y = country)) + 
+  geom_point() + 
+  geom_vline(xintercept = 0, color = "red") + 
+  labs(y = "Country", 
+       x = "Difference in mean PV1 (girl - boy)") + 
+  theme_bw(base_size = 14)
+```
+```{r}
+set.seed(1)
+sample(1:10, size = 1)
+```
+
+
+```{r plot2}
+mathdiff_df <- pisa2018c %>% 
+  group_by(sex, country) %>% 
+  summarise(math = weighted.mean(PV1MATH, 
+                                 w = SENWT)) %>%
+  ungroup() %>% 
+  pivot_wider(country, names_from = sex, 
+              values_from = math) %>% 
+  mutate(diff = Female - Male,
+         country = fct_reorder(country, diff)) 
+
+ggplot(mathdiff_df, aes(x = diff, y = country)) + 
+  geom_point() + 
+  geom_vline(xintercept = 0, color = "red") + 
+  labs(y = "Country", 
+       x = "Difference in mean PV1 (girl - boy)") + 
+  theme_bw(base_size = 14)
+```
+
+
+```{r map}
+map_data("world") #%>% # function from ggplot2
+  left_join(mathdiff_df, by = c("region" = "country")) %>% 
+  ggplot(aes(long, lat, group = group, fill = diff)) + 
+   geom_polygon(color = "black") + theme_void(base_size = 18) +
+      scale_fill_gradient2("Math Gap", na.value="grey90",
+                         low="#1B9E77", high="#D95F02", mid="white")
+```
+
+
+```{r boot, cache = TRUE}
+boot_ests <- map_dfr(1:100, ~{
+    pisa2018c %>%
+      group_by(country, sex) %>%
+      sample_n(size = n(), replace = TRUE) %>%
+      summarise(avg = weighted.mean(PV1MATH, SENWT)) %>%
+      ungroup() %>%
+      pivot_wider(country, names_from = sex, values_from = avg) %>%
+      mutate(diff = Female - Male, country = fct_reorder(country, diff)) %>%
+      mutate(boot_id = .x)
+  })
+```
+```{r}
+library(furrr)
+plan(multicore)
+boot_ests <- future_map_dfr(1:1000, ~{
+    pisa2018c %>%
+      group_by(country, sex) %>%
+      sample_n(size = n(), replace = TRUE) %>%
+      summarise(avg = weighted.mean(PV1MATH, SENWT)) %>%
+      ungroup() %>%
+      pivot_wider(country, names_from = sex, values_from = avg) %>%
+      mutate(diff = Female - Male, country = fct_reorder(country, diff)) %>%
+      mutate(boot_id = .x)
+  })
+```
+
+
+```{r plot3}
+mathdiff2_df <- boot_ests %>% 
+  group_by(country) %>% 
+  summarise(lower = sort(diff)[5], 
+            upper = sort(diff)[95]) %>% 
+  left_join(mathdiff_df, by = "country") %>% 
+  mutate(country = fct_reorder(country, diff))
+
+ggplot(mathdiff2_df, aes(diff, country)) + 
+  geom_point() + 
+  geom_errorbar(aes(xmin = lower,
+                    xmax = upper)) +
+  geom_vline(xintercept = 0, color = "red") + 
+  labs(y = "Country", 
+       x = "Difference in mean PV1 (girl - boy)") + 
+  theme_bw(base_size = 14)
+```
+
+```{r sim-data}
+set.seed(2020) # for reproducibility
+n <- 200 # sample size
+b0 <- 3  # intercept
+b1 <- -2 # slope
+sim_df <- tibble(id = 1:n) %>%  # initialise data set
+    mutate(x = runif(n(), 0, 10), # draw x from Uniform[0,10]
+           y = b0 + b1 * x + rnorm(n(), 0, 1))
+
+fit1 <- lm(y ~ x, data = sim_df)
+
+sim2_df <- tibble(id = 1:n) %>%  
+    mutate(x = runif(n(), 0, 10), 
+           y = b0 + b1 * x + rgamma(n(), 2, 1) - 2)
+
+fit2 <- lm(y ~ x, data = sim2_df)
+
+```
+
+
+```{r null1}
+library(nullabor)
+method1 <- null_dist("residual", "norm", 
+              params = 
+                list(mean = 0, 
+                     sd = summary(fit1)$sigma))
+sim_df$residual <- fit1$residuals
+null1_df <- lineup(method1, sim_df)
+ggplot(null1_df, aes(x, residual)) + 
+  geom_point() + 
+  geom_hline(yintercept = 0, color = "red") + 
+  facet_wrap(~.sample) + 
+  theme_bw(base_size = 18)
+```
+
+```{r null2}
+method2 <- null_dist("residual", "norm", 
+              params = 
+                list(mean = 0, 
+                     sd = summary(fit2)$sigma))
+sim_df$residual <- fit2$residuals
+null2_df <- lineup(method2, sim2_df)
+
+ggplot(null2_df, aes(x, residual)) + 
+  geom_point() + 
+  geom_hline(yintercept = 0, color = "red") + 
+  facet_wrap(~.sample) + 
+  theme_bw(base_size = 18) 
+```
+
