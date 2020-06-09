@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>ETC5512: Wild Caught Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dianne Cook" />
+    <link href="libs/remark-css/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome/js/fontawesome-all.min.js"></script>
+    <!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+    -->
+    <link rel="icon" href="images/favicon.ico"  type='image/x-icon'/>
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-logo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="assets/di3.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+background-color: #006DAE
+class: middle center hide-slide-number
+
+
+&lt;div class="shade_black"  style="width:60%;right:0;bottom:0;padding:10px;border: dashed 4px white;margin: auto;"&gt;
+&lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; These slides are viewed best by Chrome and occasionally need to be refreshed if elements did not load properly. See &lt;a href=/&gt;here for PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;. 
+&lt;/div&gt;
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+---
+
+
+background-image: url(images/bg-week12.jpg)
+background-size: cover
+class: hide-slide-number split-70 title-slide
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;
+
+# .monash-blue.outline-text[ETC5512: Wild Caught Data]
+
+&lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;Week 12&lt;/h2&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;The proper care and feeding of wild data&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Dianne Cook*
+
+Department of Econometrics and Business Statistics
+
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5512.Clayton-x@monash.edu
+
+
+
+&lt;br&gt;
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-image:url('images/large.png');background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+.footnote[Image source:  https://flickr.com/photos/34534185@N00/6081362690, via https://commons.wikimedia.org]
+
+
+
+---
+class: motivator 
+# Time has come to wrap up this unit
+
+Suppose you are the data curator. What should you know.
+
+- Organising data into spreadsheets for analysis
+- Rules for caring and feeding your data
+- Realistic guide to making data available
+
+---
+class: refresher
+
+# Open data is...
+
+a raw material for the digital age but, 
+
+unlike coal, timber or diamonds, 
+
+it can be used by anyone and everyone at the same time.
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+https://www.europeandataportal.eu/elearning/en/module1/#/id/co-01
+
+---
+class: motivator 
+# Example in the news
+
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;Today, three of the authors have retracted &amp;quot;Hydroxychloroquine or chloroquine with or without a macrolide for treatment of COVID-19: a multinational registry analysis&amp;quot; Read the Retraction notice and statement from The Lancet &lt;a href="https://t.co/pPNCJ3nO8n"&gt;https://t.co/pPNCJ3nO8n&lt;/a&gt; &lt;a href="https://t.co/pB0FBj6EXr"&gt;pic.twitter.com/pB0FBj6EXr&lt;/a&gt;&lt;/p&gt;&amp;mdash; The Lancet (@TheLancet) &lt;a href="https://twitter.com/TheLancet/status/1268613313702891523?ref_src=twsrc%5Etfw"&gt;June 4, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+---
+
+background-image: \url(https://i.guim.co.uk/img/media/68b2cc3ee316f8a61e3df97b36954c1c6a20638c/0_0_4166_2500/master/4166.jpg?width=620&amp;quality=45&amp;auto=format&amp;fit=max&amp;dpr=2&amp;s=e3358e1170461eb2904f7534dad4de8f)
+background-size: cover
+
+---
+
+An article in Lancet, one of the oldest and best known journals that publishes general medical articles, "found Covid-19 patients who received the malaria drug, hydroxychloroquine, were dying at higher rates and experiencing more heart-related complications than other virus patients". Within days, the World Health Organization had halted its support for trials of hydroxychloroquine. Australian infectious disease researchers began questioning the published results very quickly. 
+
+---
+
+- An important point to note is *The data relied upon by researchers to draw their conclusions in the Lancet is not readily available in Australian clinical databases, leading many to ask where it came from*. 
+- This is not the norm for research articles today, where most journals require the data and software to be made available so that others can verify the results. 
+- The numbers for the Australian cases did not match the data that researchers here knew. So they made some phone calls. 
+
+---
+class: split-20
+
+.column[
+&lt;img src="https://i.guim.co.uk/img/media/68b2cc3ee316f8a61e3df97b36954c1c6a20638c/0_0_4166_2500/master/4166.jpg?width=620&amp;quality=45&amp;auto=format&amp;fit=max&amp;dpr=2&amp;s=e3358e1170461eb2904f7534dad4de8f" width="100%"&gt;
+
+]
+
+.column[
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;Once I realised the data in That &lt;a href="https://twitter.com/hashtag/LancetGate?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#LancetGate&lt;/a&gt; study was probably fabricated I couldn&amp;#39;t do anything else and had to write a blog post about it. Not only is Surgisphere far too small to have software in 671 hospitals, their claimed awards are dodgy: &lt;a href="https://t.co/Ro8vEvpZqc"&gt;https://t.co/Ro8vEvpZqc&lt;/a&gt;&lt;/p&gt;&amp;mdash; Peter Ellis (@ellis2013nz) &lt;a href="https://twitter.com/ellis2013nz/status/1266739627701854208?ref_src=twsrc%5Etfw"&gt;May 30, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;Investigation from me in Melbourne and Stephanie Kirchgaessner in the US: Governments and WHO changed Covid-19 policy based on suspect data from tiny US company named Surgisphere: &lt;a href="https://t.co/LtyG5UnldX"&gt;https://t.co/LtyG5UnldX&lt;/a&gt;&lt;/p&gt;&amp;mdash; Melissa Davey (@MelissaLDavey) &lt;a href="https://twitter.com/MelissaLDavey/status/1268135649615310849?ref_src=twsrc%5Etfw"&gt;June 3, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+]
+
+---
+
+The first to the National Notifiable Diseases Surveillance System, who confirmed that they were not the source of the data.  Next to health departments in NSW and Victoria, who also confirmed that they did not provide the data. And then to the hospitals themselves, which provoked this response 
+
+*Dr Allen Cheng, an epidemiologist and infectious disease doctor with Alfred Health in Melbourne, said the Australian hospitals involved in the study should be named. He said he had never heard of Surgisphere, and no one from his hospital, The Alfred, had provided Surgisphere with data. "Usually to submit to a database like Surgisphere you need ethics approval, and someone from the hospital will be involved in that process to get it to a database," he said. He said the dataset should be made public, or at least open to an independent statistical reviewer. If they got this wrong, what else could be wrong?" Cheng said.*
+
+
+---
+
+class: split-20
+
+.column[
+&lt;img src="https://i.guim.co.uk/img/media/68b2cc3ee316f8a61e3df97b36954c1c6a20638c/0_0_4166_2500/master/4166.jpg?width=620&amp;quality=45&amp;auto=format&amp;fit=max&amp;dpr=2&amp;s=e3358e1170461eb2904f7534dad4de8f" width="100%"&gt;
+
+]
+
+.column[
+
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;New piece on the &lt;a href="https://twitter.com/hashtag/Surgisphere?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#Surgisphere&lt;/a&gt; saga from me: Unreliable data: how doubt snowballed over Covid-19 drug research that swept the world &lt;a href="https://twitter.com/hashtag/opendata?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#opendata&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/openscience?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#openscience&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/hydroxychloroquine?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#hydroxychloroquine&lt;/a&gt; &lt;a href="https://t.co/cI4VfcXeZy"&gt;https://t.co/cI4VfcXeZy&lt;/a&gt;&lt;/p&gt;&amp;mdash; Melissa Davey (@MelissaLDavey) &lt;a href="https://twitter.com/MelissaLDavey/status/1268515172563341313?ref_src=twsrc%5Etfw"&gt;June 4, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;Retracted studies may have damaged public trust in science, top researchers fear &lt;a href="https://t.co/hNsEM1hYnx"&gt;https://t.co/hNsEM1hYnx&lt;/a&gt;&lt;/p&gt;&amp;mdash; Melissa Davey (@MelissaLDavey) &lt;a href="https://twitter.com/MelissaLDavey/status/1269058847039090688?ref_src=twsrc%5Etfw"&gt;June 6, 2020&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+]
+
+---
+class: split-50
+# Success story of open  data
+
+.column[
+
+&lt;br&gt;
+&lt;br&gt;
+
+- Data related to the COVID-19 pandemic has been collated by many organisations across the globe and made freely available.
+
+&lt;br&gt;
+&lt;center&gt; .font_large[👩🏽‍💻 👨🏽‍💻 👩🏼‍💻 👨🏾‍💻] &lt;/center&gt;
+&lt;br&gt;
+
+- These numbers led to suspicions about the article's claims.
+
+]
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;img src="images/vic_gov_covid19.png" width="100%"&gt;
+
+]
+
+---
+class: split-50
+
+# Johns Hopkins COVID19 
+
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+- [COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19)
+- Jan 23 (?) start of data collection 
+- I used this data for my own flexdashboard, started in mid-March, but it didn't have detailed data for Australia. 
+- [Nick Evershed and group at Guardian](https://www.theguardian.com/australia-news/datablog/ng-interactive/2020/jun/08/coronavirus-active-cases-covid-19-australia-state-data-update-how-many-new-numbers-today-map-stats-statistics-r-number-hotspots-postcode-corona-deaths-death-toll) 
+- [Monash team](https://github.com/covid-19-au/covid-19-au.github.io)
+
+]
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;img src="https://systems.jhu.edu/wp-content/uploads/2020/02/Dashboard_screenshot.png" width="100%"&gt;
+
+&lt;br&gt;
+&lt;br&gt;
+
+Vast number of people and organisations collating data, often (others) cross-checking numbers between sites.
+
+]
+
+---
+class: split-50
+
+# Difficulties
+
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+- Changing formats!
+
+&gt; *... collated by Johns Hopkins University Center for Systems Science and Engineering (JHU CCSE) ... we will nevertheless scrape data from the relevant wikipedia pages, because it tends to be more detailed and better referenced than the equivalent JHU data ...* [Tim Churches blog](https://timchurches.github.io/blog/) Mar 1
+]
+
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+- Changing links! (The link to the GBR data from assignment 2 has changed)
+- So many links on the website - which data to use?
+]
+
+---
+# Spreadsheets
+
+.footnote[Source: Murrell (2013) Data Intended for Human Consumption]
+
+.pull-left[
+Human consumption
+
+&lt;img src="images/spreadsheet_human.png" width="100%"&gt;
+
+]
+
+.pull-right[
+Computer consumption
+
+&lt;img src="images/spreadsheet_computer.png" width="100%"&gt;
+
+]
+
+---
+class: split-50
+# Spreadsheets for computer consumption
+
+.footnote[Broman and Woo (2018) Data Organization in Spreadsheets https://doi.org/10.1080/00031305.2017.1375989]
+
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+- write dates like YYYY-MM-DD,
+- do not leave any cells empty, 
+- put just one thing in a cell, 
+- organize the data as a single rectangle (with subjects as rows and variables as columns, and with a single header row), 
+- create a data dictionary, 
+
+]
+
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+- do not include calculations in the raw data files, 
+- do not use font color or highlighting as data, 
+- choose good names for things, 
+- make backups, 
+- use data validation to avoid data entry errors, and 
+- save the data in plain text files.
+]
+
+---
+class: split-50
+
+.pull-left[
+&lt;a href="https://imgs.xkcd.com/comics/iso_8601_2x.png"&gt; &lt;img src="https://imgs.xkcd.com/comics/iso_8601_2x.png" width="100%"&gt; &lt;/a&gt;
+]
+.pull-right[
+
+- [Microsoft Excel’s treatment of dates can cause problems in data](https://storify.com/kara_woo/excel-date-system-fiasco)
+- It stores them internally as a number, with different conventions on Windows and Macs
+- Excel also has a tendency to turn other things into dates. 
+
+]
+
+---
+class: split-two
+
+.row[
+.pull-left[
+&lt;br&gt;
+&lt;br&gt;
+.monash-blue[**The cells in your spreadsheet should each contain one piece of data. Do not put more than one thing in a cell.**]
+]
+
+.pull-right[
+
+&lt;br&gt;
+&lt;br&gt;
+You might have a column with "plate position" as "plate-well", it would be better to separate this into "plate" and "well" columns 
+]
+]
+.row[
+
+- Remember, airlines data, time zone on one column, departure time in another. This is partly technical because multiple time zones can't be stored in a single column. 
+- Also, the data is distributed as Year, Month, Day columns, which is safer across systems
+]
+
+
+---
+
+.pull-left[
+&lt;br&gt;
+&lt;br&gt;
+.monash-blue[**Create a data dictionary**]
+
+Remember, the PISA data. Extensive data dictionary for each year distributed, giving variable names, and also explanation of levels in categorical variables. 
+]
+
+.pull-right[
+
+&lt;br&gt;
+&lt;img src="images/data_dictionary.png" width="120%"&gt; 
+ 
+]
+
+---
+class: refresher
+
+background-image: \url(https://rmitconservationscience.files.wordpress.com/2016/08/feral-cat-and-phascogale-credit-fredy-mercay.jpg)
+background-size: 70%
+
+.box[Beware your spreadsheets don't bite your data!]
+
+---
+class: motivator middle
+
+# You can validate the integrity of your csv file with
+
+http://csvlint.io
+
+---
+class: motivator middle
+
+# Goodman et al (2014) Ten Simple Rules for the Care and Feeding of Scientific Data
+
+---
+
+🤔 As we look at these rules, think about what this implies for business and government data.
+
+&lt;br&gt;
+&lt;img src="https://imgs.xkcd.com/comics/data_pipeline_2x.png" width="100%"&gt; 
+
+
+---
+
+# Care and feeding
+
+1. Love Your Data, and Help Others Love It, Too
+--
+
+2. Share Your Data Online, with a Permanent Identifier
+--
+
+3. Conduct Science with a Particular Level of Reuse in Mind
+--
+
+4. Publish Workflow as Context
+--
+
+5. Link Your Data to Your Publications as Often as Possible
+--
+
+6. Publish Your Code (Even the Small Bits)
+--
+
+7. State How You Want to Get Credit
+--
+
+8. Foster and Use Data Repositories
+--
+
+9. Reward Colleagues Who Share Their Data Properly
+--
+
+10. Be a Booster for Data Science
+--
+
+---
+# Love Your Data, and Help Others Love It, Too
+
+.pull-left[
+
+&lt;br&gt;
+&lt;br&gt;
+
+# What are some ways to show your love?
+
+&lt;br&gt;
+&lt;br&gt;
+.monash_orange[What data have we seen that isn't loved?]
+
+]
+.pull-right[
+- Nurture: 
+    - feed, 
+    - hug, check on it
+    - dress it nicely
+    - give it a name
+- Show it off: 
+    - tell someone about it
+    - demonstrate how it can be used
+   
+]
+
+---
+# Share Your Data Online, with a Permanent Identifier
+
+.pull-left[
+
+- Give is a name: digital object identifier (DOI)
+- Adequate documentation and metadata
+- Employing good curation practices
+
+]
+
+.pull-right[
+
+Common resources:
+
+- [Zenodo](http://zenodo.org/)
+- [FigShare](http://figshare.com/)
+- [Dataverse](http://thedata.org/)
+- [Dryad](http://datadryad.org/)
+]
+
+---
+# Conduct Science with a Particular Level of Reuse in Mind
+
+Replace "science" with "data science", "data analysis", "analytics", "business intelligence". 
+
+- keep careful track of versions of data and code
+- to be fully reproducible, then *provenance* information is a must 
+    - working pipeline analysis code, 
+    - a platform to run it on, and
+    - verifiable versions of the data. 
+- what types of re-use do you think others might make of your work?
+
+---
+# Reward Colleagues Who Share Their Data Properly
+
+.footnote[Source: https://www.aws.org.au/serventy/]
+
+.pull-left[
+- Build promotion and award systems that count data and code-sharing activities.
+- Consider this activity an important part of your own data science work. 
+- Clear guidelines for credit
+]
+
+.pull-right[
+
+&lt;img src="images/wildlife_award.png" width="100%"&gt;
+
+]
+
+---
+class: split-50
+
+# Johns Hopkins COVID19 
+
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+What's really nice 😄
+
+- [Github page](https://github.com/CSSEGISandData/COVID-19)
+- Compiled data from various sources, sources listed
+- Update time stamp
+- Versioning 
+- Issues for two way conversations with users
+
+]
+.column[
+&lt;br&gt;
+&lt;br&gt;
+
+&lt;img src="https://systems.jhu.edu/wp-content/uploads/2020/02/Dashboard_screenshot.png" width="100%"&gt;
+
+]
+---
+class: informative
+# Macroeconomic data
+
+[Survey of Professional Forecasters](https://www.philadelphiafed.org/research-and-data/real-time-center/survey-of-professional-forecasters) (Assignment 1)
+
+- Need to know what you are looking for, many links, and several clicks deep ❌ 
+- Regularly updated, time stamp ✅ 
+- Web interface ✅ 
+- API for other software, like ALFRED package, to extract subsets ✅ 
+- `csv` file is nicely rectangular ✅ 
+
+---
+class: informative
+# ABS Census Data
+
+- updated regularly, for each census ✅ 
+- data packs, easy to find ✅ 
+- download has regular file structure ✅
+- finding  variable of interest is hard, though ❌ 
+- spreadsheet with a gazillion tables, and variables are coded into column headers ❌
+
+---
+class: informative
+# OECD PISA
+
+- nice web interface, now with simple queries and interactive plots ✅ 
+- updated regularly ✅ 
+- extensive documentation on data collection - very technical ✅ 
+- data dictionary, extensive! ✅ 
+- data from each available in various formats, with code to read it ✅
+- format for each year is different, variables collected differ (see [learningtower](https://ropenscilabs.github.io/learningtower/index.html))  ❌
+
+---
+background-image: \url(https://upload.wikimedia.org/wikipedia/commons/3/35/Grandpa_feeding_little_Beverley_Purd%27s_pet_kangaroo_%284461715862%29.jpg)
+image-size: cover
+
+.info-box[That's it from us! Happy adventures with your own wild data!]
+
+.footnote[[Grandpa feeding little Beverley Purd's pet kangaroo, 1930, State Library of Queensland](https://upload.wikimedia.org/wikipedia/commons/3/35/Grandpa_feeding_little_Beverley_Purd%27s_pet_kangaroo_%284461715862%29.jpg)]
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
