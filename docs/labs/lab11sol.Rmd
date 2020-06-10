@@ -1,0 +1,207 @@
+---
+title: 'ETC5512: Solutions for Lab 11'
+author: "Di Cook"
+date: "Week 11"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  eval = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  error = FALSE, 
+  out.width = "70%",
+  fig.width = 8, 
+  fig.height = 6,
+  fig.retina = 3)
+set.seed(6)
+filter <- dplyr::filter
+```
+
+
+## `r emo::ji("earth")` Web sites we are visiting
+
+- [Asian Cup soccer](https://en.wikipedia.org/wiki/AFC_Asian_Cup_records_and_statistics)
+- [CricInfo](http://stats.espncricinfo.com)
+- [Women's tennis](https://www.wtatennis.com/stats)
+
+Check the `Rmd` file for code to do polite introductions to these web sites. 
+
+```{r eval=FALSE}
+# This code can be run to check the web site scraping rules
+library(polite)
+soccer_bow <- bow(
+  url = "https://en.wikipedia.org/wiki/AFC_Asian_Cup_records_and_statistics",  # base URL
+  user_agent = "Wild-caught Data <https://wcd.numbat.space>",  # identify ourselves
+  force = TRUE
+)
+soccer_bow
+cricket_bow <- bow(
+  url = "http://stats.espncricinfo.com",  # base URL
+  user_agent = "Wild-caught Data <https://wcd.numbat.space>",  # identify ourselves
+  force = TRUE
+)
+cricket_bow
+tennis_bow <- bow(
+  url = "https://www.wtatennis.com/stats",  # base URL
+  user_agent = "Wild-caught Data <https://wcd.numbat.space>",  # identify ourselves
+  force = TRUE
+)
+tennis_bow
+```
+## `r emo::ji("soccer")` Exercise 11A
+
+Motivated by Ryo's blog post, we are going to scrape soccer records from Wikipedia. 
+
+a. We're going to first extract records on Asian Cup men's soccer. This can be done with the code below.
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(plotly)
+
+url <- "https://en.wikipedia.org/wiki/AFC_Asian_Cup_records_and_statistics"
+html <- read_html(url)
+tbl <-  html_nodes(html, "table") 
+alltime_stats <- html_table(tbl[[6]], fill=TRUE)
+```
+
+b. How can we know that the data is organised as a table in the html? Go to the web site in your Google Chrome browser and use InspectorGadget to see the elements in the html.
+
+c. How did we know to extract the data from the 6th table? Try changing the `6` in the code `html_table(tbl[[6]], fill=TRUE)` and compare the result with the tables presented in the web page.
+
+d. Let's use the data to make a chart. Examine the goals for and against, of each team. add a guide line where the for and against are equal. Also make the plot interactive, using plotly,  so you can browse over team names. Which teams have scored more goals than have been scored against them, over all time? How does this compare with the champions list?
+
+```{r fig.width=4, fig.height=4}
+p <- ggplot(alltime_stats, aes(x=GA, y=GF, label=Team)) + 
+  geom_abline(intercept=0, slope=1) +
+  geom_point() 
+ggplotly(p)
+```
+
+e. How did we know that these were tables in the web page? Here's where its important to learn how to use the developer tools in your web browser. Open the page in Google Chrome, scroll down to the table of interest, and right click to choose `Inspect`:
+
+<img src="images/scraping_soccer.png">
+
+This will bring up the page source. Can you see the `<table` tag? and see the same information that is visible in the web page itself?
+
+<img src="images/scraping_soccer2.png">
+
+
+## `r emo::ji("cricket")` Exercise 11B
+
+a. Using the `fetch_cricinfo` function from the `cricketdata` package, extract all the records for Australian women's T20 matches. And answer the following questions:
+
+```{r echo=TRUE}
+# remotes::install_github("ropenscilabs/cricketdata")
+library(cricketdata)
+auswt20 <- fetch_cricinfo("T20", "Women", country="Aust")
+```
+- How many players statistics are recorded? 
+```{r}
+auswt20 %>% tally()
+```
+- What was the first year of records and the last year? 
+```{r}
+auswt20 %>% summarise(Start = min(Start), End = max(End))
+```
+- What player has played the most matches? 
+```{r}
+auswt20 %>% arrange(desc(Matches)) %>% select(Player, Matches)
+```
+- Do players with high strike rate generally have high batting averages too?
+
+```{r}
+auswt20 %>% ggplot(aes(x=StrikeRate, y=Average)) + 
+  geom_point() +
+  ylim(0, 60)
+```
+
+b. Take a look at the code for the function `fetch_cricinfo`. The work is mostly done by another hidden function `cricketdata:::fetch_cricket_data`. A key part of this function occurs in these lines:
+
+```
+url <- paste0("http://stats.espncricinfo.com/ci/engine/stats/index.html?class=", 
+            matchclass, ifelse(is.null(country), "", 
+            paste0(";team=", 
+                team)), ";page=", 
+                format(page, scientific = FALSE), 
+            ";template=results;type=", activity, 
+            view_text, ";size=200;wrappertype=print")
+```
+
+Try setting these values, and creating the URL manually. When you have it right, you will have found the page that the data is extracted from! (Alternatively, if this is too frustrating try working with the "statguru" query tool to find the table of interest.)
+
+```{r eval=FALSE}
+matchtype <- "t20"
+country <- "aust"
+sex <- "women"
+activity <- "batting"
+view <- "career"
+
+# this is internally calculated in the package!
+matchclass <- match(matchtype, c("test", "odi", "t20")) + 
+        7 * (sex == "women")
+team <- 289 
+```
+
+Using your URL, use the `read_html` and `html_table` functions to reproduce what the `cricketdata` package did for you.
+
+**Note that the package returned 53 records because there were two pages of data. The manual code only scraped one of the two pages.**
+
+```{r eval=FALSE}
+url <- "https://stats.espncricinfo.com/ci/engine/stats/index.html?class=10;team=289;template=results;type=batting"
+raw <- try(xml2::read_html(url), silent = TRUE)
+tables <- rvest::html_table(raw, fill = TRUE)
+tables[[3]]
+```
+
+`r emo::ji("thinking")` Use the inspect tool on the  web page, to see that it is indeed an html table. 
+
+## `r emo::ji("tennis")` Exercise 11C
+
+Sometimes pages are dynamically created, which means that it isn't possible too directly extract the data. The women's tennis records web site uses dynamic web pages. 
+
+a. Have a look at what happens when you directly try to read the women's stats web page. 
+
+```{r  echo=TRUE, eval=FALSE}
+url <- "https://www.wtatennis.com/stats"
+wta_html <- read_html(url)
+wta_rankings <- html_node(wta_html, "table")
+```
+
+b. Now save a copy of the page, and re-try to read it.
+
+```{r echo=TRUE}
+# Save web page source locally, because it contains javascript content
+wta_html <- read_html("wta_rankings2.htm")
+wta_rankings <- html_node(wta_html, "table") %>% html_table(fill=TRUE) 
+# There is only one table in page so use html_node rather than html_nodes
+wta_rankings <- wta_rankings %>% 
+  janitor::remove_empty() %>% 
+  as_tibble()
+```
+
+This time you've got data. How can you tell that the page is dynamic? Inspect the source, and you will find `script`. This often indicates that some javascript is used to create the table. 
+
+c. Use your wrangling skills to clean up the data, making numeric variables numeric
+
+```{r}
+wta_rankings <- wta_rankings %>%
+  mutate(`1st Srv %` = as.numeric(sub(" %", "", `1st Srv %`))) %>%
+  mutate(`2nd Srv %  2nd Serve Points %` = as.numeric(sub("%", "", `2nd Srv %  2nd Serve Points %`)))
+```
+
+
+d. Make a plot with the data you've just extracted. Your choice. 
+
+```{r}
+wta_rankings %>% 
+  ggplot(aes(x=`1st Srv %`, y=`2nd Srv %  2nd Serve Points %`)) +
+  geom_point() + theme(aspect.ratio=1)
+```
+
+
