@@ -364,17 +364,7 @@ The packages `DBI`, `RMySQL`, `RPostgreSQL`, `RSQLite`, `bigrquery`, `odbc` enab
 
 Download the [supplementary material](https://www.tandfonline.com/doi/abs/10.1198/jcgs.2011.3de) for Hofmann et al (2012) and you will find:
 
-.font_smaller[
-```{r echo=TRUE, eval=FALSE}
-library(RMySQL)
-m <- dbDriver("MySQL")
-co <- dbConnect(m, user="2009Expo", 
-                password="R R0cks", #<<
-                port=3306,  
-                dbname="data_expo_2009", 
-                host="headnode.stat.iastate.edu")
-```
-]
+<img src="images/data-expo/db_credentials.png" width="100%">
 
 `r icon::fa("hand-paper", size=1, colour="#D93F00")` `r anicon::nia("Stop, read the Securing Credentials documentation", animate="shake", colour="#D93F00")`
 
