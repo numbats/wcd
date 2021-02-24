@@ -129,7 +129,7 @@ schedule_df %>%
 ## Expectations
 
 * Unless your question is a personal issue or an administrative matter, please do not send us direct email. The moodle discussion forum is appropriate for questions related to the course.
-* For personal or private administrative issues, the email contact is: ETC5521.Clayton-x@monash.edu
+* For personal or private administrative issues, the email contact is: ETC5512.Clayton-x@monash.edu
 * Lectures are recorded, and you are expected to have either attended the lecture, or watched the recordings fully, prior to the tutorial for the week.
 * Tutorials are not recorded, and attendance is expected.
 * Bring your own laptop to the computer labs. If you do not have a laptop you can borrow one from MoVE
