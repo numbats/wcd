@@ -23,13 +23,13 @@ schedule:
     topic: "Case study: International student assessment data"
     assessment: "Assessment 1 due"
   - week: 7 (Apr 19)
-    lecturer: Peter
-  - week: 8 (Apr 26)
     lecturer: Emi
     topic: "Case study: Australian census"
-  - week: 9 (May 3)
+  - week: 8 (Apr 26)
     lecturer: Emi
     topic: "Case study: Australian election data"
+  - week: 9 (May 3)
+    lecturer: Peter
   - week: 10 (May 10)
     lecturer: Will
     topic: "Case study: Superannuation and wage growth in Australia"
