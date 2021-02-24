@@ -82,11 +82,9 @@ team_df %>%
   * B: **Wed 3.30-5pm** on zoom 
   * C: **Fri 12.30-2pm** on campus
 
-There are no lectures, tutorials or consultations during the midsemester break. You are expected to attend the lecture and ONE tutorial stream. 
+There are no lectures, tutorials or consultations during the mid-semester break. You are expected to attend the lecture and ONE tutorial stream. Please see your timetable which tutorial stream you are scheduled in.
 
-Please see your timetable which tutorial stream you are scheduled in.
-
-
+Note that there is a weekly quiz that is due *before* the start of the Tutorial A stream. 
 
 ```{r}
 schedule_df <- schedule_df %>% 
