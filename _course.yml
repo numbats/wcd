@@ -1,0 +1,83 @@
+schedule:
+  - week: 0
+    lecturer: ""
+    topic: "Course information"
+  - week: 1 (Mar 1)
+    lecturer: Emi
+    topic: "Introduction to data collection methods"
+    readings: ""
+  - week: 2 (Mar 8)
+    lecturer: Di
+    topic: "Open data: definitions, sources and examples"
+  - week: 3 (Mar 15)
+    lecturer: Lauren
+    topic: "Data ethics"
+  - week: 4 (Mar 22)
+    lecturer: Di
+    topic: "Case study: US air traffic"
+  - week: 5 (Mar 29)
+    lecturer: Belinda
+    topic: "Case study: Melbourne transport data"
+  - week: 6 (Apr 12)
+    lecturer: Lauren
+    topic: "Case study: International student assessment data"
+    assessment: "Assessment 1 due"
+  - week: 7 (Apr 19)
+    lecturer: Peter
+  - week: 8 (Apr 26)
+    lecturer: Emi
+    topic: "Case study: Australian census"
+  - week: 9 (May 3)
+    lecturer: Emi
+    topic: "Case study: Australian election data"
+  - week: 10 (May 10)
+    lecturer: Will
+    topic: "Case study: Superannuation and wage growth in Australia"
+    assessment: "Assessment 2 due"
+  - week: 11 (May 17)
+    lecturer: Lauren
+    topic: "Data ethics and privacy"
+  - week: 12 (May 24)
+    lecturer: Di
+    topic: "On the proper care and feeding of wild data"
+    assessment: "Assessment 3 due"
+assessments:
+  assignment1:
+    weight: 25
+    due_date: "Week 6"
+    release_date: "Week 4"
+  assignment2:
+    weight: 25
+    due_date: "Week 10"
+    release_date: "Week 8"
+  assignment3:
+    weight: 25
+    due_date: "Week 13"
+    release_date: "Week 11"
+  quizzes:
+    weight: 25
+    due_date: "weekly"
+    release_date: "weekly"
+team:
+  - name: Di Cook (Chief Examiner)
+    role: lecturer
+    consult: Thu 11.30-12.30pm (Wk 2, 4, 12)
+  - name: Emi Tanaka
+    role: lecturer
+    consult: Thu 11.30-12.30pm (Wk 1, 8, 9)
+  - name: Lauren Kennedy
+    role: lecturer
+    consult: Thu 11.30-12.30pm (Wk 3, 6, 11)
+  - name: Belinda Maher
+    role: lecturer
+  - name: Peter Ellis
+    role: lecturer
+  - name: Will Mackey
+    role: lecturer
+  - name: Sherry Zhang
+    role: tutor
+    consult: TBD
+  - name: Joan Tan
+    role: tutor
+    consult: TBD
+

@@ -1,11 +1,22 @@
-name: "ETC5512"
+name: "ETC5512: Wild Caught data"
 output_dir: "docs"
-exclude: ["*.Rmd", "*.csv", "*.R", "_*", ".*", "*.Rproj", "di_reading", "quiz_template", "LICENSE", "README.md"]
 output:
   html_document:
     theme: cosmo
     highlight: textmate
-    include:
-      after_body: assets/footer.html
-    css: assets/styles.css
-
+    css: site/styles.css
+navbar:
+  title: "ETC5512: Wild Caught data"
+  left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+    - text: "Moodle"
+      icon: fa-archive
+      href: https://lms.monash.edu/course/view.php?id=63619
+    - text: "Unit Guide"
+      icon: fa-book
+      href: https://handbook.monash.edu/2021/units/ETC5512
+  right:
+    - icon: fa-github fa-lg
+      href: https://github.com/numbats/wcd
