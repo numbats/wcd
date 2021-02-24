@@ -30,6 +30,7 @@ schedule:
     topic: "Case study: Australian election data"
   - week: 9 (May 3)
     lecturer: Peter
+    topic: "Combining meteorological and economic data"
   - week: 10 (May 10)
     lecturer: Will
     topic: "Case study: Superannuation and wage growth in Australia"
