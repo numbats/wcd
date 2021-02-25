@@ -78,8 +78,8 @@ team_df %>%
 
 * Lectures: **Mon 5-7pm** on zoom (see Moodle for link)
 * Tutorials:
-  * A: **Wed 2-3.30pm** on zoom
-  * B: **Wed 3.30-5pm** on zoom 
+  * A: **Tue 2-3.30pm** on zoom
+  * B: **Tue 3.30-5pm** on zoom 
   * C: **Fri 12.30-2pm** on campus
 
 There are no lectures, tutorials or consultations during the mid-semester break. You are expected to attend the lecture and ONE tutorial stream. Please see your timetable which tutorial stream you are scheduled in.
