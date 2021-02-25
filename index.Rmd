@@ -91,11 +91,14 @@ schedule_df <- schedule_df %>%
   mutate(weekno = as.integer(str_extract(week, "^[0-9]+"))) %>% 
   mutate(lecture_a = file.exists(sprintf("lectures/lecture-%.2dA.html", weekno)),
          lecture_b = file.exists(sprintf("lectures/lecture-%.2dB.html", weekno)),
+         lecture = file.exists(sprintf("lectures/lecture-%.2d.html", weekno)),
          tutorial = file.exists(sprintf("tutorials/tutorial-%.2d.html", weekno)),
          solution = file.exists(sprintf("tutorials/tutorial-%.2dsol.html", weekno))) %>%  
   mutate(slides = case_when(
     lecture_a & lecture_b ~ glue("A: ","<a class='fa fa-link' href='lectures/{sprintf(\"lecture-%.2dA.html\", weekno)}' target='_blank'></a> <a class='fab fa-r-project' href='lectures/{sprintf(\"lecture-%.2dA.Rmd\", weekno)}' target='_blank'></a> <a class='fa fa-file-pdf' href='lectures/{sprintf(\"lecture-%.2dA.pdf\", weekno)}' target='_blank'></a>"," ; ", "B: ","<a class='fa fa-link' href='lectures/{sprintf(\"lecture-%.2dB.html\", weekno)}' target='_blank'></a> <a class='fab fa-r-project' href='lectures/{sprintf(\"lecture-%.2dB.Rmd\", weekno)}' target='_blank'></a> <a class='fa fa-file-pdf' href='lectures/{sprintf(\"lecture-%.2dB.pdf\", weekno)}' target='_blank'></a>"),
     lecture_a ~ glue("A: ","<a class='fa fa-link' href='lectures/{sprintf(\"lecture-%.2dA.html\", weekno)}' target='_blank'></a> <a class='fab fa-r-project' href='lectures/{sprintf(\"lecture-%.2dA.Rmd\", weekno)}' target='_blank'></a> <a class='fa fa-file-pdf' href='lectures/{sprintf(\"lecture-%.2dA.pdf\", weekno)}' target='_blank'></a>"),
+        lecture_b ~ glue("B: ","<a class='fa fa-link' href='lectures/{sprintf(\"lecture-%.2dB.html\", weekno)}' target='_blank'></a> <a class='fab fa-r-project' href='lectures/{sprintf(\"lecture-%.2dB.Rmd\", weekno)}' target='_blank'></a> <a class='fa fa-file-pdf' href='lectures/{sprintf(\"lecture-%.2dB.pdf\", weekno)}' target='_blank'></a>"),
+            lecture ~ glue("<a class='fa fa-link' href='lectures/{sprintf(\"lecture-%.2d.html\", weekno)}' target='_blank'></a> <a class='fab fa-r-project' href='lectures/{sprintf(\"lecture-%.2d.Rmd\", weekno)}' target='_blank'></a> <a class='fa fa-file-pdf' href='lectures/{sprintf(\"lecture-%.2d.pdf\", weekno)}' target='_blank'></a>"),
     TRUE ~ ""
   ),
   tut = case_when(
