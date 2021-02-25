@@ -162,7 +162,7 @@ class: fullscreen
 <br>
 
 # Lauren Kennedy  
-*Lecturer in Statistics*  
+*Lecturer in Business Analytics*  
 Monash University
 
 <br>
@@ -178,7 +178,10 @@ Monash University
 .pa5.w-60[
 
 # About your instructor
-
+* She moved to Melbourne in March, 2020 to start her job at Monash in July (2020)
+* Her PhD is in psychology - she uses R (and other fun software like Stan) to model heterogeneity and do survey inference
+* She uses R as her main interface to data, and is just starting to get into developing software development
+* She has been using R for over a decade (!!!)
 ]]
 
 ---
