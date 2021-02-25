@@ -1,0 +1,354 @@
+---
+title: "ETC5512: Wild Caught Data"
+subtitle: "Course Information"
+author: "Di Cook, Emi Tanaka, Lauren Kennedy,<br>&nbsp;&nbsp;&nbsp;&nbsp; Belinda Maher, Peter Ellis, Will Mackey"
+email: "ETC5512.Clayton-x@monash.edu"
+date: "Week 0"
+length: "0 minutes"
+department: "Department of Econometrics and Business Statistics"
+titlebgimg: "images/bg-03.png"
+output:
+  xaringan::moon_reader:
+    css:
+      - ninjutsu 
+      - "assets/font-awesome-all.css"
+      - "assets/tachyons-addon.css"
+      - "assets/animate.css"
+      - "assets/fira-code.css"
+      - "assets/boxes.css"
+      - "assets/table.css"
+      - "assets/styles.css"
+      - "assets/monash-brand.css"
+      - "assets/monash-fonts.css"
+      - "assets/slide-types.css"
+      - "assets/custom.css"
+    self_contained: false 
+    seal: false 
+    chakra: 'lib/remark-latest.min.js'
+    includes:
+      in_header: "assets/head.html"
+    lib_dir: lib
+    #includes:
+    #  in_header: "assets/custom.html"
+    mathjax: "lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    nature:
+      highlightStyle: magula
+      highlightLanguage: r 
+      highlightLines: true
+      highlightSpans: false 
+      countIncrementalSlides: false
+      slideNumberFormat: '%current%/%total%'
+      navigation:
+        scroll: false 
+        touch: true
+        click: false
+      ratio: '16:9'
+---
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".Rmd$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = FALSE,
+  cache.path = "cache/"
+)
+```
+
+```{r titleslide, child="assets/titleslide.Rmd"}
+```
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+<img src="http://dicook.org/img/dicook-2019.png" width = "200px"/>
+]
+
+<br>
+  
+
+# Di Cook 
+*Professor of Business Analytics*  
+Monash University
+
+<br>
+
+<i class="fas fa-globe"></i> https://dicook.org/
+
+<i class="fas fa-envelope"></i> ETC5512.Clayton-x@monash.edu
+
+<i class="fab fa-twitter"></i> @visnut
+
+]
+
+.pa5.w-60[
+
+# About your instructor
+
+* Prof Cook moved to Melbourne in Jul 2015 to start my job at Monash
+* She has a PhD from Rutgers University, NJ, and a Bachelor of Science from University of New England, Armidale 
+* She is a Fellow of the American Statistical Association, elected member of the International Statistical Insitute, an elected member of the R Foundation and the Editor-in-Chief for the R Journal.
+* Her main  research is in data visualisation, statistical graphics and computing, with application to sports, ecology and bioinformatics. She likes to develop new methodology and software. 
+
+]
+
+
+]
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+<img src="https://emitanaka.org/images/avatar.jpg" width = "200px"/>
+]
+
+<br>
+
+# Emi Tanaka
+*Lecturer in Statistics*  
+Monash University
+
+<br>
+
+<i class="fas fa-globe"></i> https://emitanaka.org/
+
+<i class="fas fa-envelope"></i> ETC5512.Clayton-x@monash.edu
+
+<i class="fab fa-twitter"></i> @statsgen
+
+]
+
+.pa5.w-60[
+
+# About your instructor
+
+* She moved to Melbourne in Jan 2020 to start her job at Monash
+* She teaches R at university courses as well as use it daily for research and hobby 
+* If you ever wonder who answers those stackoverflow questions, she's one of those magic fairies 
+
+<center>
+<a href="https://stackexchange/users/10113966/emi"><img src="https://stackoverflow.com/users/flair/10113966.png" width="208" height="58" alt="profile for Emi at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Emi at Stack Overflow, Q&amp;A for professional and enthusiast programmers" style="border:solid 2px black;"></a>
+</center>
+
+* Her main statistical application is agriculture and bioinformatics; these days she does more software
+
+]]
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+<img src="https://jazzystats.com/images/Lauren_pic.jpg" width = "200px"/>
+]
+
+<br>
+
+# Lauren Kennedy  
+*Lecturer in Statistics*  
+Monash University
+
+<br>
+
+<i class="fas fa-globe"></i> https://jazzystats.com/
+
+<i class="fas fa-envelope"></i> ETC5512.Clayton-x@monash.edu
+
+<i class="fab fa-twitter"></i> @jazzystats
+
+]
+
+.pa5.w-60[
+
+# About your instructor
+
+]]
+
+---
+
+
+
+# Guest lecturers
+
+.flex.h-100[
+
+.pa3.w-33.b--dotted.bt-0.bl-0.bb-0.center[
+
+
+.circle-image-200.center[
+<img src="https://gravatar.com/avatar/e817988c456afc1fe9b1ea52444f618a" width = "200px"/>
+]
+
+<br>
+
+## Belinda Maher
+
+*Senior Public Transport Planner*
+
+Department of Transport, Melbourne
+
+]
+
+.pa3.w-33.b--dotted.bt-0.bl-0.bb-0.center[
+
+
+.circle-image-200.center[
+<img src="https://www.nousgroup.com/wp-content/uploads/2018/10/peter_ellis.jpg" width = "200px"/>
+]
+
+<br>
+
+
+## Peter Ellis
+
+*Chief Data Scientist*  
+Nous Group
+
+]
+
+.pa3.w-33.center[
+
+.circle-image-200.center[
+<img src="https://grattan.edu.au/wp-content/uploads/1993/08/WillMackey-142x142.jpg" width = "200px"/>
+]
+
+<br>
+
+## Will Mackey
+
+*Senior Associate*  
+Grattan Institute 
+
+
+]
+
+]
+
+
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+<img src="https://huizezhangsh.netlify.app/authors/admin/avatar_hu756ae419dca872ecfcac293f58082c63_38882_250x250_fill_q90_lanczos_center.jpeg" width = "200px"/>
+]
+
+<br>
+
+# Sherry Zhang
+
+*PhD student*  
+Monash University
+
+<br>
+
+<i class="fas fa-globe"></i> https://huizezhangsh.netlify.app
+
+<i class="fab fa-twitter"></i> @huizezhangsh
+
+]
+
+.pa5.w-60[
+
+# About your tutor
+
+* I am a first year PhD student in Monash University
+* I'm working on the diagnostics of projection pursuit optimisation
+* I like programming using R 
+
+]]
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+]
+
+# Joan Tan
+
+*Position*  
+Monash University
+
+]
+
+.pa5.w-60[
+
+# About your tutor
+
+]]
+
+
+---
+
+
+
+# Introduce yourself in the chat!
+
+<br>
+
+* What was your undergraduate degree in?
+* What's your profession or profession you are interested to get in?  
+* Where do you live?
+* What's your hobby? 
+* What's one thing you want everyone to know (about you)? 
+
+
+---
+
+
+# Help me!
+
+
+During the lecture, you can:
+
+* write in the chat,
+
+* ask direclty (unmute yourself first), or
+
+* raise hand from zoom under Participants.
+
+Otherwise, you can:
+
+* post questions in Moodle discussion board,
+* make use of consultation or tutorial period, or
+* _only for private matters_, send email to ETC5512.Clayton-x@monash.edu from your Monash email.
+
+---
+
+# Course assessments
+
+
+* Weekly quizzes on FLUX (except during midsemester break) **due before Weds 2PM** (25%)
+* Assignment 1 **due Week 6** (25%)
+* Assignment 2 **due Week 10** (25%)
+* Assignment 3 **due Week 12** (25%)
+
+
+
+---
+
+```{r endslide, child="assets/endslide.Rmd"}
+```
