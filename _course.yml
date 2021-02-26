@@ -62,13 +62,13 @@ assessments:
 team:
   - name: Di Cook (Chief Examiner)
     role: lecturer
-    consult: Thu 11.30-12.30pm (Wk 2, 4, 12)
+    consult: Thu 3-4pm (Wk 2, 4, 12) on zoom
   - name: Emi Tanaka
     role: lecturer
-    consult: Thu 11.30-12.30pm (Wk 1, 7, 8)
+    consult: Thu 3-4pm (Wk 1, 7, 8) on zoom
   - name: Lauren Kennedy
     role: lecturer
-    consult: Thu 11.30-12.30pm (Wk 3, 6, 11)
+    consult: Thu 3-4pm (Wk 3, 6, 11) on zoom
   - name: Belinda Maher
     role: lecturer
   - name: Peter Ellis
@@ -77,8 +77,8 @@ team:
     role: lecturer
   - name: Sherry Zhang
     role: tutor
-    consult: Wed 11.30-1PM (Wk 2-12)
+    consult: Wed 11.30-1pm (Wk 2-12) on zoom, Thu 3-4pm (Wk 8-9) on zoom
   - name: Joan Tan
     role: tutor
-    consult: Fri 11.30-
+    consult: Fri 11-11.45pm (Wk 1-12) on campus and zoom, Thu 3-4pm (Wk 5) on zoom
 
