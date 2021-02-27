@@ -157,3 +157,22 @@ li { margin: 10px 0; }
 .fullscreen {
   padding: 0 0 0 0!important;
 }
+
+.clear-list ul {
+  list-style: none;
+}
+
+.li-aim::before, .li-data::before {
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  left: 30px;
+  position: absolute;
+}
+
+.li-aim::before {
+  content: "\f05b";
+}
+
+.li-data::before {
+  content: "\f1c0";
+}
