@@ -289,8 +289,6 @@ The **goal of a sampling scheme** is to get accurate information from the sample
 ]
 
 
----
-
 
 
 
