@@ -5,7 +5,7 @@ schedule:
   - week: 1 (Mar 1)
     lecturer: Emi
     topic: "Introduction to data collection methods"
-    readings: ""
+    readings: 'Extra reading: <a href="https://monash.hosted.exlibrisgroup.com/permalink/f/31uhmh/catau51339302880001751"> Byrne on Data collection </a>'
   - week: 2 (Mar 8)
     lecturer: Di
     topic: "Open data: definitions, sources and examples"
