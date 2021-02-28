@@ -1,0 +1,57 @@
+---
+title: 'ETC5512: Instructions for Tutorial 1'
+author: "Didier Nibbering & Emi Tanaka"
+date: "Week 1"
+output: 
+  html_document:
+    css: tutorial.css
+---
+  
+  
+# Objectives
+  
+In this tutorial, you will learn 
+
+- Identify whether data are experimental or observational
+- Definitions, sources and examples of Open Data
+- Using and accessing open data sources
+
+# Tutorial
+
+## Exercise 1
+
+What are the following studies or trial about? Determine whether you expect the data collected in these studies are experimental or observational.
+
+a) Cross-sectional study 
+b) Case-control study
+c) Cohort study
+d) Randomised controlled trial
+e) Double-blind study
+
+## Exercise 2
+
+Identify whether the following data are experimental or observational data.
+
+a) A study surveyed a random sample of adults to ask about their diet. The data showed that those who were on intermittent fasting had a lower weight.
+b) A study randomly allocated two brands of hair growth formula to 50 bald men. Each men were instructed to use the allocated hair formula everyday. The data contains the number of hairs on each men in the study after 30 days. 
+c) A researcher wants to know if the new lockout law that bar the bar from serving alcohol after 9pm reduces alcohol related violence. The data contains the occurrences of alcohol related violence over a period of one year before the law and a period of one year after the lockout law was introduced. 
+
+
+## Exercise 3
+
+This tutorial will prepare you for the material of next week. Please follow the following steps:
+
+1. Enter the address https://olc.worldbank.org/ in your browser.
+
+2. Click on "Register" and create a profile.
+
+3. Once you login, the following link can be used to enroll in the course Open Data for Data Users (Self-Paced), 
+https://olc.worldbank.org/content/open-data-data-users-self-paced
+
+4. Pease allow the pop up blocker at the browser settings to run the course successfully.
+
+5. Follow the whole course and answer the questions througout.
+
+
+
+##### © Copyright 2021 Monash University
