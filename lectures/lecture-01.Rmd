@@ -453,7 +453,7 @@ It's the classes.
 ]
 
 .think-box.w-70[
-Carrying on from previous example... 
+Carrying on from the previous example... 
 * Students all sit for the same exam. 
 * You record the exam mark for each student.
 
