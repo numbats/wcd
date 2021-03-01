@@ -308,7 +308,7 @@ Monash University
 
 * She is a certified Analytics Professional (CAP). 
 
-* She earned my PhD in Applied Econometrics from Monash University, Australia. Her educational background is in applied statistics in the field of social science.
+* She earned her PhD in Applied Econometrics from Monash University, Australia. Her educational background is in applied statistics in the field of social science.
 
 * She has been using R in both her academics and analytics career. She loves playing around with data!
 
