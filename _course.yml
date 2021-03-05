@@ -9,6 +9,7 @@ schedule:
   - week: 2 (Mar 8)
     lecturer: Di
     topic: "Open data: definitions, sources and examples"
+    readings: 'Extra reading: <href="https://interactions.acm.org/archive/view/march-april-2013/data-in-the-wild"> Data in the wild </a>; <a href="http://opendatatoolkit.worldbank.org/en/essentials.html"> The World Bank Open Data Essentials </a>'
   - week: 3 (Mar 15)
     lecturer: Lauren
     topic: "Data ethics"
