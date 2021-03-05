@@ -1,0 +1,148 @@
+---
+title: 'ETC5512: Instructions for Tutorial 2'
+author: "Di Cook"
+date: "Week 2 Open data"
+output: 
+  html_document:
+    css: tutorial.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      cache=TRUE, 
+                      warning=FALSE, 
+                      message=FALSE)
+options(width=80,digits=3)
+```  
+  
+# `r emo::ji("target")` Objectives
+  
+In this tutorial, you will learn 
+
+- utilise and access open data sources 
+- assess the collection methods and the quality of the data
+- write computer code to conduct quality checks of the data
+
+# `r emo::ji("wrench")` Preparation
+
+- On a computer you can access:
+    - Install R by visiting the [CRAN](https://cran.r-project.org) web site. 
+    - Install the free version of RStudio Desktop from https://rstudio.com/products/rstudio/download/. 
+    - If you need help on doing installations [this site](https://rstudio-education.github.io/hopr/starting.html) is good to read.
+    - `r emo::ji("warning")` You do need both! R does all the work, but Rstudio makes it easier to work with R.
+
+- The install the R packages, `tidyverse`, `here` and `ALA4R`. (You can copy and paste the code below into your RStudio Console window to do this.):
+
+```
+install.packages(c("tidyverse", "here", "ALA4R"))
+```
+
+If you are new to R, you need to know that once you install a package its there for you to use in the future. You only need to install a package once, or whenever the package has been changed.  
+
+You do need to tell the R session to load the package each time you start R, though, using the `library()` function. 
+
+You can think about this like the lightbulb analogy below. 
+
+<center>
+<img src="install_vs_library.jpeg" width="80%">
+</center>
+
+- Register for an account for the National Longitudinal Survey of Youth at https://www.nlsinfo.org/content/cohorts/nlsy79/get-data. You need to provide an email address only.
+
+<!-- Methods for data collection can be dichotomised by the type of data collected – namely, experimental or observational – or alternatively, categorised into experimental design or survey design. Survey designs often, although not always, aim to collect observational data whilst experimental designs are exclusively center on experimental data.-->
+
+
+# `r emo::ji("gear")` Tutorial
+
+## Exercise 1: US air traffic
+
+### a. Download
+
+- Navigate to the airline ontime performance data base by going to 
+https://www.transtats.bts.gov/
+- Select "Statistical Products and Data" and "A-Z Index"
+- On that page choose "Airline On-Time Database",
+- then "Aviation"
+- and then "Airline On-Time Performance Data".
+- In the table for "Reporting Carrier On-Time Performance (1987-present)" click "Download"
+
+This will bring you to an interface for choosing a subset.
+
+`r emo::ji("warning")` THE DATA IS VERY BIG SO FOLLOW THE INSTRUCTIONS BELOW TO DOWNLOAD A SMALL SUBSET
+
+- Choose 2020 and January (before the pandemic hit the USA)
+- Select these variables:  `YEAR`,`MONTH`, `DAY_OF_MONTH`, `DAY_OF_WEEK`,`FL_DATE`, `OP_UNIQUE_CARRIER`, `OP_CARRIER`, `TAIL_NUM`, `ORIGIN`,`DEST`, `CRS_DEP_TIME`, `DEP_TIME`, `DEP_DELAY`,`CRS_ARR_TIME`,`ARR_TIME`, `ARR_DELAY`
+
+### b. How was the data collected?
+
+You can check the ["Data profile"](https://www.transtats.bts.gov/DatabaseInfo.asp?QO_VQ=EFD&DB_URL=Z1qr_VQ=E&Z1qr_Qr5p=N8vn6v10&f7owrp6_VQF=D) to help answer for these questions.
+  
+  (i) Who has the oversight for the data provision? 
+  (ii) Who reports the data to the data provider? 
+  (iii) What type of data collection is this? (e.g. experimental or observational? Survey sampling?) 
+  (iv) Is this open data? What type of license is provided? What are you allowed to do with the data? <
+  (v) What information is in each row of the data set? 
+  
+### c. Data quality checks
+
+(i) Read in the data
+(ii) Check dates range for the month of January 2020.
+(iii) Count number of flights by carrier. Who has the most flights?
+(iv) Which airport has the most traffic? Does every airport have the same number of incoming and outgoing flights?
+
+```{r eval=FALSE}
+library(tidyverse)
+library(here)
+flights <- read_csv(here::here("data/994615142_T_ONTIME_REPORTING 3.csv"))
+flights %>% select(FL_DATE) %>% summary()
+flights %>% count(OP_CARRIER, sort = TRUE)
+outgoing <- flights %>% count(ORIGIN) %>% rename(outbound = n)
+incoming <- flights %>% count(DEST) %>% rename(inbound = n)
+traffic <- full_join(outgoing, incoming, by=c("ORIGIN" = "DEST"))
+ggplot(traffic, aes(x=outbound, y=inbound)) + geom_point() +
+  coord_equal()
+```
+  
+## Exercise 2: National Longitudinal Survey of Youth
+  
+`r emo::ji("exclamation_mark")` The following data contains information presenting sex as a binary variable, and also race as categorical. We realise that sex is not binary. And also that race is an "arbitrary system of visual clasification that does not demarcate distinct subspecies of the human population" ([Mindy Thompson Fullilove](https://ajph.aphapublications.org/doi/pdf/10.2105/AJPH.88.9.1297)). Please skip this question if it disturbs you.
+
+### a. Data download
+
+(i) Point your browser to https://www.nlsinfo.org/content/cohorts/nlsy79/get-data and login in.
+(ii) Choose the NLSY79 study. The first step is to "choose targets". CALL IT "NLSY". Download the file containing the description of the chosen variables.  We'll use the default selection of variables, which has three demographic variables. (For fun, you could browse the many, many variables available to download to see what information is available.) Save/download this target to your computer.
+(iii) Next download the data, by choosing "Advanced Download". This will download a folder called "NLSY" containing the data in different formats. One of them is a "csv" file. 
+(iv) The data arrives with four variables `R0000100`, `R0173600`, `R0214700`, `R0214800`. Check the codebook to find out what these are.
+
+
+### b. License and usage
+
+(i) At the bottom of the web site are links that can help to determine what are the allowed uses. What information does the data provider keep about you?  
+(ii) Is there a license provided with the data? What sort of open data is this? The documentation says that this is public use data. What do you think "public use" means? 
+
+### c. About the data
+
+(i) What type of data is this? (e.g. experimental or observational? Survey sampling?)
+(ii) Check the levels in the downloaded data. Do they match the codebook? How many individuals are in the sample?
+
+```{r eval=FALSE}
+nlsy <- read_csv(here::here("data/NLSY/NLSY.csv"))
+nlsy %>% count(R0214700)
+nlsy %>% count(R0214800)
+nlsy %>% count(R0173600)
+nlsy %>% tally()
+```
+
+## Exercise 3: Atlas of Living Australia
+
+The Atlas of Living Australia is a major resource for occurrence data on animals, plants, insects, fish. 
+
+(i) Point your browser to https://www.ala.org.au. Check the terms of use. Does it have a license? 
+(ii) Using the `ALA4R` library, and the function `occurrences` extract the records for platypus. 
+(iii) Plot the locations of sightings.
+(iv) What dates of sightings are downloaded?
+(v) What is the extent of the missing values? Particularly in data and location variables?
+(v) What type of data collection is this? (e.g. experimental or observational? Survey sampling?) 
+
+
+##### © Copyright 2021 Monash University
