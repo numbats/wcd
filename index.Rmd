@@ -80,7 +80,7 @@ team_df %>%
 * Tutorials:
   * A: **Tue 2-3.30pm** on zoom
   * B: **Tue 3.30-5pm** on zoom 
-  * C: **Fri 12.30-2pm** on campus
+  * C: **Fri 12.30-2pm** on-campus in CL_Rnf-37.Med-A_M2
 
 There are no lectures, tutorials or consultations during the mid-semester break. You are expected to attend the lecture and ONE tutorial stream. Please see your timetable which tutorial stream you are scheduled in.
 
