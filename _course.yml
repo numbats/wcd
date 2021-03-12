@@ -13,6 +13,7 @@ schedule:
   - week: 3 (Mar 15)
     lecturer: Lauren
     topic: "Data ethics"
+    readings: 'Extra reading: <a href="https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbou1n1d/31"> Belmont report</a>; <a href="https://www.nhmrc.gov.au/file/9131/download?token=4Qw7LMvh"> National Statement on Ethical Conduct in Human Research (section 2, Chapters 5.1, 5.2) </a>; <a href="https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2018.01193.x">; Ethics in statistical practice and communication: Five recommendations </a> '
   - week: 4 (Mar 22)
     lecturer: Di
     topic: "Case study: US air traffic"
