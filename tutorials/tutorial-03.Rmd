@@ -1,0 +1,121 @@
+---
+title: "Ethics tutorial"
+author: "Lauren Kennedy"
+date: "Week 3"
+output: 
+  html_document:
+    css: tutorial.css
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      cache=TRUE, 
+                      warning=FALSE, 
+                      message=FALSE)
+options(width=80,digits=3)
+```
+
+# Exercise 1
+
+In Australia, what members constitute a HREC? Why do you think there are such strict requirements for membership?
+
+# Exercise 2
+
+In this exercise you will simulate a ethics review board in a small group in your tutorial. This will be done either in break
+out rooms (if your tutorial is online) or in groups of at least 8. 
+
+## As a group
+
+As a group decide on who will act as chair person, who will be a member of the organization, and who will fill each of the roles. If you have extra members, you can have multiples of every role except chairperson. 
+
+## Seperately 
+
+The chairperson will set a timer for 20 minutes. 
+
+During this time, create a history for your character. What is their career, age, name and some of their past experiences? 
+
+Once you have done this, read the (completely fabricated) scenario below
+
+### Scenario
+
+Researchers from a large, international social media platform wish to collaborate with a research team from a university based in the Australia. The university research team is interested in how small behavioral modifications can make an impact on an individual's well-being. They are experienced in running laboratory based studies where participants are invited to participate in a study, allocated to either an intervention or control group, and their well-being is monitored. The large social media platform has recently branched out to include personal fitness tracking as one facet of the ways people connect. Other connections include long and short messages posted publicly (like a blog). There is no network component - all individuals on the platform can access all other individual's data. 
+
+In the proposed collaboration, the social media platform offers to share all of their available data from their user community with the researchers. The researchers would then consider how changes to behaviors (as measured through fitness data) relate to changes in well-being (as measured through semantic analysis of written messages). To create a causally identifiable relationship, industry researchers will use small nudge messages to encourage particular physical behaviors (like going for a walk) to identify whether the change in physical behavior had an impact on wellness. They regularly use nudge messaging to encourage particular healthy behaviours, and have also experimented to identify which nudge is most effective, so this is not a change from their standard practices. 
+
+The researchers believe there are low to negligible risks to participants. As the data is mostly openly available to all users on the platform, the researchers from the social media platform won't be giving away any data that couldn't be web scraped - they would just be saving the university researchers some effort. Similarly, as anyone could obtain this data with some difficulty, the university researchers don't see any reason for any particular data protection plan. 
+
+When participants joined the platform, they consented to the terms and conditions. These terms and conditions clearly stated that data could be used for "research and quality assurance purposes". 
+
+In terms of potential benefits, if there does appear to be a direct relationship between physical behaviors and well-being, this would potentially provide a mechanism to improve the well-being of its userbase. 
+
+## Individually
+
+Use the chunk of code below to find out whether what your character thinks about the study described in the scenario. This is only their baseline beliefs - they will have to change their mind so the committee agrees!
+
+```{r}
+sample(c("Wants study to go ahead",
+         "Doesn't want study to go ahead",
+         "Believes there should be changes before study is conducted"),
+       1, prob = c(.4,.4,.2))
+```
+
+Finally consider the guidelines for human research in Australia. Consider:
+* Are there any issues with consent? 
+
+* What level of risk is the study? 
+
+* Can any risks be mitigated? 
+
+* What are the benefits of the study?
+
+Now consider the checklist given in the last slide of lecture 3. 
+
+* Do you find their are other concerns that you didn't identify previously?
+
+* Should these concerns be considered by the committee? 
+
+## As a group
+
+The chairperson should set a timer for 30 minutes. Introduce your character to the group. The chairperson must then facilitate discussion on the study, making sure that everyone in the group has a chance to raise their concerns. At the end of this process you must come to a definite conclusion. Either:
+
+* The study should not be conducted
+
+* The study can be conducted without any modifications
+
+* The study can be conducted with modifications (specify what these are)
+
+* Additional information is required (specify what and why)
+
+### Reflection questions
+
+* Did the group come to a consensus quickly or was there considerable discussion
+
+* Did the different roles played on the committee make an impact on the views of members?
+
+* Did the different backgrounds make an impact on the views of members?
+
+### Return to the main group
+
+All of the committees considered the same scenario.
+
+* Share the conclusions you came to. Did all groups come to the same conclusions? 
+
+* What do you think impacted any differences or similarities in the conclusions the groups came to? 
+
+# Exercise 3
+
+Sometimes studies that seem reasonable at the first can turn out to have serious ethical implications. Browse through the many cataloged examples (https://deon.drivendata.org/examples/). Choose one. 
+
+1. What are the potential ethical considerations? 
+
+2. Is there only one ethical issue? Which one caused the issue in the case study?
+
+3. Brainstorm ways to modify the study to reduce the risk
+
+4. Brainstorm ways to manage or monitor the risk
+
+5. What are the benefits of the study?
+
+6. Do you think the risks balance out the benefits?
+
+4. Is it possible to do this or do you believe that the benefits would never be sufficient to outweigh the risks?
