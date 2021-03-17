@@ -17,6 +17,7 @@ schedule:
   - week: 4 (Mar 22)
     lecturer: Di
     topic: "Case study: US air traffic"
+    readings: 'Extra reading: <a href="https://db.rstudio.com/overview"> Working with databases</a>, <a href="https://community.amstat.org/jointscsg-section/dataexpo/new-item6"> 2009 Data Expo, and follow links </a>, <a href="https://amstat.tandfonline.com/doi/abs/10.1198/jcgs.2011.3de#.XhKayi1L3tA"> Short paper on analysis and code </a>, <a href="https://vimeo.com/161681018">  Animation of air traffic on one day</a>, <a href="https://github.com/tidyverse/ggplot2/wiki/Flying-over-the-usa"> Animation code </a>'
   - week: 5 (Mar 29)
     lecturer: Belinda
     topic: "Case study: Melbourne transport data"
