@@ -1,0 +1,502 @@
+---
+title: "ETC5512: Wild Caught Data"
+subtitle: "Open data: definitions, sources and examples"
+author: "Di Cook"
+email: "ETC5512.Clayton-x@monash.edu"
+date: "Week 2"
+length: "120 minutes"
+department: "Department of Econometrics and Business Statistics"
+titlebgimg: "images/bg-12.png"
+output:
+  xaringan::moon_reader:
+    css:
+      - ninjutsu 
+      - "assets/font-awesome-all.css"
+      - "assets/tachyons-addon.css"
+      - "assets/animate.css"
+      - "assets/fira-code.css"
+      - "assets/boxes.css"
+      - "assets/table.css"
+      - "assets/styles.css"
+      - "assets/monash-brand.css"
+      - "assets/monash-fonts.css"
+      - "assets/slide-types.css"
+      - "assets/custom.css"
+      #- "assets/popup.css"
+      - "assets/di.css"
+    self_contained: false 
+    seal: false 
+    chakra: 'lib/remark-latest.min.js'
+    includes:
+      in_header: "assets/head.html"
+      #after_body: "assets/popup.html"
+    lib_dir: lib
+    mathjax: "lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    nature:
+      highlightStyle: magula
+      highlightLanguage: r 
+      highlightLines: true
+      highlightSpans: false 
+      countIncrementalSlides: false
+      slideNumberFormat: '%current%/%total%'
+      navigation:
+        scroll: false 
+        touch: true
+        click: false
+      ratio: '16:9'
+---
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".Rmd$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/week2/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = TRUE,
+  cache.path = "cache/"
+)
+```
+
+```{r titleslide, child="assets/titleslide.Rmd"}
+```
+
+
+---
+class: informative middle
+# Open data is...
+
+.footnote[https://www.europeandataportal.eu/elearning/en/module1/#/id/co-01]
+
+
+> a raw material for the digital age but, 
+--
+
+
+> unlike coal, timber or diamonds, 
+--
+
+
+> it can be used by anyone and everyone at the same time.
+--
+
+
+
+
+---
+class: middle center
+
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/266308637" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+
+---
+
+# What makes data open?
+<!-- Open data is measured by what it can be used for, not by how it is made available. -->
+
+* Limitations
+    * No limitations that prevent particular uses.
+    * Anyone free to use, modify, combine and share, even commercially.
+* Cost
+    * Free to use does not mean that it must be free to access.
+    * Cost to creating, maintaining and publishing usable data.
+    * Live data and big data can incur ongoing costs.
+* Reuse
+    * Free to use, reuse and redistribute it - even commercially.
+
+---
+# Definition open data
+Open data can be freely used, modified, and shared by anyone for any purpose
+<br><br>
+There are two dimensions of data openness:
+* The data must be legally open, which means they must be placed in the public domain or under liberal terms of use with minimal restrictions.
+* The data must be technically open, which means they must be published in electronic formats that are machine readable and non-proprietary, so that anyone can access and use the data using common, freely available software tools. Data must also be publicly available and accessible on a public server, without password or firewall restrictions. 
+<br><br>
+http://opendefinition.org/
+
+<br><br><br>
+Try the quizzes [here](https://www.europeandataportal.eu/elearning/en/module1/#/id/co-01)
+---
+
+# Why do we need open data?
+
+
+* Help make governments more transparent.
+    * Open data allowed citizens in Canada to save the government billions in fraudulent charitable donations
+* Building new business opportunities
+    * Transport for London has released open data that developers have used to build over 800 transport apps.
+* Protecting the planet
+    * Open data about weather can provide an early warning system for environmental disasters
+    * Open data is also helping consumers to understand their personal impacts on the environment
+
+<br><br><br><br>   
+https://opendatahandbook.org/guide/en/why-open-data/
+
+---
+class: middle
+# Open data from large organisations
+
+.flex[
+.border-box[
+
+
+* http://dataportals.org/search 
+* http://data.un.org/
+* https://datacatalog.worldbank.org/
+]
+
+.border-box[
+# Open data Australia: 
+* http://www.opendata500.com/au/
+* https://opendataimpactmap.org/eap
+
+# Government data 
+
+* http://www.data.gov.au/
+* https://www.data.vic.gov.au/
+* https://data.melbourne.vic.gov.au/
+]
+]
+<!-- Metadata with good example -> develop case in lecture with australian data (for instance https://data.gov.au/data/dataset/australia-s-merchandise-trade-by-country-and-sitc-to-fy2017) -->
+<!-- and go over metadata and licenses. -->
+
+
+
+
+---
+# Why license open data?
+<br><br>
+* Tells anyone that they can access, use and share data.
+--
+
+* Without a licence, users may find themselves in a legal grey area. Data may be 'publicly available', but users may not have permission to access, use and share it under general copyright or database laws.
+--
+
+* An open data licence is an explicit permission to use the data for both commercial and non-commercial purposes.
+--
+
+* Open data publishers should provide easy access to the licence for all datasets that are available to access, use and share.
+--
+
+<!-- Organizations and governments use Open Data licenses to clearly explain the conditions under which their data may be used.  -->
+
+
+---
+# Open data licenses
+<!-- Many licenses include both a summary version, intended to convey the most important concepts to all users, and a detailed version that provides the complete legal foundation. Examples include: -->
+
+* Standard re-usable license: consistent and broadly recognized terms of use
+  * Creative Commons, particularly CC-By and CC0 https://creativecommons.org/
+  * Open Database License https://opendatacommons.org/licenses/odbl/
+* Bespoke licenses: governments and international organizations developed 
+  * UK Open Government License http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+  * The World Bank Terms of Use https://data.worldbank.org/summary-terms-of-use
+
+<!-- Standard licenses can offer several advantages over bespoke licenses, including greater recognition among users, increased interoperability, and greater ease of compliance. -->
+
+<br><br><br><br><br>
+Try the quizzes [here](https://www.europeandataportal.eu/elearning/en/module4/#/id/co-01)
+
+---
+
+# Metadata: data about data
+
+.flex[
+.border-box[
+Information necessary to use the data appropriately:
+* Source
+* Structure
+* Underlying methodology
+* Topical
+* Geographic and/or temporal coverage
+* License
+* When it was last updated 
+* How it is maintained 
+]
+.border-box.w-70[
+* Dublin Core Metadata Initiative (DCMI) provides a framework and core vocabulary of metadata terms.
+    * https://www.dublincore.org/
+* Governments develop metadata models to provide further uniformity to government-wide Open Data initiatives. 
+    * https://project-open-data.cio.gov/v1.1/schema/
+* Australian government metadata standards
+    * [National Archives of Australia](https://www.naa.gov.au/information-management/information-management-standards/australian-government-recordkeeping-metadata-standard), [Australian Institute of Health and Welfare](https://www.aihw.gov.au/about-our-data/metadata-standards)
+]
+]
+---
+# Examples from Canadian government
+
+.flex[
+- [Resettled refugees](https://open.canada.ca/data/en/dataset/4a1b260a-7ac4-4985-80a0-603bfe4aec11)
+- [Canada emergency wage subsidy (CEWS)](https://open.canada.ca/data/en/dataset/f713389f-ab1c-4be4-bade-05f71ed110fe)
+
+
+- Title: what data contains and where it comes from. 
+- Description: details to quickly understand whether data is relevant to you 
+- publisher: dataset originated, who is repsonsible for maintaining, credibility 
+- license: 
+- contact information: questions or incomplete metadata 
+- frequency: interval data is updated. check for updates? data out of date? 
+- date modified: relevant for your work? 
+- spatial coverage: geographic area data is relevant
+- temporal coverage: 
+- open data formats 
+]
+
+
+
+---
+
+# Machine Readable
+
+.footnote[[A Primer on Machine Readability](https://www.data.gov/developers/blog/primer-machine-readability-online-documents-and-data)]
+
+<center>
+.info-box['machine readable' is not synonymous with 'digitally accessible']
+</center>
+
+* Historical efforts have focused on 
+    - pushing static information about government programs and services to the web, 
+    - where the intended use is a human who can read, print, and take actions based on reading.
+    - It's a narrow vision of the expected users and uses of the information.
+* Machine readable formats expand field of vision to new users and new uses and require technologies like XML and JSON
+    - 😿 PDF is not suitably machine readable 
+    - 😀 CSV (or XLSX, XLS) is common, and universally accessible, but should be structured for analysis not for reading 
+    - 😸 XML, JSON is verbose, can contain metadata, but needs special readers 
+    - 🤩 API provides an interface that other software can utilise to automatically extract and process 
+
+
+
+---
+
+# Five star open data scheme
+
+The web site 5 `r emo::ji("star")` Open Data at https://5stardata.info/en/ reports a rating system for deploying open data. 
+
+* `r emo::ji("star")` - .monash-blue2[An open license]: make your stuff available on the Web (whatever format) under an open license 
+* `r emo::ji("star")``r emo::ji("star")` - .monash-blue2[Re-usable format]: make it available as structured data (e.g., Excel proprietary instead of image scan of a table
+* `r emo::ji("star")``r emo::ji("star")``r emo::ji("star")` - .monash-blue2[Open format]: make it available in a non-proprietary open format (e.g., CSV instead of Excel) 
+* `r emo::ji("star")``r emo::ji("star")``r emo::ji("star")``r emo::ji("star")` - .monash-blue2[use (Uniform Resource Identifiers (URIs)] to denote things, so that others can link to it, and also give context to the values
+* `r emo::ji("star")``r emo::ji("star")``r emo::ji("star")``r emo::ji("star")``r emo::ji("star")` - .monash-blue2[Link data] to definitions and context for various aspects
+
+---
+# FAIR principles for scientific data
+
+.footnote[Learn more at https://www.go-fair.org/fair-principles/]
+
+.flex[
+.border-box[
+## Findable
+Metadata and data should be easy to find for both humans and computers. Machine-readable metadata are essential for automatic discovery of datasets and services.
+]
+.border-box[
+## Accessible
+Once the user finds the required data, she/he needs to know how can they be accessed, possibly including authentication and authorisation.
+]
+.border-box[
+## Interoperable
+The data usually need to be integrated with other data. In addition, the data need to interoperate with applications or workflows for analysis, storage, and processing.
+]
+.border-box[
+## Reusable
+The ultimate goal of FAIR is to optimise the reuse of data. To achieve this, metadata and data should be well-described so that they can be replicated and/or combined in different settings.
+]
+]
+---
+# Publishing data
+
+.footnote[See more at [The Australian National Data Service](https://www.ands.org.au/working-with-data/publishing-and-reusing-data/publishing)]
+
+Research data is increasingly seen as part of the corpus of scholarly publications.  Publishers, funders and governments  support researchers to publish their data outputs by various policies, guidelines and mandates.
+
+- Obtaining a Digital Object Identifier system (DOI) provides a persistent identifier, and can be used for data.
+- Many open data sets provide information on how to cite them, when used in other forms of publication.
+
+---
+
+# Open data quality
+
+.flex[
+.border-box[**Legal requirements:**
+* Protect sensitive information like personal data
+* Preserve the rights of data owners
+* Promote correct use of the data
+]
+
+.border-box[**Practical requirements:**
+* Link to the data from their website
+* Update the data regularly if it changes
+* Commit to continue to make the data available
+]
+
+.border-box[**Technical requirements:**
+* The format in which the data is published
+* The structure of the data
+* The channels through which the data is available
+]
+
+]
+---
+# Common pitfalls with open data
+
+* Mixed date formats
+    american/european
+* Multiple representations
+    differences in abbreviations, capitalisation, spacing
+* Duplicate records
+* Redundant data
+* Mixed numerical scales 
+* Spelling errors
+* Inconsistent naming
+* Missing values
+
+---
+
+# What is hidden data?
+
+<br>
+
+<center>
+<iframe title="vimeo-player" src="https://player.vimeo.com/video/266650606" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+</center>
+
+Let's look at https://www.realestate.com.au/buy. 
+
+And do the quizzes [here](https://www.europeandataportal.eu/elearning/en/module12/#/id/co-01)
+ 
+---
+class: middle 
+# Some of my favourite examples of open data
+
+- Airline traffic in the USA https://www.bts.gov <!-- info about data policy https://www.transportation.gov/mission/digital-government-strategy-4 -->
+- Australian Bureau of Statistics http://stat.data.abs.gov.au
+- Australian Electoral Commission https://www.aec.gov.au
+- National Longitudinal Survey of Youth (NLSY) https://www.nlsinfo.org/investigator/pages/search?s=NLSY79
+- Atlas of Living Australia https://www.ala.org.au
+- Australian bushfires from satellite hotspot remote sensing https://www.eorc.jaxa.jp/ptree/registration_top.html (also see resulting analysis at https://ebsmonash.shinyapps.io/VICfire/)
+- John Hopkins Coronavirus tracking https://coronavirus.jhu.edu/data
+- OECD Programme for International Student Assessment http://www.oecd.org/pisa/data/
+- Melbourne pedestrian counting system http://www.pedestrian.melbourne.vic.gov.au/
+
+---
+class: transition
+
+## We'll spend some time here taking a look at these open data examples
+
+Consider the interface
+
+Look for licensing
+
+Explanations of what's in the data
+
+Metadata
+
+```{r eval=FALSE, echo=FALSE}
+library(rwalkr)
+ped <- melb_walk_fast(year = 2020, sensor = "Southern Cross Station")
+library(eechidna)
+```
+---
+class: transition middle center
+
+# Flavours of open data
+
+How to tell if the open data is not so good to consume?
+
+.footnote[This is Prof Di Cook's taxonomy]
+
+---
+class: middle 
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Food_on_shelf.jpg/1600px-Food_on_shelf.jpg)
+background-size: cover
+
+.fill-box[
+# Long shelf life, highly processed
+
+- Convenient, but contains unhealthy ingredients, and is a bad habit
+- eg iris, mtcars, titanic, handwritten digits
+- Found at eg [UCI Machine learning archive](https://archive.ics.uci.edu/ml/datasets.php)
+]
+---
+class: middle 
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Abandoned_Car_%282654024518%29.jpg/1600px-Abandoned_Car_%282654024518%29.jpg)
+background-size: cover
+
+.fill-box[
+# Orphans
+
+- File dumped on an archive 
+- Stale, could date your results  
+- Found in places like [https://data.gov.au](https://data.gov.au)
+]
+
+---
+class: middle 
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Artificial_Putting_Green.JPG/1134px-Artificial_Putting_Green.JPG)
+background-size: cover
+
+.fill-box[
+# Synthetic
+
+- Used primarily these days for privacy protection
+- Correct up to the model used to simulate the data - misses interesting structure in data not captured by model
+- Very pretty, very consistent, but it can burn you
+- eg [OECD Programme for International Student Assessment](https://www.oecd.org/pisa/data/)  A generalised linear model is fitted to the scores, with predictors such as school, gender, ... Model is used to simulate a score for each student. 
+- eg Also be aware of fraud [Article in the Lancet (2020)](https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31180-6/fulltext)
+]
+
+---
+class: middle 
+background-image: url(https://m.media-amazon.com/images/M/MV5BZmVkNTAwZjctZDI4Yy00YWMyLWEwZmUtNGFlNDY2NGJiNDAyXkEyXkFqcGdeQXVyMTc0NzI3MDQ@._V1_.jpg)
+background-size: cover
+
+.fill-box[
+# Wild
+
+- Fresh, interesting, exciting, challenging
+- eg [US Bureau of Transportation Statistics air traffic database](https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236)
+]
+
+.footnote[Image: Reese Witherspoon, Wild (2014) IMDb]
+
+---
+class: middle 
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/South_Melbourne_market_outside_1a.jpg/1056px-South_Melbourne_market_outside_1a.jpg)
+background-size: 70%
+
+.fill-box[
+# Fresh and local
+
+- Wild data, collected locally, and impacting our own lives
+- eg [Melbourne pedestrian counts](https://cran.r-project.org/web/packages/rwalkr/index.html)
+]
+
+
+---
+class: refresher middle
+
+
+Our working definition of wild-caught data will be:
+
+<br><br>
+
+.info-box[
+# Wild-caught data
+
+The data can be freely used, modified, and shared by anyone for any purpose
+<br><br> 
+AND
+<br><br> 
+The data source is traceable, the data collection is transparent, and the data is updated as new measurements arrive. In case of data processing, the process is clearly described and reproducible. 
+]
+
+  
+---
+
+```{r endslide, child="assets/endslide.Rmd"}
+```

@@ -5,16 +5,19 @@ schedule:
   - week: 1 (Mar 1)
     lecturer: Emi
     topic: "Introduction to data collection methods"
-    readings: ""
+    readings: 'Extra reading: <a href="https://monash.hosted.exlibrisgroup.com/permalink/f/31uhmh/catau51339302880001751"> Byrne on Data collection </a>'
   - week: 2 (Mar 8)
     lecturer: Di
     topic: "Open data: definitions, sources and examples"
+    readings: 'Extra reading: <a href="https://interactions.acm.org/archive/view/march-april-2013/data-in-the-wild"> Data in the wild </a>; <a href="http://opendatatoolkit.worldbank.org/en/essentials.html"> The World Bank Open Data Essentials (and the Open Data for Data Users introduction lesson) </a>; <a href="https://www.europeandataportal.eu/elearning/en/#/id/co-01"> European Data Portal lesson What is Open Data?</a> '
   - week: 3 (Mar 15)
     lecturer: Lauren
     topic: "Data ethics"
+    readings: 'Extra reading:  OKeefe, K., & Brien, D. O. (2018). Ethical data and information management: concepts, tools and methods. Chapter 2 (ebook available through Monash library) <a href="https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbou1n1d/31"> Belmont report</a>; <a href="https://www.nhmrc.gov.au/file/9131/download?token=4Qw7LMvh"> National Statement on Ethical Conduct in Human Research (section 2, Chapters 5.1, 5.2) </a>; <a href="https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2018.01193.x">; Ethics in statistical practice and communication: Five recommendations </a> '
   - week: 4 (Mar 22)
     lecturer: Di
     topic: "Case study: US air traffic"
+    readings: 'Extra reading: <a href="https://db.rstudio.com/overview"> Working with databases</a>, <a href="https://community.amstat.org/jointscsg-section/dataexpo/new-item6"> 2009 Data Expo, and follow links </a>, <a href="https://amstat.tandfonline.com/doi/abs/10.1198/jcgs.2011.3de#.XhKayi1L3tA"> Short paper on analysis and code </a>, <a href="https://vimeo.com/161681018">  Animation of air traffic on one day</a>, <a href="https://github.com/tidyverse/ggplot2/wiki/Flying-over-the-usa"> Animation code </a>'
   - week: 5 (Mar 29)
     lecturer: Belinda
     topic: "Case study: Melbourne transport data"
@@ -23,13 +26,14 @@ schedule:
     topic: "Case study: International student assessment data"
     assessment: "Assessment 1 due"
   - week: 7 (Apr 19)
-    lecturer: Peter
-  - week: 8 (Apr 26)
     lecturer: Emi
     topic: "Case study: Australian census"
-  - week: 9 (May 3)
+  - week: 8 (Apr 26)
     lecturer: Emi
     topic: "Case study: Australian election data"
+  - week: 9 (May 3)
+    lecturer: Peter
+    topic: "Combining meteorological and economic data"
   - week: 10 (May 10)
     lecturer: Will
     topic: "Case study: Superannuation and wage growth in Australia"
@@ -61,13 +65,13 @@ assessments:
 team:
   - name: Di Cook (Chief Examiner)
     role: lecturer
-    consult: Thu 11.30-12.30pm (Wk 2, 4, 12)
+    consult: Thu 3-4pm (Wk 2, 4, 12) on zoom
   - name: Emi Tanaka
     role: lecturer
-    consult: Thu 11.30-12.30pm (Wk 1, 8, 9)
+    consult: Thu 3-4pm (Wk 1, 7, 8) on zoom
   - name: Lauren Kennedy
     role: lecturer
-    consult: Thu 11.30-12.30pm (Wk 3, 6, 11)
+    consult: Thu 3-4pm (Wk 3, 6, 11) on zoom
   - name: Belinda Maher
     role: lecturer
   - name: Peter Ellis
@@ -76,8 +80,8 @@ team:
     role: lecturer
   - name: Sherry Zhang
     role: tutor
-    consult: TBD
+    consult: Wed 3.30-5pm (Wk 2-12) on zoom, Thu 3-4pm (Wk 8-9) on zoom
   - name: Joan Tan
     role: tutor
-    consult: TBD
+    consult: Fri 11-11.45pm (Wk 1-12) on campus and zoom, Thu 3-4pm (Wk 5) on zoom
 

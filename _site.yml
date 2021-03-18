@@ -13,7 +13,7 @@ navbar:
       href: index.html
     - text: "Moodle"
       icon: fa-archive
-      href: https://lms.monash.edu/course/view.php?id=63619
+      href: https://lms.monash.edu/course/view.php?id=104348
     - text: "Unit Guide"
       icon: fa-book
       href: https://handbook.monash.edu/2021/units/ETC5512
