@@ -1,0 +1,40 @@
+---
+title: 'ETC5512: Tutorial 1 Solution'
+author: "Didier Nibbering & Emi Tanaka"
+date: "Week 1"
+output: 
+  html_document:
+    css: tutorial.css
+---
+  
+  
+
+# Tutorial Solution
+
+## Exercise 1
+
+
+a) **Cross-sectional study** is a type of observational study that collects data from the population, or its sample, at a specific time point or period of time. The Australian census is an example of a cross-sectional study. This data are observational.
+b) **Case-control study** is a type of epidemiological observational study in which two groups have different outcomes (e.g. disease and no disease group) and compared for some causal attribute. This data are observational.
+c) **Cohort study** is a type of longitudinal study that samples a cohort and performs a cross-section study across different time points.  This data are observational.
+d) **Randomised controlled trial** (RCT) is an experiment, most commonly in clinical studies, that allocate treatments to subjects at a random in a controlled setting. The data from RCT are experimental.  
+e) **Double-blind study** refers to an experimental study where both the individual receiving the treatment and the administrator of the treatment do not know which particular treatment the individual is allocated. Double-blinding is done to prevent bias in the results. The data from double-blind study are experimental.
+
+## Exercise 2
+
+
+a) A study surveyed a random sample of adults to ask about their diet. The data showed that those who were on intermittent fasting had a lower weight.  
+This is **observational data**.
+b) A study randomly allocated two brands of hair growth formula to 50 bald men. Each men were instructed to use the allocated hair formula everyday. The data contains the number of hairs on each men in the study after 30 days.  
+This is **experimental data**.
+c) A researcher wants to know if the new lockout law that bar the bar from serving alcohol after 9pm reduces alcohol related violence. The data contains the occurrences of alcohol related violence over a period of one year before the law and a period of one year after the lockout law was introduced.  
+This is what is referred to as **quasi-experimental study**. Data from quasi-experimental study are **experimental data**.
+
+
+## Exercise 3
+
+This is a self-paced tutorial that is completed online and so there are no solution. 
+
+
+
+##### © Copyright 2021 Monash University
