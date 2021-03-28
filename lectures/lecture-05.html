@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5512: Wild Caught Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Belinda Maher, Department of Transport" />
+    <script src="lib/header-attrs-2.7/header-attrs.js"></script>
+    <link href="lib/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    
+    <!--
+    <script defer src="assets/all.min.js"></script>
+
+    Need below to enable css contents
+
+    <script>
+      window.FontAwesomeConfig = {
+        searchPseudoElements: true
+      }
+    </script>
+
+    -->
+    <link rel="stylesheet" href="assets/font-awesome-all.css" type="text/css" />
+    <link rel="stylesheet" href="assets/tachyons-addon.css" type="text/css" />
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/fira-code.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/table.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/slide-types.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: middle center hide-slide-number monash-bg-gray80
+
+
+
+
+
+.info-box.w-50.bg-white[
+These slides are viewed best by Chrome or Firefox and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-05.pdf&gt;here for the PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;. 
+]
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+
+
+---
+
+class: title-slide
+count: false
+background-image: url("images/bg-01.png")
+
+# .monash-blue[ETC5512: Wild Caught Data]
+
+&lt;h1 class="monash-blue" style="font-size: 30pt!important;"&gt;&lt;/h1&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Case Study: Victorian Transport Data&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Belinda Maher, Department of Transport*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 5
+
+&lt;br&gt;
+
+]
+
+
+
+---
+#Lecture Contents:
+
+.pull-left[
+- About Me
+
+- Open Transport Data Examples (Including GTFS and Shapefiles of the network)
+
+- A little bit about one of my work projects with Google Maps API data
+
+- Melbourne Public Transport
+
+- What is Operational Performance?
+
+- Example of wrangling Public Transport Performance Data from an Excel file (using the tidyverse)
+
+- Plotting this data with ggplot2
+]
+.pull-right[&lt;a title="JohnnoShadbolt at English Wikipedia, CC BY 3.0 &amp;lt;https://creativecommons.org/licenses/by/3.0&amp;gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Melbourne_trams_map_old.gif"&gt;&lt;img width="512" alt="Melbourne trams map old" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Melbourne_trams_map_old.gif/512px-Melbourne_trams_map_old.gif"&gt;&lt;/a&gt;]
+---
+.grid[
+.item[
+#About Me
+
+####Belinda Maher
+
+I ❤️
+
+ Data, R, Maps &amp; Trains
+&lt;br&gt;&lt;br&gt;
+Background:&lt;br&gt;
+&lt;br&gt;
+- KiwiRail (Wellington) (2009-2012)
+  - Auckland Electrification &amp; Track Upgrades&lt;br&gt;
+- Grad Dip Statistics &amp; Operations Research
+- Department of Transport (2016 - Current) 
+  - Operational Performance Analysis (PTV)
+  - Strategic Transport Network Planning
+  - Bus &amp; Tram Planning
+]
+.item.right[
+&lt;img src="images/lecture-05/AT EMU s.png"/&gt;
+]
+]
+
+???
+image source: https://en.wikipedia.org/wiki/New_Zealand_AM_class_electric_multiple_unit#/media/File:AMA_103_at_Puhinui.jpg
+
+---
+class:transition
+#Open Transport Data
+##Example: What can you acheive with open data and a bit of passion?
+
+---
+
+
+&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"&gt;
+
+#Is the 370 the worst bus route in Sydney?
+
+
+Excellent example of wild caught data&lt;br&gt;&lt;br&gt;
+
+.pull-left[&lt;a href="https://youtu.be/O7jqU39wvKk"&gt;&lt;img src="images/lecture-05/Katie Bell.jpg" width=100%/&gt; &lt;/a&gt;
+]
+.pull-right[
+- Katie used 130GB of GTFS-Realtime data
+- She analysed bus lateness in Sydney over 1 year
+&lt;br&gt;(Detailed Sydney lateness data isn't reported publicly)&lt;br&gt;&lt;br&gt;
+[YouTube Link](https://youtu.be/O7jqU39wvKk)&lt;br&gt;
+[Yow Conference Slides](https://yowconference.com/talks/katie-bell/yow-2018-sydney/is-the-370-the-worst-bus-in-sydney-8530/)
+&lt;i class="fa fa-github"&gt;&amp;nbsp; https://github.com/katharosada/bus-shaming&lt;/i&gt;
+]
+---
+
+
+class:transition
+## My biggest R project
+# Google Maps API data (predicted travel times) 
+##(not open data, but can be obtained for free)
+
+---
+
+class: no-logo
+background-position: center top;
+background-size:100%
+background-image: url("images/lecture-05/Destination 1 Spring St Fullscreen.png")
+
+#library(googleway) and Driving vs Public Transport Travel Times
+
+&lt;div style="position: absolute; bottom: 5px;"&gt;
+&lt;a href="http://belinda-maher-melburn.netlify.app"&gt;Link: Presentation - Visualising predicted travel time differences between transport modes &lt;/a&gt;
+&lt;/div&gt;
+---
+class:transition
+
+#Geospatial &amp; Timetable Data 
+
+---
+#General Transit Feed Specification (GTFS)
+
+GTFS contains timetable, stop and path data for PT services in Victoria (and is a global standard)
+&lt;br&gt;&lt;br&gt;
+It's the data which Google Maps ingests to show you PT in Google Maps&lt;br&gt;
+
+I go through using GTFS shape and stop data in R in an RLadies talk I did in 2018:&lt;br&gt;
+[Slides - Public Transport Maps &amp; Geospatial Data in R](https://drive.google.com/file/d/191Jq1awInmtXPXrVlywXXaQjxv0basHe)&lt;br&gt;
+
+
+&lt;br&gt;There are packages like [tidytransit](http://tidytransit.r-transit.org/index.html) which can help you navigate the GTFS Format (it's a bit [complicated](https://xang1234.github.io/images/isochrone/gtfs.png))
+
+For example you could look into service frequencies &amp; headways for each public transport route -&lt;br&gt;
+http://tidytransit.r-transit.org/articles/frequency.html
+
+---
+class: no-logo
+background-position: center top;
+background-size:100%
+background-image: url("images/lecture-05/Melbourne.JPG")
+
+
+#The Melbourne Public Transport Network
+
+---
+
+# PTV shapefiles - paths and points in a file for GIS
+All the shapes in previous map can be found at:&lt;br&gt;
+https://www.ptv.vic.gov.au/footer/data-and-reporting/datasets/
+
+&lt;br&gt;&lt;br&gt;
+
+You can also get all the stop locations easily out of GTFS text files without using shapefiles
+
+
+Of the many shapefiles available, you might be interested in these:&lt;br&gt;
+.grid[
+  .item[
+&lt;i&gt;Paths:&lt;br&gt;
+&lt;a href="https://discover.data.vic.gov.au/dataset/ptv-train-corridor-centreline"&gt;Train Corridor Centreline&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://discover.data.vic.gov.au/dataset/ptv-metro-tram-routes"&gt;Metro Tram Routes&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://discover.data.vic.gov.au/dataset/ptv-metro-bus-routes"&gt;Metro Bus Routes&lt;/a&gt;&lt;br&gt;]
+
+  .item[
+  Stops/Stations as shapefiles:&lt;br&gt;
+&lt;a href="https://discover.data.vic.gov.au/dataset/ptv-metro-train-stations"&gt;Metro Train Stations&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://discover.data.vic.gov.au/dataset/ptv-metro-tram-stops"&gt;Metro Tram Stops&lt;/a&gt;&lt;br&gt;
+&lt;a href="https://discover.data.vic.gov.au/dataset/ptv-metro-bus-stops"&gt;Metro Bus Stops&lt;/a&gt;&lt;br&gt;
+&lt;/i&gt;]]
+
+
+???
+from https://belinda-maher-melburn.netlify.app/#41
+---
+class:transition
+#Other Available Transport Data
+##(quick mentions)
+---
+# Further Relevant Data Links 
+
+Metro Bus Performance data has been requested by Philip Mallis under Freedom of Information:
+https://philipmallis.com/blog/2020/02/28/melbourne-bus-route-patronage-data-for-2008-2019/
+
+Public Transport Patronage:&lt;br&gt;
+[Patronage data via Philip Mallis (some is also available from PTV)](
+https://philipmallis.com/blog/2019/02/14/station-patronage-in-victoria-2013-2018/)
+
+[Patronage from PTV](https://transport.vic.gov.au/about/data-and-research/patronage)
+
+Roads:&lt;br&gt;
+[Road Network &amp; Performance (VicRoads)](https://www.vicroads.vic.gov.au/traffic-and-road-use/road-network-and-performance)
+
+- [Including Road Use &amp; Performance](https://www.vicroads.vic.gov.au/traffic-and-road-use/road-network-and-performance/road-use-and-performance)
+&lt;br&gt;&lt;br&gt;
+
+If you wanted to look further at the effects of COVID restrictions:
+&lt;br&gt;&lt;br&gt;
+COVID Restriction Timeline (also used by Melbourne on Transit)
+https://deborahalupton.medium.com/timeline-of-covid-19-in-australia-1f7df6ca5f23
+
+
+---
+class:transition
+
+#(Public) &lt;br&gt;Public Transport Data
+
+---
+
+#Public Transport Modes
+&lt;div&gt;
+We're going to look at the rail modes:
+.grid[.item[&lt;center&gt;Metro Trains 🚆&lt;br&gt;&lt;img src="images/lecture-05/Metro.png"/&gt;&lt;/center&gt;]
+.item[&lt;center&gt;Yarra Trams 🚋&lt;br&gt;&lt;img src="images/lecture-05/Yarra Trams.png"/&gt;&lt;/center&gt;]
+.item[&lt;center&gt;V/Line Trains 🚂&lt;br&gt;&lt;img src="images/lecture-05/VLine.jpg" width=40%&gt;&lt;/center&gt;]]
+&lt;br&gt;&lt;br&gt;
+Performance data for Bus &amp; Coach is not easily available from the PTV Website PowerBI app:
+
+&lt;i class="fas fa-bus-alt"&gt;&lt;/i&gt;
+.grid[
+.item[Metro Bus &amp; Regional Bus&lt;br&gt;&lt;img src="images/lecture-05/PTV Bus.jpg" width=100%/&gt;&lt;p&gt;]
+.item[V/Line Coach&lt;br&gt;&lt;img src="images/lecture-05/Wong VLine Coach.jpg" width=100%/&gt;]]
+&lt;/div&gt;
+
+ 
+---
+#Public Transport Operational Performance
+So, what is operational performance?
+
+.pull-left[
+.grid[
+  .item[
+  &lt;img src="images/lecture-05/Tram OP.jpg"/&gt;
+  ]
+  .item[
+  &lt;img src="images/lecture-05/Train OP.jpg" width=100%/&gt;
+  ]]]
+ .pull-right[&lt;img src="images/lecture-05/YT Perf.jpg"/ width=100%&gt;]
+ 
+ .footnote[.f5[graph source: https://yarratrams.com.au/performance-results]]
+
+---
+#Punctuality and Reliability
+
+Official Definition
+.blockquote[
+
+&lt;h2&gt;What do we monitor?&lt;/h2&gt;&lt;p&gt;Every operator needs to meet the performance thresholds in their contact. The thresholds are:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Punctuality&lt;/strong&gt; - the percentage of on-time events at specific points.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reliability&lt;/strong&gt; - the proportion of timetabled services the operator delivers.&lt;/li&gt;
+&lt;/ul&gt;.cite[PTV Website &amp;nbsp; https://www.ptv.vic.gov.au/footer/data-and-reporting/network-performance/]]
+
+![PTV](images/lecture-05/PTV.jpg)
+Public Transport Victoria is part of the Victorian Government Department of Transport and manages PT service delivery through franchises with operators
+---
+
+#Unpacking the Measurement of Public Transport Services
+
+&lt;br&gt;
+.grid[
+.item[
+##Punctuality:
+
+&lt;b&gt;Adherence to timetable
+
+When?&lt;/b&gt;&lt;br&gt;
+Compare:&lt;br&gt;
+
+Timetabled Arrival / Departure Time 
+to Actual Arrival /
+Departure Time
+
+&lt;br&gt;
+&lt;b&gt;Where?&lt;/b&gt;&lt;br&gt;
+At timing points or destination
+&lt;br&gt;
+].item[
+##Reliability:
+&lt;b&gt;Did the service run?&lt;/b&gt;&lt;br&gt;
+- Cancelled Services
+
+- 'Short' Services
+
+- Diverted Services
+
+  - Loop Skips:&lt;br&gt;
+       City Loop &lt;br&gt;Westona Loop
+].item[&lt;img src="images/lecture-05/rolling stock.jpg"&gt;]
+]
+
+.footnote[[Image source](https://www.ptv.vic.gov.au/assets/default-site/more/travelling-on-the-network/accessibility/Try-Before-You-Ride/7d5561782e/Try-before-you-ride-header.png)]
+
+???
+
+Why do we have to include Loop Skips &amp; Altered Expresses
+---
+#Monthly Performance Reports on PTV Website
+
+&lt;img src="images/lecture-05/feb performance.JPG" width=50%&gt;
+
+.footnote[http://www.ptv.vic.gov.au/footer/data-and-reporting/network-performance/monthly-performance/]
+---
+#Daily Performance Reports on PTV Website
+
+.grid[.item[&lt;br&gt;&lt;br&gt;Daily figures are available &lt;a href="https://www.ptv.vic.gov.au/footer/data-and-reporting/network-performance/daily-performance/"&gt;here&lt;/a&gt;&lt;br&gt;
+
+- These daily figures could be scraped and collected weekly for more detailed data analysis than monthly figures.
+
+- We can't get line level information from the website but it is available in a PowerBI App
+]
+.item[&lt;img src="images/lecture-05/Daily OP.jpg" width=90%/&gt; ]]
+
+---
+class: monash-bg-blue2 white
+#PTV PowerBI app for Performance Data
+The link to the dashboard is located at the bottom of the .monash-black.white[&lt;a href="https://www.ptv.vic.gov.au/footer/data-and-reporting/network-performance/monthly-performance/"&gt;monthly performance page&lt;/a&gt;]
+&lt;img src="images/lecture-05/Monthly OP Cover.JPG" width=70%/&gt;
+.footnote[&lt;a href="https://app.powerbi.com/view?r=eyJrIjoiMzE2ZDIyN2YtODY1Yy00ZGY0LWE4YTktNDcxOTcwYWQyMjM5IiwidCI6IjcyMmVhMGJlLTNlMWMtNGIxMS1hZDZmLTk0MDFkNjg1NmUyNCJ9"&amp;gt;PTV PowerBI App Link&lt;/a&gt;]
+
+---
+class: center
+&lt;img src="images/lecture-05/Tram PowerBI.JPG" width=90%&gt;
+
+---
+class:transition
+
+#Deriving meaning from the data
+---
+#Melbourne Transport Bloggers
+.pull-left[
+Chris Loader ([Charting Transport](https://chartingtransport.com/)) and Peter Parker ([Melbourne On Transit](https://melbourneontransit.blogspot.com/))
+&lt;br&gt;&lt;br&gt;
+
+[Charting Transport COVID and pedestrian volumes](https://chartingtransport.com/2020/05/25/what-impact-has-the-2020-covid-19-pandemic-had-on-pedestrian-volumes-in-central-melbourne/)
+
+
+(Di has already mentioned the [City of Melbourne Pedestrian Counting System](http://www.pedestrian.melbourne.vic.gov.au/?_ga=2.225968922.1626262524.1612686930-400371523.1612686930#date=07-02-2021&amp;time=18)), which Charting Transport has analysed in the above post
+&lt;br&gt;&lt;br&gt;
+This data could potentially be used to give a baseline level of people in the city during COVID restrictions if you wanted to compare it to other data
+]
+.pull-right[&lt;img src="images/lecture-05/CL pedestrian.PNG" width=100%&gt;]
+.footnote[graph source: Chris Loader - http://chartingtransport.com ]
+---
+
+####Melbourne Metro Train Performance
+&lt;br&gt;We're going to talk tonight about some of the data related to this blog post:&lt;br&gt;
+[Melbourne On Transit: How are our trains performing with hardly any passengers?](https://melbourneontransit.blogspot.com/2021/02/timetable-tuesday-105-how-do-our-trains.html)
+
+&lt;img src="images/lecture-05/MOT train perf graph.PNG" width=100%&gt;
+
+.footnote[Image, regression and callout box source:&amp;nbsp;&lt;a href="https://1.bp.blogspot.com/-CUJ4RNYZ9ck/YCmeAQi8pSI/AAAAAAAAHLM/JaxS0vLIbQk9pVkdm1m1hnS3H1j53IK5ACLcBGAsYHQ/s1386/long%2Bterm%2Bperformance.PNG"&gt;Melbourne on Transit&lt;/a&gt;, &lt;u&gt;&lt;b&gt;not&lt;/b&gt;&lt;/u&gt; the views of the lecturer!]
+
+???
+
+Think about the regression line
+
+---
+class: transition
+###Causes of Variation in Performance
+.question-box.w-70[What sort of variables might affect&lt;br&gt; the performance of public transport?&lt;br&gt;]
+
+Please put some ideas in the chat (inventive answers are welcome!)
+
+---
+class: monash-bg-green2 white
+#Causes of Disruption to Services
+####Some of the many reasons public transport services are more late or cancelled than usual:
+
+Traffic, 
+&amp;nbsp;Overcrowding,
+&amp;nbsp;&amp;nbsp;Suspension of Other Services, 
+&amp;nbsp;&amp;nbsp;Rain (and Flooding),&amp;nbsp;&amp;nbsp;
+Roadworks,&amp;nbsp;&amp;nbsp; 
+Trespassers,&amp;nbsp;&amp;nbsp; 
+Suicides,&amp;nbsp;&amp;nbsp; 
+Police Requests,&amp;nbsp;&amp;nbsp; 
+Hot Weather,&amp;nbsp;&amp;nbsp; 
+Temporary Speed Restrictions (Track Condition),&amp;nbsp;&amp;nbsp;
+Signal Faults,&amp;nbsp;&amp;nbsp;
+Track Faults,&amp;nbsp;&amp;nbsp;
+Trees Falling on Track/Overhead,&amp;nbsp;&amp;nbsp;
+Overhead Faults,&amp;nbsp;&amp;nbsp; 
+Vehicle Faults,&amp;nbsp;&amp;nbsp; 
+Power Faults,&amp;nbsp;&amp;nbsp; 
+Signals Passed at Danger,&amp;nbsp;&amp;nbsp; 
+Grass Fires,&amp;nbsp;&amp;nbsp; 
+Driver Shortages,&amp;nbsp;&amp;nbsp; 
+Protests,&amp;nbsp;&amp;nbsp; 
+Cars Blocking Track,&amp;nbsp;&amp;nbsp; 
+Derailments,&amp;nbsp;&amp;nbsp; 
+Collisions,&amp;nbsp;&amp;nbsp; 
+Evacuation of Train Control,&amp;nbsp;&amp;nbsp; 
+Rats Eating Signalling Cables,&amp;nbsp;&amp;nbsp;
+A Bat Being Electrocuted By Signalling Equipment,&amp;nbsp;&amp;nbsp;
+Tumbleweeds (Fairy Grass),&amp;nbsp;&amp;nbsp;
+Millipedes.
+&lt;br&gt;
+&lt;br&gt;
+
+####Things which might improve PT performance: (relative to a 'normal' day)
+Weekends,&amp;nbsp;&amp;nbsp; Public Holidays,&amp;nbsp;&amp;nbsp; School Holidays,&amp;nbsp;&amp;nbsp; University Holidays,&amp;nbsp;&amp;nbsp; January,&amp;nbsp;&amp;nbsp; Rostered Days Off,&amp;nbsp;&amp;nbsp; COVID-19 Restrictions,&amp;nbsp;&amp;nbsp; Working From Home,&amp;nbsp;&amp;nbsp; Day before Cup Day,&amp;nbsp;&amp;nbsp; etc.
+&lt;br&gt;&lt;br&gt;
+####Seasonality of crowding and traffic  -&gt; Seasonality of baseline performance
+---
+
+#Did you just say Millipedes?
+
+
+https://www.theage.com.au/national/victoria/trekking-millipedes-sideline-trains-20120328-1vyri.html
+
+&lt;img src="images/lecture-05/Millipede.jfif" width=60%/&gt;
+
+and...[a link to the poor bat](https://www.theage.com.au/national/victoria/train-chaos-as-faults-cause-long-delays-20130205-2dva2.html)
+
+"Suffice to say, the bat is no longer with us. It was his untimely &lt;br&gt;
+departure that has caused the extent of the damage."
+
+---
+
+#Munging Network Performance Data
+
+
+So, let's have a look at some performance data from PTV from that PowerBI App.&lt;br&gt;
+
+
+Downloading is disabled on the app, but an Excel file will be provided.
+
+Why Excel? Because you need to learn how to deal with data which is not in an ideal format :)
+
+We're going to need to use some R packages to manipulate this data...&lt;br&gt;&lt;br&gt;
+
+###Tools of the Trade: The tidyverse (particularly dplyr, magrittr &amp; ggplot2) 
+.grid[
+.item[
+&lt;img src="images/lecture-05/hex-tidyverse.png" width=70%/&gt;]
+.item[&lt;img src="images/lecture-05/dplyr.PNG" width=70%/&gt;]
+.item[&lt;img src="images/lecture-05/pipe.PNG" width=70%/&gt;]
+.item[&lt;img src="images/lecture-05/ggplot2.PNG" width=70%/&gt;]
+
+
+]
+.footnote[https://www.tidyverse.org/packages/&lt;br&gt;
+https://magrittr.tidyverse.org/articles/magrittr.html
+]
+
+---
+#loading data in to R from Excel 
+####using readxl::read_excel()
+
+```r
+library(here)
+library(readxl)
+library(curl)
+#Download and save the file from
+url&lt;-"https://wcd.numbat.space/lectures/data/lecture-05/Rail%20PT%20Public%20Monthly%20Figures%20cleaned.xlsx"
+curl_download(url, "Rail PT Public Monthly Figures cleaned.xlsx")
+```
+
+```r
+#dir(here('lectures','data','lecture-05'))
+filename&lt;-here('lectures','data','lecture-05',
+               'Rail PT Public Monthly Figures cleaned.xlsx')
+
+sheets&lt;-excel_sheets(filename)
+#This gives us the names of the sheets within this Excel file
+sheets
+```
+
+```
+## [1] "Metro" "Yarra" "VLine"
+```
+
+---
+
+#Reading in the data with library(purrr)
+
+
+```r
+#read all three sheets in to df
+library(purrr)
+performance &lt;- map(sheets, ~read_xlsx(filename, sheet=.x))
+
+#The above line does exactly what these 3 lines do, 
+#but automatically for every sheet in the Excel workbook.
+ performance2 &lt;- list(read_xlsx(filename, sheet="Metro"),
+                      read_xlsx(filename, sheet="Yarra"),
+                      read_xlsx(filename, sheet="VLine"))
+
+#compare::compare(performance,performance2)
+## TRUE
+#Name the items in the list (created from the tabs in the spreadsheet)
+names(performance)&lt;-sheets
+names(performance)
+```
+
+```
+## [1] "Metro" "Yarra" "VLine"
+```
+
+
+
+
+
+---
+#bind_rows() - join the data into one data frame
+
+```r
+library(dplyr)
+performance &lt;- bind_rows(performance, .id="Mode")
+performance &lt;- select(performance,all_of(keep))
+
+head(performance)
+```
+
+```
+## # A tibble: 6 x 15
+##   Parent_Route  Mode  Service_Year Service_Date        Service_Month
+##   &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt; &lt;dttm&gt;                      &lt;dbl&gt;
+## 1 Alamein       Metro         2010 2010-01-01 00:00:00             1
+## 2 Belgrave      Metro         2010 2010-01-01 00:00:00             1
+## 3 Craigieburn   Metro         2010 2010-01-01 00:00:00             1
+## 4 Cranbourne    Metro         2010 2010-01-01 00:00:00             1
+## 5 Frankston     Metro         2010 2010-01-01 00:00:00             1
+## 6 Glen Waverley Metro         2010 2010-01-01 00:00:00             1
+## # ... with 10 more variables: Reporting_Group &lt;chr&gt;,
+## #   num_services_scheduled &lt;dbl&gt;, num_services_cancelled &lt;dbl&gt;,
+## #   num_services_short &lt;dbl&gt;, num_services_bypassed &lt;dbl&gt;,
+## #   num_services_scheduled_at_dest &lt;dbl&gt;, num_services_on_time_at_dest &lt;dbl&gt;,
+## #   num_observations_on_time &lt;dbl&gt;, num_observations_scheduled &lt;dbl&gt;,
+## #   pct_on_time_avg &lt;dbl&gt;
+```
+
+---
+
+#Summarising the data by year - group_by() and summarise()
+
+
+```r
+library(dplyr)
+library(magrittr)
+performance %&gt;% 
+  #dplyr::filter(Service_Year&gt;2015) %&gt;% 
+  group_by(Service_Year, Mode) %&gt;% 
+summarise(num_services_scheduled=sum(num_services_scheduled)) %&gt;% 
+  ungroup -&gt; perf_year
+
+head(perf_year)
+```
+
+```
+## # A tibble: 6 x 3
+##   Service_Year Mode  num_services_scheduled
+##          &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
+## 1         2010 Metro                 674189
+## 2         2010 VLine                  74227
+## 3         2010 Yarra                1619282
+## 4         2011 Metro                 706765
+## 5         2011 VLine                  73916
+## 6         2011 Yarra                1637585
+```
+
+
+---
+#What variables and routes do we have?
+.f4[
+
+```r
+names(performance)
+```
+
+```
+##  [1] "Parent_Route"                   "Mode"                          
+##  [3] "Service_Year"                   "Service_Date"                  
+##  [5] "Service_Month"                  "Reporting_Group"               
+##  [7] "num_services_scheduled"         "num_services_cancelled"        
+##  [9] "num_services_short"             "num_services_bypassed"         
+## [11] "num_services_scheduled_at_dest" "num_services_on_time_at_dest"  
+## [13] "num_observations_on_time"       "num_observations_scheduled"    
+## [15] "pct_on_time_avg"
+```
+
+```r
+#How many routes are there by mode?
+with(unique(performance %&gt;% select(Mode, Parent_Route)), table(Mode))
+```
+
+```
+## Mode
+## Metro VLine Yarra 
+##    16    11    26
+```
+]
+---
+#26 Lines are not easy to read! - Maybe we need to summarise all routes
+.f5[
+&lt;img src="images/lecture-05/tram_punc-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
+#Summarising multiple columns
+.f4[
+
+```r
+library(tidyverse)
+library(magrittr)
+perf_month &lt;- performance %&gt;% 
+  group_by(Service_Date, Service_Year, Service_Month, Mode) %&gt;% 
+  summarise(across(starts_with("num_"), sum, .names = "{.col}")) %&gt;%
+ungroup()
+head(perf_month)
+```
+
+```
+## # A tibble: 6 x 12
+##   Service_Date        Service_Year Service_Month Mode  num_services_scheduled
+##   &lt;dttm&gt;                     &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
+## 1 2010-01-01 00:00:00         2010             1 Metro                  56500
+## 2 2010-01-01 00:00:00         2010             1 VLine                   6167
+## 3 2010-01-01 00:00:00         2010             1 Yarra                 134467
+## 4 2010-02-01 00:00:00         2010             2 Metro                  51598
+## 5 2010-02-01 00:00:00         2010             2 VLine                   5672
+## 6 2010-02-01 00:00:00         2010             2 Yarra                 125090
+## # ... with 7 more variables: num_services_cancelled &lt;dbl&gt;,
+## #   num_services_short &lt;dbl&gt;, num_services_bypassed &lt;dbl&gt;,
+## #   num_services_scheduled_at_dest &lt;dbl&gt;, num_services_on_time_at_dest &lt;dbl&gt;,
+## #   num_observations_on_time &lt;dbl&gt;, num_observations_scheduled &lt;dbl&gt;
+```
+]
+---
+
+#How do we re-calculate the summary measures at different grouping levels?
+See glossary tab in the dashboard. (It's complicated, so I've done it for you on the next slide!)
+&lt;img src="images/lecture-05/Glossary Metro.JPG" width=90% /&gt;
+
+---
+
+#Punctuality and Reliability calculations in R
+(don't worry about this detail, I've written the function for you)
+.f5[
+
+```r
+perf_calc&lt;- perf_month %&gt;% mutate(
+  Reliability=case_when(
+  Mode =="Metro" ~ ((1-((num_services_cancelled+(0.25*num_services_short)+(0.125*num_services_bypassed))
+                      /num_services_scheduled))*100),
+  Mode == "Yarra" ~ (1-((num_services_cancelled+ 0.125*num_services_short)
+                        /num_services_scheduled))*100,
+  Mode == "VLine" ~  (1-(num_services_cancelled/num_services_scheduled))*100),
+
+  Punctuality=case_when(
+  Mode =="Metro" ~ (num_services_on_time_at_dest/num_services_scheduled_at_dest)*100,
+  Mode == "Yarra" ~ (num_observations_on_time / num_observations_scheduled)*100,
+  Mode == "VLine" ~  (num_services_on_time_at_dest/num_services_scheduled_at_dest)*100
+  )
+)
+```
+]
+---
+
+#Next step: Tidying the Data
+.f4[
+
+```r
+library(dplyr)
+perf_selected &lt;- perf_calc%&gt;% select("Service_Date","Service_Year","Service_Month",
+                                  "Mode","Reliability", "Punctuality") 
+
+perf_selected
+```
+
+```
+## # A tibble: 400 x 6
+##    Service_Date        Service_Year Service_Month Mode  Reliability Punctuality
+##    &lt;dttm&gt;                     &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 2010-01-01 00:00:00         2010             1 Metro        98.3        86.9
+##  2 2010-01-01 00:00:00         2010             1 VLine        98.4        83.1
+##  3 2010-01-01 00:00:00         2010             1 Yarra        99.5        84.9
+##  4 2010-02-01 00:00:00         2010             2 Metro        98.8        83.4
+##  5 2010-02-01 00:00:00         2010             2 VLine        97.5        82.1
+##  6 2010-02-01 00:00:00         2010             2 Yarra        99.0        80.8
+##  7 2010-03-01 00:00:00         2010             3 Metro        98.6        80.5
+##  8 2010-03-01 00:00:00         2010             3 VLine        98.1        79.5
+##  9 2010-03-01 00:00:00         2010             3 Yarra        98.8        79.5
+## 10 2010-04-01 00:00:00         2010             4 Metro        99.4        84.5
+## # ... with 390 more rows
+```
+]
+---
+
+#Tidy Data - pivot_longer()
+
+```r
+library(tidyr)
+perf_tidy&lt;-perf_selected %&gt;%  
+  pivot_longer(cols=c(Reliability, Punctuality),names_to="Measure")
+#round the observations to 1 decimal place
+perf_tidy$value %&lt;&gt;% round(1)
+
+head(perf_tidy)
+```
+
+```
+## # A tibble: 6 x 6
+##   Service_Date        Service_Year Service_Month Mode  Measure     value
+##   &lt;dttm&gt;                     &lt;dbl&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+## 1 2010-01-01 00:00:00         2010             1 Metro Reliability  98.3
+## 2 2010-01-01 00:00:00         2010             1 Metro Punctuality  86.9
+## 3 2010-01-01 00:00:00         2010             1 VLine Reliability  98.4
+## 4 2010-01-01 00:00:00         2010             1 VLine Punctuality  83.1
+## 5 2010-01-01 00:00:00         2010             1 Yarra Reliability  99.5
+## 6 2010-01-01 00:00:00         2010             1 Yarra Punctuality  84.9
+```
+
+---
+
+#ggplot2 Reliability by Year
+.f4[
+.pull-left[
+
+```r
+library(ggplot2)
+
+reldata &lt;- dplyr::filter(perf_tidy,
+  Mode=="Metro",
+  Service_Year &gt;= 2016, 
+  Measure=="Reliability")
+
+ggplot(data=reldata,
+  aes(x=factor(
+    month.abb[Service_Month],
+    levels=month.abb), 
+  y=value, 
+  colour=as.character(Service_Year),
+  group=Service_Year))+ labs(
+    title="Metro Trains Reliability",
+    x="Month", colour="Year", 
+    y="Reliability") +
+  geom_line() + 
+  theme(legend.position="bottom")
+```
+]] .pull-right[
+![](images/lecture-05/relplot-1.png)
+]
+
+
+---
+#ggplot2 Punctuality by Year
+.pull-left[
+.f4[
+
+```r
+ggplot(data=dplyr::filter(perf_tidy,
+  Mode=="Metro", 
+  Service_Year &gt;= 2016, 
+  Measure=="Punctuality"),
+  aes(x=factor(month.abb[Service_Month],
+    levels=month.abb), 
+    y=value, 
+    colour=as.character(Service_Year), 
+    group=Service_Year))+
+  labs(title="Metro Trains Punctuality",
+       x="Month", colour="Year", y="Punctuality") + 
+  geom_line()+
+  theme(legend.position="bottom")
+```
+]
+]
+.pull-right[
+![](images/lecture-05/punplot-1.png)
+]
+---
+####Comparing between modes 
+.f5[
+
+```r
+ggplot(dplyr::filter(perf_calc, Service_Year &gt;= 2017 &amp; Service_Year &lt;= 2020), aes(x=Service_Date, y=Punctuality, 
+  colour=Mode, group= Mode)) + geom_line() + labs( title="Punctuality by Mode", x="Month", y="Punctuality")
+```
+
+&lt;img src="images/lecture-05/mode-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
+#facet_wrap()
+.f5[
+
+```r
+ggplot(dplyr::filter(perf_tidy,Service_Year &gt;= 2018 &amp; Service_Year &lt;= 2020),
+  aes(x=factor(month.abb[Service_Month],levels=month.abb), y=value, colour=as.character(Service_Year), 
+      group= paste(Mode, Measure, Service_Year)))+geom_line() + 
+  facet_wrap(~Mode) + theme(legend.position="bottom") + labs(x="Month", y="Performance", colour="Year") 
+```
+
+&lt;img src="images/lecture-05/facet_wrap-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+---
+
+#facet_grid(y~x)
+
+```r
+dplyr::filter(perf_tidy, Service_Year &gt;= 2016 &amp; Service_Year &lt;= 2020) %&gt;% 
+ggplot(aes(x=factor(month.abb[Service_Month],levels=month.abb), 
+           y=value, 
+           colour=Service_Year,
+           group= paste(Mode, Measure,  Service_Year))) +
+  geom_line() + 
+  facet_grid(Measure~Mode)+
+  theme(legend.position="bottom")+
+  labs( x="Month", y="Performance", group="Measure", colour="Year")
+```
+
+---
+#facet_grid(y~x)
+
+&lt;img src="images/lecture-05/facet_grid-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: center, middle
+background-image: url("images/lecture-05/FSS.jpg")
+background-size: contain
+class: monash-bg-black white
+&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;  &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; .f2[Questions?]
+
+
+---
+
+
+
+background-size: cover
+class: title-slide
+background-image: url("images/bg-03.png")
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+.bottom_abs.width100[
+
+Lecturer: *Belinda Maher, Department of Transport*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 5
+
+&lt;br&gt;
+
+]
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "magula",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
