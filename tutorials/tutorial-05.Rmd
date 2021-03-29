@@ -146,7 +146,7 @@ You could alternatively summarise the data for each Parent_Route by year instead
 
 ## 5. `r emo::ji("abacus")` Summarise the performance data by Reporting_Group
 <b>Exercise</b>
-Using the data you have ingested from the Excel file above into *performance*, summarise by Reporting Group instead of Parent_Route to have a higher level look at the data
+Using the data you have ingested from the Excel file above into *performance*, summarise by Reporting_Group instead of Parent_Route to have a higher level look at the data
 (use the example code above in steps 2 and 3 which shows you how to summarise and tidy by month)
 
 
@@ -156,7 +156,7 @@ Using the data you have ingested from the Excel file above into *performance*, s
 <b>Question: Which Tram (Yarra) Reporting Group did not perform significantly better in 2020 (on Punctuality)?</b>
 (note that the City Shuttle Group has no data because it contains only the City Circle tram which is not measured for on time running)
 
-- Hint: Filter by Yarra, and use group = Service_Year, filter the data >=2015 & <=2020
+- Hint: Filter by Yarra, and use group = Service_Year, filter the data >=2015
 - Hint: Use facet_wrap(~Reporting_Group)
 - Hint: Filter for Punctuality values only
 - Hint: Use the ggplot2 code shown in the lecture slides to help you
