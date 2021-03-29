@@ -1,0 +1,187 @@
+---
+title: 'ETC5512: Instructions for Tutorial 5'
+author: "Belinda Maher"
+date: "Week 5"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#devtools::install_github("hadley/emo")
+```
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will learn 
+
+- how to load and manipulate data from an Excel file with sheets
+- work with tidyverse wrangling verbs to summarise the data and recalculate measures at different levels of aggregation
+- practise plotting using ggplot2 to make big picture inferences about the data
+
+## `r emo::ji("wrench")` Data Preparation  
+
+Use this code to process the data from the spreadsheet. Try to understand what the code is doing at each step
+```{r load data}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(here))
+library(readxl)
+library(purrr)
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(curl))
+
+#Save the file
+url<-"https://wcd.numbat.space/lectures/data/lecture-05/Rail%20PT%20Public%20Monthly%20Figures%20cleaned.xlsx"
+if(!file.exists(here("Rail PT Public Monthly Figures cleaned.xlsx"))){
+curl_download(url, "Rail PT Public Monthly Figures cleaned.xlsx")}
+
+#or adjust this line to where you have saved the file (you might need to add *'folder','subfolder',* depending on where you have saved the file)
+filename <- here('Rail PT Public Monthly Figures cleaned.xlsx')
+sheets <- excel_sheets(filename)
+perf <- map(sheets, ~read_xlsx(filename, sheet=.x))
+
+#Name the sheets in the list by 
+names(perf)<-sheets
+
+#Create a list of variables which you want to keep
+keep<-c("Parent_Route","Mode","Service_Year", "Service_Date", "Service_Month",
+       "Reporting_Group","num_services_scheduled","num_services_cancelled","num_services_short","num_services_bypassed","num_services_scheduled_at_dest","num_services_on_time_at_dest","num_observations_on_time","num_observations_scheduled", "pct_on_time_avg")
+#These lines make sure that the data is in the correct format as it is read in from the sheet (not as character).
+perf$Yarra$pct_on_time_at_dest%<>% as.numeric()
+perf$Yarra$pct_not_on_time_at_dest%<>% as.numeric()
+perf$Yarra$pct_on_time_avg%<>% as.numeric()
+```
+
+
+Don't worry about "NAs introduced by coercion" errors the above code raises - this is because not all of the 3 sheets contain all of the variables, so forcing the data to numeric leads to NAs where one of the variables is not present for that mode.
+
+
+```{r performance}
+#stick all 3 sheets together into one data frame from a list
+performance <- dplyr::bind_rows(perf, .id="Mode")
+
+#remove extra columns not used (you may want to edit the 'keep' list if you want to look at detailed data at route level)
+performance <- dplyr::select(performance,all_of(keep))
+```
+
+
+
+## 1. `r emo::ji("computer")` Load data and understand the process
+
+<b>1. Question: What does the *.id="Mode"* command do here?</b>
+
+
+`r emo::ji("eyes")` Have a look at the data:
+```{r eval=FALSE}
+View(performance)
+head(performance)
+```
+
+Next, Load this function by running the chunk:
+```{r calc_measures}
+#the complicated formula which calculates the Punctuality and Reliability measures in different ways for different modes!  
+library(dplyr)
+  calc_measures<-function(input){input %>% mutate(
+  Reliability=case_when(
+  Mode =="Metro" ~ ((1-((num_services_cancelled+(0.25*num_services_short)+(0.125*num_services_bypassed))
+                      /num_services_scheduled))*100),
+  Mode == "Yarra" ~ (1-((num_services_cancelled+ 0.125*num_services_short)
+                        /num_services_scheduled))*100,
+  Mode == "VLine" ~  (1-(num_services_cancelled/num_services_scheduled))*100),
+
+  Punctuality=case_when(
+  Mode =="Metro" ~ (num_services_on_time_at_dest/num_services_scheduled_at_dest)*100,
+  Mode == "Yarra" ~ (num_observations_on_time / num_observations_scheduled)*100,
+  Mode == "VLine" ~  (num_services_on_time_at_dest/num_services_scheduled_at_dest)*100)
+  )
+}
+```
+Once the above function is loaded into your environment, you can use it to calculate without having to repeat that code.
+You can now alter the below code to calculate the measures and adjust what to summarise by.
+
+## 2. `r emo::ji("numbers")` Summarising data by different variables
+
+
+```{r summarise}
+library(magrittr)
+performance %>% 
+  group_by(Service_Date, Service_Year, Service_Month, Mode) %>% 
+  summarise(across(starts_with("num_"), sum, .names = "{.col}"),.groups="drop") %>%
+  calc_measures() -> perf_month
+```
+
+<b>Question: The code above summarises all columns starting with what string?</b>
+
+
+
+## 3. Example Code: Summarise by month
+
+```{r eval=FALSE}
+head(perf_month)
+```
+
+
+Next step is to keep the id variables and the two performance measures we have calculated, and use pivot_longer to put the data into a tidy format
+```{r example_tidy}
+perf_month%<>% 
+  select("Service_Year","Service_Month", "Mode","Reliability", "Punctuality")  %>%  
+  pivot_longer(cols=c(Reliability, Punctuality),names_to="Measure")
+```
+
+Have a look at the format of the data now:
+```{r eval=FALSE}
+head(perf_month)
+```
+
+
+## 4. `r emo::ji("watch")` Average Punctuality - group_by() & summarise()
+
+<b>Question: Identify, using summary functions, which tram route performed the worst (in terms of punctuality) on average in 2020.</b>
+Hint: the variable for tram punctuality is called pct_on_time_average
+Hint: use dplyr::filter(??==??, ??==??) to filter out the data you need,
+then use group_by( *variable* ) %>% summarise( monthly_average = mean( ?? )) %>%
+ calc_measures() %>%  arrange(monthly_average)
+
+You could alternatively summarise the data for each Parent_Route by year instead of month, and then compare the values
+
+
+(note that this is just a quick calculation which doesn't take into account differing numbers of services on different months, but just compares the average by month)
+
+
+## 5. `r emo::ji("abacus")` Summarise the performance data by Reporting_Group
+<b>Exercise</b>
+Using the data you have ingested from the Excel file above into *peformance*, summarise by Reporting Group instead of Parent_Route to have a higher level look at the data
+(use the example code above in step 3 which shows you how to summarise by month)
+
+
+## 6.  `r emo::ji("pen")` Punctuality Questions from Reporting_Group data
+
+## `r emo::ji("tram")` Tram Performance by Reporting_group
+<b>Question: Which Tram Reporting Group did not perform significantly better in 2020 (on Punctuality)?</b>
+(note that the City Shuttle Group has no data because it contains only the City Circle tram which is not measured for on time running)
+
+- Hint: Filter by Tram, and use group = Service_Year, filter the data >=2015 & <=2020
+- Hint: Use facet_wrap(~Reporting_Group)
+- Hint: Filter for Punctuality values only
+- Hint: Use the ggplot2 code shown in the lecture slides to help you
+
+Also don't be afraid to try different options out and see if they work or not!
+
+
+
+## `r emo::ji("train")` VLine Performance 2020 compared to previous years
+<b>Question: Which Reporting_Group had a month of very poor punctuality in 2020 for V/Line? Alter your code from the previous question</b>
+
+- Hint: Filter by VLine, then as before:
+- use group = Service_Year, filter the data >=2015 
+- Hint: Use facet_wrap(~Reporting_Group)
+- Hint: Filter for Punctuality values only
+
+
+
+
+
+
+
+
