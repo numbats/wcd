@@ -522,9 +522,8 @@ curl_download(url, "Rail PT Public Monthly Figures cleaned.xlsx")
 
 ```r
 #dir(here('lectures','data','lecture-05'))
-filename&lt;-here('lectures','data','lecture-05',
+filename&lt;-here('lectures','data','lecture-05',#folders for knitting lecture
                'Rail PT Public Monthly Figures cleaned.xlsx')
-
 sheets&lt;-excel_sheets(filename)
 #This gives us the names of the sheets within this Excel file
 sheets
@@ -863,12 +862,12 @@ ggplot(dplyr::filter(perf_tidy,Service_Year &gt;= 2018 &amp; Service_Year &lt;= 
 dplyr::filter(perf_tidy, Service_Year &gt;= 2016 &amp; Service_Year &lt;= 2020) %&gt;% 
 ggplot(aes(x=factor(month.abb[Service_Month],levels=month.abb), 
            y=value, 
-           colour=Service_Year,
+           colour=as.character(Service_Year),
            group= paste(Mode, Measure,  Service_Year))) +
   geom_line() + 
   facet_grid(Measure~Mode)+
   theme(legend.position="bottom")+
-  labs( x="Month", y="Performance", group="Measure", colour="Year")
+  labs(x="Month", y="Performance", group="Measure", colour="Year")
 ```
 
 ---
