@@ -5,6 +5,7 @@ date: "Week 5"
 output: 
   html_document:
     toc: true
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +35,7 @@ suppressPackageStartupMessages(library(curl))
 #Save the file
 url<-"https://wcd.numbat.space/lectures/data/lecture-05/Rail%20PT%20Public%20Monthly%20Figures%20cleaned.xlsx"
 if(!file.exists(here("Rail PT Public Monthly Figures cleaned.xlsx"))){
-curl_download(url, "Rail PT Public Monthly Figures cleaned.xlsx")}
+curl_download(url, here("Rail PT Public Monthly Figures cleaned.xlsx"))}
 
 #or adjust this line to where you have saved the file (you might need to add *'folder','subfolder',* depending on where you have saved the file)
 filename <- here('Rail PT Public Monthly Figures cleaned.xlsx')
@@ -101,7 +102,7 @@ library(dplyr)
 Once the above function is loaded into your environment, you can use it to calculate without having to repeat that code.
 You can now alter the below code to calculate the measures and adjust what to summarise by.
 
-## 2. `r emo::ji("numbers")` Summarising data by different variables
+## 2. `r emo::ji("numbers")` Example code: Summarising data by different variables
 
 
 ```{r summarise}
@@ -119,12 +120,7 @@ Answer: "num_"
 
 the columns with 'num' contain the measures used to calculate the percentages with the calc_measures function.
 
-## 3. Example Code: Summarise by month
-
-```{r eval=FALSE}
-head(perf_month)
-```
-
+## 3. `r emo::ji("broom")` Tidy the summarised data
 
 Next step is to keep the id variables and the two performance measures we have calculated, and use pivot_longer to put the data into a tidy format
 ```{r example_tidy}
@@ -134,7 +130,7 @@ perf_month%<>%
 ```
 
 Have a look at the format of the data now:
-```{r eval=FALSE}
+```{r}
 head(perf_month)
 ```
 
@@ -160,8 +156,8 @@ performance %>% dplyr::filter(Mode=="Yarra", Service_Year==2020) %>%
 
 ## 5. `r emo::ji("abacus")` Summarise the performance data by Reporting_Group
 <b>Exercise</b>
-Using the data you have ingested from the Excel file above into *peformance*, summarise by Reporting Group instead of Parent_Route to have a higher level look at the data
-(use the example code above in step 3 which shows you how to summarise by month)
+Using the data you have ingested from the Excel file above into *performance*, summarise by Reporting Group instead of Parent_Route to have a higher level look at the data
+(use the example code above in step 2 and 3 which shows you how to summarise and tidy by month)
 
 ```{r perf_group}
 performance %>% 
@@ -177,13 +173,13 @@ The data should look like this:
 head(perf_group)
 ```
 
-## 6.  `r emo::ji("pen")` Punctuality Questions from Reporting_Group data
+## 6. `r emo::ji("pen")` Punctuality Questions from Reporting_Group data
 
 ## `r emo::ji("tram")` Tram Performance by Reporting_group
-<b>Question: Which Tram Reporting Group did not perform significantly better in 2020 (on Punctuality)?</b>
+<b>Question: Which Tram (Yarra) Reporting Group did not perform significantly better in 2020 (on Punctuality)?</b>
 (note that the City Shuttle Group has no data because it contains only the City Circle tram which is not measured for on time running)
 
-- Hint: Filter by Tram, and use group = Service_Year, filter the data >=2015 & <=2020
+- Hint: Filter by Yarra, and use group = Service_Year, filter the data >=2015
 - Hint: Use facet_wrap(~Reporting_Group)
 - Hint: Filter for Punctuality values only
 - Hint: Use the ggplot2 code shown in the lecture slides to help you
@@ -197,7 +193,9 @@ dplyr::filter(perf_group,Service_Year >= 2015  & Mode=="Yarra" & Measure=="Punct
   aes(x=factor(month.abb[Service_Month],levels=month.abb),
       y=value, colour=as.character(Service_Year), 
       group= Service_Year))+geom_line() + 
-  facet_wrap(~Reporting_Group) + labs(x="Month", y="Punctuality", colour="Year", title="Tram Punctuality by Reporting Group") 
+  facet_wrap(~Reporting_Group) +
+  labs(x="Month", y="Punctuality", colour="Year", 
+  title="Tram Punctuality by Reporting Group") +theme(legend.position = "bottom")
 ```
 
 
@@ -215,8 +213,9 @@ dplyr::filter(perf_group,Service_Year >= 2015  & Mode=="Yarra" & Measure=="Punct
 dplyr::filter(perf_group,Service_Year >= 2015 & Mode=="VLine" & Measure=="Punctuality") %>% 
   ggplot(
   aes(x=factor(month.abb[Service_Month],levels=month.abb), y=value, colour=as.character(Service_Year), 
-      group= paste(Reporting_Group, Service_Year)))+geom_line() + 
-  facet_wrap(~Reporting_Group) + labs(x="Month", y="Punctuality", colour="Year", title="VLine Punctuality by Reporting Group") 
+      group= Service_Year))+geom_line() + 
+  facet_wrap(~Reporting_Group) + labs(x="Month", y="Punctuality", colour="Year", 
+      title="VLine Punctuality by Reporting Group") +theme(legend.position = "bottom")
 ```
 
 

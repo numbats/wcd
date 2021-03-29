@@ -175,8 +175,8 @@ pre code {
 <li><a href="#objectives">🎯 Objectives</a></li>
 <li><a href="#data-preparation">🔧 Data Preparation</a></li>
 <li><a href="#load-data-and-understand-the-process">1. 💻 Load data and understand the process</a></li>
-<li><a href="#summarising-data-by-different-variables">2. 🔢 Summarising data by different variables</a></li>
-<li><a href="#example-code-summarise-by-month">3. Example Code: Summarise by month</a></li>
+<li><a href="#example-code-summarising-data-by-different-variables">2. 🔢 Example code: Summarising data by different variables</a></li>
+<li><a href="#tidy-the-summarised-data">3. 🧹 Tidy the summarised data</a></li>
 <li><a href="#average-punctuality---group_by-summarise">4. ⌚ Average Punctuality - group_by() &amp; summarise()</a></li>
 <li><a href="#summarise-the-performance-data-by-reporting_group">5. 🧮 Summarise the performance data by Reporting_Group</a></li>
 <li><a href="#punctuality-questions-from-reporting_group-data">6. 🖊 Punctuality Questions from Reporting_Group data</a></li>
@@ -239,7 +239,7 @@ performance &lt;- dplyr::select(performance,all_of(keep))</code></pre>
 </div>
 <div id="load-data-and-understand-the-process" class="section level2">
 <h2>1. 💻 Load data and understand the process</h2>
-<p><b>1. Question: What does the <em>.id=“Mode”</em> command do here?</b></p>
+<p><b>Question: What does the <em>.id=“Mode”</em> command do here?</b></p>
 <p>👀 Have a look at the data:</p>
 <pre class="r"><code>View(performance)
 head(performance)</code></pre>
@@ -262,8 +262,8 @@ library(dplyr)
 }</code></pre>
 <p>Once the above function is loaded into your environment, you can use it to calculate without having to repeat that code. You can now alter the below code to calculate the measures and adjust what to summarise by.</p>
 </div>
-<div id="summarising-data-by-different-variables" class="section level2">
-<h2>2. 🔢 Summarising data by different variables</h2>
+<div id="example-code-summarising-data-by-different-variables" class="section level2">
+<h2>2. 🔢 Example code: Summarising data by different variables</h2>
 <pre class="r"><code>library(magrittr)
 performance %&gt;% 
   group_by(Service_Date, Service_Year, Service_Month, Mode) %&gt;% 
@@ -271,8 +271,8 @@ performance %&gt;%
   calc_measures() -&gt; perf_month</code></pre>
 <p><b>Question: The code above summarises all columns starting with what string?</b></p>
 </div>
-<div id="example-code-summarise-by-month" class="section level2">
-<h2>3. Example Code: Summarise by month</h2>
+<div id="tidy-the-summarised-data" class="section level2">
+<h2>3. 🧹 Tidy the summarised data</h2>
 <p>Next step is to keep the id variables and the two performance measures we have calculated, and use pivot_longer to put the data into a tidy format</p>
 <pre class="r"><code>perf_month%&lt;&gt;% 
   select(&quot;Service_Year&quot;,&quot;Service_Month&quot;, &quot;Mode&quot;,&quot;Reliability&quot;, &quot;Punctuality&quot;)  %&gt;%  
@@ -288,16 +288,16 @@ performance %&gt;%
 </div>
 <div id="summarise-the-performance-data-by-reporting_group" class="section level2">
 <h2>5. 🧮 Summarise the performance data by Reporting_Group</h2>
-<p><b>Exercise</b> Using the data you have ingested from the Excel file above into <em>peformance</em>, summarise by Reporting Group instead of Parent_Route to have a higher level look at the data (use the example code above in step 3 which shows you how to summarise by month)</p>
+<p><b>Exercise</b> Using the data you have ingested from the Excel file above into <em>performance</em>, summarise by Reporting Group instead of Parent_Route to have a higher level look at the data (use the example code above in steps 2 and 3 which shows you how to summarise and tidy by month)</p>
 </div>
 <div id="punctuality-questions-from-reporting_group-data" class="section level2">
 <h2>6. 🖊 Punctuality Questions from Reporting_Group data</h2>
 </div>
 <div id="tram-performance-by-reporting_group" class="section level2">
 <h2>🚊 Tram Performance by Reporting_group</h2>
-<p><b>Question: Which Tram Reporting Group did not perform significantly better in 2020 (on Punctuality)?</b> (note that the City Shuttle Group has no data because it contains only the City Circle tram which is not measured for on time running)</p>
+<p><b>Question: Which Tram (Yarra) Reporting Group did not perform significantly better in 2020 (on Punctuality)?</b> (note that the City Shuttle Group has no data because it contains only the City Circle tram which is not measured for on time running)</p>
 <ul>
-<li>Hint: Filter by Tram, and use group = Service_Year, filter the data &gt;=2015 &amp; &lt;=2020</li>
+<li>Hint: Filter by Yarra, and use group = Service_Year, filter the data &gt;=2015 &amp; &lt;=2020</li>
 <li>Hint: Use facet_wrap(~Reporting_Group)</li>
 <li>Hint: Filter for Punctuality values only</li>
 <li>Hint: Use the ggplot2 code shown in the lecture slides to help you</li>

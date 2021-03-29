@@ -69,7 +69,7 @@ performance <- dplyr::select(performance,all_of(keep))
 
 ## 1. `r emo::ji("computer")` Load data and understand the process
 
-<b>1. Question: What does the *.id="Mode"* command do here?</b>
+<b>Question: What does the *.id="Mode"* command do here?</b>
 
 
 `r emo::ji("eyes")` Have a look at the data:
@@ -100,7 +100,7 @@ library(dplyr)
 Once the above function is loaded into your environment, you can use it to calculate without having to repeat that code.
 You can now alter the below code to calculate the measures and adjust what to summarise by.
 
-## 2. `r emo::ji("numbers")` Summarising data by different variables
+## 2. `r emo::ji("numbers")` Example code: Summarising data by different variables
 
 
 ```{r summarise}
@@ -115,7 +115,7 @@ performance %>%
 
 
 
-## 3. Example Code: Summarise by month
+## 3. `r emo::ji("broom")` Tidy the summarised data
 
 Next step is to keep the id variables and the two performance measures we have calculated, and use pivot_longer to put the data into a tidy format
 ```{r example_tidy}
@@ -146,17 +146,17 @@ You could alternatively summarise the data for each Parent_Route by year instead
 
 ## 5. `r emo::ji("abacus")` Summarise the performance data by Reporting_Group
 <b>Exercise</b>
-Using the data you have ingested from the Excel file above into *peformance*, summarise by Reporting Group instead of Parent_Route to have a higher level look at the data
-(use the example code above in step 3 which shows you how to summarise by month)
+Using the data you have ingested from the Excel file above into *performance*, summarise by Reporting Group instead of Parent_Route to have a higher level look at the data
+(use the example code above in steps 2 and 3 which shows you how to summarise and tidy by month)
 
 
 ## 6.  `r emo::ji("pen")` Punctuality Questions from Reporting_Group data
 
 ## `r emo::ji("tram")` Tram Performance by Reporting_group
-<b>Question: Which Tram Reporting Group did not perform significantly better in 2020 (on Punctuality)?</b>
+<b>Question: Which Tram (Yarra) Reporting Group did not perform significantly better in 2020 (on Punctuality)?</b>
 (note that the City Shuttle Group has no data because it contains only the City Circle tram which is not measured for on time running)
 
-- Hint: Filter by Tram, and use group = Service_Year, filter the data >=2015 & <=2020
+- Hint: Filter by Yarra, and use group = Service_Year, filter the data >=2015 & <=2020
 - Hint: Use facet_wrap(~Reporting_Group)
 - Hint: Filter for Punctuality values only
 - Hint: Use the ggplot2 code shown in the lecture slides to help you
