@@ -117,11 +117,6 @@ performance %>%
 
 ## 3. Example Code: Summarise by month
 
-```{r eval=FALSE}
-head(perf_month)
-```
-
-
 Next step is to keep the id variables and the two performance measures we have calculated, and use pivot_longer to put the data into a tidy format
 ```{r example_tidy}
 perf_month%<>% 

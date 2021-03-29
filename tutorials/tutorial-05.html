@@ -273,7 +273,6 @@ performance %&gt;%
 </div>
 <div id="example-code-summarise-by-month" class="section level2">
 <h2>3. Example Code: Summarise by month</h2>
-<pre class="r"><code>head(perf_month)</code></pre>
 <p>Next step is to keep the id variables and the two performance measures we have calculated, and use pivot_longer to put the data into a tidy format</p>
 <pre class="r"><code>perf_month%&lt;&gt;% 
   select(&quot;Service_Year&quot;,&quot;Service_Month&quot;, &quot;Mode&quot;,&quot;Reliability&quot;, &quot;Punctuality&quot;)  %&gt;%  
