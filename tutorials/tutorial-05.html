@@ -230,7 +230,7 @@ perf$Yarra$pct_on_time_at_dest%&lt;&gt;% as.numeric()</code></pre>
 <pre class="r"><code>perf$Yarra$pct_on_time_avg%&lt;&gt;% as.numeric()</code></pre>
 <pre><code>## Warning in perf$Yarra$pct_on_time_avg %&lt;&gt;% as.numeric(): NAs introduced by
 ## coercion</code></pre>
-<p>Don’t worry about “NAs introduced by coercion” errors the above code raises - this is because not all of the 3 sheets contain all of the variables, so forcing the data to numeric leads to NAs where one of the variables is not present for that mode.</p>
+<p>Don’t worry about “NAs introduced by coercion” errors the above code raises - this is because there are missing values in the data where City Shuttle (City Circle) services are not measured for on time running, so forcing the data to numeric leads to NAs where data points are not present, instead of the numeric data reading in as text.</p>
 <pre class="r"><code>#stick all 3 sheets together into one data frame from a list
 performance &lt;- dplyr::bind_rows(perf, .id=&quot;Mode&quot;)
 
