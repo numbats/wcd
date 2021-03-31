@@ -54,8 +54,7 @@ perf$Yarra$pct_not_on_time_at_dest%<>% as.numeric()
 perf$Yarra$pct_on_time_avg%<>% as.numeric()
 ```
 
-
-Don't worry about "NAs introduced by coercion" errors the above code raises - this is because not all of the 3 sheets contain all of the variables, so forcing the data to numeric leads to NAs where one of the variables is not present for that mode.
+Don't worry about "NAs introduced by coercion" errors the above code raises - this is because there are missing values in the data where City Shuttle (City Circle) services are not measured for on time running, so forcing the data to numeric leads to NAs where data points are not present, instead of the numeric data reading in as text.
 
 
 ```{r performance}
@@ -77,6 +76,10 @@ performance <- dplyr::select(performance,all_of(keep))
 `r emo::ji("eyes")` Have a look at the data:
 ```{r eval=FALSE}
 View(performance)
+```
+
+
+```{r}
 head(performance)
 ```
 
@@ -120,6 +123,9 @@ Answer: "num_"
 
 the columns with 'num' contain the measures used to calculate the percentages with the calc_measures function.
 
+```{r}
+head(perf_month)
+```
 ## 3. `r emo::ji("broom")` Tidy the summarised data
 
 Next step is to keep the id variables and the two performance measures we have calculated, and use pivot_longer to put the data into a tidy format
