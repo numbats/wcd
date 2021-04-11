@@ -169,10 +169,11 @@ class: font_small wider
 ```{r pisa2018, cache = TRUE, cache.lazy = FALSE, eval = FALSE}
 library(tidyverse)
 library(haven)
-pisa2018 <- read_sav(here::here("data/lecture-06", "CY07_MSU_STU_QQQ.sav")) %>% 
+pisa2018 <- read_sav("data/lecture-06/CY07_MSU_STU_QQQ.sav") %>% 
                 as_factor()  # swap code and labels for labelled factors
 dim(pisa2018)
 ```
+
 ```{r save-pisa2018, include = FALSE, eval = FALSE}
 pisa2018 %>% 
   select(CNT, ST003D02T, ST003D03T, ST004D01T, BOOKID, PV1MATH:PV10SCIE, SENWT, CNT, W_FSTUWT:W_FSTURWT80) %>% 
@@ -292,7 +293,6 @@ class: font_small
 
 .grid[.item[
 
-
 ```{r interrogate}
 pisa2018 %>% 
   filter(BOOKID == "Form 13") %>% 
@@ -300,6 +300,7 @@ pisa2018 %>%
 ```
 
 ]
+
 .item[
 
 {{content}}
@@ -489,6 +490,7 @@ class: font_smaller
 
 # Code to clean PISA data
 
+
 ```{r clean-pisa}
 pisa2018c <- pisa2018 %>% 
   mutate(CNT = as_factor(CNT)) %>%
@@ -539,6 +541,12 @@ pisa2018c %>%
        x = "Difference in mean PV1 (girl - boy)") + 
   theme_bw(base_size = 14)
 ```
+]
+.item[
+
+{{content}}
+
+]]
 
 --
 
@@ -764,7 +772,7 @@ ggplot(mathdiff_df, aes(x = diff, y = country)) +
 
 ]
 .item[
-```{r plot2, echo = FALSE, warning = FALSE, fig.height = 8.3}
+```{r plot1_ests, echo = FALSE, warning = FALSE, fig.height = 8.3}
 ```
 
 ]]
@@ -797,7 +805,7 @@ Caution point estimates
 
 .grid[.item[
 
-```{r plot2, echo = FALSE, fig.align = "center", fig.height = 8}
+```{r plot1_ests, echo = FALSE, fig.align = "center", fig.height = 8}
 ```
 ]
 .item[
@@ -1058,4 +1066,3 @@ pisa2018c %>%
 ```{r endslide, child="assets/endslide.Rmd"}
 ```
 
----
