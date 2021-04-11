@@ -1,0 +1,174 @@
+---
+title: 'ETC5512: Instructions for Lab 6'
+author: "Lauren Kenendy & Emi Tanaka"
+date: "Week 6"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+set.seed(1)
+filter <- dplyr::filter
+```
+
+
+**<span style="color:red">Please do [Preparation](#preparation) *before* the tutorial!</span>**
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will learn to
+
+- interrogate your data by studying summary statistics 
+- calculate uncertainties of point estimates
+
+
+## `r emo::ji("wrench")` Preparation  
+
+   
+1. **Set up your project folder**
+
+   Prepare a project calling it say `etc5512-week06` with folders `data` and `analysis` in the project root directory. While you don't have to follow the structure strictly, it's a good habit to maintain a project workflow.
+   
+   
+   
+1. **Getting the PISA data**
+   * To get the dataset go to  http://www.oecd.org/pisa/data/2018database/
+   * Then go under SPSS (TM) Data Files (compressed)
+   * And click on Student questionnaire data file 
+   * [OPTIONAL] The downloaded file should be called `CY07_STU_QQQ.zip` is about 494MB. Unzip and place the extracted file `CY07_MSU_STU_QQQ.sav` into the `data` folder.
+   * Download a smaller version of this data set (about 60MB) [here](https://github.com/numbats/wcd/raw/master/data/pisa2018.rds) and place it into a `data` folder.
+   
+1. **Install `haven` and `nullabor` R-packages**
+
+```{r, eval = FALSE}
+install.packages("haven", "nullabor")
+```
+
+4. **Check your project structure**
+
+   Your project structure should look like below.
+   
+```
+etc5512-week08
+├── README.md
+├── analysis
+│   └── exercise.Rmd
+├── data
+│   ├── CY07_MSU_STU_QQQ.sav [OPTIONAL]
+│   └── pisa2018.rds
+└── etc5512-week08.Rproj
+```
+
+
+
+## `r emo::ji("school")` Exercise 6A
+
+**Interrogate the PISA data**
+
+Load the PISA 2018 data in R. You may like to use the smaller data provided in `rds` format instead even if you have the `sav` format one. The `sav` file is over 1GB and so it does take a while to load the data into R. Note however that there are fast ways to import large `csv` files in R (e.g. using `data.table` or `vroom`).
+
+
+
+```{r, message = FALSE}
+library(tidyverse)
+library(haven)
+pisa2018 <- readRDS("../lectures/data/lecture-06/pisa2018.rds")
+# This is because I had a different repo setup to you to store the data where I was building the lecture slides. 
+# Your code will look like:
+# pisa2018 <- readRDS(here::here("data","pisa2018.rds")
+# OR 
+# pisa2018 <- read_csv(here::here("data", "CY07_MSU_STU_QQQ.sav"))
+```
+
+
+(a) How many students participated by each country/region?
+(b) Draw a dot plot with mean differences of math scores on the plausible value `PV1MATH` by gender for each country using the weight `W_FSTUWT`.
+(c) Now calculate this value with each set of replicate weights (e.g., `W_FSTURWT1` - `W_FSTURWT80`)
+(d) Use the formula provided on the slide `Using replicate weights with the PISA` to calculate the variance around this estimate. 
+(e)  Add error bars to your plot form (b) based on 95% confidence intervals. 
+
+# What about students who only answered a math component?
+
+(f) How many students conducted the test with `BOOKID` as Form 1-12 or 67-78 (i.e. the number of students who sat for a test that included a maths component) by each country?
+(g) Draw the same plot as b. but just based on math scores for students whose test did include a maths component.
+
+
+## `r emo::ji("student")` Exercise 6B
+
+**What about gender gap in reading and science?**
+
+Draw the same graph as 8A e. using `PV1READ` and `PV1SCIE`. What do you notice?
+
+## `r emo::ji("teacher")` Exercise 6C
+
+**Make better plots**
+
+This question is based on a working book by [Hofmann et al.](https://github.com/heike/data-technologies/blob/master/11-case-study-education.Rmd).
+
+* A problem with the dot plot is that the mean difference axis uses negative numbers, whenever the boys average is higher than the girls. A more accurate reflection on the gender difference would be to use only positive numbers, and label right of 0 to be "girls higher" and left of 0 to be "boys higher". 
+* It could also be useful to have a finer resolution of grid lines on the mean difference. 
+* `r emo::ji("wrench")` Improve the mean difference axis, so that it has positive numbers only and enhanced labels, and ticks at increments of 5 points.
+
+Add 95% confidence intervals based on the replicate weights. Color the error bar as purple for countries where the girls are significantly performing better than boys and as blue for vice versa.
+
+In other words, your plot should look like below.
+```{r, echo = FALSE, fig.height = 12, warning = FALSE, cache = T, message = FALSE}
+library(tidyverse)
+library(haven)
+pisa2018 <- readRDS("../lectures/data/lecture-06/pisa2018.rds") %>% 
+   rename(country = CNT, gender = ST004D01T, birth_year = ST003D03T) %>%
+  mutate(country = as_factor(country), gender = as_factor(gender))
+
+ncountry <- length(unique(pisa2018$country))
+
+math_df <- pisa2018 %>% 
+  mutate(BOOKID = as_factor(BOOKID)) %>%
+  filter(BOOKID %in% paste("Form", c(1:12, 67:78))) %>% 
+  mutate(gender = as_factor(gender))%>%
+  group_by(gender, country) %>% 
+  summarise(dplyr::across(c(W_FSTUWT,W_FSTURWT1:W_FSTURWT80), ~ weighted.mean(PV1MATH, w = .x ))) %>%  
+  ungroup() %>% 
+  pivot_longer(cols = W_FSTURWT1:W_FSTURWT80, 
+               names_to = "replicate_ests",
+               values_to = "PV1MATH") %>%
+  pivot_wider(id_cols = c(country,replicate_ests,W_FSTUWT),
+              names_from = gender, 
+              values_from = c(PV1MATH, W_FSTUWT)) %>% 
+  mutate(rep_female_male_diff = PV1MATH_Female - PV1MATH_Male,
+           wtd_female_male_diff = W_FSTUWT_Female - W_FSTUWT_Male)%>%  
+  group_by(country,wtd_female_male_diff) %>%
+  summarise(math_dif_var = 1/20*sum((rep_female_male_diff - wtd_female_male_diff)^2)) %>%
+  ungroup()
+
+math_df %>% 
+   mutate(country = fct_reorder(country, wtd_female_male_diff),
+          avg = wtd_female_male_diff,
+          lower = wtd_female_male_diff - 1.96*sqrt(math_dif_var),
+          upper = wtd_female_male_diff + 1.96*sqrt(math_dif_var),
+          color = case_when(
+          avg > 0 & lower > 0 ~ "purple",
+          avg < 0 & upper < 0 ~ "blue",
+          TRUE ~ "black"
+   )) %>% 
+   ggplot(aes(avg, country)) + 
+   geom_errorbar(aes(xmin = lower, 
+                     xmax = upper,
+                     color = I(color))) + 
+   geom_point() + 
+   geom_vline(xintercept = 0, color = "red") + 
+   labs(x = "The difference in mean math scores by gender",
+        y = "") + 
+   scale_x_continuous(breaks = seq(-20, 20, by = 5),
+                      labels = c(seq(20, 0, by = -5), seq(5, 20, by = 5))) + 
+   annotate("text", label = c("Boys higher", "Girls higher"), 
+            x = c(-10, 10), y = -2) + 
+   ggtitle("Gender gap in math scores by country") +
+   coord_cartesian(clip = "off", ylim = c(1, ncountry - 1)) + 
+   theme(plot.margin = unit(c(1,1,3,1), "lines"),
+         axis.title.x = element_text(size = 14, face = "bold", margin = unit(c(3, 0, 0, 0), "lines")),
+         plot.title = element_text(size = 18, face = "bold"))
+```
+
+
