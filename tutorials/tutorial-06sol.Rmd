@@ -1,0 +1,273 @@
+---
+title: 'ETC5512: Solutions for Lab 8'
+author: "Emi Tanaka"
+date: "Week 8"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE)
+set.seed(1)
+filter <- dplyr::filter
+```
+
+
+
+## `r emo::ji("school")` Exercise 6A
+
+**Interrogate the PISA data**
+
+```{r data, message = FALSE}
+library(tidyverse)
+library(haven)
+pisa2018 <- readRDS("../lectures/data/lecture-06/pisa2018.rds") %>% 
+   rename(country = CNT, gender = ST004D01T, birth_year = ST003D03T) %>%
+  mutate(country = as_factor(country), gender = as_factor(gender))
+```
+
+
+(a) The number of students who participated by country/region is given below.
+
+```{r count}
+pisa2018 %>% 
+   group_by(country) %>% 
+   tally() %>%  # shortcut for summarise(n = n())
+   knitr::kable(col.names = c("Country", "Number of particpating students"))
+```
+
+(b) Draw a dot plot with mean differences of math scores on the plausible value `PV1MATH` by gender for each country using the weight `W_FSTUWT`.
+
+```{r plot_dif_ests, fig.height=12}
+
+mathdiff_df <- pisa2018 %>% 
+  mutate(gender = as_factor(gender))%>%
+  group_by(gender, country) %>% 
+  summarise(math = weighted.mean(PV1MATH, 
+                                 w = SENWT)) %>%  #<<
+  ungroup() %>% 
+  pivot_wider(country, names_from = gender, 
+              values_from = math) %>% 
+  mutate(diff = Female - Male,
+         country = fct_reorder(country, diff)) 
+
+ggplot(mathdiff_df, aes(x = diff, y = country)) + 
+  geom_point() + 
+  geom_vline(xintercept = 0, color = "red") + 
+  labs(y = "Country", 
+       x = "Difference in mean PV1 (girl - boy)") 
+
+```
+
+(c) Now calculate this value with each set of replicate weights (e.g., `W_FSTURWT1` - `W_FSTURWT80`)
+
+```{r rep_dif_ests}
+
+rep_mathdiff_df <- pisa2018 %>%
+  group_by(gender, country) %>% 
+  summarise(dplyr::across(c(W_FSTUWT,W_FSTURWT1:W_FSTURWT80), ~ weighted.mean(PV1MATH, w = .x ))) %>% 
+  ungroup() %>% 
+  pivot_longer(cols = W_FSTURWT1:W_FSTURWT80, 
+               names_to = "replicate_ests",
+               values_to = "PV1MATH") %>%
+  pivot_wider(id_cols = c(country,replicate_ests,W_FSTUWT),
+              names_from = gender, 
+              values_from = c(PV1MATH, W_FSTUWT)) %>% 
+    mutate(rep_female_male_diff = PV1MATH_Female - PV1MATH_Male,
+           wtd_female_male_diff = W_FSTUWT_Female - W_FSTUWT_Male)
+
+```
+
+(d) Use the formula provided on the slide `Using replicate weights with the PISA` to calculate the variance around this estimate. 
+
+```{r use_rep_wts}
+final_df_math_dif <- rep_mathdiff_df %>%  
+  group_by(country,wtd_female_male_diff) %>%
+  summarise(math_dif_var = 1/20*sum((rep_female_male_diff - wtd_female_male_diff)^2)) %>%
+  ungroup()
+
+```
+
+Note that we are just considering PV1MATH (rather than math performance overall as in lectures) so we don't need to consider measurement (unlike the lecture).
+
+(e)  Add error bars to your plot form (b) based on 95% confidence intervals. 
+
+```{r error_plot_math, fig.height = 12}
+final_df_math_dif %>%  
+  mutate(country = fct_reorder(country, wtd_female_male_diff)) %>% 
+  ggplot(aes(x = wtd_female_male_diff, y = country)) + 
+  geom_point() + 
+  geom_errorbar(aes(xmin = wtd_female_male_diff - 1.96*sqrt(math_dif_var),  #<<
+                    xmax = wtd_female_male_diff + 1.96*sqrt(math_dif_var))) +
+  geom_vline(xintercept = 0, color = "red") + 
+  labs(y = "Country", 
+       x = "Difference in mean PV1 (girl - boy)") 
+
+```
+
+### What about students who only answered a math component?
+
+(f) How many students conducted the test with `BOOKID` as Form 1-12 or 67-78 (i.e. the number of students who sat for a test that included a maths component) by each country?
+
+```{r count-maths}
+pisa2018 %>% 
+   filter(BOOKID %in% paste("Form", c(1:12, 67:78))) %>% 
+   group_by(country) %>% 
+   tally() %>% 
+   knitr::kable(col.names = c("Country", "Number of students who undertook the maths component"))
+```
+
+(g) Draw the same plot as b. but just based on math scores for students whose test did include a maths component.
+
+```{r error_plot_math2, fig.height = 12, cache = TRUE}
+
+ pisa2018 %>% 
+  mutate(BOOKID = as_factor(BOOKID)) %>%
+  filter(BOOKID %in% paste("Form", c(1:12, 67:78))) %>% 
+  mutate(gender = as_factor(gender))%>%
+  group_by(gender, country) %>% 
+  summarise(dplyr::across(c(W_FSTUWT,W_FSTURWT1:W_FSTURWT80), ~ weighted.mean(PV1MATH, w = .x ))) %>%  
+  ungroup() %>% 
+  pivot_longer(cols = W_FSTURWT1:W_FSTURWT80, 
+               names_to = "replicate_ests",
+               values_to = "PV1MATH") %>%
+  pivot_wider(id_cols = c(country,replicate_ests,W_FSTUWT),
+              names_from = gender, 
+              values_from = c(PV1MATH, W_FSTUWT)) %>% 
+  mutate(rep_female_male_diff = PV1MATH_Female - PV1MATH_Male,
+           wtd_female_male_diff = W_FSTUWT_Female - W_FSTUWT_Male)%>%  
+  group_by(country,wtd_female_male_diff) %>%
+  summarise(math_dif_var = 1/20*sum((rep_female_male_diff - wtd_female_male_diff)^2)) %>%
+  ungroup()%>%  
+  mutate(country = fct_reorder(country, wtd_female_male_diff)) %>% 
+  ggplot(aes(x = wtd_female_male_diff, y = country)) + 
+  geom_point() + 
+  geom_errorbar(aes(xmin = wtd_female_male_diff - 1.96*sqrt(math_dif_var),  #<<
+                    xmax = wtd_female_male_diff + 1.96*sqrt(math_dif_var))) +
+  geom_vline(xintercept = 0, color = "red") + 
+   labs(title = "d. Mean math score gender gap by country (for students who took the maths test)",
+        y = "", x = "Mean difference between genders (Girl - Boy) in math score") 
+```
+
+## `r emo::ji("student")` Exercise 6B
+
+Using `PV1READ`
+
+```{r error_plot_read, fig.height=12}
+ pisa2018 %>% 
+  mutate(BOOKID = as_factor(BOOKID)) %>%
+  mutate(gender = as_factor(gender))%>%
+  group_by(gender, country) %>% 
+  summarise(dplyr::across(c(W_FSTUWT,W_FSTURWT1:W_FSTURWT80), ~ weighted.mean(PV1READ, w = .x ))) %>%  
+  ungroup() %>% 
+  pivot_longer(cols = W_FSTURWT1:W_FSTURWT80, 
+               names_to = "replicate_ests",
+               values_to = "PV1READ") %>%
+  pivot_wider(id_cols = c(country,replicate_ests,W_FSTUWT),
+              names_from = gender, 
+              values_from = c(PV1READ, W_FSTUWT)) %>% 
+  mutate(rep_female_male_diff = PV1READ_Female - PV1READ_Male,
+           wtd_female_male_diff = W_FSTUWT_Female - W_FSTUWT_Male)%>%  
+  group_by(country,wtd_female_male_diff) %>%
+  summarise(math_dif_var = 1/20*sum((rep_female_male_diff - wtd_female_male_diff)^2)) %>%
+  ungroup()%>%  
+  mutate(country = fct_reorder(country, wtd_female_male_diff)) %>% 
+  ggplot(aes(x = wtd_female_male_diff, y = country)) + 
+  geom_point() + 
+  geom_errorbar(aes(xmin = wtd_female_male_diff - 1.96*sqrt(math_dif_var),  #<<
+                    xmax = wtd_female_male_diff + 1.96*sqrt(math_dif_var))) +
+  geom_vline(xintercept = 0, color = "red") + 
+   labs(title = "d. Mean reading score gender gap by country",
+        y = "", x = "Mean difference between genders (Girl - Boy) in reading score") 
+```
+
+Using `PV1SCIE`
+
+```{r error_plot_science, fig.height = 12, cache = TRUE}
+
+ pisa2018 %>% 
+  mutate(BOOKID = as_factor(BOOKID)) %>%
+  filter(BOOKID %in% paste("Form", c(1:12, 67:78))) %>% 
+  mutate(gender = as_factor(gender))%>%
+  group_by(gender, country) %>% 
+  summarise(dplyr::across(c(W_FSTUWT,W_FSTURWT1:W_FSTURWT80), ~ weighted.mean(PV1SCIE, w = .x ))) %>%  
+  ungroup() %>% 
+  pivot_longer(cols = W_FSTURWT1:W_FSTURWT80, 
+               names_to = "replicate_ests",
+               values_to = "PV1SCIE") %>%
+  pivot_wider(id_cols = c(country,replicate_ests,W_FSTUWT),
+              names_from = gender, 
+              values_from = c(PV1SCIE, W_FSTUWT)) %>% 
+  mutate(rep_female_male_diff = PV1SCIE_Female - PV1SCIE_Male,
+           wtd_female_male_diff = W_FSTUWT_Female - W_FSTUWT_Male)%>%  
+  group_by(country,wtd_female_male_diff) %>%
+  summarise(math_dif_var = 1/20*sum((rep_female_male_diff - wtd_female_male_diff)^2)) %>%
+  ungroup()%>%  
+  mutate(country = fct_reorder(country, wtd_female_male_diff)) %>% 
+  ggplot(aes(x = wtd_female_male_diff, y = country)) + 
+  geom_point() + 
+  geom_errorbar(aes(xmin = wtd_female_male_diff - 1.96*sqrt(math_dif_var),  #<<
+                    xmax = wtd_female_male_diff + 1.96*sqrt(math_dif_var))) +
+  geom_vline(xintercept = 0, color = "red") + 
+   labs(title = "d. Mean science score gender gap by country",
+        y = "", x = "Mean difference between genders (Girl - Boy) in science score") 
+```
+
+From the plots we can see that girls in general perform better than boys in reading and science!
+
+## `r emo::ji("teacher")` Exercise 6C
+
+```{r better-plot, fig.height = 12, warning = FALSE, cache = T}
+ncountry <- length(unique(pisa2018$country))
+
+math_df <- pisa2018 %>% 
+  mutate(BOOKID = as_factor(BOOKID)) %>%
+  filter(BOOKID %in% paste("Form", c(1:12, 67:78))) %>% 
+  mutate(gender = as_factor(gender))%>%
+  group_by(gender, country) %>% 
+  summarise(dplyr::across(c(W_FSTUWT,W_FSTURWT1:W_FSTURWT80), ~ weighted.mean(PV1MATH, w = .x ))) %>%  
+  ungroup() %>% 
+  pivot_longer(cols = W_FSTURWT1:W_FSTURWT80, 
+               names_to = "replicate_ests",
+               values_to = "PV1MATH") %>%
+  pivot_wider(id_cols = c(country,replicate_ests,W_FSTUWT),
+              names_from = gender, 
+              values_from = c(PV1MATH, W_FSTUWT)) %>% 
+  mutate(rep_female_male_diff = PV1MATH_Female - PV1MATH_Male,
+           wtd_female_male_diff = W_FSTUWT_Female - W_FSTUWT_Male)%>%  
+  group_by(country,wtd_female_male_diff) %>%
+  summarise(math_dif_var = 1/20*sum((rep_female_male_diff - wtd_female_male_diff)^2)) %>%
+  ungroup()
+
+math_df %>% 
+   mutate(country = fct_reorder(country, wtd_female_male_diff),
+          avg = wtd_female_male_diff,
+          lower = wtd_female_male_diff - 1.96*sqrt(math_dif_var),
+          upper = wtd_female_male_diff + 1.96*sqrt(math_dif_var),
+          color = case_when(
+          avg > 0 & lower > 0 ~ "purple",
+          avg < 0 & upper < 0 ~ "blue",
+          TRUE ~ "black"
+   )) %>% 
+   ggplot(aes(avg, country)) + 
+   geom_errorbar(aes(xmin = lower, 
+                     xmax = upper,
+                     color = I(color))) + 
+   geom_point() + 
+   geom_vline(xintercept = 0, color = "red") + 
+   labs(x = "The difference in mean math scores by gender",
+        y = "") + 
+   scale_x_continuous(breaks = seq(-20, 20, by = 5),
+                      labels = c(seq(20, 0, by = -5), seq(5, 20, by = 5))) + 
+   annotate("text", label = c("Boys higher", "Girls higher"), 
+            x = c(-10, 10), y = -2) + 
+   ggtitle("Gender gap in math scores by country") +
+   coord_cartesian(clip = "off", ylim = c(1, ncountry - 1)) + 
+   theme(plot.margin = unit(c(1,1,3,1), "lines"),
+         axis.title.x = element_text(size = 14, face = "bold", margin = unit(c(3, 0, 0, 0), "lines")),
+         plot.title = element_text(size = 18, face = "bold"))
+```
+
+
+
