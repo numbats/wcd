@@ -189,10 +189,11 @@ class: font_small wider
 ```r
 library(tidyverse)
 library(haven)
-pisa2018 &lt;- read_sav(here::here("data/lecture-06", "CY07_MSU_STU_QQQ.sav")) %&gt;% 
+pisa2018 &lt;- read_sav("data/lecture-06/CY07_MSU_STU_QQQ.sav") %&gt;% 
                 as_factor()  # swap code and labels for labelled factors
 dim(pisa2018)
 ```
+
 
 
 
@@ -304,7 +305,6 @@ class: font_small
 .grid[.item[
 
 
-
 ```r
 pisa2018 %&gt;% 
   filter(BOOKID == "Form 13") %&gt;% 
@@ -312,23 +312,13 @@ pisa2018 %&gt;%
 ```
 
 ```
-## # A tibble: 20,511 x 4
-##    CNT     ST004D01T BOOKID  PV1MATH
-##    &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;dbl&gt;
-##  1 Albania Female    Form 13    417.
-##  2 Albania Male      Form 13    585.
-##  3 Albania Female    Form 13    354.
-##  4 Albania Male      Form 13    424.
-##  5 Albania Female    Form 13    451.
-##  6 Albania Female    Form 13    351.
-##  7 Albania Female    Form 13    257.
-##  8 Albania Female    Form 13    407.
-##  9 Albania Male      Form 13    495.
-## 10 Albania Female    Form 13    512.
-## # … with 20,501 more rows
+## # A tibble: 0 x 4
+## # … with 4 variables: CNT &lt;chr+lbl&gt;, ST004D01T &lt;dbl+lbl&gt;, BOOKID &lt;dbl+lbl&gt;,
+## #   PV1MATH &lt;dbl&gt;
 ```
 
 ]
+
 .item[
 
 {{content}}
@@ -497,6 +487,7 @@ class: font_smaller
 # Code to clean PISA data
 
 
+
 ```r
 pisa2018c &lt;- pisa2018 %&gt;% 
   mutate(CNT = as_factor(CNT)) %&gt;%
@@ -548,6 +539,12 @@ pisa2018c %&gt;%
        x = "Difference in mean PV1 (girl - boy)") + 
   theme_bw(base_size = 14)
 ```
+]
+.item[
+
+{{content}}
+
+]]
 
 --
 
@@ -740,7 +737,7 @@ ggplot(mathdiff_df, aes(x = diff, y = country)) +
 
 ]
 .item[
-
+&lt;img src="images/lecture-06/plot1_ests-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 ]]
 
@@ -775,7 +772,7 @@ Caution point estimates
 
 .grid[.item[
 
-
+&lt;img src="images/lecture-06/plot1_ests-1.png" width="432" style="display: block; margin: auto;" /&gt;
 ]
 .item[
 
@@ -1021,12 +1018,6 @@ Department of Econometrics and Business Statistics
 &lt;br&gt;
 
 ]
-
-
-
-
-
----
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="lib/remark-latest.min.js"></script>
