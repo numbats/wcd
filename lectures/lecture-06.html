@@ -4,19 +4,20 @@
     <title>ETC5512: Wild Caught Data</title>
     <meta charset="utf-8" />
     <meta name="author" content="Lauren Kennedy" />
+    <script src="lib/header-attrs-2.7/header-attrs.js"></script>
     <link href="lib/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
     
     <!--
     <script defer src="assets/all.min.js"></script>
-    
+
     Need below to enable css contents
-    
+
     <script>
       window.FontAwesomeConfig = {
         searchPseudoElements: true
       }
     </script>
-    
+
     -->
     <link rel="stylesheet" href="assets/font-awesome-all.css" type="text/css" />
     <link rel="stylesheet" href="assets/tachyons-addon.css" type="text/css" />
@@ -189,7 +190,7 @@ class: font_small wider
 ```r
 library(tidyverse)
 library(haven)
-pisa2018 &lt;- read_sav("data/lecture-06/CY07_MSU_STU_QQQ.sav") %&gt;% 
+pisa2018 &lt;- read_sav("../../lectures/data/lecture-06/CY07_MSU_STU_QQQ.sav") %&gt;% 
                 as_factor()  # swap code and labels for labelled factors
 dim(pisa2018)
 ```
@@ -312,9 +313,20 @@ pisa2018 %&gt;%
 ```
 
 ```
-## # A tibble: 0 x 4
-## # … with 4 variables: CNT &lt;chr+lbl&gt;, ST004D01T &lt;dbl+lbl&gt;, BOOKID &lt;dbl+lbl&gt;,
-## #   PV1MATH &lt;dbl&gt;
+## # A tibble: 20,486 x 4
+##    CNT     ST004D01T BOOKID  PV1MATH
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt;     &lt;dbl&gt;
+##  1 Albania Female    Form 13    417.
+##  2 Albania Male      Form 13    585.
+##  3 Albania Female    Form 13    354.
+##  4 Albania Male      Form 13    424.
+##  5 Albania Female    Form 13    451.
+##  6 Albania Female    Form 13    351.
+##  7 Albania Female    Form 13    257.
+##  8 Albania Female    Form 13    407.
+##  9 Albania Male      Form 13    495.
+## 10 Albania Female    Form 13    512.
+## # ... with 20,476 more rows
 ```
 
 ]
@@ -627,11 +639,11 @@ class: wider
 &lt;center&gt;
 &lt;table style="width:70%; font-size: 24pt;"&gt;
 &lt;tr&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;/center&gt;
 
-The population average of this class is .green[5.25] with .blue[5.05] for boys and .purple[6.25] for girls.
+The population average of this class is .green[4.12] with .blue[3.9] for boys and .purple[5.25] for girls.
 
 
 ---
@@ -645,14 +657,14 @@ class: wider
 
 &lt;center&gt;
 &lt;table style="width:70%; font-size: 24pt;"&gt;
-&lt;tr&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female purple'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female purple'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;/center&gt;
 
-The population average of this class is .green[5.25] with .blue[5.05] for boys and .purple[6.25] for girls.
+The population average of this class is .green[4.12] with .blue[3.9] for boys and .purple[5.25] for girls.
 
-* If we randomly select 6 students to participate in the survey, we expect 5 boys and 1 girl on average (Selected boys are 2, 8, 11, 15, 20 and girl is 1). The sample average score of selected boys is .blue[5.4] and girls is .purple[8], and total sample average is .green[5.83].
+* If we randomly select 6 students to participate in the survey, we expect 5 boys and 1 girl on average (Selected boys are 2, 3, 5, 7, 16 and girl is 2). The sample average score of selected boys is .blue[2.4] and girls is .purple[7], and total sample average is .green[3.17].
 
 
 ---
@@ -666,20 +678,20 @@ class: wider
 
 &lt;center&gt;
 &lt;table style="width:70%; font-size: 24pt;"&gt;
-&lt;tr&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female purple'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female purple'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female purple'&gt;&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-male blue'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female purple'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female purple'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female'&gt;&lt;/i&gt;&lt;/td&gt;&lt;td&gt;&lt;i class='fas fa-female purple'&gt;&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;6&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;9&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;0&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;4&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;7&lt;/td&gt;&lt;td&gt;5&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;/center&gt;
 
-The population average of this class is .green[5.25] with .blue[5.05] for boys and .purple[6.25] for girls.
+The population average of this class is .green[4.12] with .blue[3.9] for boys and .purple[5.25] for girls.
 
-* If we randomly select 6 students to participate in the survey, we expect 5 boys and 1 girl on average (Selected boys are 2, 8, 11, 15, 20 and girl is 1). The sample average score of selected boys is .blue[5.4] and girls is .purple[8], and total average is .green[5.83].
+* If we randomly select 6 students to participate in the survey, we expect 5 boys and 1 girl on average (Selected boys are 2, 3, 5, 7, 16 and girl is 2). The sample average score of selected boys is .blue[2.4] and girls is .purple[7], and total average is .green[3.17].
 
 
-* But having equal number of boys and girls in the survey is important then the inclusion probability for a boy is 3/20 while for a girl is 3/4. (Now say selected boys are 1, 11, 13 and girls are 2, 3, 4). The sample average score of selected boys is .blue[4.3333333] and girls is .purple[5.67], and total sample average is .green[5].
+* But having equal number of boys and girls in the survey is important then the inclusion probability for a boy is 3/20 while for a girl is 3/4. (Now say selected boys are 5, 11, 20 and girls are 1, 2, 4). The sample average score of selected boys is .blue[4] and girls is .purple[5.33], and total sample average is .green[4.67].
 --
 
-* The sample average score (.green[5]) is higher than it should be due to over-representation of the girls in the sample. 
+* The sample average score (.green[4.67]) is higher than it should be due to over-representation of the girls in the sample. 
 
 ---
 
@@ -696,7 +708,7 @@ class: wider
 `$$\hat{\mu} = \dfrac{1}{\sum_{i=1}^nw_i}\sum_{i=1}^n w_ix_i.$$`
 --
 
-* So the class population mean can be estimated as  `\(\dfrac{20 / 3 \times  4.3333333 + 4/3 \times 5.6666667}{20/3 + 4/3} = 4.5555556.\)` &lt;br&gt;&lt;br&gt;Notice that the estimate is closer to the class population mean.
+* So the class population mean can be estimated as  `\(\dfrac{20 / 3 \times  4 + 4/3 \times 5.3333333}{20/3 + 4/3} = 4.2222222.\)` &lt;br&gt;&lt;br&gt;Notice that the estimate is closer to the class population mean.
 --
 
 * Or you can use the `weighted.mean` function in R.   
@@ -871,10 +883,7 @@ $$
 
 * Assuming with have 80 replicates and our Fay correction *k* = .5, the formula for the variance of our estimate is:
 
-$$
-\sigma^2_{\hat{\mu}} = \frac{1}{80(1-.5)^2}\sum_{i=1}^{80} (\hat{\mu}_i - \hat{\mu})^2
-$$
-
+`$$\sigma^2_{\hat{\mu}} = \frac{1}{80(1-.5)^2}\sum_{i=1}^{80} (\hat{\mu}_i - \hat{\mu})^2$$`
 * Basically we're finding the average squared difference between the estimate of the mean estimated with each replicate weight `\(\hat{\mu}_i\)` and the mean estimated with the original weights `\(\hat{\mu}\)`. 
  
 ---
@@ -898,11 +907,9 @@ $$
 \hat{\mu} = \frac{\sum{\hat{\mu_j}}}{10}
 $$
 
-* And the estimnate for the overall variance uses Rubin's rules
+* And the estimate for the overall variance uses Rubin's rules
 
-$$
-\sigma_{\hat{mu}} = \frac{\sum_{j=1}^{10} \sigma_{\hat{\mu},j}^2}{10} + \Bigg(1 + \frac{1}{10}\Bigg)\frac{\sum_{j=1}^{10} (\hat{\mu_j} - \hat{\mu})^2}{10-1} 
-$$
+`$$\sigma_{\hat{mu}} = \frac{\sum_{j=1}^{10} \sigma_{\hat{\mu},j}^2}{10} + \Bigg(1 + \frac{1}{10}\Bigg)\frac{\sum_{j=1}^{10} (\hat{\mu_j} - \hat{\mu})^2}{10-1}$$`
 
 ---
 
@@ -1000,7 +1007,7 @@ Finally calculate the variance from measurement and the total variance. Add this
 
 background-size: cover
 class: title-slide
-background-image: url("images/bg-01.png")
+background-image: url("images/bg-03.png")
 
 &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
 
@@ -1018,6 +1025,11 @@ Department of Econometrics and Business Statistics
 &lt;br&gt;
 
 ]
+
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="lib/remark-latest.min.js"></script>

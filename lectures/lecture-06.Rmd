@@ -169,7 +169,7 @@ class: font_small wider
 ```{r pisa2018, cache = TRUE, cache.lazy = FALSE, eval = FALSE}
 library(tidyverse)
 library(haven)
-pisa2018 <- read_sav("data/lecture-06/CY07_MSU_STU_QQQ.sav") %>% 
+pisa2018 <- read_sav("../../lectures/data/lecture-06/CY07_MSU_STU_QQQ.sav") %>% 
                 as_factor()  # swap code and labels for labelled factors
 dim(pisa2018)
 ```
@@ -905,10 +905,7 @@ $$
 
 * Assuming with have 80 replicates and our Fay correction *k* = .5, the formula for the variance of our estimate is:
 
-$$
-\sigma^2_{\hat{\mu}} = \frac{1}{80(1-.5)^2}\sum_{i=1}^{80} (\hat{\mu}_i - \hat{\mu})^2
-$$
-
+$$\sigma^2_{\hat{\mu}} = \frac{1}{80(1-.5)^2}\sum_{i=1}^{80} (\hat{\mu}_i - \hat{\mu})^2$$
 * Basically we're finding the average squared difference between the estimate of the mean estimated with each replicate weight $\hat{\mu}_i$ and the mean estimated with the original weights $\hat{\mu}$. 
  
 ---
@@ -932,11 +929,9 @@ $$
 \hat{\mu} = \frac{\sum{\hat{\mu_j}}}{10}
 $$
 
-* And the estimnate for the overall variance uses Rubin's rules
+* And the estimate for the overall variance uses Rubin's rules
 
-$$
-\sigma_{\hat{mu}} = \frac{\sum_{j=1}^{10} \sigma_{\hat{\mu},j}^2}{10} + \Bigg(1 + \frac{1}{10}\Bigg)\frac{\sum_{j=1}^{10} (\hat{\mu_j} - \hat{\mu})^2}{10-1} 
-$$
+$$\sigma_{\hat{mu}} = \frac{\sum_{j=1}^{10} \sigma_{\hat{\mu},j}^2}{10} + \Bigg(1 + \frac{1}{10}\Bigg)\frac{\sum_{j=1}^{10} (\hat{\mu_j} - \hat{\mu})^2}{10-1}$$
 
 ---
 
