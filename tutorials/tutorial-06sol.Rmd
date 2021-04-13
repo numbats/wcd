@@ -45,7 +45,7 @@ mathdiff_df <- pisa2018 %>%
   mutate(gender = as_factor(gender))%>%
   group_by(gender, country) %>% 
   summarise(math = weighted.mean(PV1MATH, 
-                                 w = SENWT)) %>%  #<<
+                                 w = W_FSTUWT)) %>%  #<<
   ungroup() %>% 
   pivot_wider(country, names_from = gender, 
               values_from = math) %>% 

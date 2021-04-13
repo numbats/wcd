@@ -74,9 +74,28 @@ Load the PISA 2018 data in R. You may like to use the smaller data provided in `
 ```{r, message = FALSE}
 library(tidyverse)
 library(haven)
+```
+
+```{r, eval = FALSE}
+pisa2018 <- read_sav("../../lectures/data/lecture-06/CY07_MSU_STU_QQQ.sav") %>% 
+                as_factor()  # swap code and labels for labelled factors
+
+pisa2018 %>% 
+  select(CNT, ST003D02T, ST003D03T, ST004D01T, BOOKID, PV1MATH:PV10SCIE, SENWT, CNT, W_FSTUWT:W_FSTURWT80) %>% 
+  saveRDS("data/lecture-06/pisa2018.rds")
+```
+
+```{r}
 pisa2018 <- readRDS("../lectures/data/lecture-06/pisa2018.rds")
 # This is because I had a different repo setup to you to store the data where I was building the lecture slides. 
 # Your code will look like:
+# pisa2018 <- read_sav("here::here("data",""CY07_MSU_STU_QQQ.sav") %>% 
+#                 as_factor()  # swap code and labels for labelled factors
+# 
+# pisa2018 %>% 
+#   select(CNT, ST003D02T, ST003D03T, ST004D01T, BOOKID, PV1MATH:PV10SCIE, SENWT, CNT, W_FSTUWT:W_FSTURWT80) %>% 
+#   saveRDS("data/lecture-06/pisa2018.rds")
+
 # pisa2018 <- readRDS(here::here("data","pisa2018.rds")
 # OR 
 # pisa2018 <- read_csv(here::here("data", "CY07_MSU_STU_QQQ.sav"))
