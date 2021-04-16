@@ -1,0 +1,273 @@
+---
+title: 'ETC5512: Instructions for Tutorial 7'
+author: "Emi Tanaka"
+date: "Week 7 Australian Census"
+output: 
+  html_document:
+    toc: true
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, eval = FALSE)
+```
+
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will learn 
+
+- a bit about how to structure your projects
+- to wrangle messy data into tidy data
+
+
+## `r emo::ji("wrench")` Preparation  
+
+
+1. **Set up your project folder**
+
+   * RStudio > New Project > New Directory > New Project
+   
+     Save it in a directory of your choosing. 
+   
+     You can call the project what you like, e.g. `etc5512-week07`.
+   
+   * Create folders called `data` and `analysis` in the project root directory.
+
+   
+   * Create an `exercise.Rmd` under the `analysis` folder.
+   
+   * Create a README.md file in the project root directory. The easiest way to do this is to run the R command `usethis::use_readme_md()` from your project. Your README.md should explain the main purpose of the project.
+
+
+1. **Getting the census data**
+  
+   * Go to https://datapacks.censusdata.abs.gov.au/datapacks/ selecting the following options:
+     * 2016 Census Datapacks
+     * General Community Profile 
+     * All geographies
+     * Vic 
+
+     The downloaded file would be called `2016_GCP_ALL_for_Vic_short-header.zip` with size of 118 MB.
+   
+   * Unzip this file and save the folder in under `data` folder.
+    
+
+1. **Installing relevant R-packages**
+
+```{r, eval = FALSE}
+install.packages(c("remotes", "usethis", "here", "skimr", "unglue"))
+```
+
+2. **Check your project structure**
+
+   Your project structure should look like below.
+
+```
+etc5512-week07
+├── README.md
+├── analysis
+│   └── exercise.Rmd
+├── data
+│   └── 2016_GCP_ALL_for_Vic_short-header
+│       └── 2016\ Census\ GCP\ All\ Geographies\ for\ VIC
+│           ├── SA1
+│           │   └── VIC
+│           │       ├── 2016Census_G17A_VIC_SA1.csv
+│           │       ├── 2016Census_G17B_VIC_SA1.csv
+│           │       └── 2016Census_G17C_VIC_SA1.csv
+│           └── STE
+│               └── VIC
+│                   ├── 2016Census_G17A_VIC_STE.csv
+│                   ├── 2016Census_G17B_VIC_STE.csv
+│                   └── 2016Census_G17C_VIC_STE.csv
+└── etc5512-week07.Rproj
+```
+
+   * Note that it's not desirable to have spaces in your file or folder name, as you may need escape spaces by preceding with `\` like above
+   * <span style="color:red">Put your analysis from the exercises into the `analysis/exercise.Rmd`.</span>
+   
+## `r emo::ji("lifter")` Exercise 7A
+
+**Practice regular expression**
+
+Consider the following vector `cats`. The first letter has information on the sex, followed by minimum income, maximum income, minimum age, and maximum age separated by `_`. Wrangle this vector to extract the information on its own vector or a column in a data frame.
+
+```{r}
+cats <- c("F_300_399_15_19_yrs", "F_1_149_35_44_yrs", "M_2000_2999_75_84_yrs" )
+```
+
+
+
+
+## `r emo::ji("lifter")` Exercise 7B
+
+**Tidy your census data**
+
+Start with loading the `tidyverse` package and setting hte path ways to the data. 
+
+```{r setup, eval = TRUE}
+library(tidyverse)
+library(unglue)
+filter <- dplyr::filter
+census_path <- here::here("data/2016_GCP_ALL_for_Vic_short-header/2016 Census GCP All Geographies for VIC/{geo}/VIC/")
+STE_paths <- glue::glue(census_path, "2016Census_G17{alpha}_VIC_STE.csv", 
+                        geo = "STE", alpha = c("A", "B", "C"))
+SA1_paths <- glue::glue(census_path, "2016Census_G17{alpha}_VIC_SA1.csv", 
+                        geo = "SA1", alpha = c("A", "B", "C"))
+```
+
+To load the data we will use the `here` function from the `here` package `r emo::ji("package")`. Note that we can use a function from a package without loading the package (i.e. without `library(package)`) by using the form `package::function`. The path argument parsed to `here::here` will be referenced with respect to `Rproj` is. This is particularly helpful if your project structure becomes deeply nested. 
+
+```
+etc5512-week07
+├── analysis
+│   └── exercise.Rmd      # << analysis are here
+├── data                  # << data are here 
+│               
+│  
+└── etc5512-week07.Rproj  # << make reference point `here`
+```
+
+
+First focus on `2016Census_G17A_VIC_STE.csv` alone. 
+
+To examine the data in the first instance use `skimr::skim`.
+
+```{r}
+STE_G17A <- read_csv(STE_paths[1])
+skimr::skim(STE_G17A)
+```
+* How many rows and columns does `STE_G17A` contain?
+* Remove any columns with the header that contains the strings `Tot` (totals) or `PI_NS` (personal income not stated).
+* Wrangle your data so that it has the columns: `count`, `sex`, `age_min`, `age_max` `income_min`, and `income_max`. Below in the hint is some code to get you started (you will need to replace all the `...`s). For those with no upper bound (e.g. 85 over, 3000 or more), you can use `Inf` in R to signify $\infty$.
+
+<details style = "padding-left:50px;">
+<summary>Hint</summary>
+```{r, eval = FALSE}
+STE_G17Atidy <- pivot_longer(STE_G17A, -STE_CODE_2016, 
+                             names_to = "category", values_to = "count") %>% 
+   filter(!str_detect(category, "Tot") | ... ) %>% 
+   unglue_unnest(category, 
+                   c("{sex=[MFP]}_{income_min=\\d+}_{income_max=(\\d+|more)}_{age_min=\\d+}_{age_max=\\d+}_yrs",
+                     "{sex=[MFP]}_{income_min=\\d+}_{income_max=(\\d+|more)}_{age_min=\\d+}ov",
+                     "{sex=[MFP]}_{income_min=(Neg_Nil_income)}_{age_min=\\d+}_{age_max=\\d+}_yrs",
+                     "{sex=[MFP]}_{income_min=(Negtve_Nil_incme)}_{age_min=\\d+}_yrs_ovr"), 
+                   remove = FALSE) %>% 
+   mutate(...)
+```
+</details>
+
+
+The first 10 rows of `STE_G17Atidy` should look similar to below.
+
+
+```{r, echo = FALSE, eval = TRUE, message = FALSE}
+clean_G17 <- function(df, id) {
+   df %>% 
+      pivot_longer(-{{id}},
+                   names_to = "category",
+                   values_to = "count") %>% 
+      filter(!str_detect(category, "Tot") & !str_detect(category, "PI_NS")) %>%
+      unglue_unnest(category, 
+                   c("{sex=[MFP]}_{income_min=\\d+}_{income_max=(\\d+|more)}_{age_min=\\d+}_{age_max=\\d+}_yrs",
+                     "{sex=[MFP]}_{income_min=\\d+}_{income_max=(\\d+|more)}_{age_min=\\d+}ov",
+                     "{sex=[MFP]}_{income_min=(Neg_Nil_income)}_{age_min=\\d+}_{age_max=\\d+}_yrs",
+                     "{sex=[MFP]}_{income_min=(Negtve_Nil_incme)}_{age_min=\\d+}_yrs_ovr"), 
+                   remove = FALSE) %>% 
+      mutate(income_max = as.numeric(income_max),
+             income_max = case_when(str_detect(income_min, "Neg") ~ 0, 
+                                               is.na(income_max) ~ Inf,
+                                                            TRUE ~ income_max),
+             income_min = ifelse(income_max==0, -Inf, income_min),
+             age_max = ifelse(is.na(age_max), Inf, age_max)) %>% 
+      mutate(across(starts_with("income") | starts_with("age"), as.numeric))
+}
+
+STE_G17A <- read_csv(STE_paths[1])
+STE_G17B <- read_csv(STE_paths[2])
+STE_G17C <- read_csv(STE_paths[3])
+STE_G17Atidy <- clean_G17(STE_G17A, STE_CODE_2016) 
+STE_G17Btidy <- clean_G17(STE_G17B, STE_CODE_2016) 
+STE_G17Ctidy <- clean_G17(STE_G17C, STE_CODE_2016) 
+
+
+STE_G17Atidy %>% head(10) %>% knitr::kable()
+```
+
+
+* Repeat to make `STE_G17B` and `STE_G17C` tidy.
+* Combine `STE_G17Atidy`, `STE_G17Btidy` and `STE_G17Ctidy` data by binding rows and save it to the variable `STE_G17tidy`.
+
+<details style = "padding-left:50px;">
+<summary>Hint</summary>
+```{r, eval = TRUE}
+STE_G17tidy <- bind_rows(STE_G17Atidy, 
+                         STE_G17Btidy,
+                         STE_G17Ctidy)
+```
+</details>
+
+* Repeat now to get `SA1_G17tidy`.
+
+
+## `r emo::ji("running")` Exercise 7C
+
+**Quality check your census data**
+
+* According to the data from 7A, how many people are there in Victoria? If you check [http://www.population.net.au](http://www.population.net.au/population-of-victoria/), there are 6.03 million people in 2016 at Victoria. Does it look right? Are we missing some people in the data? If so, what kinds of people are we missing?
+* What is the minimum and maximum of values for `count`? Do the range and categories for each column look right?
+* Draw a barplot (using `ggplot` or otherwise) of the number people in Victoria by:
+  1. sex
+  2. age group
+  3. income group
+  4. sex and age group
+  5. sex and income group
+  6. age and income group
+  7. sex, age and income group
+
+<details style = "padding-left:50px;">
+<summary>Hint: click here for a code for the 7th barplot </summary>
+  
+```{r, eval = TRUE}
+STE_G17tidy %>% 
+   # remove `P` (should be a combination of female + male)
+   filter(sex!="P") %>% 
+   # make pretty age and income factors 
+   mutate(income = fct_reorder(paste0(scales::dollar(income_min, big.mark = ""), "-", income_max), income_min),
+          income = fct_recode(income, 
+                              "Nil or negative" = "< $0",
+                              "$3000 or more" = "> $3000"),
+             age = fct_reorder(paste0(age_min, "-", age_max), age_min),
+             age = fct_recode(age, "over 85" = ">85")) %>% 
+   # plot
+   ggplot(aes(x = age, y = count, fill = sex)) + 
+      geom_col(position = "dodge") + 
+   facet_wrap(~income) + 
+   # let's not use the default theme
+   theme_bw(base_size = 12) + 
+   theme(axis.text.x = element_text(angle = 90, vjust = 0.3)) + 
+   ggtitle("Income, sex & age distribution in Victoria from 2016 Census") 
+
+   
+```
+  
+  
+</details>
+  
+* Do the graphs look right? Discuss with your classmates.
+
+
+
+## `r emo::ji("dancing")` Exercise 7D
+
+**Extract statistics from your tidy census data**
+
+According to the 2016 Census data:
+
+* How many women in Victoria are aged between 15-54 years old?
+* What is the proportion of people in Victoria that are 25-34 years old (inclusive) and earn $1750 or more per week?
+* Suppose I randomly select a man from all the man aged 25-44 years old in Victoria. What is the probability that the man I selected earns less than $1500 per week?
+
+
+

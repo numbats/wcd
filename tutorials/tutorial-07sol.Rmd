@@ -1,0 +1,243 @@
+---
+title: 'ETC5512: Solutions for Tutorial 7'
+author: "Emi Tanaka"
+date: "Week 7 Australian Census"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(message = FALSE, 
+                      warning = FALSE, 
+                      cache = TRUE,
+                      cache.path = "cache/", 
+                      fig.path = "images/tutorial-07/")
+```
+
+
+```{r setup}
+library(tidyverse)
+library(unglue)
+# sometimes stats::filter is used instead of dplyr::filter
+# so we explictly define which `filter` here
+filter <- dplyr::filter
+```
+
+## `r emo::ji("lifter")` Exercise 7A
+
+
+```{r}
+cats <- c("F_300_399_15_19_yrs", "F_1_149_35_44_yrs", "M_2000_2999_75_84_yrs" )
+
+## multiple ways to do this!!
+
+cats %>% 
+   unglue_data("{sex=[FM]}_{income_min=\\d+}_{income_max=\\d+}_{age_min=\\d+}_{age_max=\\d+}_yrs")
+
+data.frame(cats=cats) %>% 
+   extract(cats, c("sex", "income_min", "income_age", "age_min", "age_max"), "([FM])_(\\d+)_(\\d+)_(\\d+)_(\\d+)_yrs")
+```
+
+
+## `r emo::ji("lifter")` Exercise 7B
+
+```{r paths}
+census_path <- here::here("data/2016_GCP_ALL_for_Vic_short-header/2016 Census GCP All Geographies for VIC/{geo}/VIC/")
+STE_paths <- glue::glue(census_path, "2016Census_G17{alpha}_VIC_STE.csv", 
+                        geo = "STE", alpha = c("A", "B", "C"))
+SA1_paths <- glue::glue(census_path, "2016Census_G17{alpha}_VIC_SA1.csv", 
+                        geo = "SA1", alpha = c("A", "B", "C"))
+```
+
+```{r census-data}
+STE_G17A <- read_csv(STE_paths[1])
+```
+
+* There are `r nrow(STE_G17A)` row and `r ncol(STE_G17A)` columns.
+* To reduce repetition in my code, I'm using a functional programming approach using `purrr` (which contains the `map` functions). This is more advanced programming so feel free to just to repeat yourself for now!
+
+
+```{r tidyG17}
+# first make a function to clean any G17 tables 
+# note the first column has a different name corresponding to the area code
+# parse this first column name as `id` 
+# (note: this seems to take a long time for some reason)
+clean_G17 <- function(df, id) {
+   df %>% 
+      pivot_longer(-{{id}},
+                   names_to = "category",
+                   values_to = "count") %>% 
+      filter(!str_detect(category, "Tot") & !str_detect(category, "PI_NS")) %>%
+      unglue_unnest(category, 
+                   c("{sex=[MFP]}_{income_min=\\d+}_{income_max=(\\d+|more)}_{age_min=\\d+}_{age_max=\\d+}_yrs",
+                     "{sex=[MFP]}_{income_min=\\d+}_{income_max=(\\d+|more)}_{age_min=\\d+}ov",
+                     "{sex=[MFP]}_{income_min=(Neg_Nil_income)}_{age_min=\\d+}_{age_max=\\d+}_yrs",
+                     "{sex=[MFP]}_{income_min=(Neg_Nil_incme)}_{age_min=\\d+}_yrs_ovr",
+                     "{sex=[MFP]}_{income_min=(Negtve_Nil_incme)}_{age_min=\\d+}_yrs_ovr"), 
+                   remove = FALSE) %>% 
+      mutate(income_max = as.numeric(income_max),
+             income_max = case_when(str_detect(income_min, "Neg") ~ 0, 
+                                               is.na(income_max) ~ Inf,
+                                                            TRUE ~ income_max),
+             income_min = ifelse(income_max==0, -Inf, income_min),
+             age_max = ifelse(is.na(age_max), Inf, age_max)) %>% 
+      mutate(across(starts_with("income") | starts_with("age"), as.numeric))
+}
+
+# purrr::map_dfr (part of tidyverse) will iterate each df in list and apply cleaning function
+# the `_dfr` part signifies that the return output will be concatenated as data frame by row
+
+
+STE_G17tidy <- map_dfr(STE_paths, ~{
+                              df <- read_csv(.x)
+                              clean_G17(df, STE_CODE_2016)
+                           })
+SA1_G17tidy <- map_dfr(SA1_paths, ~{
+                              df <- read_csv(.x)
+                              clean_G17(df, SA1_7DIGITCODE_2016)
+                           })
+```
+
+## `r emo::ji("running")` Exercise 7D
+
+```{r vicpopsize}
+vic_pop_sizes <- map_dbl(list(STE_G17tidy, SA1_G17tidy), ~{
+                        .x %>% 
+                           filter(sex == "P") %>% 
+                           pull(count) %>% 
+                           sum() 
+                        }) %>% 
+   setNames(nm = c("STE", "SA1"))
+```
+* If we use the `STE` data, we have `r scales::comma(vic_pop_sizes["STE"])` people *over 15 years old* but in `SA1` data, we have `r scales::comma(vic_pop_sizes["SA1"])`. The difference of `r vic_pop_sizes["STE"] - vic_pop_sizes["STA"]` is likely attributed to the small random adjustments to the counts (for confidentiality). In particular, SA1 represents a smaller region and thus small numbers are likely to identify particular individuals. It is not surprising then that there will be more adjustments made to SA1 data. The STE data is aggregated at state level so it would more accurately reflect the true number of people over 15 years old. This does not reflect the total population in Victoria, however, as it does not account for those under 15 years old. The population size by age in Victoria from 2016 census can be found [here](https://quickstats.censusdata.abs.gov.au/census_services/getproduct/census/2016/quickstat/2?opendocument).
+
+
+* The minimum and maximum values of `count` is `r min(STE_G17tidy$count)` and `r scales::comma(max(STE_G17tidy$count))` (for STE, or `r min(SA1_G17tidy$count)` and `r scales::comma(max(SA1_G17tidy$count))`). 
+
+* Before drawing the boxplots, we'll just wrangle the data to remove the redundant rows and make labels that are more pretty for the graph. You could also consider merging the 15-19 and 20-24 years old together so that the range is the same as other categories (except the one over 85 years old). The code and output are all shown below. There are a number of things you may notice from the graphs, such as, there are more females than males in almost all age groups in Victoria; higher income earners are still male dominant (even in younger age groups); females do appear to live longer.
+  
+```{r prettify4plot, cache = FALSE}
+STE_G17tidy2 <- STE_G17tidy %>% 
+   # remove `both` (should be a combination of female + male)
+   filter(sex!="P") %>% 
+   # make pretty age and income factors 
+   mutate(income = fct_reorder(paste0(scales::dollar(income_min, big.mark = ""), "-", income_max), income_min),
+          income = fct_recode(income, 
+                              "Nil or negative" = "-Inf-0",
+                              "$3000 or more" = "$3000-Inf"),
+             age = fct_reorder(paste0(age_min, "-", age_max), age_min),
+             age = fct_recode(age, "over 85" = "85-Inf"))
+```
+
+```{r plot1, cache = FALSE}
+STE_G17tidy2 %>% 
+   group_by(sex) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = sex, y = count)) + 
+      ggtitle("1. Sex distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12)
+```
+
+```{r plot2, cache = FALSE}
+STE_G17tidy2 %>% 
+   group_by(age) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = age, y = count)) + 
+      ggtitle("2. Age distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12)
+```
+
+```{r plot3, cache = FALSE}
+STE_G17tidy2 %>% 
+   group_by(income) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = income, y = count)) + 
+      ggtitle("3. Income distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12) + 
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.3))
+```
+
+```{r plot4, cache = FALSE}
+STE_G17tidy2 %>% 
+   group_by(sex, age) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = age, y = count, fill = sex), position = "dodge") +
+      ggtitle("4. Sex & age distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12)
+```
+
+```{r plot5, cache = FALSE}
+STE_G17tidy2 %>% 
+   group_by(sex, income) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = income, y = count, fill = sex), position = "dodge") +
+      ggtitle("5. Sex & income distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12) + 
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.3))
+```
+
+```{r plot6, cache = FALSE}
+STE_G17tidy2 %>% 
+   group_by(age, income) %>% 
+   summarise(count = sum(count)) %>% 
+   ggplot() + 
+      geom_col(aes(x = age, y = count), position = "dodge") +
+      facet_wrap(~income) + 
+      ggtitle("6. Age & income distribution in Victoria from 2016 Census") + 
+      theme_bw(base_size = 12) +
+      theme(axis.text.x = element_text(angle = 90, vjust = 0.3))
+```
+
+```{r plot7, cache = FALSE}
+STE_G17tidy2 %>% 
+   ggplot(aes(x = age, y = count, fill = sex)) + 
+      geom_col(position = "dodge") + 
+   facet_wrap(~income) + 
+   theme_bw(base_size = 12) + 
+   theme(axis.text.x = element_text(angle = 90, vjust = 0.3)) + 
+   ggtitle("7. Income, sex & age distribution in Victoria from 2016 Census") 
+```
+
+
+
+## `r emo::ji("dancing")` Exercise 7C
+
+
+We will use the STE data to extract the relevant statistics. 
+```{r counts}
+n_women_15_54 <- STE_G17tidy %>% 
+   filter(age_min >=15 & age_max <= 54 & sex == "F") %>% 
+   pull(count) %>% 
+   sum()
+
+n_vic <- 5926624 # This number needs to be extracted from https://quickstats.censusdata.abs.gov.au/census_services/getproduct/census/2016/quickstat/2?opendocument
+
+n_people_25_34_earn_1750_or_more <-  STE_G17tidy %>% 
+   filter(age_min >=25 & age_max <= 34 & sex == "P" & income_min >= 1750) %>% 
+   pull(count) %>% 
+   sum()
+
+n_man_25_44 <-  STE_G17tidy %>% 
+   filter(age_min >=25 & age_max <= 44 & sex == "M") %>% 
+   pull(count) %>% 
+   sum()
+
+n_man_25_44_earn_1500_or_less <-  STE_G17tidy %>% 
+   filter(age_min >=25 & age_max <= 44 & sex == "M" & income_max <= 1500) %>% 
+   pull(count) %>% 
+   sum()
+```
+According to the 2016 Census data:
+
+* There are `r scales::comma(n_women_15_54)` women in Victoria are aged between 15-54 years old.
+* The proportion of people in Victoria that are 25-34 years old (inclusive) and earn $1750 or more per week is `r n_people_25_34_earn_1750_or_more / n_vic`.
+* If I randomly select a man from all the man aged 25-44 years old in Victoria,  the probability that the man I selected earns less than $1500 per week is `r n_man_25_44_earn_1500_or_less / n_man_25_44`.
+
+
