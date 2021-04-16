@@ -28,7 +28,7 @@ schedule:
   - week: 7 (Apr 19)
     lecturer: Emi
     topic: "Case study: Australian census"
-    readings: "Read through the [DataPacks User Guide](https://www.abs.gov.au/ausstats/abs@.nsf/Latestproducts/2916.0Main%20Features202016?opendocument&tabname=Summary&prodno=2916.0&issue=2016&num=&view=)"
+    readings: "Extra reading: the [DataPacks User Guide](https://www.abs.gov.au/ausstats/abs@.nsf/Latestproducts/2916.0Main%20Features202016?opendocument&tabname=Summary&prodno=2916.0&issue=2016&num=&view=)"
   - week: 8 (Apr 26)
     lecturer: Emi
     topic: "Case study: Australian election data"
