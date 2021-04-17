@@ -313,12 +313,12 @@ Navigating data and deducing what it is often requires you to do some <b>"detect
 
 ---
 
-class: center middle
+class: center middle bg-gray
 
 .aim-box.w-70.tl[
 Today, 
 
-* We'll navigate through the personal income data from the 2016 census together for you to get some "detective" experience
+* We'll navigate through the **personal income data from the 2016 census** together for you to get some "detective" experience
 * You'll learn to manipulate strings and a bit about **regular expressions** to deal with string data. 
 * You'll learn about **tidy data**. 
 ]
@@ -349,15 +349,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_CED.csv
+                    2016Census_G01_VIC_CED.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_CED.csv
+                    2016Census_G02_VIC_CED.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_CED.csv
+                    ...
                   </li>
                   </ul>
                   </li>
@@ -373,15 +372,14 @@ Today,
                   <ul>
                     <li>
                       <i class="fa fa-file"></i>
-                      2016Census_G17A_VIC_GCCSA.csv
+                      2016Census_G01_VIC_GCCSA.csv
                     </li>
                     <li>
                       <i class="fa fa-file"></i>
-                      2016Census_G17B_VIC_GCCSA.csv
+                      2016Census_G01_VIC_GCCSA.csv
                     </li>
                     <li>
-                      <i class="fa fa-file"></i>
-                      2016Census_G17C_VIC_GCCSA.csv
+                      ...
                     </li>
                   </ul>
                   </li>
@@ -397,15 +395,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_LGA.csv
+                    2016Census_G01_VIC_LGA.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_LGA.csv
+                    2016Census_G02_VIC_LGA.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_LGA.csv
+                    ...
                   </li>
                 </ul>
                   </li>
@@ -421,15 +418,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_POA.csv
+                    2016Census_G01_VIC_POA.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_POA.csv
+                    2016Census_G02_VIC_POA.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_POA.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -445,15 +441,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_RA.csv
+                    2016Census_G01_VIC_RA.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_RA.csv
+                    2016Census_G02_VIC_RA.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_RA.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -469,15 +464,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SA1.csv
+                    2016Census_G01_VIC_SA1.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SA1.csv
+                    2016Census_G92_VIC_SA1.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SA1.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -493,15 +487,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SA2.csv
+                    2016Census_G01_VIC_SA2.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SA2.csv
+                    2016Census_G02_VIC_SA2.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SA2.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -516,15 +509,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SA3.csv
+                    2016Census_G01_VIC_SA3.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SA3.csv
+                    2016Census_G01_VIC_SA3.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SA3.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -540,15 +532,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SA4.csv
+                    2016Census_G01_VIC_SA4.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SA4.csv
+                    2016Census_G02_VIC_SA4.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SA4.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -564,15 +555,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SED.csv
+                    2016Census_G01_VIC_SED.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SED.csv
+                    2016Census_G02_VIC_SED.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SED.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -588,15 +578,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SOS.csv
+                    2016Census_G01_VIC_SOS.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SOS.csv
+                    2016Census_G02_VIC_SOS.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SOS.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -612,15 +601,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SOSR.csv
+                    2016Census_G01_VIC_SOSR.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SOSR.csv
+                    2016Census_G02_VIC_SOSR.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SOSR.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -636,15 +624,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SSC.csv
+                    2016Census_G01_VIC_SSC.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SSC.csv
+                    2016Census_G02_VIC_SSC.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SSC.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -660,15 +647,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_STE.csv
+                    2016Census_G01_VIC_STE.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_STE.csv
+                    2016Census_G02_VIC_STE.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_STE.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -684,15 +670,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_SUA.csv
+                    2016Census_G01_VIC_SUA.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_SUA.csv
+                    2016Census_G02_VIC_SUA.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_SUA.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -708,15 +693,14 @@ Today,
                   <ul>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_UCL.csv
+                    2016Census_G01_VIC_UCL.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_UCL.csv
+                    2016Census_G02_VIC_UCL.csv
                   </li>
                   <li>
-                    <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_UCL.csv
+                    ...
                   </li>
                 </ul>
               </li>
@@ -946,10 +930,12 @@ DT::datatable(tibble::tibble(`Table number` = c("G17", "G28", "G29", "..."), `Ta
 
 # Finding Table G17
 
-Where is Table G17?
 
-<div class="tree">
-<ul class="directory-list">
+
+<div class="flex">
+<div class="tree w-50">
+
+<ul>
   <li>
     <i class="fa fa-folder-open"></i>
     2016_GCP_ALL_for_Vic_short-header
@@ -957,86 +943,422 @@ Where is Table G17?
       <li>
         <i class="fa fa-folder-open"></i>
         2016 Census GCP All Geographies for VIC
-        <ul>
+        <ul class="directory-list">
           <li>
             <i class="fa fa-folder-open"></i>
             CED
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_CED.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_CED.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_CED.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             GCCSA
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_GCCSA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_GCCSA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_GCCSA.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             LGA
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_LGA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_LGA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_LGA.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             POA
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_POA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_POA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_POA.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             RA
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_RA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_RA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_RA.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SA1
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SA1.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SA1.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SA1.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SA2
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SA2.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SA2.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SA2.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SA3
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SA3.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SA3.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SA3.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SA4
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SA4.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SA4.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SA4.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SED
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SED.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SED.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SED.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SOS
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SOS.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SOS.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SOS.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SOSR
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SOSR.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SOSR.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SOSR.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SSC
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SSC.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SSC.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SSC.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             STE
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_STE.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_STE.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_STE.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             SUA
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_SUA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_SUA.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_SUA.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
           <li>
             <i class="fa fa-folder-open"></i>
             UCL
-            
+            <ul>
+              <li>
+                <i class="fa fa-folder-open"></i>
+                VIC
+                <ul>
+                <li>...</li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17A_VIC_UCL.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17B_VIC_UCL.csv
+                  </li>
+                  <li>
+                    <i class="fa fa-file"></i>
+                    2016Census_G17C_VIC_UCL.csv
+                  </li>
+                  <li>...</li>
+                </ul>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>
@@ -1050,7 +1372,13 @@ Where is Table G17?
       </li>
     </ul>
   </li>
-</ul></div>
+</ul>
+</div>
+<div class="w-45">
+<li>Where is Table G17?</li>
+<li>Which Table G17?</li>
+</div>
+</div>
 
 ---
 
@@ -1108,9 +1436,10 @@ Let's go with the easy one: .monash-blue[`STE` Victoria].
         <i class="fa fa-folder-open"></i>
         2016 Census GCP All Geographies for VIC
         <ul>
+        <li>...</li>
           <li>
             <i class="fa fa-folder-open"></i>
-            CED
+            STE
             <ul>
               <li>
                 <i class="fa fa-folder-open"></i>
@@ -1119,20 +1448,22 @@ Let's go with the easy one: .monash-blue[`STE` Victoria].
             <li>...</li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17A_VIC_CED.csv
+                    2016Census_G17A_VIC_STE.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17B_VIC_CED.csv
+                    2016Census_G17B_VIC_STE.csv
                   </li>
                   <li>
                     <i class="fa fa-file"></i>
-                    2016Census_G17C_VIC_CED.csv
+                    2016Census_G17C_VIC_STE.csv
                   </li>
             <li>...</li>
                 </ul>
               </li>
+              
             </ul>
+            <li>...</li>
           </li>
 </ul>
 </div>
@@ -1155,7 +1486,7 @@ dfB <- read.csv(here::here("data/2016_GCP_ALL_for_Vic_short-header/2016 Census G
 dfC <- read.csv(here::here("data/2016_GCP_ALL_for_Vic_short-header/2016 Census GCP All Geographies for VIC/STE/VIC/2016Census_G17C_VIC_STE.csv"))
 ```
 
-##  .monash-gray80[2016Census_G17]A.monash-gray80[_VIC_STE.csv]
+.f3[.monash-gray80[2016Census_G17]A.monash-gray80[_VIC_STE.csv]]
 
 ```{r, echo = F}
 DT::datatable(dfA,
@@ -1167,7 +1498,7 @@ DT::datatable(dfA,
 
 <br>
 
-##  .monash-gray80[2016Census_G17]B.monash-gray80[_VIC_STE.csv]
+.f3[.monash-gray80[2016Census_G17]B.monash-gray80[_VIC_STE.csv]]
 
 ```{r, echo = F}
 DT::datatable(dfB,
@@ -1178,7 +1509,7 @@ DT::datatable(dfB,
 
 <br>
 
-## .monash-gray80[2016Census_G17]C.monash-gray80[_VIC_STE.csv]
+.f3[.monash-gray80[2016Census_G17]C.monash-gray80[_VIC_STE.csv]]
 
 ```{r, echo = F}
 DT::datatable(dfC,
@@ -1222,17 +1553,21 @@ But what does the data show?
 3. Each value must have its own cell
 ]
 
+{{content}}
+
+
+.footnote[
+Wickham (2014) Tidy Data. *Journal of Statistical Software* **59**
+]
+
+--
+
 So what about the ABS 2016 Census Data?
 
 * The table header in fact contains information!
-* E.g. .monash-blue2[`F_400_499_15_19_yrs`] is female aged 15-19 years old who earn $400-499 per week (in Victoria).
+* E.g. <span class="monash-blue2">`F_400_499_15_19_yrs`</span> is female aged 15-19 years old who earn $400-499 per week (in Victoria).
 * The number in the cells are the **counts**.
 * Is the data tidy?
-
-
-.bottom_abs.width100.font_small[
-Wickham (2014) Tidy Data. *Journal of Statistical Software* **59**
-]
 
 ---
 
@@ -1266,6 +1601,11 @@ class: transition
 # Manipulating strings 
 
 * The `stringr` package is powered by the `stringi` package which in turn uses the [ICU](http://site.icu-project.org/) C library to provide fast peformance for string manipulation
+
+```{r}
+library(tidyverse) # includes `stringr`
+```
+
 
 
 .footnote[
@@ -1651,7 +1991,7 @@ str_view_all(c("banana", "bananana", "bana", "banabanana"), "ba(na){1,2}")
 ]
 ]
 
-<div class="info-box" style="position:absolute;right:20px;margin-right:0px!important;top:100px;margin-left:0;width:900px;font-size: 20pt;">
+<div class="info-box" style="position:absolute;right:20px;margin-right:0px!important;top:140px;margin-left:0;width:900px;font-size: 20pt;">
 <ul>
 <li>When a function in <code>stringr</code> ends with <code>_all</code>, all matches of the pattern are considered</li>
 <li>The one <i>without</i> <code>_all</code> only considers the first match</li>
@@ -1801,7 +2141,7 @@ Jim Hester (2020). glue: Interpreted String Literals. R
 
 --
 
-<div class="info-box pad20" style="position:absolute;bottom:20px;right:10px;margin-right:0px;width:300px;">
+<div class="info-box pad20" style="position:absolute;bottom:60px;right:10px;margin-right:0px;width:350px;">
 <code>str_glue</code> is just a wrapper for <code>glue</code> from the <code>glue</code> package
 </div>
 
@@ -1880,14 +2220,26 @@ DT::datatable(tibble::tibble(household_id = c(1, 1, 1, 1, 2, 2),
 
 --
 
+.question-box.w-60[
+Do you think that you'll get the same numbers if you use the ones from different geographical code? E.g. `SA1` and `STE`. 
+]
 
-* Why is confidentiality of data important?
 --
 
-* 2013 New York City taxi data [<i class="fas fa-taxi"></i>](https://chriswhong.github.io/nyctaxi/):
-  * [~20GB of data on over 170 million taxi trips](https://chriswhong.com/open-data/foil_nyc_taxi/) 
-  * [anonymised taxi license numbers were easily decoded](https://tech.vijayp.ca/of-taxis-and-rainbows-f6bc289679a1)
-  * [the taxi trips were matched with celebrities that have photos taken with the taxi license plate number and reveals how they tip](https://gawker.com/the-public-nyc-taxicab-database-that-accidentally-track-1646724546)
+* You can check this in the tutorial 🔧
+
+---
+
+class: bg-gray middle center
+
+
+.idea-box.tl.w-70[
+## Summary
+* We went through how to locate and understand the data variables for the personal income data from the 2016 Australian census.
+* We know some limitations with this data. 
+* We learnt how to manipulate strings and a little about regular expression. 
+* We learnt about what tidy data is.
+]
 
 
 ---
