@@ -32,6 +32,7 @@ schedule:
   - week: 8 (Apr 26)
     lecturer: Emi
     topic: "Case study: Australian election data"
+    readings: "Extra reading: [Forbes, Cook & Hyndman (2020) Spatial modelling of the two-party preferred vote in Australian federal elections: 2001–2016](https://github.com/jforbes14/eechidna-paper/blob/master/anzjs_elections.pdf)"
   - week: 9 (May 3)
     lecturer: Peter
     topic: "Combining meteorological and economic data"
