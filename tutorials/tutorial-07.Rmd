@@ -26,18 +26,19 @@ In this tutorial, you will learn
 
 1. **Set up your project folder**
 
+   * If you haven't already, you should have an R project already to work through your exercise. Below is an example of how to get started. 
+
    * RStudio > New Project > New Directory > New Project
    
      Save it in a directory of your choosing. 
    
-     You can call the project what you like, e.g. `etc5512-week07`.
+     You can call the project what you like, e.g. `etc5512`.
    
-   * Create folders called `data` and `analysis` in the project root directory.
+   * Create folders called `data` and `analysis` (or similarly named) in the project root directory.
 
    
-   * Create an `exercise.Rmd` under the `analysis` folder.
-   
-   * Create a README.md file in the project root directory. The easiest way to do this is to run the R command `usethis::use_readme_md()` from your project. Your README.md should explain the main purpose of the project.
+   * Create an `exercise-07.Rmd` under the `analysis` (or similarly named) folder.
+
 
 
 1. **Getting the census data**
@@ -64,10 +65,9 @@ install.packages(c("remotes", "usethis", "here", "skimr", "unglue"))
    Your project structure should look like below.
 
 ```
-etc5512-week07
-├── README.md
+etc5512
 ├── analysis
-│   └── exercise.Rmd
+│   └── exercise-07.Rmd
 ├── data
 │   └── 2016_GCP_ALL_for_Vic_short-header
 │       └── 2016\ Census\ GCP\ All\ Geographies\ for\ VIC
@@ -81,7 +81,7 @@ etc5512-week07
 │                   ├── 2016Census_G17A_VIC_STE.csv
 │                   ├── 2016Census_G17B_VIC_STE.csv
 │                   └── 2016Census_G17C_VIC_STE.csv
-└── etc5512-week07.Rproj
+└── etc5512.Rproj
 ```
 
    * Note that it's not desirable to have spaces in your file or folder name, as you may need escape spaces by preceding with `\` like above
@@ -122,11 +122,11 @@ To load the data we will use the `here` function from the `here` package `r emo:
 ```
 etc5512-week07
 ├── analysis
-│   └── exercise.Rmd      # << analysis are here
+│   └── exercise-07.Rmd      # << analysis are here
 ├── data                  # << data are here 
 │               
 │  
-└── etc5512-week07.Rproj  # << make reference point `here`
+└── etc5512.Rproj  # << make reference point `here`
 ```
 
 
