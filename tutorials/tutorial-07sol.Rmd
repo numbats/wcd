@@ -4,7 +4,7 @@ author: "Emi Tanaka"
 date: "Week 7 Australian Census"
 output: 
   html_document:
-    toc: true
+    css: tutorial.css
 ---
 
 ```{r, include = FALSE}
