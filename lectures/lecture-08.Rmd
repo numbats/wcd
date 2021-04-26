@@ -201,7 +201,7 @@ glimpse(votes)
 
 * Let's have a look at the electoral district named "Monash"
 
-.f4[
+.f4.overflow-scroll.h-80[
 ```{r votes-table-view}
 votes %>% 
   filter(DivisionNm=="Monash") %>% 
