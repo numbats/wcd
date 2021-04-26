@@ -100,6 +100,21 @@ knitr::opts_chunk$set(
 
 ---
 
+class: middle center transition
+
+
+.idea-box.tl[
+Today you will:
+
+- look at the 2019 election results
+- visualise the 2019 election results spatially in a few ways
+- use the ABS geographical boundaries for the 2016 census
+- integrate data from different sources to make exploratory inferences
+]
+
+
+---
+
 # 2019 Australian Federal Election
 
 .flex.h-100[
@@ -313,11 +328,15 @@ This means that the geographical boundaries could be different across years.
 # Federal electoral boundary GIS data
 
 * GIS (Geographic Information System) is a framework that capture and inspect geographical data.
+--
+
 * This data is found at 
 
 .center.f2[
 <i class="fas fa-download"></i> https://www.aec.gov.au/electorates/gis/licence.htm
 ]
+--
+
 
 * Agree to the license to get to the download page
 .blockquote[
@@ -328,8 +347,11 @@ Note: the federal electoral boundary is provided by Australian Electoral Commiss
 
 © Commonwealth of Australia (Australian Electoral Commission) 2021
 ]
+--
 
 * We download the ESRI zip file for Victoria.
+--
+
 * To work with spatial data, we use the `sf` R-package.
 
 ---
@@ -427,7 +449,13 @@ ggplot(winners_fix) + geom_sf(aes(fill = PartyAb, geometry = geometry))
 
 ---
 
-# Map of election winners
+class: transition 
+
+# Maps visualisation
+
+---
+
+# National map of election winners
 
 ```{r}
 
@@ -455,7 +483,7 @@ all_winners <- votes %>%
 
 
 
-# Drawing .monash-blue[Chloropleth Map] with R
+# Using colors wisely
 
 .f4[
 ```{r electoral_map_wins}
@@ -473,7 +501,7 @@ ggplot(all_winners) +
 
 ---
 
-# Choropleth Map
+# .monash-blue[Choropleth Map]
 
 Which party won from looking at this map and by how much?
 
@@ -512,7 +540,7 @@ ggplot(all_winners_centroid) +
 
 ---
 
-# Non-Contiguous, Dorling Cartogram
+# .monash-blue[Non-Contiguous, Dorling Cartogram]
 
 
 <center>
@@ -521,7 +549,7 @@ ggplot(all_winners_centroid) +
 
 ---
 
-# Improved map
+# Improving the national map of election winners
 
 .f4.oveflow.overflow-scroll.h-90[
 ```{r sugarbag-map}
@@ -553,7 +581,7 @@ ggplot(hex_map) +
 
 ---
 
-# Tessellated Hexagon Map 
+# .monash-blue[Tessellated Hexagon Map] 
 
 
 <center>
@@ -566,12 +594,41 @@ Kobakian, Stephanie (2020) New Algorithms For Effectively Visualising Australian
 
 ---
 
-# Geo Data
+class: transition
+
+# ABS Census 2016
+
+# GeoPackages
+
+
+
+---
+
+# ABS GeoPackage
+
+.info-box[
+<i class="fas fa-download"></i> https://datapacks.censusdata.abs.gov.au/geopackages/
+
+1. Victoria
+2. Employment, Income and Unpaid Work (EIUW)
+3. EIUW GeoPackage A
+]
+
+.f4.overflow-scroll.h-50[
 
 ```{r sa1-layers}
 geopath <- here::here("data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuwa_vic_short.gpkg")
 st_layers(geopath)
 ```
+]
+---
+
+# The Australian Statistical Geography Standard (ASGS)
+
+.center[
+<img src="images/lecture-08/acgs-structures.png" width="75%">
+
+]
 ---
 
 # SA1 geographical boundaries 
@@ -628,6 +685,12 @@ ggplot(winners_fix) +
   scale_fill_viridis_c(name = "Median age", option = "magma")
 ```
 
+--
+
+.center[
+How can we visualise this better?
+]
+
 ---
 
 # Dorling Cartogram 
@@ -675,12 +738,17 @@ ggplot(winners_fix) +
 ---
 
 
-# References
+# Summary
 
-.info-box.w-60[
-Also check out the paper by [Forbes, Cook & Hyndman (2020) Spatial modelling of the two-party preferred vote in Australian federal elections: 2001–2016. *Australian & New Zealand Journal of Statisitcs* (to appear). ](https://onlinelibrary.wiley.com/doi/abs/10.1111/anzs.12292).
+.w-60[
+* We had a look a the 2019 federal election data
+* We looked at visualising this data on a map in various ways 
+* We looked at mapping the 2016 census boundaries and projected a census variable (i.e. median age) with the electoral district
+
+.info-box[
+Read [Forbes, Cook & Hyndman (2020) Spatial modelling of the two-party preferred vote in Australian federal elections: 2001–2016. *Australian & New Zealand Journal of Statisitcs*. ](https://onlinelibrary.wiley.com/doi/abs/10.1111/anzs.12292) for a more sophisticated approach to studying the census variables and election results together.
 ]
-
+]
 
 ---
 
