@@ -34,8 +34,9 @@ schedule:
     topic: "Case study: Australian election data"
     readings: "Extra reading: [Forbes, Cook & Hyndman (2020) Spatial modelling of the two-party preferred vote in Australian federal elections: 2001–2016](https://github.com/jforbes14/eechidna-paper/blob/master/anzjs_elections.pdf)"
   - week: 9 (May 3)
-    lecturer: Peter
-    topic: "Combining meteorological and economic data"
+    lecturer: Di
+    topic: "Gathering and working with sports data"
+    Readings: "Extra reading:[Do Smashes Win Matches?](https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2013.00665.x), [Introduction to html](https://htmldog.com/guides/html/beginner/),[Harvesting data with rvest](https://rvest.tidyverse.org), [Is web scraping legal?](https://www.import.io/post/6-misunderstandings-about-web-scraping/)"
   - week: 10 (May 10)
     lecturer: Will
     topic: "Case study: Superannuation and wage growth in Australia"
