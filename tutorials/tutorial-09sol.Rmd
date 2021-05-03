@@ -70,7 +70,7 @@ tbl <-  html_nodes(html, "table")
 alltime_stats <- html_table(tbl[[5]], fill=TRUE)
 ```
 
-b. How can we know that the data is organised as a table in the html? Go to the web site in your Google Chrome browser and use InspectorGadget to see the elements in the html.
+b. How can we know that the data is organised as a table in the html? Go to the web site in your Google Chrome browser and use the developer tool "Inspect elements" to examine the components of the html.
 
 c. How did we know to extract the data from the 6th table? Try changing the `6` in the code `html_table(tbl[[6]], fill=TRUE)` and compare the result with the tables presented in the web page.
 
@@ -97,7 +97,7 @@ This will bring up the page source. Can you see the `<table` tag? and see the sa
 a. Using the `fetch_cricinfo` function from the `cricketdata` package, extract all the records for Australian women's T20 matches. And answer the following questions:
 
 ```{r echo=TRUE}
-# remotes::install_github("ropenscilabs/cricketdata")
+# remotes::install_github("robjhyndman/cricketdata")
 library(cricketdata)
 auswt20 <- fetch_cricinfo("T20", "Women", country="Aust")
 ```
@@ -143,7 +143,8 @@ activity <- "batting"
 view <- "career"
 
 # this is internally calculated in the package!
-matchclass <- match(matchtype, c("test", "odi", "t20")) + 
+matchclass <- match(matchtype, 
+                    c("test", "odi", "t20")) + 
         7 * (sex == "women")
 team <- 289 
 ```
