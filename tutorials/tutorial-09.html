@@ -215,8 +215,8 @@ pre code {
 <p>Motivated by Ryo’s blog post, we are going to scrape soccer records from Wikipedia.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>We’re going to first extract records on Asian Cup men’s soccer. This can be done with the code below.</p></li>
-<li><p>How can we know that the data is organised as a table in the html? Go to the web site in your Google Chrome browser and use InspectorGadget to see the elements in the html.</p></li>
-<li><p>How did we know to extract the data from the 6th table? Try changing the <code>6</code> in the code <code>html_table(tbl[[6]], fill=TRUE)</code> and compare the result with the tables presented in the web page.</p></li>
+<li><p>How can we know that the data is organised as a table in the html? Go to the web site in your Google Chrome browser and use the developer tool “Inspect elements” to examine the components of the html.</p></li>
+<li><p>How did we know to extract the data from the 6th table? Try changing the <code>5</code> in the code <code>html_table(tbl[[5]], fill=TRUE)</code> and compare the result with the tables presented in the web page.</p></li>
 <li><p>Let’s use the data to make a chart. Examine the goals for and against, of each team. add a guide line where the for and against are equal. Also make the plot interactive, using plotly, so you can browse over team names. Which teams have scored more goals than have been scored against them, over all time? How does this compare with the champions list?</p></li>
 <li><p>How did we know that these were tables in the web page? Here’s where its important to learn how to use the developer tools in your web browser. Open the page in Google Chrome, scroll down to the table of interest, and right click to choose <code>Inspect</code>:</p></li>
 </ol>
@@ -229,7 +229,7 @@ pre code {
 <ol style="list-style-type: lower-alpha">
 <li>Using the <code>fetch_cricinfo</code> function from the <code>cricketdata</code> package, extract all the records for Australian women’s T20 matches. And answer the following questions:</li>
 </ol>
-<pre class="r"><code># remotes::install_github(&quot;ropenscilabs/cricketdata&quot;)
+<pre class="r"><code># remotes::install_github(&quot;robjhyndman/cricketdata&quot;)
 library(cricketdata)
 auswt20 &lt;- fetch_cricinfo(&quot;T20&quot;, &quot;Women&quot;, country=&quot;Aust&quot;)</code></pre>
 <ul>

@@ -68,6 +68,7 @@ tennis_bow <- bow(
 )
 tennis_bow
 ```
+
 ## `r emo::ji("soccer")` Exercise 11A
 
 Motivated by Ryo's blog post, we are going to scrape soccer records from Wikipedia. 
@@ -82,21 +83,14 @@ library(plotly)
 url <- "https://en.wikipedia.org/wiki/AFC_Asian_Cup_records_and_statistics"
 html <- read_html(url)
 tbl <-  html_nodes(html, "table") 
-alltime_stats <- html_table(tbl[[6]], fill=TRUE)
+alltime_stats <- html_table(tbl[[5]], fill=TRUE)
 ```
 
-b. How can we know that the data is organised as a table in the html? Go to the web site in your Google Chrome browser and use InspectorGadget to see the elements in the html.
+b. How can we know that the data is organised as a table in the html? Go to the web site in your Google Chrome browser and use the developer tool "Inspect elements" to examine the components of the html.
 
-c. How did we know to extract the data from the 6th table? Try changing the `6` in the code `html_table(tbl[[6]], fill=TRUE)` and compare the result with the tables presented in the web page.
+c. How did we know to extract the data from the 6th table? Try changing the `5` in the code `html_table(tbl[[5]], fill=TRUE)` and compare the result with the tables presented in the web page.
 
 d. Let's use the data to make a chart. Examine the goals for and against, of each team. add a guide line where the for and against are equal. Also make the plot interactive, using plotly,  so you can browse over team names. Which teams have scored more goals than have been scored against them, over all time? How does this compare with the champions list?
-
-```{r fig.width=6, fig.height=4, eval=FALSE}
-p <- ggplot(alltime_stats, aes(x=???, y=???, label=???)) + 
-  geom_abline(intercept=0, slope=1) +
-  geom_point() + theme(aspect.ratio=1)
-ggplotly(???)
-```
 
 e. How did we know that these were tables in the web page? Here's where its important to learn how to use the developer tools in your web browser. Open the page in Google Chrome, scroll down to the table of interest, and right click to choose `Inspect`:
 
@@ -112,22 +106,15 @@ This will bring up the page source. Can you see the `<table` tag? and see the sa
 a. Using the `fetch_cricinfo` function from the `cricketdata` package, extract all the records for Australian women's T20 matches. And answer the following questions:
 
 ```{r echo=TRUE, eval=FALSE}
-# remotes::install_github("ropenscilabs/cricketdata")
+# remotes::install_github("robjhyndman/cricketdata")
 library(cricketdata)
 auswt20 <- fetch_cricinfo("T20", "Women", country="Aust")
 ```
+
 - How many players statistics are recorded?
 - What was the first year of records and the last year?
 - What player has played the most matches?
 - Do players with high strike rate generally have high batting averages too?
-
-```{r eval=FALSE}
-auswt20 %>% summarise(???, ???)
-auswt20 %>% arrange(???) %>% select(???, Matches)
-auswt20 %>% ggplot(aes(x=???, y=???)) + 
-  geom_point() +
-  ylim(0, 60)
-```
 
 b. Take a look at the code for the function `fetch_cricinfo`. The work is mostly done by another hidden function `cricketdata:::fetch_cricket_data`. A key part of this function occurs in these lines:
 
