@@ -1,0 +1,113 @@
+---
+title: 'ETC5512: Instructions for Lab 10'
+author: "Will Mackey"
+date: "Week 10"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE)
+set.seed(1)
+filter <- dplyr::filter
+```
+
+
+**<span style="color:red">Please do [Preparation](#preparation) *before* the tutorial!</span>**
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will learn to
+
+- interrogate your data by studying summary statistics 
+- calculate uncertainties of point estimates
+
+
+## `r emo::ji("wrench")` Preparation  
+
+1. **Read** Sections 13.1-13.4 of [_R for Data Science_](https://r4ds.had.co.nz/relational-data.html)
+   
+1. **Set up your project folder**
+
+ Prepare a project calling it say `etc5512-week10` with folders `data` and `analysis` in the project root directory. While you don't have to follow the structure strictly, it's a good habit to maintain a project workflow.
+
+1. **Install `tidyverse`**
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
+
+2. **Check your project structure**
+
+   Your project structure should look like below.
+   
+```
+etc5512-week10
+├── README.md
+├── analysis
+│   └── exercise.Rmd
+├── data
+└── etc5512-week10.Rproj
+```
+
+3. Load the relevant packages
+
+```{r exercise}
+library(tidyverse)
+library(readxl)
+library(lubridate)
+```
+
+
+
+## `r emo::ji("banknote")` Exercise 10A
+
+**Is there a difference between female and male pay for the same hours in the same occupation?**
+
+* Download detailed income data from the ATO and read into R.
+
+```{r q1}
+ato_url <- "https://data.gov.au/data/dataset/23b8c299-a85b-4fc0-a07d-5ed14e23a103/resource/6a989b47-29ce-451a-a9ef-ed57be644b61/download/ts18individual14occupationsextaxableincomerange.xlsx"
+```
+
+* For each year, sex and occupation, find the average salary or wage for people who had a salary or wage. 
+
+* Download detailed hours data from the ABS: 
+
+```{r q2}
+abs_working_url <- "https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia-detailed/mar-2021/EQ08.xlsx"
+
+```
+
+* For each year, sex and occupation, find the average number of hours worked
+
+* Before joining the datasets by `year`, `sex` and `occupation`: 
+explore and reconcile the differences in values in these two datasets.
+
+* Join datasets to find average wage per hour worked by occupation and sex
+
+* Conduct some post-join checks:
+  * does the resulting joined dataset have the same number of observations as the ATO dataset used in the join? Why/why not?
+  * does the resulting joined dataset have the same number of observations as the ABS dataset used in the join? Why/why not?
+  * how could you tell which of the ATO observations weren't matched with an ABS observation? 
+  * what number/% of observations weren't matched?
+  * what were the ato_join occupations that did not match?
+  * why weren't they matched?
+
+* Generate a new variable `wage_rate`, which is average income divided by average wages.
+
+* Explore:
+  * average difference in `wage_rate` for females and males in the same occupation. 
+  * plot the 20 occupations with the highest and lowest difference in `wage_rate` between females and males.
+
+
+## `r emo::ji("party")` Exercise 10B
+
+**Better safe than sorry**
+
+* Write a function called `safe_left_join`, which performs as `left_join(a, b)` does,
+but checks that the resulting dataframe has the same number of observations as 
+dataset `a`. 
+
+
