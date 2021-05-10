@@ -683,7 +683,7 @@ rises %>%
 - Calculating the average annual wage increase ('AAWI') for:
   - each agreement
   - weighted by employees
-    - .orange[**why?**]
+    - .orange[why?]
 ]
 
 .pull-right[
