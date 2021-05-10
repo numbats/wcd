@@ -1,0 +1,290 @@
+---
+title: 'ETC5512: Instructions for Lab 10'
+author: "Will Mackey"
+date: "Week 10"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = TRUE, warning = FALSE, message = FALSE)
+set.seed(1)
+filter <- dplyr::filter
+```
+
+
+**<span style="color:red">Please do [Preparation](#preparation) *before* the tutorial!</span>**
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will learn to
+
+- interrogate your data by studying summary statistics 
+- calculate uncertainties of point estimates
+
+
+## `r emo::ji("wrench")` Preparation  
+
+1. **Read** Sections 13.1-13.4 of [_R for Data Science_](https://r4ds.had.co.nz/relational-data.html)
+   
+1. **Set up your project folder**
+
+ Prepare a project calling it say `etc5512-week10` with folders `data` and `analysis` in the project root directory. While you don't have to follow the structure strictly, it's a good habit to maintain a project workflow.
+
+1. **Install `tidyverse`**
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
+
+2. **Check your project structure**
+
+   Your project structure should look like below.
+   
+```
+etc5512-week10
+├── README.md
+├── analysis
+│   └── exercise.Rmd
+├── data
+└── etc5512-week10.Rproj
+```
+
+3. Load the relevant packages
+
+```{r exercise}
+library(tidyverse)
+library(readxl)
+library(lubridate)
+```
+
+
+
+## `r emo::ji("banknote")` Exercise 10A
+
+**Is there a difference between female and male pay for the same hours in the same occupation?**
+
+* Download detailed income data from the ATO and read into R.
+
+```{r q1}
+ato_url <- "https://data.gov.au/data/dataset/23b8c299-a85b-4fc0-a07d-5ed14e23a103/resource/6a989b47-29ce-451a-a9ef-ed57be644b61/download/ts18individual14occupationsextaxableincomerange.xlsx"
+```
+
+* For each year, sex and occupation, find the average salary or wage for people who had a salary or wage. 
+
+```{r s1}
+if (!file.exists(here::here("data", "ato-pit.xlsx"))) {
+  download.file(ato_url, here::here("data", "ato-pit.xlsx"))
+}
+
+## For each financial year, sex and occupation, find the average 'Salary or wages'
+ato_raw <- read_excel(here::here("data", "ato-pit.xlsx"), 
+                      sheet = "Individual Table 14B", 
+                      skip = 3) %>% 
+  select(fy = 1,
+         ato_occ = 2,
+         sex = 3,
+         n = 6, 
+         wages = 7)
+
+ato_summary <- ato_raw %>% 
+  group_by(fy, ato_occ, sex) %>% 
+  summarise(ato_n = sum(n),
+            ato_wages = sum(wages),
+            ato_average_wage = ato_wages / ato_n)
+```
+
+
+* Download detailed hours data from the ABS: 
+
+```{r q2}
+abs_working_url <- "https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia-detailed/mar-2021/EQ08.xlsx"
+
+```
+
+* For each year, sex and occupation, find the average number of hours worked
+
+```{r s2}
+
+if (!file.exists(here::here("data", "abs-hours.xlsx"))) {
+  download.file(abs_working_url, here::here("data", "abs-hours.xlsx"))
+}
+
+
+## For each financial year, sex and occupation, find the average number of hours worked
+abs_raw <- read_excel(here::here("data", "abs-hours.xlsx"), 
+                      sheet = "Data 1", 
+                      skip = 3) %>% 
+  select(date = 1,
+         abs_occ = 4,
+         sex = 2,
+         state = 3,
+         n_000 = 5, 
+         hours_000 = 6)
+
+abs_clean <- abs_raw %>%
+    mutate(n = n_000 * 1000,
+           hours = hours_000 * 1000,
+           year = year(date),
+           quarter = quarter(date, with_year = TRUE, fiscal_start = 7),
+           fy = substr(quarter, 1, 4))
+  
+abs_summary <- abs_clean %>% 
+  group_by(fy, abs_occ, sex) %>% 
+  summarise(abs_n = sum(n),
+            abs_hours = sum(hours),
+            abs_average_hours = abs_hours / abs_n)
+
+```
+
+
+* Before joining the datasets by `year`, `sex` and `occupation`: 
+explore and reconcile the differences in values in these two datasets.
+
+```{r s3}
+# Need to join on sex, fy, and occupation.
+# compare these variables:
+abs_summary$sex %>% unique()
+ato_summary$sex %>% unique()
+
+abs_summary$fy %>% unique()
+ato_summary$fy %>% unique()
+
+abs_summary$abs_occ %>% unique() %>% .[1:10]
+ato_summary$ato_occ %>% unique() %>% .[1:10]
+
+# The occupation code looks to be our best bet here. Extract it:
+abs_join <- abs_summary %>% 
+  mutate(occ_code = substr(abs_occ, 1, 4))
+
+ato_join <- ato_summary %>% 
+  mutate(occ_code = substr(ato_occ, 1, 4))
+
+# Represent the financial year with just the end of the year (eg 2010-2011 -> 2011)
+ato_join <- ato_join %>% 
+  mutate(fy = paste0("20", substr(fy, 6, 7)))
+
+# Remove wayward "i. all ranges" category from ato, and add
+ato_join <- ato_join %>% 
+  filter(sex != "i. all ranges") %>% 
+  mutate(sex = paste0(sex, "s"))
+```
+
+* Join datasets to find average wage per hour worked by occupation and sex
+
+```{r s4}
+# All set!
+wages_hours <- ato_join %>% 
+  left_join(abs_join)
+```
+
+* Conduct some post-join checks:
+  * does the resulting joined dataset have the same number of observations as the ATO dataset used in the join? Why/why not?
+  * does the resulting joined dataset have the same number of observations as the ABS dataset used in the join? Why/why not?
+  * how could you tell which of the ATO observations weren't matched with an ABS observation? 
+  * what number/% of observations weren't matched?
+  * what were the ato_join occupations that did not match?
+  * why weren't they matched?
+
+```{r s5}
+# What variables were used to join the two datasets?
+# Joining, by = c("fy", "occ_code")
+
+# Does the wages_hours dataset have the same number of observations
+# as the ato_join dataset? Why/why not?
+nrow(wages_hours)
+nrow(ato_join)
+
+# Does the wages_hours dataset have the same number of observations
+# as the abs_join dataset? Why/why not?
+nrow(wages_hours)
+nrow(abs_join)
+
+
+# how could you tell which of the ato_join observations weren't matched with
+# an abs_join observation? What number/% of observations weren't matched?
+wages_hours %>% 
+  ungroup() %>% 
+  summarise(count = n(),
+            count_no_join = sum(is.na(abs_occ)),
+            pc_no_join = count_no_join / count)
+
+
+# What were the ato_join occupations that did not match?
+wages_hours %>% 
+  filter(is.na(abs_occ)) %>% 
+  pull(ato_occ) %>% 
+  unique()
+
+# Three groups of not matched:
+# 1. 'type not specified'; codes ending in 00
+# 2. ATO-specific codes (outside of ANZSCO); codes ending 
+# 3. small wages
+
+```
+
+
+* Generate a new variable `wage_rate`, which is average income divided by average wages.
+
+* Explore:
+  * average difference in `wage_rate` for females and males in the same occupation. 
+  * plot the 20 occupations with the highest and lowest difference in `wage_rate` between females and males.
+
+```{r s6}
+wages_hours <- wages_hours %>% 
+  select(fy, occ_code, ato_occ, sex,  ato_n, ato_average_wage, abs_average_hours) %>% 
+  mutate(ato_weekly_wage = ato_average_wage / 52,
+         wage_rate = ato_weekly_wage / abs_average_hours)
+
+# Plot a histogram of wage_rates
+wages_hours %>% 
+  ggplot(aes(wage_rate)) +
+  geom_histogram()  +
+  facet_grid(sex~.) + 
+  scale_x_continuous(limits = c(0, 100))
+
+# Calculate the dollar and percent difference between male and female wages
+wages_hours <- wages_hours %>% 
+  arrange(fy, occ_code, ato_occ, sex) %>% 
+  group_by(fy, occ_code, ato_occ) %>% 
+  mutate(female_diff_dollar = wage_rate - lead(wage_rate),
+         female_diff_pc = wage_rate / lead(wage_rate) - 1)
+
+# What is the mean of female_diff_pc?
+# hint: use weighted.mean, with ato_n as the weights
+female_diff <- wages_hours %>% 
+  filter(female_diff_pc < Inf) %>% 
+  group_by(fy) %>% 
+  summarise(female_diff_pc = weighted.mean(female_diff_pc, ato_n, na.rm = TRUE))
+
+# Plot the average difference between female and male wages over time
+female_diff %>% 
+  ggplot(aes(fy, female_diff_pc)) + 
+  geom_col()
+```
+
+
+
+## `r emo::ji("party")` Exercise 10B
+
+**Better safe than sorry**
+
+* Write a function called `safe_left_join`, which performs as `left_join(a, b)` does,
+but checks that the resulting dataframe has the same number of observations as 
+dataset `a`. 
+
+```{r s7}
+safe_left_join <- function(a, b, ..., warn = TRUE) {
+  
+  joined <- left_join(a, b, ...)
+  
+  if (warn & nrow(joined) != nrow(a)) {
+    warning("The join created more observations")
+  }
+  
+}
+```
+
+
+

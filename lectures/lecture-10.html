@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5512: Wild Caught Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Will Mackey" />
+    <script src="lib/header-attrs-2.7/header-attrs.js"></script>
+    <link href="lib/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    
+    <!--
+    <script defer src="assets/all.min.js"></script>
+
+    Need below to enable css contents
+
+    <script>
+      window.FontAwesomeConfig = {
+        searchPseudoElements: true
+      }
+    </script>
+
+    -->
+    <link rel="stylesheet" href="assets/font-awesome-all.css" type="text/css" />
+    <link rel="stylesheet" href="assets/tachyons-addon.css" type="text/css" />
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/fira-code.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/table.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/slide-types.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+class: middle center hide-slide-number monash-bg-gray80
+
+
+
+
+
+.info-box.w-50.bg-white[
+These slides are viewed best by Chrome or Firefox and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-10.pdf&gt;here for the PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;. 
+]
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+
+
+---
+
+class: title-slide
+count: false
+background-image: url("images/bg-01.png")
+
+# .monash-blue[ETC5512: Wild Caught Data]
+
+&lt;h1 class="monash-blue" style="font-size: 30pt!important;"&gt;&lt;/h1&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Building a dataset to model a policy question&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Will Mackey*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  william.mackey@grattaninstitute.edu.au
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 10
+
+&lt;br&gt;
+
+]
+
+
+
+---
+
+# Hello!
+
+- I am Will Mackey, an economist(?) and data scientist(?) at .orange[Grattan Institute] in Melbourne.
+
+--
+
+- I spend my days cleaning, analysing, and visualising data, as well as writing and communicating policy ideas.
+
+--
+
+- I spend a _lot_ of time using R.
+
+--
+
+- I recently helped found the [R Users Network for Australian Public Policy](https://runapp-aus.github.io/runapp_website/join.html): `runapp`.
+
+--
+
+- I wish I this course existed when I was at univeristy.
+
+---
+
+class: middle center transition
+
+
+.idea-box.tl[
+Today you will:
+
+- learn about the superannuation guarantee
+- source and join data from a range of sources
+- use data and models to get inside the heads wage-setters
+- model wage growth to inform policy-makers
+]
+
+
+---
+
+
+
+# Superannuation  and wages
+
+* .orange[**Motivation**]: what is this and why does it matter?
+--
+
+* .orange[**Theory**]: Tax incidence theory and literature: what is expected to happen to wages when the SG goes up?
+--
+
+* .orange[**Methodology**]: how do we measure the super-wages trade-off?
+--
+
+* .orange[**Results**]: what is the super-wages trade-off?
+---
+
+
+# The question
+
+--
+* What is the relationship between changes to the superannuation guarantee and nominal wage increases, as shown by federally-registered enterprise bargaining agreements?
+--
+
+* This matters!
+
+--
+
+  - If there **is no trade-off**: increasing the SG is free money for employees (and higher labour costs for employers)
+  
+--
+  - If there **is a trade-off**: increasing the SG is forced savings for employees, meaning they have less take-home pay now (no change in labour costs for employers)
+  
+--
+* Strong interest in this kind of question from economic academics
+
+--
+
+* Policy-relevant: a solid empirical answer can better inform policy decisions
+
+---
+
+
+
+# What is the superannuation guarantee?
+
+
+.blockquote[
+'Super is money put aside by your employer over your working life for you to live on when you retire from work.'
+&lt;br&gt; - ATO
+]
+
+--
+
+- Super is a 'defined contribution scheme'
+  - you get out what you put in
+  - different to age pension, where what you get doesn't depend on what you put in.
+  
+--
+
+- The Superannuation Guarantee (SG) is paid by employers (the 'legislated burden')
+
+--
+
+- The SG is compulsory
+  - employers of (almost all) workers must pay super on behalf on their employees.
+  
+---
+
+
+# SG has increased bit-by-bit since the early 90s, and is slated to again from 2022
+
+.pull-left[
+* SG legislated in 1992. Some employers paying super before that.
+
+* Current rate is 9.5% of 'ordinary time earnings'. 
+
+* Legislated to go up to 12% by 2025. There have been many proposals/cancellations of
+increases in its short history.
+]
+
+.pull-left[
+&lt;img src="images/lecture-10/sg_actual_proposed.png" width = "100%"/&gt;
+]
+
+---
+
+# So who _pays_ for super?
+
+* Is there a 'super-wages' trade-off?
+
+--
+
+* An increase in the Super Guarantee increases the cost of employing a worker. This cost can be passed on to:
+
+--
+
+  * **Workers** through lower nominal wage growth (back-shifting)
+
+--
+
+  * **Consumers** through higher prices (forward-shifting)
+  
+--
+
+  * **Investors** through lower profits, with potential flow-on impacts to investment and employment)
+---
+
+# A scenario:
+
+* Employees of a company earn $100,000 each, plus super of 10%:
+
+
+```r
+ind_salary &lt;- 100e3
+sg &lt;- 0.10
+ind_salary_super &lt;- ind_salary * (1 + sg)
+```
+--
+
+* The company employees 30 people:
+
+
+```r
+employees &lt;- 30
+wage_bill &lt;- ind_salary_super * employees
+```
+--
+
+* Meaning their wage bill is $3,300,000
+
+--
+
+* .blue[**Activity**]: 
+--
+
+    * how much does the wage bill change if the SG rises from 10% to 11%?
+--
+    * if the cost of the SG increase is passed through to workers, by how much do their **salaries** change?
+--
+    * if the cost of the SG increase is passed through to workers, by how much does their **super contribution change**?
+
+
+---
+
+# .blue[**Activity**]: what happens when the SG rises to 10%? 
+
+* how much does the **wage bill** change if the SG rises and salaries stay the same?
+
+--
+
+
+```r
+new_sg &lt;- 0.11
+new_ind_salary_super &lt;- ind_salary * (1 + new_sg)
+new_wage_bill &lt;- new_ind_salary_super * employees
+
+dollar(new_wage_bill - wage_bill)
+```
+
+```
+## [1] "$30,000"
+```
+
+```r
+percent(new_wage_bill / wage_bill - 1, accuracy = .000001)
+```
+
+```
+## [1] "0.909091%"
+```
+
+---
+
+# .blue[**Activity**]: what happens when the SG rises to 10%? 
+
+* if the cost of the SG increase is passed through to workers, by how much do their **salaries** change?
+--
+
+
+```r
+(new_ind_salary * (1 + new_sg)) * employees = wage_bill
+```
+
+--
+
+* rearrange to find the value for `new_ind_salary`:
+--
+
+
+```r
+new_ind_salary = (wage_bill / employees) / (1 + new_sg)
+
+dollar(new_ind_salary - ind_salary)
+```
+
+```
+## [1] "-$900.90"
+```
+
+```r
+percent(new_ind_salary / ind_salary - 1, accuracy = .000001)
+```
+
+```
+## [1] "-0.900901%"
+```
+
+---
+
+# .blue[**Activity**]: what happens when the SG rises to 10%? 
+
+* if the cost of the SG increase is passed through to workers, by how much does their super contribution change?
+
+--
+
+
+```r
+super_contribution &lt;- ind_salary * sg
+new_super_contribution &lt;- new_ind_salary * new_sg
+
+dollar(new_super_contribution - super_contribution)
+```
+
+```
+## [1] "$900.90"
+```
+
+```r
+percent(new_super_contribution / super_contribution - 1, accuracy = .000001)
+```
+
+```
+## [1] "9.009009%"
+```
+
+
+
+---
+
+# So who _pays_ for super?
+
+* **No trade-off**: free increase in wages for workers and an additional cost for employers.
+
+--
+
+* **Full pass-through to wages**: forced savings via lower wages for workers now.
+
+--
+
+* The level of pass-through will affect analysis of the benefits of super.
+
+--
+
+* Important empirical question: who ultimately pays for super?
+
+---
+
+# What have others found?
+
+- In a systematic review, [Bozio et al (2019)](https://poseidon01.ssrn.com/delivery.php?ID=717095022119089099024005027005071081019000032009017018022113061032029009052123102122017104066038058014089114097096118102119125124002127087020104101097100101071095028084026024116069&amp;EXT=pdf&amp;INDEX=TRUE) find that there is a relatively consistent full pass-through of benefits to wages .orange[**when there is strong linkage of benefits to employers**]:
+
+--
+
+.center[&lt;img src="images/lecture-10/incidence-literature-strong.png" width = "85%"/&gt;]
+---
+
+# What have others found?
+
+- Bozio et al (2019) also find that, where there is .light-blue[**weaker linkage of benefits to employers**], the pass-through to wages is far less certain:
+
+--
+
+.center[&lt;img src="images/lecture-10/incidence-literature-weak.png" width = "80%"/&gt;]
+
+---
+
+# Using what have others found?
+
+* Other research provides a few clues.
+
+--
+
+* But is superannuation 'strongly' linked to wages?
+  - maybe yes? But hard to _prove_.
+
+--
+
+* Need to test empirically.
+
+--
+
+* _Can we test this empirically_?
+ 
+---
+
+# Could .orange[**we**] answer this question?
+
+* Is it _answerable_?
+
+--
+
+* Is it answerable _with data_?
+
+--
+
+* Is that data collected and available?
+--
+ to us?
+--
+
+* What do we need to know about the data?
+
+--
+
+* What do we need to know about the _subject_?
+
+--
+
+* What analysis techniques do we need?
+
+
+---
+
+# The process
+
+* **Read literature**: 
+  * *how* have others tried to answer this question, or similar questions?
+  * what economic conditions affect wage growth?
+--
+
+* **Identification strategy**: 
+--
+
+  - what model are we using, or what analysis can we do to explore our effect? 
+  - _what data do we need to answer the question?_
+--
+
+* **Sourcing data**:
+--
+
+    - what data exists? (open free, paywalled, private, admin)
+    - what have others used?
+    - ABS alone has more than 100 current products, each with many _many_ series.
+    - survey data
+    - admin data (pretty please)
+    - many other data sources exist - hard to keep track of them all!
+---
+
+# Thinking about a model
+
+* When compulsory super changes, what happens to wages?
+--
+ or wage _growth_?
+
+--
+
+* Could realistically be expressed in a linear model:
+
+--
+
+  * `\(\Delta {wage}_i = \beta_0 + \beta_1 \Delta SG_i + \mathbf{\beta X_i}\)`
+  
+--
+
+* What is the unit of observation?
+
+--
+
+  * Aggregated wage growth for **Australia**, per **quarter**?
+  
+--
+
+  * Aggregated wage growth for each **state**, per **month**?
+  
+--
+
+  * Wage growth for **each worker** in Australia, per **quarter**? 
+--
+per **month**? 
+--
+per **day**?
+
+
+---
+
+# Using workplace agreement-level microdata
+
+- The Workplace Agreements Database has been maintained by the Attorney General's Department since 1991.
+    - Made available on request in 2016
+    - Told no-one
+    
+--
+
+- Contains detailed information about federally registered enterprise bargaining agreements (EBAs).
+
+--
+
+  - Certification, start and end dates
+  
+--
+
+  - All nominal wage increases
+  
+--
+  - Industry, sector, union involvement
+  
+--
+
+  - 120,000 agreements
+  
+--
+
+  - ~400 variables
+
+--
+
+- We use 80,000 agreements spanning 1991-2018.
+
+--
+
+- These agreements are our unit of analysis (observations).
+
+
+---
+
+# Using workplace agreement-level microdata
+
+- Dataset is lovingly maintained by the AG's Dept
+
+--
+
+- Has detailed data documentation on all variables
+
+--
+
+- Collected via Microsoft Access (?)
+
+--
+
+- Published, on request, in a series of Excel workbooks
+
+
+---
+
+# Using workplace agreement-level microdata
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/eba-spans.png" width = "100%"/&gt;]
+]
+
+--
+
+.pull-left[
+
+- An agreement that .blue[spans one **0.25ppt** SG increase] should, all else equal:
+&lt;br&gt;&lt;br&gt;
+  - have higher wage rises than an agreement that spanned a .orange[**0.50ppt increase**]; and
+&lt;br&gt;&lt;br&gt;
+  - have lower wage rises than an agreement that .green[**did not span an increase**].
+]
+
+
+---
+
+# What data do we need?
+
+1. Information about the level of and changes to the Super Guarantee at each point in time, and the expected change to wages with pass-through.
+
+--
+
+  - From legislation.
+
+--
+
+2. Nominal wage growth of each agreement.
+
+--
+
+  - From the WAD.
+
+--
+
+3. Specific characteristics of individual firms and agreements that affect wage growth
+
+--
+
+  - From the WAD.
+
+--
+
+4. Information about economic factors that might affect wage growth decisions
+
+--
+
+  - ABS, RBA, OECD
+
+---
+
+
+# Changes to SG and its effect on wages
+
+- A full pass-through of SG to wages means keeping total labour cost constant. There is not a linear 'one-to-one' trade-off.
+
+--
+
+- Eg: when SG is 4% and worker has wages of $100,000, employer pays super of $4,000. **Total labour cost: $104,000**. 
+
+--
+
+  - If SG goes up to 5%, keeping total labour cost constant means: 
+  
+--
+
+  - Wages decrease 0.952% to $99,047.
+
+--
+    
+  - Super contribution is now $4,953.
+
+--
+
+  - Total labour cost remains $104,000. 
+
+--
+
+- This can be expressed with the equation:
+
+.center[&lt;img src="images/lecture-10/sg-delta-equation.png" width = "40%"/&gt;]
+
+---
+
+# Changes to SG and its effect on wages
+
+.center[&lt;img src="images/lecture-10/sg-delta-demonstration.png" width = "80%"/&gt;]
+
+---
+
+# Changes to SG and effect on wages
+
+Interpretation of `\(\Delta(w|sg)\)` : 
+
+
+- `\(\Delta(w|sg) = 1\)` is a full pass-through of the Superannuation Guarantee to wages over the life of an agreement.
+
+--
+
+- `\(\Delta(w|sg) = 0.5\)` is a half pass-through of the Superannuation Guarantee to wages over the life of an agreement.
+
+--
+
+- `\(\Delta(w|sg) = 0\)` is zero pass-through of the Superannuation Guarantee to wages over the life of an agreement.
+
+---
+
+# Nominal wage increases
+
+.pull-left[
+- Each agreement has - in a separate Excel file - a list of wage rises over its life.
+
+- A variable indicates whether these percentage rises are compounding or anchored to wages at beginning.
+
+- This is important, as it changes _total_ rise over the life of the agreement.
+
+- For example, consider a three-year agreement with annual wage rises of 3 per cent:
+
+]
+
+--
+
+.pull-right[
+
+```r
+rises &lt;- tibble(
+  year = c(1L, 2L, 3L),
+  wage_rise = c(3, 3, 3)/100
+)
+
+rises
+```
+
+```
+## # A tibble: 3 x 2
+##    year wage_rise
+##   &lt;int&gt;     &lt;dbl&gt;
+## 1     1      0.03
+## 2     2      0.03
+## 3     3      0.03
+```
+]
+
+---
+
+# Nominal wage increases
+
+
+```r
+rises &lt;- tibble(
+  year = c(1L, 2L, 3L),
+  wage_rise = c(3, 3, 3)/100
+)
+```
+
+--
+
+- Wage increases will be different if the rises are compounding or non-compounding:
+
+
+```r
+rises %&gt;% 
+  mutate(non_compounding = cumsum(wage_rise),
+         compounding = cumprod(1 + wage_rise) - 1)
+```
+
+```
+## # A tibble: 3 x 4
+##    year wage_rise non_compounding compounding
+##   &lt;int&gt;     &lt;dbl&gt;           &lt;dbl&gt;       &lt;dbl&gt;
+## 1     1      0.03            0.03      0.0300
+## 2     2      0.03            0.06      0.0609
+## 3     3      0.03            0.09      0.0927
+```
+
+---
+
+# Nominal wage increases
+
+.pull-left[
+- Calculating the average annual wage increase ('AAWI') for:
+  - each agreement
+  - weighted by employees
+    - .orange[why?]
+]
+
+.pull-right[
+
+.center[&lt;img src="images/lecture-10/wages-ridges.png" width = "100%"/&gt;]
+
+]
+
+---
+
+# And that's it!
+
+&lt;br&gt;&lt;br&gt;
+
+- Regress `\(\Delta wage = \Delta (w|sg)\)` by:
+
+&lt;br&gt;&lt;br&gt;
+
+
+```r
+lm(aawi ~ delta_wsg)
+```
+
+&lt;br&gt;&lt;br&gt;
+--
+.orange[(kidding)]
+
+&lt;br&gt;&lt;br&gt;
+
+We need something more...
+
+---
+
+class: transition middle 
+
+# Discussion
+
+&lt;br&gt;&lt;br&gt;
+
+What is our model missing?
+&lt;br&gt;
+
+**What else should we include?**
+
+---
+
+# Information about firms and their agreements
+
+- Specific characteristics of individual firms and agreements that affect wage growth
+
+  - Employees covered
+  
+--
+
+  - Industry
+  
+--
+
+  - Union involvement
+  
+--
+
+  - Sector
+
+--
+
+  - State
+
+--
+
+  - Multi-enterprise
+
+--
+
+
+- And how should these variables _enter_ our model?
+
+---
+
+# Economic conditions surrounding negotiations
+
+- or '_getting inside the head of a decision-maker_'.
+
+* The question here is: 
+
+.blockquote[
+when employers are deciding on their employee's wage rises over time, what are they taking into account? If the superannuation guarantee goes up, do they increase their employee's wages less than they _otherwise would have_?
+]
+
+* We need to get **inside their head** to best approximate this decision making.
+
+---
+
+
+# Generate the economic conditions that surrounded each decision
+
+* What were **wages growth** _recently_?
+--
+
+* What has **economic growth** been recently?
+--
+ per capita?
+--
+
+* What is the **inflation rate**? 
+--
+or is _expected to be_? 
+--
+and _when_?
+--
+
+* What was the **unemployment rate**?
+--
+ compared to the
+--
+ **n**on-
+--
+**a**ccelerating
+--
+ **i**nflation 
+--
+ **r**ate 
+--
+ of
+--
+ **u**nemployment 
+--
+ (the **NAIRU**)?
+--
+
+* What was the **under**employment rate?
+
+--
+
+* _When_ were all of these things known?
+  * 'Officially' or earlier through experience
+
+
+---
+
+# Sourcing data: AWOTE
+
+* 'Average Weekly Ordinary Time Earnings'. Common measure of wages in Australia.
+
+--
+
+* We need AWOTE from 1990-2018. Collected by the ABS for this time, but stored annoyingly. 
+
+--
+
+* Quarterly data from before 1994 can be retrieved from the November 2008 release ([Cat 6302.0, table 2](https://www.abs.gov.au/AUSSTATS/abs@.nsf/DetailsPage/6302.0Nov%202008?OpenDocument))
+
+--
+
+
+```r
+awote_pre_94 &lt;- readabs::read_abs_local(
+  filenames = "awote_pre_94.xls",
+  path = here::here("lectures", "data", "lecture-10", "abs", "6302.0")
+  )
+
+head(awote_pre_94$date)
+```
+
+```
+## [1] "1983-11-15" "1984-02-15" "1984-05-15" "1984-08-15" "1984-11-15"
+## [6] "1985-02-15"
+```
+
+```r
+tail(awote_pre_94$date)
+```
+
+```
+## [1] "2007-08-15" "2007-11-15" "2008-02-15" "2008-05-15" "2008-08-15"
+## [6] "2008-11-15"
+```
+
+---
+
+# Sourcing data: AWOTE
+
+--
+
+* Pre-2012 retrieved from the February 2012 release ([Cat 6302.0, table 2](https://www.abs.gov.au/Ausstats/abs@.nsf/0/38DEA08DD1A1ABDACA257A5B00121409?OpenDocument))
+
+--
+
+
+```r
+awote_pre_12 &lt;- readabs::read_abs_local(
+  filenames = "awote_pre_12.xls",
+  path = here::here("lectures", "data", "lecture-10", "abs", "6302.0")
+  )
+
+head(awote_pre_12$date)
+```
+
+```
+## [1] "1994-08-15" "1994-11-15" "1995-02-15" "1995-05-15" "1995-08-15"
+## [6] "1995-11-15"
+```
+
+```r
+tail(awote_pre_12$date)
+```
+
+```
+## [1] "2010-11-15" "2011-02-15" "2011-05-15" "2011-08-15" "2011-11-15"
+## [6] "2012-02-15"
+```
+
+---
+
+# Sourcing data: AWOTE
+
+--
+
+* Recent data obtained from the latest release, using the [`readabs`](https://github.com/MattCowgill/readabs) package directly:
+
+--
+
+
+```r
+awote_recent &lt;- read_abs("6302.0", table = 2)
+
+head(awote_recent$date)
+```
+
+```
+## [1] "2012-05-15" "2012-11-15" "2013-05-15" "2013-11-15" "2014-05-15"
+## [6] "2014-11-15"
+```
+
+```r
+tail(awote_recent$date)
+```
+
+```
+## [1] "2018-05-15" "2018-11-15" "2019-05-15" "2019-11-15" "2020-05-15"
+## [6] "2020-11-15"
+```
+
+---
+
+# Combining and cleaning AWOTE
+
+- Each AWOTE `df` is has the same structure:
+
+
+```r
+names(awote_pre_94)
+```
+
+```
+##  [1] "table_no"         "sheet_no"         "table_title"      "date"            
+##  [5] "series"           "value"            "series_type"      "data_type"       
+##  [9] "collection_month" "frequency"        "series_id"        "unit"
+```
+
+```r
+names(awote_pre_12)
+```
+
+```
+##  [1] "table_no"         "sheet_no"         "table_title"      "date"            
+##  [5] "series"           "value"            "series_type"      "data_type"       
+##  [9] "collection_month" "frequency"        "series_id"        "unit"
+```
+
+```r
+names(awote_recent)
+```
+
+```
+##  [1] "table_no"         "sheet_no"         "table_title"      "date"            
+##  [5] "series"           "value"            "series_type"      "data_type"       
+##  [9] "collection_month" "frequency"        "series_id"        "unit"
+```
+
+---
+
+# Combining and cleaning AWOTE
+
+- Create a function to _consistently_ tidy the AWOTE datasets before combining:
+
+
+```r
+tidy_awote &lt;- function(df) {
+  df %&gt;%
+    separate_series(remove_nas = TRUE, remove_totals = TRUE) %&gt;%
+    filter(series_2 == "Persons",
+           series_3 == "Full Time",
+           series_4 == "Adult",
+           series_5 == "Ordinary time earnings") %&gt;%
+    mutate(release_year = case_when(table_no == "awote_pre_94" ~ 2007,
+                                    table_no == "awote_pre_12" ~ 2012,
+                                    TRUE ~ 2019)) %&gt;%
+    select(date, awote = value, release_year)
+}
+
+awote_combined &lt;- map_dfr(list(awote_pre_12, awote_pre_94, awote_recent),
+                          tidy_awote)
+```
+
+---
+
+class: transition middle 
+
+# Discussion
+
+&lt;br&gt;&lt;br&gt;
+
+When might it be beneficial to write your own function to clean data?
+&lt;br&gt;
+What are some of the risks?
+
+---
+
+
+
+# Combining and cleaning AWOTE
+
+- The three sources overlap; where we have more than one observation for a given month, keep only the one from the latest AWOTE release.
+
+
+```r
+awote_tidy &lt;- awote_combined %&gt;%
+  group_by(date) %&gt;%
+  filter(release_year == max(release_year)) %&gt;%
+  ungroup() %&gt;%
+  mutate(cert_year = year(date),
+         cert_quarter = quarter(date)) %&gt;% 
+  select(cert_year, cert_quarter, awote)
+```
+
+---
+
+# Combining and cleaning AWOTE
+
+- Build (or find!) functions for tasks _specific to your analysis_
+
+--
+
+- Linearly interpolate missing value from time-series:
+
+
+```r
+interpolate_missing_ts &lt;- function(x) {
+  if_else(is.na(x),
+          (lag(x) + lead(x)) / 2,
+          x)
+}
+```
+
+--
+
+- Get 12-month average function from quarters
+
+
+```r
+get_12month_av &lt;- function(x) {
+  1/4 * (x + 
+         lag(x, 1) + 
+         lag(x, 2) + 
+         lag(x, 3))
+}
+```
+
+---
+
+# Combining and cleaning AWOTE
+
+- Generate final AWOTE variables
+
+
+```r
+awote &lt;- crossing(cert_year = seq(1988, 2018),
+                  cert_quarter = seq(1, 4)) %&gt;% 
+         left_join(awote_tidy) %&gt;% 
+         mutate(
+           # Interpolate
+           awote = interpolate_missing_ts(awote),
+           # Generate vars
+           awote_growth1 = 100 * (awote / lag(awote) - 1),
+           awote_growth1_12 = get_12month_av(awote_growth1),
+           awote_growth1_lag1 = lag(awote_growth1),
+           awote_growth1_12_lag1 = lag(awote_growth1_12))
+```
+---
+
+
+
+
+
+# Sourcing data: GDP per capita
+
+
+```r
+nf_gdp_percap &lt;- read_abs(series_id = "A2304372W") %&gt;% 
+  mutate(nf_gdp_percap_growth = value,
+         nf_gdp_percap_growth12 = get_12month_av(nf_gdp_percap_growth),
+         nf_gdp_percap_growth_1diff12 = nf_gdp_percap_growth - lag(nf_gdp_percap_growth), 
+         cert_year = year(date),
+         cert_quarter = quarter(date)) %&gt;%
+  filter(cert_year &gt;= 1990) %&gt;% 
+  select(cert_year, cert_quarter, starts_with("nf_gdp")) 
+```
+---
+
+
+
+# Sourcing data: unemployment rate
+
+
+
+```r
+unemp_base &lt;- read_abs("6202.0", 1) %&gt;% 
+  separate_series() %&gt;%
+  filter(series_1 == "Unemployment rate",
+         series_2 == "Persons",
+         series_type == "Seasonally Adjusted") %&gt;%
+  select(date, unemp = value) %&gt;% 
+  mutate(cert_year = year(date),
+         cert_month = month(date),
+         unemp12 = get_12month_av_month(unemp),
+         unemp_pc_change = 100 * (unemp / lag(unemp, 12) - 1))
+```
+
+---
+
+# Sourcing data: NAIRU 
+
+- From OECD Economic Outlook
+- The NAIRU data is annual; expand it so we have quarterly observations
+- Other sources?
+
+
+```r
+nairu_base &lt;- OECD::get_dataset("EO", "AUS.NAIRU.A") %&gt;% 
+  select(year = obsTime, nairu = obsValue)
+
+nairu &lt;- crossing(cert_year = unique(nairu$year),
+                  cert_month = c(1:12)) %&gt;%
+  right_join(nairu_base, by = c("cert_year" = "year")) %&gt;% 
+  mutate(cert_year = as.numeric(cert_year),
+         nairu_change = nairu / lag(nairu, 3))
+```
+
+---
+
+# Generating the NAIRU-gap
+
+
+```r
+unemp &lt;- unemp_base %&gt;%
+  left_join(nairu) %&gt;% 
+  mutate(nairu_gap = unemp - nairu,
+         nairu_gap12 = get_12month_av_month(nairu_gap)) %&gt;% 
+  filter(cert_year &gt;= 1990)
+```
+
+
+---
+
+# Sourcing data: Industry unemployment
+
+- Get unemployment by (last) broad industry from ABS
+
+
+```r
+ind_unemp &lt;- readxl::read_excel("data/ABS/UQ2b.xlsx", sheet = 3, skip = 3) %&gt;% 
+  rename(date = 1,
+         state = 2,
+         industry1 = 3,
+         unemployed_weeks = 4,
+         unemployed_ft = 5,
+         unemployed_pt = 6) %&gt;% 
+  mutate(state = strayr::strayr(state),
+         cert_year = year(date),
+         cert_quarter = quarter(date),
+         ind_unemployed = unemployed_ft + unemployed_pt) %&gt;% 
+  select(cert_year, cert_quarter, 
+         state, industry1, 
+         ind_unemployed) %&gt;% 
+  filter(!industry1 %&gt;% str_detect("Last worked|Has never"))
+```
+
+---
+
+# Sourcing data: Industry unemployment
+
+- Get employment by broad industry from ABS
+
+
+```r
+ind_employed &lt;- readxl::read_excel("data/ABS/EQ06.xlsx", sheet = 3, skip = 3) %&gt;% 
+* select(
+    date = 1, sex = 2, state = 3, ind_long = 4, employed_ft = 5, employed_pt = 6) %&gt;% 
+* mutate(
+    state = strayr::strayr(state), cert_year = year(date), 
+    cert_quarter = quarter(date), employed = employed_ft + employed_pt,
+    industry = substr(ind_long, 5, 1e3) %&gt;% str_remove_all(" nfd")) %&gt;% 
+* left_join(industry1_join) %&gt;%
+* mutate(industry1 = case_when(
+    !is.na(industry1) ~ industry1,
+    industry == "Pump, Compressor, Heating and Ventilation Equipment Manufacturing" ~ "Manufacturing", industry == "Private Households Employing Staff and Undifferentiated Goods- and Service-Producing Activities of Households for Own Use" ~ "Other Services", # odder tbh
+    TRUE ~ industry
+  )) %&gt;% 
+* group_by(cert_year, cert_quarter, state, industry1) %&gt;%
+* summarise(ind_employed = sum(employed))
+```
+
+
+---
+
+# Combining and cleaning industry unemployment data
+
+- Estimate unemployment rate by broad industry
+
+
+```r
+ind_ue &lt;- ind_employed %&gt;% 
+  filter(cert_year &gt;= 1991) %&gt;% 
+  left_join(ind_unemp) %&gt;% 
+  mutate(ind_ue_rate = 100 * ind_unemployed / (ind_employed + ind_unemployed))
+```
+
+
+---
+
+# Joining data
+
+* How should we join annual, quarterly and monthly data with agreements?
+
+* Consider how wage negotiations play out:
+
+.center[&lt;img src="images/lecture-10/eba-periods.png" width = "60%"/&gt;]
+
+---
+
+# Joining data
+
+* Idea: 
+
+--
+
+  * join on the agreement start date's `year`, `quarter`, `month` (where appropriate)
+  
+--
+  
+  * use lags in the model to recreate the 'negotiation period'
+
+---
+
+# Modelling
+
+- Model (1) is:
+
+.center[&lt;img src="images/lecture-10/model1.png" width = "50%"/&gt;]
+
+--
+
+- where `\(i\)` is an agreement in the WAD certified during quarter `\(t\)`. `\({wage\_inc}_{i,t}\)` is the sum of nominal wage increases during the agreement, annualised over the duration of the agreement.
+
+- `\(\Delta(w|sg)\)` is the full pass-through effect on nominal wages resulting from a change to the SG between the start and end dates of the agreement, annualised over the duration of the agreement.
+
+---
+
+# Modelling
+
+.pull-left[
+- Model (2) uses the full suite of macroeconomic, industry-level economic and agreement-specific variables that are likely to explain wage growth.
+
+- The `\(union_i\)` variable is a vector of dummy variables for each of the 82 unions mentioned in agreements. Unions play an important role in wage setting, and play a direct role when wages are set by collective bargaining.
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/model2.png" width = "110%"/&gt;]
+]
+
+---
+
+# Modelling
+
+.pull-left[
+- Model (3) builds on Model (2) by adding three 'interaction terms'. 
+
+- An interaction term, denoted by `\(\times\)`, allows a variable to have a different effect for different groups. For example, `\(industry_{i} \times {inflation\_exp}_{t}\)` allows the inflation to affect wage growth in the accommodation industry differently to the administrative services industry.
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/model3.png" width = "100%"/&gt;]
+]
+
+---
+
+.pull-left[
+- Most of the cost of higher compulsory super comes from lower growth in workers wages.
+
+- Coefficient on `\(\Delta (w|sg)\)` is .orange[0.805] in our preferred specification (Model 3).
+
+- Consistent results from simple to more complex models. 
+
+- Heteroskedastic-corrected errors.
+
+- Adjusted R2 of 0.479. 
+
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/results1.png" width = "90%"/&gt;]
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+ 
+- Model (1) allows for neater interpretation of economic variables.
+
+- .purple[Economic variables make sense].
+
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/results2.png" width = "90%"/&gt;]
+]
+
+---
+
+.pull-left[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+- Collinearity leads to some .red[unexpected results] in more complex model (2).
+
+- Would have a different study design if these were variables of interest.
+
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/results3.png" width = "90%"/&gt;]
+]
+
+
+
+---
+
+# Diagnostics
+
+.pull-left[
+- `plot(model)`! 
+
+- Can generate custom (nicer-looking) diagnostics plots for reports etc.
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/diagnostics.png" width = "100%"/&gt;]
+]
+
+---
+
+# Causality?
+
+.pull-left[
+- Is there any systematic bias in super-change and non-super-change years?
+- Doesn't look like it.
+- What could make a causal interpretation of this result problematic?
+- What might justify it?
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/eba-random.png" width = "100%"/&gt;]
+]
+
+---
+
+# Robustness
+
+- Model (3) is run with different covariates, different weighting, over different periods.
+
+--
+
+.pull-left[
+.center[&lt;img src="images/lecture-10/robust1.png" width = "100%"/&gt;]
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/robust2.png" width = "100%"/&gt;]
+]
+
+---
+
+# Robustness
+
+- Model (3) is run with different covariates, different weighting, over different periods.
+
+--
+
+.pull-left[
+.center[&lt;img src="images/lecture-10/robust3.png" width = "100%"/&gt;]
+]
+
+.pull-right[
+.center[&lt;img src="images/lecture-10/robust4.png" width = "100%"/&gt;]
+]
+
+---
+
+# Robustness
+
+- Model (3) is run with different covariates, different weighting, over different periods.
+
+--
+
+.pull-left[
+.center[&lt;img src="images/lecture-10/robust5.png" width = "100%"/&gt;]
+]
+
+.pull-right[
+]
+
+
+---
+
+
+# Interpretation
+
+- There is strong evidence of the superannuation guarantee being passed-through to workers covered by EBAs in the form of lower wage growth over the life of their agreement. 
+
+- This is the short-to-medium term. 
+
+- Our model can't capture longer-term pass-through.
+
+- If a change to the SG leads to lower wage growth in future EBAs, our model will classify this change as being unrelated to the SG. 
+
+- The coefficient of `0.805` is a lower-bound estimate over the longer term.
+
+
+---
+
+# Summary
+
+.w-60[
+* we went deep on the superannuation guarantee
+* we found, cleaned and joined data from a range of sources
+* we got inside the heads decision-makers
+* we modelled wage growth to inform policy-makers
+* and we did it all with relatively simple methods and publicly-available data
+
+.info-box[
+* Read Chapter 3 of [Coates, Mackey &amp; Cowgill (2020) No free lunch: higher super means lower wages *Grattan Institute*. ](https://grattan.edu.au/wp-content/uploads/2020/02/No-free-lunch-Higher-superannuation-means-lower-wages.pdf) for a more detailed explanation of this empirical strategy.
+
+* Read Sections 13.1 - 13.4 of [R for Data Science](https://r4ds.had.co.nz/relational-data.html).
+]
+]
+
+---
+
+
+
+
+background-size: cover
+class: title-slide
+background-image: url("images/bg-01.png")
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+.bottom_abs.width100[
+
+Lecturer: *Will Mackey*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  william.mackey@grattaninstitute.edu.au
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 10
+
+&lt;br&gt;
+
+]
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "magula",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
