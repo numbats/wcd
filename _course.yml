@@ -48,9 +48,9 @@ schedule:
     lecturer: Di
     topic: "On the proper care and feeding of wild data"
     assessment: "Assessment 3 due"
-   - week: 13 (May 31)
-    lecturer: 
-    topic: 
+  - week: 13 (May 31)
+    lecturer: ""
+    topic: ""
     assessment: "Assessment 3 due"
 assessments:
   assignment1:
