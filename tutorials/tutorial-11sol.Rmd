@@ -18,7 +18,6 @@ In this tutorial, you will
 ## `r emo::ji("wrench")` Preparation  
 
 1. This tutorial will use two synthetic datasets created Lauren. These datasets are available on LK's Github page (https://github.com/lauken13/WCD_datarepo). You will need to download these datasets before the tutorial. As we are considering privacy this week, the datasets will be simulated, hypothetical datasets. They do not represent real data. 
-
 2. Create the project structure for this week's tutorial.
 
 ```
@@ -43,7 +42,7 @@ a. Read the survey data into R and use your exploratory data tools to explore th
 ```{r}
 library(tidyverse)
 
-survey_data <- read.csv(here::here("data/survey_data.csv"))
+survey_data <- read.csv(here::here("tutorials/images/survey_data.csv"))
 ```
 
 ```{r}
@@ -70,7 +69,7 @@ Given the data environment, this might be sufficient for public identification a
 d. Now consider the second dataset. As participants were leaving the trial, they were asked if they would consider giving blood to save lives. All said yes. As part of a promotion run by the center, blood donors were asked if they would consider giving their age and name to be published on the website to encourage others to give blood. All consented and data was uploaded in real time (which is represented by date and time in the dataset). Read in the second data set and explore. 
 
 ```{r}
-blood_donation <- read.csv(here::here("data/blood_donation.csv"))
+blood_donation <- read.csv(here::here("tutorials/images/blood_donation.csv"))
 ```
 
 ```{r}
