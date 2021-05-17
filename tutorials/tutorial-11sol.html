@@ -184,8 +184,8 @@ pre code {
 <div id="preparation" class="section level2">
 <h2>🔧 Preparation</h2>
 <ol style="list-style-type: decimal">
-<li><p>This tutorial will use two synthetic datasets created Lauren. These datasets are available on LK’s Github page (<a href="https://github.com/lauken13/WCD_datarepo" class="uri">https://github.com/lauken13/WCD_datarepo</a>). You will need to download these datasets before the tutorial. As we are considering privacy this week, the datasets will be simulated, hypothetical datasets. They do not represent real data.</p></li>
-<li><p>Create the project structure for this week’s tutorial.</p></li>
+<li>This tutorial will use two synthetic datasets created Lauren. These datasets are available on LK’s Github page (<a href="https://github.com/lauken13/WCD_datarepo" class="uri">https://github.com/lauken13/WCD_datarepo</a>). You will need to download these datasets before the tutorial. As we are considering privacy this week, the datasets will be simulated, hypothetical datasets. They do not represent real data.</li>
+<li>Create the project structure for this week’s tutorial.</li>
 </ol>
 <pre><code>etc5512-week11
 ├── README.md
@@ -220,7 +220,7 @@ pre code {
 <pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>survey_data &lt;- read.csv(here::here(&quot;data/survey_data.csv&quot;))</code></pre>
+<pre class="r"><code>survey_data &lt;- read.csv(here::here(&quot;tutorials/images/survey_data.csv&quot;))</code></pre>
 <pre class="r"><code># Make sure everything is in the correct type
 survey_data &lt;- survey_data %&gt;%
   mutate(time = as.factor(time),
@@ -228,13 +228,20 @@ survey_data &lt;- survey_data %&gt;%
          sex = as.factor(sex),
          date = as.Date(date))</code></pre>
 <pre class="r"><code>summary(survey_data)</code></pre>
-<pre><code>##         time    blood_sugar sex         age             date           
-##  afternoon:13   high  :24   F:19   Min.   :21.00   Min.   :2019-02-11  
-##  evening  :17   normal:16   M:21   1st Qu.:35.75   1st Qu.:2019-02-11  
-##  morning  :10                      Median :51.00   Median :2019-02-11  
-##                                    Mean   :50.60   Mean   :2019-02-11  
-##                                    3rd Qu.:65.25   3rd Qu.:2019-02-11  
-##                                    Max.   :78.00   Max.   :2019-02-11</code></pre>
+<pre><code>##        X                 time    blood_sugar sex         age       
+##  Min.   :  2.00   afternoon:20   high  :19   F:20   Min.   :18.00  
+##  1st Qu.: 43.75   evening  : 9   normal:21   M:20   1st Qu.:39.00  
+##  Median : 69.50   morning  :11                      Median :52.00  
+##  Mean   : 70.15                                     Mean   :52.33  
+##  3rd Qu.:107.00                                     3rd Qu.:70.50  
+##  Max.   :122.00                                     Max.   :78.00  
+##       date           
+##  Min.   :2019-02-11  
+##  1st Qu.:2019-02-11  
+##  Median :2019-02-11  
+##  Mean   :2019-02-11  
+##  3rd Qu.:2019-02-11  
+##  Max.   :2019-02-11</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>What do you notice about the date of study?</li>
 </ol>
@@ -246,7 +253,7 @@ survey_data &lt;- survey_data %&gt;%
 <ol start="4" style="list-style-type: lower-alpha">
 <li>Now consider the second dataset. As participants were leaving the trial, they were asked if they would consider giving blood to save lives. All said yes. As part of a promotion run by the center, blood donors were asked if they would consider giving their age and name to be published on the website to encourage others to give blood. All consented and data was uploaded in real time (which is represented by date and time in the dataset). Read in the second data set and explore.</li>
 </ol>
-<pre class="r"><code>blood_donation &lt;- read.csv(here::here(&quot;data/blood_donation.csv&quot;))</code></pre>
+<pre class="r"><code>blood_donation &lt;- read.csv(here::here(&quot;tutorials/images/blood_donation.csv&quot;))</code></pre>
 <pre class="r"><code>library(lubridate)</code></pre>
 <pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.0.5</code></pre>
 <pre><code>## 
@@ -287,17 +294,18 @@ blood_donation &lt;- blood_donation %&gt;%
   mutate(Freq = n()) %&gt;%
   ungroup() %&gt;%
   filter(Freq == 1)</code></pre>
-<pre><code>## # A tibble: 8 x 6
-##   time      blood_sugar sex   date       age_group  Freq
-##   &lt;fct&gt;     &lt;fct&gt;       &lt;fct&gt; &lt;date&gt;     &lt;fct&gt;     &lt;int&gt;
-## 1 evening   high        M     2019-02-11 (30,45]       1
-## 2 evening   high        M     2019-02-11 (65,100]      1
-## 3 morning   normal      M     2019-02-11 (30,45]       1
-## 4 afternoon high        F     2019-02-11 (45,65]       1
-## 5 morning   normal      M     2019-02-11 (45,65]       1
-## 6 morning   high        F     2019-02-11 (65,100]      1
-## 7 afternoon high        M     2019-02-11 (18,30]       1
-## 8 evening   high        M     2019-02-11 (18,30]       1</code></pre>
+<pre><code>## # A tibble: 9 x 7
+##       X time      blood_sugar sex   date       age_group  Freq
+##   &lt;int&gt; &lt;fct&gt;     &lt;fct&gt;       &lt;fct&gt; &lt;date&gt;     &lt;fct&gt;     &lt;int&gt;
+## 1     2 afternoon normal      F     2019-02-11 &lt;NA&gt;          1
+## 2   121 evening   normal      M     2019-02-11 (65,100]      1
+## 3    21 evening   high        M     2019-02-11 (18,30]       1
+## 4    47 evening   high        M     2019-02-11 (30,45]       1
+## 5    11 afternoon high        M     2019-02-11 (18,30]       1
+## 6    56 morning   high        F     2019-02-11 (30,45]       1
+## 7    76 morning   high        F     2019-02-11 (45,65]       1
+## 8    59 morning   normal      M     2019-02-11 (45,65]       1
+## 9    39 morning   normal      M     2019-02-11 (30,45]       1</code></pre>
 <p>There are 8 individuals that are potentially identifiable based on these cross tabulations. It would decrease the utility of the dataset to remove time and sex from the data. We could instead consider fewer age groups to create larger groups to reduce this problem. Currently there are four age groups, what if we moved to three (losing information and utility)</p>
 <pre class="r"><code>survey_data_di2 &lt;- survey_data %&gt;%
   mutate(age_group = cut(age,breaks = c(18,40,60,100))) %&gt;% # break age along these lines
