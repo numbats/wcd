@@ -48,6 +48,7 @@ schedule:
     lecturer: Di
     topic: "On the proper care and feeding of wild data"
     assessment: "Assessment 3 due"
+    readings: "Required reading: [Data Organization in Spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989); [A Realistic Guide to Making Data Available Alongside Code to Improve Reproducibility](https://arxiv.org/abs/2002.11626); [Ten Simple Rules for the Care and Feeding of Scientific Data](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003542)"
   - week: 13 (May 31)
     lecturer: ""
     topic: ""

@@ -53,7 +53,7 @@ tennis_bow <- bow(
 )
 tennis_bow
 ```
-## `r emo::ji("soccer")` Exercise 11A
+## `r emo::ji("soccer")` Exercise 9A
 
 Motivated by Ryo's blog post, we are going to scrape soccer records from Wikipedia. 
 
@@ -92,7 +92,7 @@ This will bring up the page source. Can you see the `<table` tag? and see the sa
 <img src="images/scraping_soccer2.png">
 
 
-## `r emo::ji("cricket")` Exercise 11B
+## `r emo::ji("cricket")` Exercise 9B
 
 a. Using the `fetch_cricinfo` function from the `cricketdata` package, extract all the records for Australian women's T20 matches. And answer the following questions:
 
@@ -162,7 +162,7 @@ tables[[3]]
 
 `r emo::ji("thinking")` Use the inspect tool on the  web page, to see that it is indeed an html table. 
 
-## `r emo::ji("tennis")` Exercise 11C
+## `r emo::ji("tennis")` Exercise 9C
 
 Sometimes pages are dynamically created, which means that it isn't possible too directly extract the data. The women's tennis records web site uses dynamic web pages. 
 
