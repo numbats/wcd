@@ -1,6 +1,6 @@
 ---
 title: 'ETC5512: Instructions for Tutorial 12'
-author: "Lauren Kennedy"
+author: "Di Cook"
 date: "Week 12 Care and feeding of wild caught data"
 output: 
   html_document:
