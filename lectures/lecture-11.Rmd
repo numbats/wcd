@@ -390,7 +390,7 @@ Pseudo code (randomly sample 100 units)
 
 ```{r, eval = FALSE}
 sample_data <- full_data %>%
-  sample_n(N=100, replace = TRUE)
+  sample_n(N=100, replace = FALSE)
 ```
 
 ---
