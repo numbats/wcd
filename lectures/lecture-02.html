@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5512: Wild Caught Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Kate Saunders" />
+    <script src="lib/header-attrs-2.16/header-attrs.js"></script>
+    <link href="lib/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <script src="lib/kePrint-0.0.1/kePrint.js"></script>
+    <link href="lib/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    
+    <!--
+    <script defer src="assets/all.min.js"></script>
+
+    Need below to enable css contents
+
+    <script>
+      window.FontAwesomeConfig = {
+        searchPseudoElements: true
+      }
+    </script>
+
+    -->
+    <link rel="stylesheet" href="assets/font-awesome-all.css" type="text/css" />
+    <link rel="stylesheet" href="assets/tachyons-addon.css" type="text/css" />
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/fira-code.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/table.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/slide-types.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="assets/emi.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: middle center hide-slide-number monash-bg-gray80
+
+
+
+
+
+.info-box.w-50.bg-white[
+These slides are viewed best by Chrome or Firefox and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-02.pdf&gt;here for the PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;. 
+]
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+
+
+---
+
+class: title-slide
+count: false
+background-image: url("images/bg-03.png")
+
+# .monash-blue[ETC5512: Wild Caught Data]
+
+&lt;h1 class="monash-blue" style="font-size: 30pt!important;"&gt;&lt;/h1&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Introduction to data collection methods&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Kate Saunders*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 2
+
+&lt;br&gt;
+
+]
+
+
+
+
+---
+
+class: middle monash-bg-blue
+
+.f-headline[**Starts with .white[curiosity]**]
+--
+
+&lt;br&gt; .grey[which is] &lt;br&gt;
+--
+
+.f-headline[** tempered with .white[skepticism]**]
+
+
+---
+
+# What would you be curious about ... ? 
+
+.flex[
+.w-80[
+
+* ... about air travel in the USA?
+
+&lt;a href="https://www.transtats.bts.gov/DataIndex.asp"&gt; &lt;img src="images/data-expo/BTS_website.png" width="100%"&gt;   &lt;/a&gt;
+
+]
+]
+
+???
+
+* This is an example where the data has been already collected. 
+* Interested in **data collection methods**
+
+---
+
+# What would you be curious about ... ? 
+
+.flex[
+.w-80[
+
+* ... about people in Australia?
+
+&lt;iframe src="https://www.abs.gov.au/ausstats/abs@.nsf/Latestproducts/2916.0Main%20Features202016?opendocument&amp;tabname=Summary&amp;prodno=2916.0&amp;issue=2016&amp;num=&amp;view=" width="100%" height="400px"&gt;
+&lt;/iframe&gt;
+
+]
+]
+
+???
+
+* Survey data
+
+
+---
+
+# What would you be curious about ... ? 
+
+.flex[
+.w-80[
+
+* ... about how people vote in Australia?
+
+&lt;iframe src="https://results.aec.gov.au" width="100%" height="400px"&gt;
+&lt;/iframe&gt;
+
+]
+]
+
+???
+All of the population, plus sampling
+
+---
+
+# What would you be curious about ... ? 
+
+.flex[
+.w-80[
+
+* ... About COVID in Victoria
+
+&lt;a href="https://www.coronavirus.vic.gov.au/victorian-coronavirus-covid-19-data"&gt; &lt;img src="images/lecture-02/covid_vic.png" width="100%"&gt;
+&lt;/a&gt;
+
+]
+]
+
+???
+Incidence data, but imperfect
+
+---
+class: middle monash-bg-blue
+
+.f-headline[**Curiosity usually corresponds to asking  .white[questions]**]
+
+
+---
+background-image: url(images/art01.png)
+background-size: 80%
+background-position: 70% 50%
+
+# Planet Cute Creatures
+
+.absolute.w-40[
+
+{{content}}
+]
+
+
+
+--
+
+&lt;div class="question-box"&gt;
+How many yellow, green and red alien creatures?
+&lt;/div&gt;
+{{content}}
+
+--
+
+&lt;div class="question-box"&gt;
+What is the distribution of the height of the alien creatures?
+&lt;/div&gt;
+{{content}}
+--
+
+&lt;div class="question-box"&gt;
+Are yellow creatures more likely to have hair?
+&lt;/div&gt;
+{{content}}
+--
+
+&lt;div class="question-box"&gt;
+Does the hair growth formula work on these creatures?
+&lt;/div&gt;
+
+---
+
+class: monash-bg-blue middle tr 
+
+.pa5[
+.f-headline[**Now that we have a .white[question] ...**]
+
+]
+
+---
+
+class: monash-bg-blue middle tr 
+
+.pa5[
+.f-headline[**...we can find/use/collect .white[data] to obtain .white[answers].**]
+
+]
+---
+
+class: no-logo
+
+# How do we get the data?  
+
+--
+
+
+.flex[
+.w-50[
+.f2[What is the population?]
+
+&lt;img src="images/art01.png" width="100%"&gt;
+
+
+]
+.w-50[
+{{content}}
+
+]
+]
+
+--
+
+&lt;div class="f2"&gt;It is rare to have resources to measure ALL of the population, take we a sample&lt;/div&gt;
+&lt;img src="images/art02.png" width="100%"&gt;
+
+---
+
+.flex[
+.w-50[
+Population:
+
+&lt;img src="images/art01.png" width="100%"&gt;
+
+Parameters (typically don't know the values): 
+
+.cgreen[Green:] 6/53=0.113, .cyellow[Yellow:] 22/53=0.416,&lt;br&gt; .cred[Red:] 25/53=0.472
+]
+.w-50[
+Sample:
+
+&lt;img src="images/art02.png" width="100%"&gt;
+
+The statistics:
+
+.cgreen[Green:] 1/21=0.048, .cyellow[Yellow:] 10/21=0.476,&lt;Br&gt; .cred[Red:] 10/21=0.476, are estimates of parameters
+
+]
+
+]
+
+---
+# Sampling the population
+
+.info-box.w-75[
+Collecting data on the entire population is normally too expensive or infeasible! (If we can, it is called a .monash-orange2[census].)
+]
+--
+
+* We therefore collect data only on a subset of the population.
+--
+
+* **How should we sample the population?**
+--
+ There are many sampling schemes.
+---
+
+count: false
+
+# Sampling the population
+
+.info-box.w-75[
+Collecting data on the entire population is normally too expensive or infeasible! (If we can, call it a .monash-orange2[census].)
+]
+
+* We therefore collect data only on a subset of the population.
+
+* **How should we sample the population?** There are many sampling schemes.
+
+
+.idea-box.w-45[
+**Simple random sampling**  
+Every unit in the population has the same sample probability to be drawn.
+&lt;center&gt;
+&lt;img src="images/art01.png" width="60%"&gt; 
+&lt;/center&gt;
+]
+--
+ .idea-box.w-45[
+**Stratified random sampling**  
+Units are drawn from non-overlapping sub-populations.
+&lt;center&gt;
+&lt;img src="images/art03.png" width="60%"&gt; 
+&lt;/center&gt;
+]
+
+???
+
+* **Stratified random sampling** requires identifying different subpopulations and may involve SRS on subpopulation
+
+---
+
+
+# Goal of sampling schemes
+
+.w-85[
+.aim-box.w-70[   
+The **goal of a sampling scheme** is to get accurate information from the sample in order to answer your question about the population.
+]
+
+{{content}}
+]
+
+
+--
+
+
+
+* This involves identifying:
+  * the **population of interest** (e.g. if studying about male baldness pattern, your population of interest is the biologically male population),
+  * what **responses** (dependent variables) or **covariates** (explanatory or independent or predictor variables) to capture and how to measure it (e.g. do you collect their age? Which range of age they are in? Their hair count? The thickness of the hair?),
+  * the **sample size** (how many samples do we need?),
+  * any **structure** that will be in the data (e.g. population structures, repeated cross-sectional data, panel or longitudinal data), and 
+  * any **restrictions** (e.g. ethical concerns, limitation on collecting data).
+
+---
+
+# Sampling strategies
+
+.w-70[
+* Sampling strategies combine knowledge about the population with statistical methods. 
+{{content}}
+]
+
+--
+
+* For example,
+  * designing so your sample estimates give (theoretically) unbiased estimates of the population parameters,
+  * sample so the data will be representative of the subpopulations (e.g.  stratified random sampling), or
+  * oversampling or undersampling to compensate for imbalance in classes.
+--
+
+.think-box.w-60[
+&lt;img src="images/art03.png" width="40%" class="fl"&gt; What might go wrong with a simple random sampling of 10 creatures from this population?
+]
+
+
+
+
+
+---
+
+# Random and non-random selections
+
+* Units (population members) ideally are sampled *randomly*, but often selections are made in a non-random manner.&lt;br&gt;
+
+--
+.think-box.w-45[
+If I survey every 10th household in a street, is that a random selection? 
+] 
+--
+.think-box.w-45[
+What do you think can go wrong if we don't sample randomly?
+]
+--
+
+&lt;br&gt;
+
+* What's wrong with these examples? 
+
+.flex[
+.work-box.w-45.clear-list[
+* .li-aim[You want to know the attitude of the creatures about working at home.]
+* .li-data[You call phone numbers listed in the order of telephone directory and stop when you have 20 observations.]
+]
+{{content}}
+]
+--
+&lt;div class="work-box w-45 clear-list"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class="li-aim"&gt;You want to get the hair count distribution of the Planet Cute Creatures population.&lt;/span&gt;&lt;/li&gt;
+&lt;li&gt;&lt;span class="li-data"&gt;You sample creatures from the Society of Bald Extraterrestrials.&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+---
+
+# Reality of data collection ... 
+
+* .monash-ruby2[Designing a data collection is **_hard_**].
+--
+
+  * There may be unknown or hidden structures in the population.
+--
+
+  * It may add complex structural elements, e.g.
+      * Cross-sectional, repeated cross-sectional (e.g. case-control), 
+      * Panel or longitudinal (e.g. cohort studies), and so on.
+      * Clusters or hierarchies (e.g. students in schools in states)
+      
+--
+
+  * You may have introduce unintended or unknown structures in the data, e.g. confounded variables.
+    
+--
+
+  * It's further complicated by:
+      * Non-response, 
+      * Missing data, 
+      * Mis-measured data, 
+      * Dropouts, and censoring,
+      * ..... 😱
+
+---
+
+# Observational studies
+
+* Sampling from a population typically yields data considered to be an .monash-blue[**observational studies**]. Almost all open data are from observational studies.
+
+.info-box.w-75[
+* An **observational study** aims to draw inferences about a population from a sample where independent variables are *not* intentionally allocated to units within the sample for the purpose of a study.
+* Data considered in observational studies are **observational data**.  
+]
+
+--
+  
+
+Examples:
+
+.flex[
+.idea-box.w-33[
+.clear-list[
+* .li-aim[Who will win the 2022 Australian federal election?]
+* .li-data[Survey households]
+]]
+
+.idea-box.w-33[
+.clear-list[
+* .li-aim[Where are the best schools?]
+* .li-data[Government administrative data]
+]]
+
+.idea-box.w-33[
+.clear-list[
+* .li-aim[Who are buying my products?]
+* .li-data[Customer database]
+]]
+]
+
+---
+
+# Experimental studies
+
+* A scientific claim generally need to be validated by an *experimental study*. 
+
+.info-box.w-80[
+* In an **experimental study**, a causal variable of interest (referred to as *treatment*) is administered to recipients while holding other covariates at controlled settings to observe responses. 
+* Data from an experiment are referred to as **experimental data**.
+]
+
+--
+
+  
+
+Examples:
+
+.flex[
+.idea-box.w-45[
+.clear-list[
+* .li-aim[Is the vaccine effective against flu?]
+* .li-data[The data of whether the person who was administered the vaccine or placebo caught the flu afterwards.]
+]]
+
+.idea-box.w-45[
+.clear-list[
+* .li-aim[Which fertilizer brand is most effective for wheat yield?]
+* .li-data[Yield data from crop field trial with plots treated with one of the three fertilizer brands.]
+]]
+
+]
+
+---
+
+# Experimental units
+
+.info-box.w-70[
+**Experimental units** are recipients of the allocated treatment such that no sub-division of it can receive another treatment independently.
+
+]
+--
+
+.think-box.w-70[
+* Prof Android delivers their lecture by reciting word-to-word from the text in a monotone. 
+* Prof Alien delivers their lecture by transmitting the information directly to the students mind.
+* You want to see if one of the methods is more effective. 
+* Students in class 1, 3, 4, 7 and 10 have Prof Android.
+* Students in class 2, 5, 6, 8 and 9 have Prof Alien.
+
+**What are the experimental units?** {{content}}
+]
+
+--
+
+It's the classes.
+
+---
+
+# Observational units
+
+.info-box.w-70[
+**Observational units** are units that you measure the response on.
+]
+
+.think-box.w-70[
+Carrying on from the previous example... 
+* Students all sit for the same exam. 
+* You record the exam mark for each student.
+
+**What are the observational units?** {{content}}
+
+]
+
+--
+
+It's the students.
+
+--
+
+* Note: 
+    - *observational unit* is not the *observation* (the response)!
+    - Sometimes the experimental units  *are the same as* the observational units.
+
+---
+# Example: french fries (hot chips)
+
+.flex[
+.w-50[
+This is data from a 10 week sensory experiment, 12 individuals assessed taste of french fries on several scales (how potato-y, buttery, grassy, rancid, paint-y do they taste?), fried in one of 3 different oils, replicated twice. 
+
+&lt;br&gt;&lt;br&gt;
+Data is available in the deprecated R package [reshape](https://github.com/hadley/reshape)
+and was one of the examples that inspired the tidyverse tools. ]
+
+.w-50[
+&lt;img src="images/lecture-02/unnamed-chunk-2-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+
+
+]
+]
+
+---
+# Example: french fries (hot chips)
+
+.flex[
+.w-50[
+10 week sensory experiment, 12 individuals assessed taste of french fries on several scales, fried in one of 3 different oils, replicated twice. 
+
+* The **treatment** is oil, and there are 3 of them.
+* The **experimental units** are batches of chips.
+* The **observational units** are the tasters.
+* **Replication** is the two batches of each oil for each week.
+* Weeks could be considered to be **blocks**, because the taste might change as the oil ages.
+* The **outcome** or measured variable is the rating factor. There are five taste factors recorded.
+* **Randomisation** applied to order of tasting (probably), but tasters should be **blind** to the type of oil. 
+]
+
+.w-50[
+&lt;img src="images/lecture-02/unnamed-chunk-4-1.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+
+
+
+
+---
+
+# Systematic Design of Experiments
+
+&gt; **Randomisation** applied to order of tasting (probably)
+
+* Why don't we order the treatments in a **systematic order**?
+
+--
+* Isn't this easier to manage the experiment?
+
+--
+&lt;br&gt;&lt;br&gt;
+&lt;div class="info-box w-90"&gt;
+Systematic designs are prone to &lt;b class="monash-blue"&gt;bias&lt;/b&gt; and &lt;b class="monash-blue"&gt;confounding&lt;/b&gt;.
+&lt;/div&gt;
+
+---
+
+# Randomisation
+
+.w-70[
+* Treatments should be allocated *randomly* to experimental units. 
+* This avoids:
+  * .monash-blue[**systematic bias**] - e.g. all flu vaccine A tested in January (summer) and all flu vaccine B tested in July (winter).
+  * .monash-blue[**selection bias**] - e.g. giving the treatment that you are testing to the sick patients and placebo to those that are healthy.
+  * .monash-blue[**other bias**] - e.g. the lab technician giving the treatment to the first rat that is taken out of the cage. 
+
+]
+
+
+---
+
+# Blocking
+
+.info-box.w-50[
+ .monash-blue[**Blocks**] are used to group the experimental units into alike units.
+]
+--
+.w-70[
+* If well done, blocking can lower the variance of treatment contrasts which increase power.
+* A non-homogeneous block (i.e. units within block are *not* alike) can decrease the power of the experiment.
+
+{{content}}
+
+]
+
+--
+
+You can form blocks from:
+
+
+* **Natural discrete divisions** between experimental units. &lt;br&gt;E.g. in experiments with people, the gender make an obvious block.
+* Grouping experimental units with similar **continuous gradients**. &lt;br&gt;E.g., if the experiment is spread out in time or space and there exists no obvious natural boundaries, then an arbitrary boundary may be chosen to group experimental units that are contiguous in time or space. 
+
+---
+
+# The Salk Vaccine Field Trial
+
+.footnote.f5[
+Source: Freedman, Pisani &amp; Purves (2010) Statistics. 4th edition
+]
+.w-50[
+* The first polio epidemic hit the United States in 1916 claiming hundreds of thousands of victims, especially children.
+* National Foundation for Infantile Paralysis (NFIP) was ready to test the vaccine developed by Jonas Salk in the real world.
+* A controlled experiment was proposed to test the effectiveness of the vaccine on grade 1, 2 and 3 children at selected school districts though the country where the risk of polio was high.
+* In total two million children were involved although not all parents consented to their children to be vaccinated.
+]
+
+---
+
+
+
+.flex[
+.w-45[
+# Design for the NFIP Study
+
+.color-box.monash-bg-blue.white[
+Vaccinate all grade 2 children whose parents would consent, leaving children in grades 1 and 3 as controls.]
+
+* Can grade 2 children whose parents did not consent be included as control?
+* What are the potential issues with such a design?
+* Polio is a contact disease. Would incidences of disease be higher in grade 2?
+]
+{{content}}
+]
+--
+
+ &lt;div class="w-45 pl4"&gt;
+
+&lt;h1&gt;Randomised controlled trial&lt;/h1&gt;
+
+&lt;div class="color-box monash-bg-blue white"&gt;
+An alternate vaccine trial randomly assigned the vaccine and placebo to children.
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+---
+
+# Vaccine Results
+
+.flex[
+&lt;table class="table table-striped table-bordered" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;The NFIP Study&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Group &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Participants &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Rate &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Vaccinated (Grade 2) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 221,998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Control (Grade 1 &amp;amp; 3) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 725,173 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Not Vaccination&lt;br&gt; (Grade 2, no consent) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 123,605 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Incomplete Vaccination&lt;br&gt;(Grade 2, incomplete) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9,904 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 40 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;caption&gt;Randomised controlled trial&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Group &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Participants &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Rate &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Vaccinated &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 200,745 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 28 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Placebo &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 201,229 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 71 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Not Vaccination&lt;br&gt;(no consent) &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 338,778 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 46 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Incomplete Vaccination &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8,484 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 24 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+]
+
+* The rate is the number of polio cases per 100,000 in each group.
+* RCT and NFIP trial sampled from school districts with similar exposures to the polio virus.
+
+--
+
+.think-box.w-90[
+The groups labelled variously as Not Vaccination (no consent), Control and Placebo group did not receive the vaccine. Why is the rate of polio cases different?
+]
+
+---
+
+# Possible explanations
+
+.w-70[
+* Higher income parents would more likely consent to treatment than lower-income parents.
+{{content}}
+
+]
+--
+* Children of higher income parents are more vulnerable to polio.
+{{content}}
+--
+* Many forms of polio are hard to diagnose and in borderline cases.
+
+---
+
+
+# Limitations in (social) experiments
+
+* Cooperation needed from participants 
+* Ethical objections
+* Substitution bias 
+* Sample attrition 
+* Hawthorne effect
+
+--
+
+.w-70[
+.f1[Basically, designing and running experiments are *hard*.]
+]
+
+---
+# Taxonomy of types of data studies
+
+- **Experimental data**: the gold standard of data collection, but very difficult
+- **Observational data**:
+    - **census**: all (or close to all) members of the population are measured
+    - **survey sample**: each member of the population has a known probability of being selected into the sample, eg cohort study, cross-sectional, case-control, cluster/hierarchical, multi-stage
+    - **non-random sample**: it is not known how the sample relates to the population
+    - **censored**: events might happen outside of observation interval, eg observed up to 30,000km but brake failure was at 45,000 km
+    - **occurrences**: only when an incident is observed is it recorded, eg wildlife sightings, warranty claims, complaints
+        
+
+.info-box.w-100[
+ Knowing how the sample of data relates to the population is an essential ingredient for making .monash-blue2[inferential statements] and making decisions with data.
+]
+
+
+---
+
+class: transition 
+
+
+# Pop Quizzes
+
+---
+
+
+# Observational (what type) or experimental data?
+
+
+.question-box.w-50[
+Airline traffic (on-time performance database) in the USA as available from https://www.bts.gov. Records on every commercial flight operated in the USA since the 1980s, that has carried passengers. 
+]
+
+--
+
+.w-60[
+.fr.animated.bounceIn.f1.small-caps[Observational, census]
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Always ask yourself "What is missing?"
+
+]
+
+---
+
+# Observational (what type) or experimental data?
+
+
+.question-box.w-60[
+National Longitudinal Survey of Youth 1979
+https://www.nlsinfo.org/content/cohorts/NLSY79 Measures people born between 1957 and 1964. At the time of first interview, respondents' ages ranged from 14 to 22. 
+]
+
+--
+
+.w-60[
+.fr.animated.bounceIn.f1.small-caps[Observational, survey sample]
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Always ask yourself "What is the population?"
+]
+
+
+---
+
+# Observational (what type) or experimental data?
+
+
+.question-box.w-80[
+Atlas of Living Australia at https://www.ala.org.au. The Atlas of Living Australia (ALA) is a collaborative, digital, open infrastructure that pulls together Australian biodiversity data from multiple sources, making it accessible and reusable.
+
+The ALA helps to create a more detailed picture of Australia’s biodiversity for scientists, policy makers, environmental planners and land managers, industry and the general public, and enables them to work more efficiently.
+]
+
+--
+
+.w-90[
+.fr.animated.bounceIn.f1.small-caps[Observational, occurrence]
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Always ask yourself "What is missing?" and "What is the population?"
+]
+
+---
+
+# Observational (what type) or experimental data?
+
+
+.question-box.w-70[
+The US National Institute of Health provides a catalog of medical studies including many COVID studies. Here is one that studies the ["Safety and Efficacy of C21 in Subjects With COVID-19"]((https://clinicaltrials.gov/ct2/show/NCT04452435?recrs=e&amp;cond=covid&amp;draw=2&amp;rank=10). 
+]
+
+--
+
+.flex[
+.w-60[
+.fr.animated.bounceIn.f1.small-caps[Experimental]
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+What are the treatments? Experimental units? Outcome measure? Randomisation?
+]
+]
+
+---
+
+class: transition
+
+## Slides originally developed by Professor Di Cook and Dr Emi Tanaka, Slides maintained by Dr. Kate Saunders
+
+
+---
+
+
+
+
+background-size: cover
+class: title-slide
+background-image: url("images/bg-03.png")
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+.bottom_abs.width100[
+
+Lecturer: *Kate Saunders*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 2
+
+&lt;br&gt;
+
+]
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "magula",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

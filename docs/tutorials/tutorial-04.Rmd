@@ -1,0 +1,340 @@
+---
+title: 'ETC5512: Instructions for Tutorial 4'
+author: "Lecturer: Kate Saunders"
+date: "Week 4 Australian Census"
+output: 
+  html_document:
+    css: tutorial.css
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, eval = FALSE)
+```
+
+
+## 🎯 Objectives
+
+In this tutorial, you will learn 
+
+- a bit about how to structure your projects
+- to wrangle messy data into tidy data
+- practice your string manipulation
+
+
+## 🔧 Preparation  
+
+
+1. **Set up your project folder**
+
+For the last few weeks, we've been sharing a folder with a project. It's now time for you to start setting up your own to work through the exercise.  
+
+Below is an example of how to get started. 
+
+   * RStudio > New Project > New Directory > New Project
+   
+     Save it in a directory of your choosing. 
+   
+     You can call the project what you like, we recommend `tutorial-04`.
+   
+   * Create folders called `data` and `analysis` (or similarly named) in the project root directory.
+
+   * Create an `exercise-04.Rmd` under the `analysis` (or similarly named) folder.
+
+
+1. **Getting the census data**
+  
+   * Go to https://www.abs.gov.au/census/find-census-data/datapacks selecting the following options:
+     * 2021 Census Datapacks
+     * General Community Profile 
+     * All geographies
+     * Vic 
+
+     The downloaded file would be called `2021_GCP_ALL_for_Vic_short-header.zip`.
+   
+   * Unzip this file and save the folder in the `data` folder you set up.
+    
+
+1. **Installing the `here` R-package**
+
+We use this for referencing files relative to your current working directory. 
+
+```{r, eval = FALSE}
+install.packages("here")
+```
+
+2. **Check your project structure**
+
+   Your project structure should look like below.
+
+```
+tutorial-04
+├── analysis
+│   └── exercise-04.Rmd
+├── data
+│   └── 2021_GCP_ALL_for_Vic_short-header
+│       └── 2021\ Census\ GCP\ All\ Geographies\ for\ VIC
+│           ├── SA1
+│           │   └── VIC
+│           │       ├── 2021Census_G17A_VIC_SA1.csv
+│           │       ├── 2021Census_G17B_VIC_SA1.csv
+│           │       └── 2021Census_G17C_VIC_SA1.csv
+│           └── STE
+│               └── VIC
+│                   ├── 2021Census_G17A_VIC_STE.csv
+│                   ├── 2021Census_G17B_VIC_STE.csv
+│                   └── 2021Census_G17C_VIC_STE.csv
+└── tutorial-04.Rproj
+```
+
+   * Note that it's not desirable to have spaces in your file or folder name
+   * <span style="color:red">Put your analysis from the exercises into the `analysis/exercise-04.Rmd`.</span>
+   
+## 🚶 Exercise 4A
+
+**Practice regular expression**
+
+Consider the following vector `A` and `B`. The first letter has information on the sex, followed by minimum income, maximum income, minimum age, and maximum age separated by `_`, with some exceptions for certain age and income categories (e.g. `Neg_Nil` is negative or nil income, `85ov` is 85 years or over). Wrangle this vector to extract the information on its own vector or a column in a data frame. Try using the functions `str_split()`, `str_replace()` and or `str_remove()` to do this. 
+
+<details style = "padding-left:50px;">
+<summary>Hint</summary>
+```{r, echo = TRUE, eval = TRUE}
+# some examples to help you
+library(tidyverse)
+str_split("A_B_C_D", "_")
+str_replace("Neg_nil_income", "Neg", "-Inf")
+str_replace("Neg_nil_income", "nil", "0")
+str_replace("we_want_fourthings", "rt", "r_t")
+str_remove("we_want_to_remove_the_extra_stuff", "to_remove_the_extra_")
+```
+</details>
+
+```{r}
+A <- c("F_300_399_55_64_yrs", 
+       "F_1_149_35_44_yrs", 
+       "F_150_299_25_34_yrs", 
+       "M_800_999_75_84_yrs", 
+       "M_400_499_65_74_yrs")
+
+B <- c(A, 
+       "F_1_149_15_19_yrs", 
+       "F_150_299_85ov", 
+       "M_1500_1749_85ov", 
+       "M_Neg_Nil_income_20_24_yrs", 
+       "M_150_299_25_34_yrs")
+```
+
+
+## 🏋 Exercise 4B
+
+**Tidy your census data**
+
+Start with loading the `tidyverse` package and setting the path ways to the data. 
+
+```{r setup, eval = TRUE}
+
+library(tidyverse)
+census_path <- here::here("data/2021_GCP_all_for_VIC_short-header/2021 Census GCP All Geographies for VIC")
+
+SA1_paths <- glue::glue(census_path, "/{geo}/VIC/2021Census_G17{alpha}_VIC_SA1.csv",
+                        geo = "SA1", alpha = c("A", "B", "C"))
+
+STE_paths <- glue::glue(census_path, "/{geo}/VIC/2021Census_G17{alpha}_VIC_STE.csv",
+                        geo = "STE", alpha = c("A", "B", "C"))
+
+```
+
+To load the data we will use the `here` function from the `here` package. 
+The path argument parsed to `here::here` will be referenced with respect to 
+the `.Rproj` file. This is particularly helpful if your project structure becomes deeply nested. 
+
+```
+tutorial-04
+├── analysis
+│   └── exercise-04.Rmd      # << analysis are here
+├── data                  # << data are here 
+│               
+│  
+└── tutorial-04.Rproj  # << make reference point `here`
+```
+
+First focus on `2021Census_G17A_VIC_STE.csv`, and develop an understanding of what R reads in using the function `str`. This will help you develop an idea of the data structure.
+
+```{r}
+STE_G17A <- read_csv(STE_paths[1])
+str(STE_G17A)
+```
+
+* How many rows and columns does `STE_G17A` contain?
+
+Part of our mission today is to make this data into a tidy form. The first step to this is pivoting the data from it's wide format into a long format. Check out the [tidyverse cheat sheet](https://rstudio.github.io/cheatsheets/tidyr.pdf) for some extra help understanding how the data is being combined. Use `View()` to compare `STE_G17A` before and `STE_G17A_long` after.
+
+```{r}
+STE_G17A_long <- STE_G17A |>
+  pivot_longer(cols = -1, names_to = "category",
+               values_to = "count")
+```
+
+* What about the other STE_paths? Is the data structured similarly?  
+The answer is yes, so let's read in all the data and combine it together.
+
+```{r echo = TRUE, eval = TRUE}
+data_paths <- STE_paths
+  
+# Read in each of the three tables
+tbl_G17A_long <- read_csv(data_paths[1]) |>
+  pivot_longer(cols = -1, names_to = "category",
+               values_to = "count")
+
+tbl_G17B_long <- read_csv(data_paths[2]) |>
+  pivot_longer(cols = -1, names_to = "category",
+               values_to = "count")
+
+tbl_G17C_long <- read_csv(data_paths[3]) |>
+  pivot_longer(cols = -1, names_to = "category",
+               values_to = "count")
+
+# Combine all the data together
+tbl_G17_long <- bind_rows(tbl_G17A_long, tbl_G17B_long, tbl_G17C_long)
+```
+
+We can sanity check our operations by looking at the changes in the dimension of the data.
+
+```{r}
+nrow(tbl_G17A_long) + nrow(tbl_G17B_long) + nrow(tbl_G17C_long)
+nrow(tbl_G17_long) 
+```
+
+The next step is to separate the `category` column out into multiple different variables for `sex`, `age_min`, `age_max` `income_min`, and `income_max`. There is a handy function that can help us do that called `separate_wider_delim()`, which is similar to `str_split()` but works for splitting columns in data frames.
+
+The catch with using `separate_wider_delim()` is that we want all entries in the column to be of a similar format. However, there are lot of weird cases that we would need to change to make look more standard. 
+
+1) Neg_Nil_income $\rightarrow$ change to -Inf_0.  
+1*) Negtve_Nil_income $\rightarrow$ change to -Inf_0. 
+2) more $\rightarrow$ Inf. 
+3) PI_NS $\rightarrow$ don't want these columns for today (like NA_NA). 
+4) 85ov $\rightarrow$ change to 85_110. 
+4*) 85_yrs_ov $\rightarrow$ change to 85_110. 
+5) Tot $\rightarrow$ don't want these columns (can reproduce them from the data). 
+
+One way to find these edge cases is by looking through the meta data. 
+Another is to count the underscores of each entry in the column `category`.
+
+```{r echo = TRUE, eval = TRUE}
+underscore_count_per_category = str_count(string = tbl_G17_long$category, pattern = "_")
+table(underscore_count_per_category)
+```
+
+* Remove any columns with the header that contains the strings `Tot` (totals) or `PI_NS` (personal income not stated).
+
+```{r echo = TRUE, eval = TRUE}
+tbl_G17_long_formatted <- tbl_G17_long |>
+  filter(!str_detect(string = category, pattern = "Tot"),
+         !str_detect(category, "PI_NS"))
+```
+
+* Wrangle your data so that it has the columns: `count`, `sex`, `age_min`, `age_max` `income_min`, and `income_max`. For those with no upper bound (e.g. 85 over, 3000 or more), you can use `Inf` in R to signify $\infty$. A quick google tells us no one in Australia is older than 110, so that seems like a more reasonable upper bound for age.
+
+```{r echo = TRUE, eval = TRUE}
+tbl_G17_long_formatted <- tbl_G17_long_formatted |> 
+  mutate(
+    category = str_replace(category, "Neg_Nil_income", "-Inf_0"),
+    category = str_replace(category, "Neg_Nil_incme", "-Inf_0"),
+    category = str_replace(category, "Negtve_Nil_incme", "-Inf_0"),
+    category = str_replace(category, "more", "Inf"),
+    category = str_replace(category, "85ov", "85_110_yrs"),
+    category = str_replace(category, "85_yrs_ovr", "85_110_yrs"))
+```
+
+We can do a quick check to see if our changes make the entries in columns `category` have the same number of "_" separators. 
+
+```{r echo = TRUE, eval = TRUE}
+underscore_count_per_category = str_count(tbl_G17_long_formatted$category, "_")
+table(underscore_count_per_category)
+```
+
+Looks good, so let's separate out those different entries into columns. Remember to check your result using `View()`.
+
+```{r}
+tbl_G17_tidy <- tbl_G17_long_formatted |>
+  mutate(category = str_remove(category, "_yrs")) |>
+  separate_wider_delim(cols = category, delim = "_",
+                       names = c("sex", "income_min", "income_max", "age_min", "age_max")) 
+View(tbl_G17_tidy)
+```
+
+* What is the importance of the `mutate` call using `str_remove()`? 
+
+Later on we are going to do some graphing using different categorical ranges. 
+So let's also create two new variables for age bracket and income bracket.
+
+```{r}
+tbl_G17_tidy = tbl_G17_tidy |>
+  unite("income", c(income_min, income_max), remove = FALSE) |>
+  unite("age", c(age_min, age_max), remove = FALSE)
+View(tbl_G17_tidy)
+```
+
+* Repeat the above for the SA1 data. This should be as easy as changing `data_paths` from `STE_paths` to `SA1_paths`.
+
+Take time to note here just how many different steps we needed to do to wrangle 
+our data into a useful format for our filtering and plotting needs. Figuring out all
+these steps yourself would take a lot of time! To get quicker at understanding what is in your data and how to format it for an analysis will come with time and practice.
+
+## 🏃 Exercise 4C
+
+**Quality check your census data**
+
+* According to the data from 4B, how many people are there in Victoria? If you check [http://www.population.net.au](http://www.population.net.au/population-of-victoria/), there are 6.62 million people in 2021 at Victoria. Does it look right? Are we missing some people in the data? If so, what kinds of people are we missing?
+
+* What is the minimum and maximum of values for `count`? Do the range and categories for each column look right?
+
+* Draw a barplot (using `ggplot` or otherwise) of the number people in Victoria by:
+  1. sex
+  2. age group
+  3. income group
+  4. sex and age group
+  5. sex and income group
+  6. age and income group
+  7. sex, age and income group
+
+Note to make your labels appear in the correct order on your axes you will need to run the following code. 
+
+```{r}
+tbl_G17_tidy$income <- fct_reorder(tbl_G17_tidy$income,
+                                   as.numeric(tbl_G17_tidy$income_min))
+```
+  
+<details style = "padding-left:50px;">
+<summary>Hint: click here for a code for the 7th barplot </summary>
+  
+```{r}
+tbl_G17_tidy %>%
+  filter(sex != "P") |>
+  ggplot(aes(x = age, y = count, fill = sex)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~income) +
+  theme_bw(base_size = 12) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.3)) +
+  ggtitle("7. Income, sex & age distribution in Victoria from 2021 Census")
+```
+  
+</details>
+
+* Do the graphs meet your expectations of the data? Discuss with your classmates.
+* Is it easier to answer these questions because we made our data tidy?
+
+## 💃 Exercise 4D
+
+**Extract statistics from your tidy census data**
+
+According to the 2021 Census data:
+
+* How many women in Victoria are aged between 15-54 years old?  
+
+* What is the proportion of people in Victoria that are 25-34 years old (inclusive) and earn $1750 or more per week?  
+
+* Suppose I randomly select a man from all the men aged 25-44 years old in Victoria. What is the probability that the man I selected earns less than $1500 per week?  
+
+
+#### Material originally developed by Dr. Emi Tanaka and maintained by Dr. Kate Saunders
