@@ -1,0 +1,58 @@
+---
+title: 'ETC5512: Instructions for Tutorial 10'
+author: "Lecturer: Kate Saunders"
+date: "Week 10 Web scraping practice"
+output: 
+  html_document:
+    css: tutorial.css
+---
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will learn 
+
+- how to identify html structures on a web page
+- how to read these html structures into R
+- add how to use the data you have downloaded in an analysis
+
+## `r emo::ji("wrench")` Preparation  
+
+Make sure to downlod the R package `rvest` to be ready for today's class
+
+## `r emo::ji("earth")` Background
+
+*Alone is an American survival competition series on History. It follows the self-documented daily struggles of 10 individuals (seven paired teams in season 4) as they survive alone in the wilderness for as long as possible using a limited amount of survival equipment. With the exception of medical check-ins, the participants are isolated from each other and all other humans. They may "tap out" at any time, or be removed due to failing a medical check-in. The contestant who remains the longest wins a grand prize of $500,000 (USD) (increasing to $1 million in season 7).*
+
+From [Alone wikipedia](https://en.wikipedia.org/wiki/Alone_(TV_series))
+
+## `r emo::ji("minidisc")` Exercise 1
+
+Visit the wikipedia page for the Alone TV Series and identify the basic elements that make up the page. 
+
+a. How many tables are on there on the page?   
+
+b. How many paragraphs are there? 
+
+c. Identify and scrape the table containing the past Series winners. 
+d. Identify and scrape the text that was used to create the Background text for this tutorial. 
+
+## `r emo::ji("abacus")` Exercise 2
+
+Explore the data you've pulled down from the webpage. 
+
+a. Process the table and extract how long the winners spent in the Wild.
+
+b. Plot your result. Is the time spent in the wild increasing as the seasons go on?
+
+## `r emo::ji("round_pushpin")` Exercise 3
+
+a. Discuss in groups, how you would you automate getting the time all contestants spent in the wild from Seasons 1 - 10. 
+
+b. Write some pseudo code and identify potential edge cases that would need to be handled to web scrape the time contestants spent in the wild from Seasons 1 - 10.
+
+c. Pull this data into R and plot how long people were in the wild on the different seasons. Start with one season. ADVANCED generalise your approach to all seasons.
+
+d. The reasons people leave the show can be quite varied, from medical reasons, to fear, accidents and to missing family. Is there any easy way to scrape and analyse the common reasons people leave? Discuss the challenges.
+
+#### Material developed by Dr Kate Saunders
+#### Copyright Monash University 2024

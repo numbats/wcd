@@ -1,0 +1,65 @@
+---
+title: 'ETC5512: Instructions for Tutorial 12'
+author: "Kate Saunders"
+date: "Week 12 Care and feeding of wild caught data"
+output: 
+  html_document:
+    css: tutorial.css
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  eval = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  error = FALSE, 
+  out.width = "70%",
+  fig.width = 8, 
+  fig.height = 6,
+  fig.retina = 3)
+set.seed(6)
+filter <- dplyr::filter
+```
+
+## `r emo::ji("target")` Objectives
+
+In this tutorial, you will  
+
+- reflect on the open data resources that you have seen in this unit, or other places, that make data extraction difficult.
+- place yourself in the role of data curator, based on your experiences as a user, and collaboratively develop a list of good practices for data sharing.
+
+## `r emo::ji("wrench")` Preparation  
+
+1. Complete the reading for this week, and make notes of the five key take-aways from each
+2. Think about how these principles for scientific data relate to business and government data. 
+
+## `r emo::ji("crocodile")` Exercise 12A
+
+General discussion about the key take-aways from the readings. What do you think the most important things to know about spreadsheets is? How do you effectively care for your data? If you are planning to share data, what do you need to think about?
+
+## `r emo::ji("kangaroo")` Exercise 12B
+
+What was difficult working with the data in Assignment 1, 2, 3? Beyond the difficulties in compiling your report! What did you find tricky, or take longer than expected, or had to ask someone else how to do? This could also be extended to the data you worked with during tutorials. 
+
+<!--
+- Links to data tables - so many to look through
+
+- Changing links
+
+- Feedback - communication
+
+- Audiences
+-->
+
+## `r emo::ji("koala")` Exercise 12C
+
+What would you as data curator do to make it easier? Were there any wild data that was easy to work with? What made it easy? **Come up with a check-list, as a class, for making data available**, including any additional resources that should be provided. Share your checklist either in GitHub or as a Google doc, and share it with your tutor and Dr. Saunders.
+
+## `r emo::ji("infinity")` Exercise 12D
+
+*"To infinity and beyond"* Buzz Lightyear in the Toy Story 
+ 
+Discussion about issues likely to be faced in the workforce. What would you do if your workplace was doing something unethical with data? Do you expect that your workplace will have a data repository? Would a code versioning system be something you might encounter? What role on  a data analytics team would you like to play?
+
+#### Material Developed by Prof. Di Cook © Monash University and maintained by Dr. Kate Saunders

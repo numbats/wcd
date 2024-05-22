@@ -1,0 +1,154 @@
+---
+title: 'ETC5512: Tutorial 1 Solution'
+author: "Lecturer: Kate Saunders"
+date: "Week 1"
+output: 
+  html_document:
+    css: tutorial.css
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      eval = TRUE,
+                      cache=TRUE, 
+                      warning=FALSE, 
+                      message=FALSE)
+options(width=80,digits=3)
+```
+
+```{r loadpackages}
+library(tidyverse)
+library(here)
+library(galah)
+```
+
+
+# Tutorial Solution
+
+## Exercise 1: US air traffic
+
+### a. Download
+
+### b. How was the data collected?
+
+  (i) Who has the oversight for the data provision? 
+  
+  *Office of Airline Information, Bureau of Transportation Statistics*
+  
+  (ii) Who reports the data to the data provider? 
+  
+  *Reporting carriers are required to (or voluntarily) report on-time data for flights they operate*
+  
+  (iii) How is the data collected? 
+  
+  *This is like a census for all 'US certified air carriers that account for at least one percent of domestic scheduled passenger revenues', containing information on each commercial flight that carried passengers.*
+  
+  (iv) Is this open data? What type of license is provided? What are you allowed to do with the data? 
+  
+  *Yes, this is open data. There is no obvious license, but it falls under the US open data policy guidelines. Check the Web policies link at bottom.*
+  
+  (v) What information is in each row of the data set? 
+  
+  *One row is one operated flight. You can think of this as event data. Ususally you will want to aggregate it in different ways for analysis.*
+  
+### c. Data quality checks
+
+(i) Read in the data
+(ii) Check dates range for the month of January 2020.
+(iii) Count number of flights by carrier. Who has the most flights?
+(iv) Which airport has the most traffic? Does every airport have the same number of incoming and outgoing flights?
+
+```{r}
+library(tidyverse)
+library(here)
+flights <- read_csv(here::here("data/T_ONTIME_REPORTING.csv")) %>% select(YEAR:ARR_DELAY)
+flights %>% select(FL_DATE) %>% summary()
+flights %>% count(OP_UNIQUE_CARRIER, sort = TRUE)
+```
+
+*Helpful hint: If you are having difficulty running this code check the file name matches, check your file path and check your project directory.*
+
+*WN has the largest number of flights. This is the low cost carrier Southwest.*
+
+```{r}
+flights %>% count(ORIGIN, sort = TRUE)
+outgoing <- flights %>% count(ORIGIN) %>% rename(outbound = n)
+incoming <- flights %>% count(DEST) %>% rename(inbound = n)
+traffic <- full_join(outgoing, incoming, by=c("ORIGIN" = "DEST"))
+ggplot(traffic, aes(x=outbound, y=inbound)) + geom_point() +
+  coord_equal()
+```  
+
+*The number of outgoing flights is the same (or very close to) as the number of incoming flights, as we would expect. ATL, which is Atlanta, Georgia is the busiest airport.*
+
+## Exercise 2: National Longitudinal Survey of Youth
+
+### a. Data download
+
+(iv) The data arrives with four variables `R0000100`, `R0173600`, `R0214700`, `R0214800`. Read the codebook to find out what these are.
+
+*R0000100 is a unique id for each individual, R0173600 is a sex and race survey question with values from 1-20,  R0214700 is race with 3 categories,  R0214800 is sex with only two categories.*
+
+### b. License and usage
+
+(i) At the bottom of the web site are links that can help to determine what are the allowed uses. What information does the data provider keep about you?  
+
+*Only your email address.*
+
+(ii) Is there a license provided with the data? What sort of open data is this? The documentation says that this is public use data. What do you think "public use" means? 
+
+*https://data.gov/privacy-policy.html#license says "U.S. Federal data available through Data.gov is offered free and without restriction."*
+
+### c. About the data
+
+(i) How was this data collected?
+
+*Observational data collected by survey sampling: "a cross-sectional sample of 6,111 respondents designed to represent the noninstitutionalized civilian segment of people living in the United States in 1979 and born between January 1, 1957, and December 31, 1964 (ages 14-21 as of December 31, 1978)"*
+
+(ii) Check the levels in the downloaded data. Do they match the codebook? How many individuals are in the sample?
+
+```{r}
+nlsy <- read_csv(here::here("data/NLSY/NLSY.csv"))
+nlsy %>% count(R0214700)
+nlsy %>% count(R0214800)
+nlsy %>% count(R0173600)
+nlsy %>% tally()
+```
+
+## Exercise 3: Atlas of Living Australia
+
+(i) Point your browser to https://www.ala.org.au. Check the terms of use. Does it have a license? 
+
+*Yes, creative commons.*
+
+(ii) Using the `galah` library, and the function `occurrences` extract the records for platypus. 
+
+*Helpful tip: To run the code to download the data you must register using your email address on the ALA webpage first*
+
+### b. Data quality checks
+
+(i) Plot the locations of sightings. Where is Australia are platypus found?
+
+*Platypus are mostly found along the East coast of Australia, and also Tasmania.*
+
+```{r}
+load(here::here("data/platypus.rda"))
+ggplot(platypus, aes(x=Longitude, y=Latitude)) +
+  geom_point()
+```
+
+(ii) What dates of sightings are downloaded?
+
+*1770 through to 2022*
+
+
+### c. Data collection methods
+
+How is this data collected? Explain the ways that a platpus sighting would be added to the database. Also think about what might be missing from the data? 
+
+*This data is mostly provided on a voluntary basis, some by researchers, some by citizen scientists. This means that it is not systematic, so there may be locations where platypus are found that people don't go. These places would then not be represented in the database.*
+
+
+##### Material developed by Prof Di Cook and is maintained by Dr. Kate Saunders
+
+##### © Copyright 2024 Monash University

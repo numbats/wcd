@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5512: Wild Caught Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Kate Saunders" />
+    <script src="lib/header-attrs-2.16/header-attrs.js"></script>
+    <link href="lib/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    
+    <!--
+    <script defer src="assets/all.min.js"></script>
+
+    Need below to enable css contents
+
+    <script>
+      window.FontAwesomeConfig = {
+        searchPseudoElements: true
+      }
+    </script>
+
+    -->
+    <link rel="stylesheet" href="assets/font-awesome-all.css" type="text/css" />
+    <link rel="stylesheet" href="assets/tachyons-addon.css" type="text/css" />
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/fira-code.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/table.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/slide-types.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+class: middle center hide-slide-number monash-bg-gray80
+
+
+
+
+
+.info-box.w-50.bg-white[
+These slides are viewed best by Chrome or Firefox and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-00.pdf&gt;here for the PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;. 
+]
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+
+
+---
+
+class: title-slide
+count: false
+background-image: url("images/bg-03.png")
+
+# .monash-blue[ETC5512: Wild Caught Data]
+
+&lt;h1 class="monash-blue" style="font-size: 30pt!important;"&gt;&lt;/h1&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Course Information&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Kate Saunders*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 0
+
+&lt;br&gt;
+
+]
+
+
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+&lt;img src="images/profile-pics/kate-portrait.jpg" width = "200px"/&gt;
+]
+
+&lt;br&gt;
+  
+
+# Kate Saunders 
+*Lecturer of Business Analytics*  
+Monash University
+
+&lt;br&gt;
+
+&lt;i class="fas fa-globe"&gt;&lt;/i&gt; https://numbat.space/people/current/saunders-kate/
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fab fa-twitter"&gt;&lt;/i&gt; @katerobsau
+
+]
+
+.pa5.w-60[
+
+# About your instructor
+
+* 👩‍🎓 Dr Saunders has a PhD in statistics   
+
+* 👨‍🔬 Her research uses statistical models to understand climate extremes 
+
+* 🥼 She is interested in how extreme events are influenced by climate change and natural variability.  
+
+* 👩‍💻 R underpins her science
+
+* 👩‍💻 Helping her to create amazing data visualisations and easily communicate ideas with her collaborators.
+
+* 🌎 Hometown is Ipswich, Queensland
+
+* ❤️ Likes to play basketball - so let me know if you want to play pick up!
+
+ 
+
+]
+
+
+]
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+&lt;img src="images/profile-pics/janith.jpg" width = "200px"/&gt;
+]
+
+&lt;br&gt;
+
+# Janith Wanniarachchi
+*Tutor in Business Analytics*  
+Monash University
+
+&lt;br&gt;
+
+&lt;!-- &lt;i class="fas fa-globe"&gt;&lt;/i&gt;  --&gt;
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; janith.wanniarachchi@monash.edu
+
+&lt;!-- &lt;i class="fab fa-twitter"&gt;&lt;/i&gt;  --&gt;
+
+]
+
+.pa5.w-60[
+
+&lt;!-- Janith Wanniarachchi is a first year PhD student at the Department of Economics and Business Statistics. He is currently working off on his research under Prof. Di Cook, Prof. Patricia, Dr. Thiyanga and Dr. Kate Saunder’s supervision on Explainable Artificial Intelligence and Data Visualization applied to the domain of extreme climate events. Before joining Monash University he was an R Shiny Developer at Appsilon building Shiny dashboards for the life sciences industry and working on R packages. His academic journey started as an undergraduate at University of Sri Jayewardenepura in Sri Lanka where he completed his BSc. (Hons.) in Statistics. His research interests are mainly on Explainable Artificial Intelligence, Data Visualization with a dash of Climate Modeling. Apart from his usual research interests, he has an avid interest in D3.js, scrollytelling and writing stories and poems. --&gt;
+
+# About your instructor
+
+* 👩‍🎓 First year PhD student in the Department of Economics and Business Statistics. 
+
+* 🎓 PhD project is in explainable artificial intelligence and data visualization
+
+* 👨‍🎓 Undergraduate at University of Sri Jayewardenepura in Sri Lanka in BSc. (Hons.) Statistics
+
+*  👩‍💻 Work Experience: R Shiny Developer at Appsilon building Shiny dashboards 
+
+* ❤️ Interested in D3.js, scrollytelling and writing stories and poems.
+
+]]
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+&lt;img src="images/profile-pics/krisanat.jpg" width = "200px"/&gt;
+]
+
+&lt;br&gt;
+
+# Krisanat Anukarnsakulchularp
+*Tutor in Business Analytics*  
+Monash University
+
+&lt;br&gt;
+
+&lt;!-- &lt;i class="fas fa-globe"&gt;&lt;/i&gt;  --&gt;
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; krisanat.anukarnsakulchularp@monash.edu
+
+&lt;!-- &lt;i class="fab fa-twitter"&gt;&lt;/i&gt;  --&gt;
+
+]
+
+.pa5.w-60[
+
+
+# About your instructor
+
+&lt;!-- I was a Master of Business analytics student who graduated last year. I have been at Monash since my Bachelor degree. My recent research is in animate visualization, and planning to do network visualization in the future. I am from Thailand. I recently published my first CRAN package called animbook. My hobby is playing music. --&gt;
+
+* 👩‍🎓 Graduated last year with a Masters in Business Analytics 
+
+* 👩‍🎓 Is a Monash local since undergrad
+
+* 🌍 Home is Thailand
+
+*  👨‍💻 Research is in animate visualization, and with plans to do network visualization
+
+*  👨‍💻 Recently published my first CRAN package called animbook! 
+
+* ❤️ Hobby is playing music.
+
+]]
+
+---
+
+# Introduce yourself in the chat!
+
+.flex.h-100[
+
+.w-15[
+.circle-image-120[
+&lt;img src="images/profile-pics/kate-portrait.jpg" width = "120px"/&gt;
+] 
+.circle-image-120[
+&lt;img src="images/profile-pics/janith.jpg" width = "120px"/&gt;
+]
+]
+.w-15[
+.circle-image-120[
+&lt;img src="images/profile-pics/krisanat.jpg" width = "120px"/&gt;
+] 
+]
+.w-55.pl4[
+* What was your undergraduate degree in?
+* What's your profession or profession you are interested to get in?  
+* Where do you live?
+* What's your hobby? 
+* What's one thing you want everyone to know (about you)? 
+
+]
+
+]
+
+
+
+---
+
+
+# How to ask for help
+
+.flex.h-100[
+
+.w-30[
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.font_large.center[💁]
+
+.font_large.center[🙋🏽‍♀]
+
+]
+.w-80[
+
+During the lecture, you can:
+
+* write in the chat,
+
+* ask directly (unmute yourself first), or
+
+* raise hand from zoom under Participants.
+
+Otherwise, you can:
+
+* make use of consultation or tutorial period,
+   * See Moodle for the times and zoom links (or room number)
+   * Please only go to your scheduled tutorial stream 
+* post questions in Moodle discussion board, or
+* _if you have a private matter_, send email to &lt;Br&gt;&lt;a href="mailto:ETC5512.Clayton-x@monash.edu"&gt;ETC5512.Clayton-x@monash.edu&lt;/a&gt; from your Monash email.
+]]
+
+---
+# Learning objectives
+
+
+1. Understand the definitions, allowed usage, digital identification and licensing of open data
+
+--
+
+2. Know about common open data sources, how they are used and effectively search for new sources
+
+--
+
+3. Explain the differences between data collection methods and the limitations for data analysis
+
+--
+
+4. Work with the range of different data formats of open data, including APIs
+
+--
+
+5. Understand ethical constraints and privacy limits when working with open data
+
+--
+
+6. Recognise the components of effective curation needed for open data.
+
+---
+
+.pull-left[
+# Philosophically
+
+Think about this unit in the way Dr Mine Çetinkaya-Rundel describes in this talk: 
+
+["Let them eat cake (first)"](https://speakerdeck.com/minecr/let-them-eat-cake-first-b18397a2-9fbd-4bd8-b4b5-a31600c02870?slide=2)
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Imagine you're .monash-blue2[new to baking], and you're in a baking class. 
+
+I'm going to present two options for starting the class. .monash-orange2[Which one gives you better sense of the final product?]
+]
+--
+
+.pull-right[
+&lt;img src="images/lecture-01/ingredients.jpg" width="80%"&gt;
+
+&lt;img src="images/lecture-01/cake.jpg" width="80%"&gt;
+]
+
+---
+class: transition middle
+
+# The case studies you will see in this unit are the cakes 
+
+that we hope you can bake at the end of your data analysis studies.
+
+---
+# Course assessments
+
+.flex.h-100[
+
+.w-50[
+* Weekly quizzes on [FLUX](https://flux.qa/#/login) **due before FRI 10 AM** (20%)
+* There are no quizzes during the mid-semester break.
+* Your lowest two quiz marks are not counted (i.e. you can miss two without any penalty).
+* .monash-red2[Make sure you log onto FLUX with your Monash email].
+* Assignment 1 **due Week 4** (20%)
+* Assignment 2 **due Week 7** (20%)
+* Assignment 3 **due Week 10** (20%)
+* Assignment 4 **due Week 13** (20%)
+
+]
+.w-50[
+
+* Assignments are released two weeks before the due date, you should get started on it as soon as it is released. 
+* If for some reason you miss submitting an assignment, through illness, or personal difficulty, the procedure to follow is (1) notify the CE within seven days of the due date,  at ETC5512.Clayton-x@monash.edu, (2)  you will be awarded the lowest score from the other three for the missed assignment. Failure to submit and notify the CE accordingly will result in a zero score for the assignment. If you miss more than one assignment you will need to re-take the unit at a later date.
+
+]]
+
+
+---
+
+
+
+
+background-size: cover
+class: title-slide
+background-image: url("images/bg-03.png")
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+.bottom_abs.width100[
+
+Lecturer: *Kate Saunders*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 0
+
+&lt;br&gt;
+
+]
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "magula",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+schedule:
+  - week: 0
+    lecturer: ""
+    topic: "Course information"
+  - week: 1
+    lecturer: Kate
+    topic: "Open data: definitions, sources and examples"
+    readings: 'Extra reading: <a href="https://interactions.acm.org/archive/view/march-april-2013/data-in-the-wild"> Data in the wild </a>; <a href="http://opendatatoolkit.worldbank.org/en/essentials.html"> The World Bank Open Data Essentials (and the Open Data for Data Users introduction lesson) </a>; <a href="https://www.europeandataportal.eu/elearning/en/#/id/co-01"> European Data Portal lesson What is Open Data?</a> '
+  - week: 2
+    lecturer: Kate
+    topic: "Introduction to data collection methods"
+    readings: 'Extra reading: <a href="https://www.khanacademy.org/math/statistics-probability/designing-studies/types-studies-experimental-observational/v/types-of-statistical-studies"> Khan Academy Types of statistical studies (brief and good starting point) </a> <a href="https://monash.hosted.exlibrisgroup.com/permalink/f/31uhmh/catau51339302880001751"> Byrne on Data collection (very extensive) </a>'
+  - week: 3
+    lecturer: Kate
+    topic: "Case study: US air traffic"
+    readings: 'Extra reading: <a href="https://db.rstudio.com/databases/sqlite/"> Working with databases</a>, <a href="https://community.amstat.org/jointscsg-section/dataexpo/dataexpo2009"> 2009 Data Expo, and follow links </a>, <a href="https://amstat.tandfonline.com/doi/abs/10.1198/jcgs.2011.3de#.XhKayi1L3tA"> Short paper on analysis and code </a>, <a href="https://vimeo.com/161681018">  Animation of air traffic on one day</a>, <a href="https://github.com/tidyverse/ggplot2/wiki/Flying-over-the-usa"> Animation code </a>'
+  - week: 4
+    lecturer: Kate
+    topic: "Case study: Australian census"
+    readings: "Extra reading: the [DataPacks User Guide](https://www.abs.gov.au/ausstats/abs@.nsf/Latestproducts/2916.0Main%20Features202016?opendocument&tabname=Summary&prodno=2916.0&issue=2016&num=&view=)"
+  - week: 5
+    lecturer: Kate
+    topic: "Case study: Australian election data"
+    readings: "Extra reading: [Chapter 3 of Kobakian (2020) New algorithms for effectively visualising Australian spatio-temporal disease data](https://github.com/srkobakian/qut_thesis/blob/master/_book/thesis.pdf), [Reprojecting geographic data from Geomcomputation with R](https://geocompr.robinlovelace.net/reproj-geo-data.html)"
+  - week: 6
+    lecturer: Kate
+    topic: "Case study: Combining Australian census and election data"
+    readings: "Extra reading: [Forbes, Cook & Hyndman (2020) Spatial modelling of the two-party preferred vote in Australian federal elections: 2001–2016](https://github.com/jforbes14/eechidna-paper/blob/master/anzjs_elections.pdf)"
+  - week: 7
+    lecturer: Kate
+    topic: "Case study: Mortgage default"
+    readings: "Extra reading: Bellini, T. (2019). Chapter 2—One-Year PD. In T. Bellini (Ed.), IFRS 9 and CECL Credit Risk Modelling and Validation (pp. 31–89). Academic Press.](https://doi.org/10.1016/B978-0-12-814940-9.00010-4)"
+  - week: 8
+    lecturer: Kate
+    topic: "Data ethics"
+    readings: 'Extra reading:  OKeefe, K., & Brien, D. O. (2018). Ethical data and information management: concepts, tools and methods. Chapter 2 (ebook available through Monash library) <a href="https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbou1n1d/31"> Belmont report</a>; <a href="https://www.nhmrc.gov.au/file/9131/download?token=4Qw7LMvh"> National Statement on Ethical Conduct in Human Research (section 2, Chapters 5.1, 5.2) </a>; <a href="https://rss.onlinelibrary.wiley.com/doi/full/10.1111/j.1740-9713.2018.01193.x">; Ethics in statistical practice and communication: Five recommendations </a> '
+  - week: 9
+    lecturer: Kate
+    topic: "Data ethics and privacy"
+  - week: 10
+    lecturer: Kate
+    topic: "Introduction to web scraping"
+  - week: 11
+    lecturer: Michael
+    topic: "Case study: COVID-19 case data and the timing of lockdowns"
+    readings: ""
+  - week: 12
+    lecturer: Kate
+    topic: "On the proper care and feeding of wild data"
+    readings: "Required reading: [Data Organization in Spreadsheets](https://www.tandfonline.com/doi/full/10.1080/00031305.2017.1375989); [A Realistic Guide to Making Data Available Alongside Code to Improve Reproducibility](https://arxiv.org/abs/2002.11626); [Ten Simple Rules for the Care and Feeding of Scientific Data](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003542)"
+  - week: 13
+    lecturer: ""
+    topic: ""
+# Currently assumes that no assessment is on the same due week
+assessments:
+  - name: "Assignment 1"
+    weight: 20
+    due_week: 4
+    release_week: 2
+  - name: "Assignment 2"
+    weight: 20
+    due_week: 7
+    release_week: 5
+  - name: "Assignment 3"
+    weight: 20
+    due_week: 10
+    release_week: 8
+  - name: "Assignment 4"
+    weight: 20
+    due_week: 13
+    release_week: 11
+  - name: "Quizzes"
+    weight: 20
+    due_week: 0 # 0 = weekly
+    release_week: 0 # weekly
+semester:
+  start: 27/02/2024
+  midsem: 09/04/2024
+team:
+  - name: Kate Saunders (Chief Examiner)
+    role: lecturer
+    consult: Tues 3 - 4 pm, refer to Moodle Announcement for location
+  - name: Krisanat Anukarnsakulchularp
+    role: tutor
+    consult: Wed 5:15 - 6 pm, W9.20, Menzies
+  - name: Janith Wanniarachchi
+    role: tutor
+    consult: Fri 2:30 - 4:00 pm, W9.20, Menzies

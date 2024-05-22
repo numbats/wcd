@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5512: Wild Caught Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Kate Saunders" />
+    <script src="lib/header-attrs-2.16/header-attrs.js"></script>
+    <link href="lib/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <script src="lib/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+    <script src="lib/plotly-binding-4.10.0/plotly.js"></script>
+    <script src="lib/typedarray-0.1/typedarray.min.js"></script>
+    <script src="lib/jquery-3.5.1/jquery.min.js"></script>
+    <link href="lib/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="lib/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+    <link href="lib/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="lib/plotly-main-2.5.1/plotly-latest.min.js"></script>
+    
+    <!--
+    <script defer src="assets/all.min.js"></script>
+
+    Need below to enable css contents
+
+    <script>
+      window.FontAwesomeConfig = {
+        searchPseudoElements: true
+      }
+    </script>
+
+    -->
+    <link rel="stylesheet" href="assets/font-awesome-all.css" type="text/css" />
+    <link rel="stylesheet" href="assets/tachyons-addon.css" type="text/css" />
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/fira-code.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/table.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/slide-types.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="assets/panelset.css" type="text/css" />
+    <link rel="stylesheet" href="assets/di.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+
+
+
+class: middle center hide-slide-number monash-bg-gray80
+
+
+
+
+
+.info-box.w-50.bg-white[
+These slides are viewed best by Chrome or Firefox and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-10.pdf&gt;here for the PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;. 
+]
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+
+
+---
+
+class: title-slide
+count: false
+background-image: url("images/bg-12.png")
+
+# .monash-blue[ETC5512: Wild Caught Data]
+
+&lt;h1 class="monash-blue" style="font-size: 30pt!important;"&gt;&lt;/h1&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Introduction to web scraping&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Kate Saunders*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 12
+
+&lt;br&gt;
+
+]
+
+
+
+---
+
+## Motivation
+
+&lt;center&gt;
+&lt;blockquote class="twitter-tweet" data-lang="en"&gt;&lt;p lang="en" dir="ltr"&gt;The most important thing I&amp;#39;ve ever done for learning R is to paradoxically stop &amp;quot;learning&amp;quot; (e.g. classes and problem sets) and start doing. Take a problem you have at work or school or a dataset you find interesting and get to work. Then write it up and post on githib or a blog. &lt;a href="https://t.co/9aQZJRrlFK"&gt;https://t.co/9aQZJRrlFK&lt;/a&gt;&lt;/p&gt;&amp;mdash; We are R-Ladies (@WeAreRLadies) &lt;a href="https://twitter.com/WeAreRLadies/status/1110229736956067840?ref_src=twsrc%5Etfw"&gt;March 25, 2019&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+---
+
+## After PhD - I wanted to read more!
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;center&gt;
+&lt;iframe src="https://giphy.com/embed/WoWm8YzFQJg5i" width="480" height="351" frameBorder="0" class="giphy-embed" allowFullScreen&gt;&lt;/iframe&gt;&lt;p&gt;&lt;a href="https://giphy.com/gifs/cartoons-comics-sea-reading-WoWm8YzFQJg5i"&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/center&gt;
+
+---
+
+## Question
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;center&gt;
+.idea-box.tl.w-70[
+
+How should I choose what to read?
+
+Am I reading diversely?
+
+]
+&lt;/center&gt;
+
+---
+
+## Picking from lists
+
+&lt;center&gt; &lt;img src="images/lecture-10/Books1001.jpg" width = "50%"&gt; &lt;/center&gt;
+
+---
+
+## Questions for our data
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;center&gt;
+.info-box.tl.w-70[
+
+Are lists like this biased?
+
+]
+&lt;/center&gt;
+
+---
+
+class: center middle bg-gray
+
+.aim-box.tl.w-70[
+Today you will:
+
+- Get to know the basics of webpages
+- Look at some examples of webscraping
+- Get some data to answer my questions
+
+]
+
+--
+
+.aim-box.tl.w-70[
+Coding Perspective:
+
+- Learn how to read data from a webpage into R
+- Do more string manipulation
+- Learn about automating a scraper
+
+]
+
+---
+
+## Packages we need
+
+`rvest` is the [R package](https://rvest.tidyverse.org/articles/rvest.html) that we'll need to get started with learning the 101 of web scraping
+
+
+```r
+library(rvest)
+library(tidyverse)
+```
+
+* Good for static webpages 
+
+---
+
+class: transition
+
+# Webpage basics
+
+---
+
+## Go to a webpage
+
+https://en.wikipedia.org/wiki/Tim_Winton
+
+&lt;center&gt; &lt;img src="images/lecture-10/wiki_TimWinton.png" width = "100%"&gt; &lt;/center&gt;
+
+---
+
+## View html code in Chrome
+
+* Right click the part of the page you want
+* Select inpsect 
+&lt;center&gt; &lt;img src="images/lecture-10/inspect.png" width = "100%"&gt; &lt;/center&gt;
+
+---
+
+## Html code
+
+* Brings up the html code
+* Highlights the piece of html code related to your click
+* Hover over html code to see other features of the web page
+&lt;center&gt; &lt;img src="images/lecture-10/inspect_panel.png" width = "90%"&gt; &lt;/center&gt;
+
+---
+
+## Inpsect button
+
+* Similarly, click the top left button in the side panel
+* Explore related features of the webpage and html code
+&lt;center&gt; &lt;img src="images/lecture-10/inspect_button.png" width = "50%"&gt; &lt;/center&gt;
+
+---
+
+## Basic html types
+
+By browsing you observe the basic **structure** of html webpages
+
+&lt;br&gt; 
+
+Opening and closing [tags](https://www.w3schools.com/tags/) wrapped around content to define its purpose and appearance on a webpage.  
+  
+e.g. &lt; tag \&gt; lorem ipsem text &lt; /tag \&gt;
+
+&lt;br&gt; 
+
+Some basic **tag types** are:
+
+div - Division or section  
+
+table - Table  
+
+p - Paragraph elements  
+
+h - Heading  
+
+---
+
+## Read a webpage
+
+
+```r
+library(rvest)
+author_url &lt;- "https://en.wikipedia.org/wiki/Tim_Winton"
+wiki_data &lt;- read_html(author_url) # Read the webpage into R
+
+str(wiki_data)
+```
+
+```
+## List of 2
+##  $ node:&lt;externalptr&gt; 
+##  $ doc :&lt;externalptr&gt; 
+##  - attr(*, "class")= chr [1:2] "xml_document" "xml_node"
+```
+
+```r
+wiki_data
+```
+
+```
+## {html_document}
+## &lt;html class="client-nojs vector-feature-language-in-header-enabled vector-feature-language-in-main-page-header-disabled vector-feature-sticky-header-disabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-clientpref-1 vector-feature-main-menu-pinned-disabled vector-feature-limited-width-clientpref-1 vector-feature-limited-width-content-enabled vector-feature-custom-font-size-clientpref-0 vector-feature-appearance-disabled vector-feature-appearance-pinned-clientpref-0 vector-feature-night-mode-disabled skin-theme-clientpref-day vector-toc-available" lang="en" dir="ltr"&gt;
+## [1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+## [2] &lt;body class="skin-vector skin-vector-search-vue mediawiki ltr sitedir-ltr ...
+```
+
+---
+
+## How to scrape a table - html_table()
+
+So we can read data from the website into R, but we need the data in a form we can use.
+
+
+```r
+table_data &lt;- wiki_data |&gt;
+  rvest::html_table(header = FALSE) #Get all tables on the webpage
+
+length(table_data)
+```
+
+```
+## [1] 5
+```
+
+```r
+table_data[[1]]
+```
+
+```
+## # A tibble: 9 × 2
+##   X1                                             X2                             
+##   &lt;chr&gt;                                          &lt;chr&gt;                          
+## 1 Tim WintonAO                                   Tim WintonAO                   
+## 2 Winton at the launch of Breath in London, 2008 Winton at the launch of Breath…
+## 3 Born                                           Timothy John Winton4 August 19…
+## 4 Occupation                                     Novelist                       
+## 5 Nationality                                    Australian                     
+## 6 Period                                         1982–present                   
+## 7 Genre                                          Literature, children's, non-fi…
+## 8 Notable works                                  Cloudstreet Dirt Music Breath …
+## 9 Notable awards                                 Miles Franklin  1984, 1992, 20…
+```
+
+---
+
+## Other approaches - html_nodes()
+
+
+```r
+table_data_eg1 &lt;- wiki_data |&gt;
+ rvest::html_nodes("table") |&gt; # get all the nodes of type table
+ purrr::pluck(1) |&gt; #pull out the first one
+ rvest::html_table(header = FALSE) #convert it to table type
+
+table_data_eg1
+```
+
+```
+## # A tibble: 9 × 2
+##   X1                                             X2                             
+##   &lt;chr&gt;                                          &lt;chr&gt;                          
+## 1 Tim WintonAO                                   Tim WintonAO                   
+## 2 Winton at the launch of Breath in London, 2008 Winton at the launch of Breath…
+## 3 Born                                           Timothy John Winton4 August 19…
+## 4 Occupation                                     Novelist                       
+## 5 Nationality                                    Australian                     
+## 6 Period                                         1982–present                   
+## 7 Genre                                          Literature, children's, non-fi…
+## 8 Notable works                                  Cloudstreet Dirt Music Breath …
+## 9 Notable awards                                 Miles Franklin  1984, 1992, 20…
+```
+
+---
+
+## Other approaches - html_node()
+
+Lots of functions in `rvest` give you the option to return the first match or to return all matches.
+
+
+```r
+table_data_eg2 &lt;- wiki_data |&gt;
+  rvest::html_node("table") |&gt; # just get the first table match
+  rvest::html_table(header = FALSE) #convert it to table type
+
+table_data_eg2
+```
+
+```
+## # A tibble: 9 × 2
+##   X1                                             X2                             
+##   &lt;chr&gt;                                          &lt;chr&gt;                          
+## 1 Tim WintonAO                                   Tim WintonAO                   
+## 2 Winton at the launch of Breath in London, 2008 Winton at the launch of Breath…
+## 3 Born                                           Timothy John Winton4 August 19…
+## 4 Occupation                                     Novelist                       
+## 5 Nationality                                    Australian                     
+## 6 Period                                         1982–present                   
+## 7 Genre                                          Literature, children's, non-fi…
+## 8 Notable works                                  Cloudstreet Dirt Music Breath …
+## 9 Notable awards                                 Miles Franklin  1984, 1992, 20…
+```
+
+---
+
+## Get the Nationality
+
+One more step - Need to get the nationality from the table
+
+
+```r
+author_nationality = table_data_eg2 |&gt;
+  dplyr::rename(Category = X1, Response = X2) |&gt;
+  dplyr::filter(Category == "Nationality") |&gt;
+  dplyr::select(Response) |&gt;
+  as.character()
+
+author_nationality
+```
+
+```
+## [1] "Australian"
+```
+
+--
+
+&lt;center&gt;
+.idea-box.tl.w-50[
+
+Now the real challenge: **Can we generalise?** 
+
+]
+
+---
+
+# Breakout Session 
+
+&lt;center&gt;
+.aim-box.tl.w-70[
+Try it yourself time:
+
+- Pick your an author and find their wikipedia page
+- Explore the structure of the webpage
+- Download their infocard into R
+- Can you get their nationality from the infocard?
+
+]
+&lt;/center&gt;
+
+---
+
+## Let's try a different author
+
+"https://en.wikipedia.org/wiki/Jane_Austen"
+
+&lt;center&gt; &lt;img src="images/lecture-10/wiki_JaneAusten.png" width = "100%"&gt; &lt;/center&gt;
+
+---
+
+## Generalise the web page
+
+
+```r
+author_first_name = "Jane"
+author_last_name = "Austen"
+author_url &lt;- paste("https://en.wikipedia.org/wiki/", 
+  author_first_name, "_", author_last_name, sep = "")
+wiki_data &lt;- read_html(author_url)
+```
+
+---
+
+## Let's get that table
+
+
+```r
+table_data &lt;- wiki_data |&gt;
+  rvest::html_nodes(".infobox.vcard") |&gt; #search for a class
+  rvest::html_table(header = FALSE) |&gt;
+  purrr::pluck(1) 
+
+head(table_data)
+```
+
+```
+## # A tibble: 6 × 2
+##   X1                   X2                                                       
+##   &lt;chr&gt;                &lt;chr&gt;                                                    
+## 1 Jane Austen          Jane Austen                                              
+## 2 Portrait, c. 1810[a] Portrait, c. 1810[a]                                     
+## 3 Born                 (1775-12-16)16 December 1775Steventon Rectory, Hampshire…
+## 4 Died                 18 July 1817(1817-07-18) (aged 41)Winchester, Hampshire,…
+## 5 Resting place        Winchester Cathedral, Hampshire                          
+## 6 Period               1787–1817
+```
+
+---
+
+## Web scraping is tricky
+
+
+```r
+table_data |&gt; dplyr::select(1) |&gt; unlist() |&gt; as.vector()
+```
+
+```
+## [1] "Jane Austen"          "Portrait, c. 1810[a]" "Born"                
+## [4] "Died"                 "Resting place"        "Period"              
+## [7] "Relatives"            "Signature"            ""
+```
+
+&lt;center&gt;
+.aim-box.tl.w-80[
+
+**No nationality** category in Jane Austen's infocard
+
+]
+
+--
+
+.idea-box.tl.w-80[
+
+Her nationality is in the webpage text.  
+Let's scrape the nationality from there.
+
+]
+
+---
+
+## Try another way
+
+
+```r
+para_data &lt;- wiki_data |&gt;
+  rvest::html_nodes("p") # get all the paragraphs
+head(para_data)
+```
+
+```
+## {xml_nodeset (6)}
+## [1] &lt;p class="mw-empty-elt"&gt;\n\n\n\n&lt;/p&gt;
+## [2] &lt;p&gt;&lt;b&gt;Jane Austen&lt;/b&gt; (&lt;span class="rt-commentedText nowrap"&gt;&lt;span class= ...
+## [3] &lt;p&gt;The anonymously published &lt;i&gt;&lt;a href="/wiki/Sense_and_Sensibility" tit ...
+## [4] &lt;p&gt;Since her death Austen's novels have rarely been out of print. A signi ...
+## [5] &lt;p&gt;The scant biographical information about Austen comes from her few sur ...
+## [6] &lt;p&gt;The first Austen biography was &lt;a href="/wiki/Henry_Thomas_Austen" tit ...
+```
+&lt;center&gt;
+.aim-box.tl.w-80[
+
+But where exactly do we find her nationality in all this text?  
+&lt;br&gt;
+Let's go back to exploring the webpage.
+
+]
+&lt;/center&gt;
+
+---
+
+## Get the text - html_text()
+
+
+```r
+text_data &lt;- para_data |&gt;
+  purrr::pluck(2) |&gt; # get the second paragraph
+  rvest::html_text() # convert the paragraph to text
+head(text_data)
+```
+
+```
+## [1] "Jane Austen (/ˈɒstɪn, ˈɔːstɪn/ OST-in, AW-stin; 16 December 1775 – 18 July 1817) was an English novelist known primarily for her six novels, which implicitly interpret, critique, and comment upon the British landed gentry at the end of the 18th century. Austen's plots often explore the dependence of women on marriage for the pursuit of favourable social standing and economic security. Her works are an implicit critique of the novels of sensibility of the second half of the 18th century and are part of the transition to 19th-century literary realism.[2][b] Her deft use of social commentary, realism and biting irony have earned her acclaim among critics and scholars.\n"
+```
+
+--
+
+&lt;center&gt;
+.aim-box.tl.w-80[
+
+Let's look at two other ways we could do this.
+
+]&lt;/center&gt;
+
+---
+
+## Xpath Example
+
+* Right click html code, copy, copy Xpath
+&lt;center&gt; &lt;img src="images/lecture-10/xpath.png" width = "100%"&gt; &lt;/center&gt;
+
+---
+
+## Using an Xpath
+
+
+```r
+para_xpath = '//*[@id="mw-content-text"]/div/p[2]'
+text_data &lt;- wiki_data |&gt;
+  rvest::html_nodes(xpath = para_xpath) |&gt;
+  rvest::html_text()
+text_data
+```
+
+```
+## [1] "Jane Austen (/ˈɒstɪn, ˈɔːstɪn/ OST-in, AW-stin; 16 December 1775 – 18 July 1817) was an English novelist known primarily for her six novels, which implicitly interpret, critique, and comment upon the British landed gentry at the end of the 18th century. Austen's plots often explore the dependence of women on marriage for the pursuit of favourable social standing and economic security. Her works are an implicit critique of the novels of sensibility of the second half of the 18th century and are part of the transition to 19th-century literary realism.[2][b] Her deft use of social commentary, realism and biting irony have earned her acclaim among critics and scholars.\n"
+```
+
+---
+
+## JSpath Example
+
+* Right click html code, copy, copy JS path
+&lt;center&gt; &lt;img src="images/lecture-10/jspath.png" width = "100%"&gt; &lt;/center&gt;
+
+---
+
+## Using CSS ID
+
+
+```r
+para_css = "#mw-content-text &gt; div &gt; p:nth-child(5)"
+text_data &lt;- wiki_data |&gt;
+  rvest::html_nodes(css = para_css) |&gt;
+  rvest::html_text()
+text_data
+```
+
+```
+## [1] "Jane Austen (/ˈɒstɪn, ˈɔːstɪn/ OST-in, AW-stin; 16 December 1775 – 18 July 1817) was an English novelist known primarily for her six novels, which implicitly interpret, critique, and comment upon the British landed gentry at the end of the 18th century. Austen's plots often explore the dependence of women on marriage for the pursuit of favourable social standing and economic security. Her works are an implicit critique of the novels of sensibility of the second half of the 18th century and are part of the transition to 19th-century literary realism.[2][b] Her deft use of social commentary, realism and biting irony have earned her acclaim among critics and scholars.\n"
+```
+
+---
+
+## Text Analysis
+
+Still need to get her nationality, use `str_count`
+
+
+```r
+possible_nationalities &lt;- c("Australian", "Chinese", "Mexican", "English", "Ethiopian")
+
+# Do any of these nationalities appear in the text?
+count_values = str_count(text_data, possible_nationalities) 
+
+count_values == TRUE # Which ones were matched 
+```
+
+```
+## [1] FALSE FALSE FALSE  TRUE FALSE
+```
+
+```r
+possible_nationalities[count_values == TRUE] #Get the matching nationalities
+```
+
+```
+## [1] "English"
+```
+
+&lt;center&gt;
+.aim-box.tl.w-80[
+
+- What do you think of my solution?
+- Any guesses why I didn't use `str_match`?
+
+]
+&lt;/center&gt;
+
+---
+
+&lt;br&gt;&lt;br&gt;&lt;center&gt;
+.aim-box.tl.w-90[
+
+## Learnt so far
+
+- Know how to explore a web page with inspect
+- Know some basics about how to get data
+
+Also know:
+
+- Can be hard to generalise 
+- Formats aren't always standard
+
+]&lt;/center&gt;
+
+---
+
+class: transition
+
+# Back to the original question
+
+---
+
+## Need to get our list
+
+&lt;center&gt; &lt;img src="images/lecture-10/book_list_url.png" width = "100%"&gt; &lt;/center&gt;
+
+---
+
+## Read the book list from a website
+
+
+```r
+book_list_url &lt;- "https://mizparker.wordpress.com/the-lists/1001-books-to-read-before-you-die/"
+paragraph_data &lt;- read_html(book_list_url) |&gt; # read the web page
+  rvest::html_nodes("p") # get the paragraphs
+paragraph_data[1:12]
+```
+
+```
+## {xml_nodeset (12)}
+##  [1] &lt;p&gt;This list has appeared in several places around the internet, and is  ...
+##  [2] &lt;p&gt;If you would like to download a spreadsheet of the list and keep trac ...
+##  [3] &lt;p&gt;&lt;strong&gt;21st Century:&lt;/strong&gt;&lt;/p&gt;
+##  [4] &lt;p&gt;1.  Never Let Me Go – Kazuo Ishiguro&lt;br&gt;\n2.  Saturday – Ian McEwan&lt;b ...
+##  [5] &lt;p&gt;&lt;strong&gt;20th Century:&lt;/strong&gt;&lt;/p&gt;
+##  [6] &lt;p&gt;70. Timbuktu – Paul Auster&lt;br&gt;\n71. The Romantics – Pankaj Mishra&lt;br&gt; ...
+##  [7] &lt;p&gt;&lt;strong&gt;19th Century&lt;/strong&gt;&lt;/p&gt;
+##  [8] &lt;p&gt;786. Some Experiences of an Irish R.M. – Somerville and Ross&lt;br&gt;\n787 ...
+##  [9] &lt;p&gt;&lt;strong&gt;18th Century&lt;/strong&gt;&lt;/p&gt;
+## [10] &lt;p&gt;943. Hyperion – Friedrich Hölderlin&lt;br&gt;\n944. The Nun – Denis Diderot ...
+## [11] &lt;p&gt;&lt;strong&gt;Pre-1700&lt;/strong&gt;&lt;/p&gt;
+## [12] &lt;p&gt;989. Oroonoko – Aphra Behn&lt;br&gt;\n990. The Princess of Clèves – Marie-M ...
+```
+
+---
+
+## Get the book list from the paragraphs 
+
+This list is in pieces, but the format seems mostly consistent
+
+
+```r
+book_string &lt;- paragraph_data |&gt;  
+  purrr::pluck(4) |&gt; # get the first part of the book list
+  html_text(trim = TRUE) |&gt; # convert it to text, remove excess white space
+  str_replace_all("\n", "")
+
+head(book_string)
+```
+
+```
+## [1] "1.  Never Let Me Go – Kazuo Ishiguro2.  Saturday – Ian McEwan3.  On Beauty – Zadie Smith4.  Slow Man – J.M. Coetzee5.  Adjunct: An Undigest – Peter Manson6.  The Sea – John Banville7.  The Red Queen – Margaret Drabble8.  The Plot Against America – Philip Roth9.  The Master – Colm Toibin10.  Vanishing Point – David Markson11.  The Lambs of London – Peter Ackroyd12.  Dining on Stones – Iain Sinclair13.  Cloud Atlas – David Mitchell14.  Drop City – T. Coraghessan Boyle15.  The Colour – Rose Tremain16.  Thursbitch – Alan Garner17.  The Light of Day – Graham Swift18.  What I Loved – Siri Hustvedt19.  The Curious Incident of the Dog in the Night-Time – Mark Haddon20.   Islands – Dan Sleigh21.  Elizabeth Costello – J.M. Coetzee22.  London Orbital – Iain Sinclair23.  Family Matters – Rohinton Mistry24.  Fingersmith – Sarah Waters25.  The Double – Jose Saramago26.  Everything is Illuminated – Jonathan Safran Foer27.  Unless – Carol Shields28.  Kafka on the Shore – Haruki Murakami29.  The Story of Lucy Gault – William Trevor30.  That They May Face the Rising Sun – John McGahern31.  In the Forest – Edna O’Brien32.  Shroud – John Banville33.  Middlesex – Jeffrey Eugenides34.  Youth – J.M. Coetzee35.  Dead Air – Iain Banks36.  Nowhere Man – Aleksandar Hemon37.  The Book of Illusions – Paul Auster38.  Gabriel’s Gift – Hanif Kureishi39.  Austerlitz – W.G. Sebald40.  Platform – Michael Houellebecq41.  Schooling – Heather McGowan42.  Atonement – Ian McEwan43.  The Corrections – Jonathan Franzen44.  Don’t Move – Margaret Mazzantini45.  The Body Artist – Don DeLillo46.  Fury – Salman Rushdie47.  At Swim, Two Boys – Jamie O’Neill48.  Choke – Chuck Palahniuk49.  Life of Pi – Yann Martel50.  The Feast of the Goat – Mario Vargos Llosa51.  An Obedient Father – Akhil Sharma52. The Devil and Miss Prym – Paulo Coelho53.  Spring Flowers, Spring Frost – Ismail Kadare54.  White Teeth – Zadie Smith55.  The Heart of Redness – Zakes Mda56.  Under the Skin – Michel Faber57.  Ignorance – Milan Kundera58.  Nineteen Seventy Seven – David Peace59.  Celestial Harmonies – Peter Esterhazy60.  City of God – E.L. Doctorow61.  How the Dead Live – Will Self62.  The Human Stain – Philip Roth63.  The Blind Assassin – Margaret Atwood64.  After the Quake – Haruki Murakami65.  Small Remedies – Shashi Deshpande66.  Super-Cannes – J.G. Ballard67.  House of Leaves – Mark Z. Danielewski68.  Blonde – Joyce Carol Oates69.  Pastoralia – George Saunders"
+```
+
+---
+
+## More string manipulations
+
+Web scraping often means string handling
+
+We want to split the string by any numbers followed by a full stop
+
+Careful:  
+
+  * don't want to split book titles with numbers, like Catch 22, 
+  * don't want to split authors with full stops, like J.R.R Tolkien
+  
+Actually bit tricky!
+
+--
+
+&lt;center&gt;
+.aim-box.tl.w-90[
+### Resources:
+
+   * Lecture 4 
+   * stringr cheatsheet from RStudio
+   * generative AI is also great resource
+]
+&lt;/center&gt;
+
+---
+
+## Do some string handling
+
+
+```r
+eg_string = "9. book - author 10. book - author"
+
+str_view(eg_string, "[:digit:]") #Match by any digit
+```
+
+```
+## [1] │ &lt;9&gt;. book - author &lt;1&gt;&lt;0&gt;. book - author
+```
+
+```r
+str_view(eg_string, "[:digit:]+") #Match by one or more digits
+```
+
+```
+## [1] │ &lt;9&gt;. book - author &lt;10&gt;. book - author
+```
+
+```r
+str_view(eg_string, "\\.") #Match by fullstop
+```
+
+```
+## [1] │ 9&lt;.&gt; book - author 10&lt;.&gt; book - author
+```
+
+```r
+str_view(eg_string, "[[:digit:]]+?\\.") #Match digits followed by a fullstop 
+```
+
+```
+## [1] │ &lt;9.&gt; book - author &lt;10.&gt; book - author
+```
+
+---
+
+## Get the list as a dataframe
+
+
+```r
+books_df &lt;- book_string |&gt;
+  str_split("[[:digit:]]+?\\.") |&gt;
+  as.data.frame(stringsAsFactors = FALSE)
+
+names(books_df) = "Book_Author"
+
+books_df = books_df |&gt;
+  dplyr::filter(Book_Author != "") |&gt; # remove any empty rows
+  tidyr::separate(Book_Author, sep = "\\–", into = c("book", "author")) # splits into two columns
+```
+
+---
+
+## Result 
+
+
+```
+##                      book          author
+## 1        Never Let Me Go   Kazuo Ishiguro
+## 2               Saturday       Ian McEwan
+## 3              On Beauty      Zadie Smith
+## 4               Slow Man     J.M. Coetzee
+## 5   Adjunct: An Undigest     Peter Manson
+## 6                The Sea    John Banville
+```
+
+&lt;center&gt;
+.aim-box.tl.w-70[
+
+#### We are very lucky! 
+  - Easily split our author and book into columns
+  - Thanks to whoever coded this webpage using a long hash!
+
+] 
+&lt;/center&gt;
+
+---
+
+## Need to repeat it: So wrap code in a function
+
+
+```r
+Convert_book_string_to_df &lt;- function(para_ind, pargraph_data){
+  
+  book_string &lt;- paragraph_data |&gt;  
+  purrr::pluck(para_ind) |&gt; 
+  html_text(trim = TRUE) |&gt; 
+  str_replace_all("\n", "")
+  
+  books_df &lt;- book_string |&gt;
+    str_split("[[:digit:]]+?\\.") |&gt;
+    as.data.frame(stringsAsFactors = FALSE)
+
+  names(books_df) = "Book_Author"
+  
+  books_df = books_df |&gt;
+    dplyr::filter(Book_Author != "") |&gt;
+    tidyr::separate(Book_Author, sep = "\\–", into = c("book", "author"))
+  
+  return(books_df)}
+```
+
+---
+
+## Get the final list
+
+Need to run this function for every second paragraph starting from number 4 until paragraph 12.
+
+
+```r
+book_data &lt;- lapply(seq(4,12,2) %&gt;% as.list(), 
+                    Convert_book_string_to_df, paragraph_data) %&gt;% 
+  do.call(rbind, .) %&gt;% 
+  dplyr::mutate(author = str_trim(author))
+
+nrow(book_data) # Has 1001 rows 
+```
+
+```
+## [1] 1001
+```
+
+---
+
+## Check what it looks like
+
+Randomly pick 10 rows
+
+```
+##                                       book               author
+## 1                          Le Père Goriot      Honoré de Balzac
+## 2   The Year of the Death of Ricardo Reis         José Saramago
+## 3                              Aithiopika            Heliodorus
+## 4                                  Shroud         John Banville
+## 5             The Case of Comrade Tulayev          Victor Serge
+## 6                   The 120 Days of Sodom       Marquis de Sade
+## 7                           The Godfather            Mario Puzo
+## 8                       The Drowned World          J.G. Ballard
+## 9                          Go Down, Moses      William Faulkner
+## 10                              Drop City  T. Coraghessan Boyle
+```
+--
+
+&lt;center&gt;
+.aim-box.tl.w-50[
+# Still not done 
+
+Need the nationalities of all the authors!
+
+]&lt;/center&gt;
+
+---
+
+# Pseduo code 
+
+Want a function to: 
+1. Read the wiki webpage using the author name. 
+2. Read the info card. 
+3. Get the nationality from the infocard.   
+
+If no nationality or infocard, want a function to:  
+4. Find which html paragraphs have text in them. 
+5. Guess the nationality from the text. 
+
+6. A function that bring the above all together. 
+
+---
+
+## More wrapping of code chunks
+
+Want a function to read the wiki webpage using the author name
+
+```r
+Read_wiki_page &lt;- function(author_name){
+  author_name_no_space = str_replace_all(author_name, "\\s+", "_")
+  wiki_url &lt;- paste("https://en.wikipedia.org/wiki/", 
+    author_name_no_space, sep = "")
+  wiki_data &lt;- read_html(wiki_url)
+  return(wiki_data)
+}
+```
+
+---
+
+## More wrapping of code chunks
+
+Want a function to read the info card
+
+```r
+Get_wiki_infocard &lt;- function(wiki_data){
+  infocard &lt;- wiki_data |&gt;
+    rvest::html_nodes(".infobox.vcard") |&gt;
+    rvest::html_table(header = FALSE) |&gt;
+    purrr::pluck(1)
+  return(infocard)
+}
+```
+
+---
+
+## More wrapping of code chunks
+
+Want a function to get the nationality from the infocard
+
+```r
+Get_nationality_from_infocard &lt;- function(infocard){
+  nationality &lt;- infocard %&gt;%
+    dplyr::rename(Category = X1, Response = X2) %&gt;%
+    dplyr::filter(Category == "Nationality") %&gt;%
+    dplyr::select(Response) %&gt;%
+    as.character()
+  return(nationality)
+}
+```
+
+---
+
+## More wrapping of code chunks
+
+Need a function to find which html paragraphs have text in them
+
+```r
+Get_first_text &lt;- function(wiki_data){
+  paragraph_data &lt;- wiki_data %&gt;%
+    rvest::html_nodes("p")
+  i = 1
+  no_text = TRUE
+  while(no_text){
+    text_data &lt;- paragraph_data %&gt;%
+      purrr::pluck(i) %&gt;% 
+      rvest::html_text() 
+    check_text = gsub("\\s+", "", text_data)
+    if(check_text == ""){ 
+      i = i + 1 
+    }else{ 
+      no_text = FALSE
+    }
+  }
+  return(text_data)
+}
+```
+
+---
+
+## More wrapping of code chunks
+Need another function to get the nationality from the text
+
+```r
+Guess_nationality_from_text &lt;- function(text_data, possible_nationalities){
+  
+  num_matches &lt;- str_count(text_data, possible_nationalities)
+  prob_matches &lt;- num_matches/sum(num_matches)
+  
+  i = which(prob_matches &gt; 0)
+  if(length(i) == 1){
+    prob_nationality = possible_nationalities[i] 
+  }else if(length(i) &gt; 0){
+    warning(paste(c("More than one match for the nationality:", 
+                  possible_nationalities[i], "\n"), collapse = " "))
+    match_locations = str_locate(text_data, possible_nationalities[i]) #gives locations of matches
+    j = i[which.min(match_locations[,1])]
+    prob_nationality = possible_nationalities[j] 
+  }else{
+    return(NA)
+  }
+  return(prob_nationality)
+}
+```
+
+---
+
+## More wrapping of code chunks
+
+One function that brings that all together
+
+
+```r
+Query_nationality_from_wiki &lt;- function(author_name, possible_nationalities){
+  
+  wiki_data &lt;- Read_wiki_page(author_name)
+  
+  infocard &lt;- Get_wiki_infocard(wiki_data)
+  
+ if(is.null(infocard)){
+   
+    # nationality &lt;- "Missing infocard"
+   first_paragraph &lt;- Get_first_text(wiki_data)
+    nationality &lt;- Guess_nationality_from_text(first_paragraph,
+      possible_nationalities)
+    
+   return(nationality)
+    
+ }
+  
+  if(any(infocard[,1] == "Nationality")){
+    
+    # info card exists and has nationality 
+    nationality &lt;- Get_nationality_from_infocard(infocard)
+    
+  }else{
+    
+    # find nationality in text
+    first_paragraph &lt;- Get_first_text(wiki_data)
+    nationality &lt;- Guess_nationality_from_text(first_paragraph,
+      possible_nationalities)
+  }
+  
+  return(nationality)
+}
+```
+
+---
+
+## Examples
+
+
+```r
+Query_nationality_from_wiki("Tim Winton", c("English", "British", "Australian"))
+```
+
+```
+## [1] "Australian"
+```
+
+```r
+Query_nationality_from_wiki("Jane Austen" , c("English", "British", "Australian"))
+```
+
+```
+## [1] "English"
+```
+
+```r
+Query_nationality_from_wiki("Zadie Smith", c("English", "British", "Australian"))
+```
+
+```
+## [1] "English"
+```
+--
+
+&lt;center&gt;
+.aim-box.tl.w-90[
+
+## Still not done
+
+We need a list of nationalities to search for in our text
+
+]&lt;/center&gt;
+
+---
+
+## What nationalities to search for?
+
+
+```r
+# Get table of nationalities
+url &lt;- "http://www.vocabulary.cl/Basic/Nationalities.htm"
+xpath &lt;- "/html/body/div[1]/article/table[2]"
+nationalities_df &lt;- url %&gt;%
+  read_html() %&gt;%
+  html_nodes(xpath = xpath) %&gt;%
+  html_table() %&gt;% 
+  as.data.frame()
+
+possible_nationalities = nationalities_df[,2]
+head(possible_nationalities)
+```
+
+```
+## [1] "Afghan"               "Albanian"             "Algerian"            
+## [4] "ArgentineArgentinian" "Australian"           "Austrian"
+```
+---
+
+## Manual fixing
+
+
+```r
+fix_entry = "ArgentineArgentinian"
+i0 = which(nationalities_df == fix_entry, arr.ind = TRUE)
+new_row = nationalities_df[i0[1], ]
+nationalities_df[i0] = "Argentine"
+new_row[,2] = "Argentinian"
+nationalities_df = rbind(nationalities_df, new_row)
+
+fix_footnote1 = "Colombia *"
+i1 = which(nationalities_df == fix_footnote1, arr.ind = TRUE)
+nationalities_df[i1] = strsplit(fix_footnote1, split = ' ')[[1]][1]
+
+fix_footnote2 = "American **"
+i2 = which(nationalities_df == fix_footnote2, arr.ind = TRUE)
+nationalities_df[i2] = strsplit(fix_footnote2, split = ' ')[[1]][1]
+
+possible_nationalities = nationalities_df[,2]
+
+saveRDS(possible_nationalities, "data/possible_nationalities.rds")
+```
+
+---
+
+## Get Nationalities
+
+
+```r
+nationality_from_author = sapply(book_data$author[1:20],  
+                                        function(author_name){
+  nataionality = tryCatch( # Just in case!
+     Query_nationality_from_wiki(author_name, 
+                                 possible_nationalities),
+    error = function(e) NA)
+  }) %&gt;% unlist()
+
+nationality_from_author
+```
+
+```
+##                         Kazuo Ishiguro                             Ian McEwan 
+##                             "Japanese"                              "British" 
+##                            Zadie Smith                           J.M. Coetzee 
+##                              "English" "South AfricanAustralian (since 2006)" 
+##                           Peter Manson                          John Banville 
+##                             "Scottish"                                "Irish" 
+##                       Margaret Drabble                            Philip Roth 
+##                              "English"                             "American" 
+##                            Colm Toibin                          David Markson 
+##                                "Irish"                             "American" 
+##                          Peter Ackroyd                          Iain Sinclair 
+##                              "British"                              "British" 
+##                         David Mitchell                   T. Coraghessan Boyle 
+##                                     NA                             "American" 
+##                           Rose Tremain                            Alan Garner 
+##                              "English"                              "English" 
+##                           Graham Swift                          Siri Hustvedt 
+##                              "English"                             "American" 
+##                            Mark Haddon                             Dan Sleigh 
+##                              "English"                        "South African"
+```
+
+---
+
+class: transition
+
+# How diversely do we read
+
+---
+
+## Run it!
+
+
+```r
+nationality_from_author = sapply(book_data$author |&gt; unique(),  
+                                        function(author_name){
+  print(author_name)
+                                          
+  nationality = tryCatch( # Just in case!
+     Query_nationality_from_wiki(author_name, 
+                                 possible_nationalities),
+    error = function(e) NA)
+  
+}) 
+
+author_nationality_df &lt;- data.frame(
+  author = book_data$author |&gt; unique(), 
+  nationality = nationality_from_author) 
+
+book_data_with_nationality &lt;- book_data |&gt;
+  dplyr::left_join(author_nationality_df)
+  
+head(book_data_with_nationality)
+
+saveRDS(book_data_with_nationality, "data/book_data.rds")
+```
+
+---
+
+## Result
+
+
+```
+## # A tibble: 6 × 2
+##   nationality count
+##   &lt;chr&gt;       &lt;int&gt;
+## 1 &lt;NA&gt;          106
+## 2 American       93
+## 3 English        87
+## 4 French         35
+## 5 British        31
+## 6 Irish          20
+```
+
+---
+
+## Let's take a look
+
+
+```r
+library(plotly)
+pie_plot &lt;- table_nationalities %&gt;%
+  plot_ly(labels = ~nationality, values = ~count) %&gt;%
+  add_pie(hole = 0.6) %&gt;%
+  layout(title = "Nationalities",  showlegend = F,
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+```
+
+---
+
+## Plotting result
+
+
+```r
+pie_plot
+```
+
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-f349b77d5d2ceb1c0866" style="width:100%;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-f349b77d5d2ceb1c0866">{"x":{"visdat":{"6fa62bb38889":["function () ","plotlyVisDat"]},"cur_data":"6fa62bb38889","attrs":{"6fa62bb38889":{"labels":{},"values":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"pie","hole":0.59999999999999998,"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Nationalities","showlegend":false,"xaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"yaxis":{"showgrid":false,"zeroline":false,"showticklabels":false},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":[null,"American","English","French","British","Irish","German","Italian","Russian","Scottish","Dutch","Indian","Japanese","South African","Canadian","Greek","Australian","Austrian","Hungarian","Portuguese","Brazilian","Czech","Mexican","Norwegian","Polish","Swedish","Swiss","Welsh",".mw-parser-output .hlist dl,.mw-parser-output .hlist ol,.mw-parser-output .hlist ul{margin:0;padding:0}.mw-parser-output .hlist dd,.mw-parser-output .hlist dt,.mw-parser-output .hlist li{margin:0;display:inline}.mw-parser-output .hlist.inline,.mw-parser-output .hlist.inline dl,.mw-parser-output .hlist.inline ol,.mw-parser-output .hlist.inline ul,.mw-parser-output .hlist dl dl,.mw-parser-output .hlist dl ol,.mw-parser-output .hlist dl ul,.mw-parser-output .hlist ol dl,.mw-parser-output .hlist ol ol,.mw-parser-output .hlist ol ul,.mw-parser-output .hlist ul dl,.mw-parser-output .hlist ul ol,.mw-parser-output .hlist ul ul{display:inline}.mw-parser-output .hlist .mw-empty-li{display:none}.mw-parser-output .hlist dt::after{content:\": \"}.mw-parser-output .hlist dd::after,.mw-parser-output .hlist li::after{content:\" · \";font-weight:bold}.mw-parser-output .hlist dd:last-child::after,.mw-parser-output .hlist dt:last-child::after,.mw-parser-output .hlist li:last-child::after{content:none}.mw-parser-output .hlist dd dd:first-child::before,.mw-parser-output .hlist dd dt:first-child::before,.mw-parser-output .hlist dd li:first-child::before,.mw-parser-output .hlist dt dd:first-child::before,.mw-parser-output .hlist dt dt:first-child::before,.mw-parser-output .hlist dt li:first-child::before,.mw-parser-output .hlist li dd:first-child::before,.mw-parser-output .hlist li dt:first-child::before,.mw-parser-output .hlist li li:first-child::before{content:\" (\";font-weight:normal}.mw-parser-output .hlist dd dd:last-child::after,.mw-parser-output .hlist dd dt:last-child::after,.mw-parser-output .hlist dd li:last-child::after,.mw-parser-output .hlist dt dd:last-child::after,.mw-parser-output .hlist dt dt:last-child::after,.mw-parser-output .hlist dt li:last-child::after,.mw-parser-output .hlist li dd:last-child::after,.mw-parser-output .hlist li dt:last-child::after,.mw-parser-output .hlist li li:last-child::after{content:\")\";font-weight:normal}.mw-parser-output .hlist ol{counter-reset:listitem}.mw-parser-output .hlist ol>li{counter-increment:listitem}.mw-parser-output .hlist ol>li::before{content:\" \"counter(listitem)\"\\a0 \"}.mw-parser-output .hlist dd ol>li:first-child::before,.mw-parser-output .hlist dt ol>li:first-child::before,.mw-parser-output .hlist li ol>li:first-child::before{content:\" (\"counter(listitem)\"\\a0 \"}AmericanCanadian",".mw-parser-output .hlist dl,.mw-parser-output .hlist ol,.mw-parser-output .hlist ul{margin:0;padding:0}.mw-parser-output .hlist dd,.mw-parser-output .hlist dt,.mw-parser-output .hlist li{margin:0;display:inline}.mw-parser-output .hlist.inline,.mw-parser-output .hlist.inline dl,.mw-parser-output .hlist.inline ol,.mw-parser-output .hlist.inline ul,.mw-parser-output .hlist dl dl,.mw-parser-output .hlist dl ol,.mw-parser-output .hlist dl ul,.mw-parser-output .hlist ol dl,.mw-parser-output .hlist ol ol,.mw-parser-output .hlist ol ul,.mw-parser-output .hlist ul dl,.mw-parser-output .hlist ul ol,.mw-parser-output .hlist ul ul{display:inline}.mw-parser-output .hlist .mw-empty-li{display:none}.mw-parser-output .hlist dt::after{content:\": \"}.mw-parser-output .hlist dd::after,.mw-parser-output .hlist li::after{content:\" · \";font-weight:bold}.mw-parser-output .hlist dd:last-child::after,.mw-parser-output .hlist dt:last-child::after,.mw-parser-output .hlist li:last-child::after{content:none}.mw-parser-output .hlist dd dd:first-child::before,.mw-parser-output .hlist dd dt:first-child::before,.mw-parser-output .hlist dd li:first-child::before,.mw-parser-output .hlist dt dd:first-child::before,.mw-parser-output .hlist dt dt:first-child::before,.mw-parser-output .hlist dt li:first-child::before,.mw-parser-output .hlist li dd:first-child::before,.mw-parser-output .hlist li dt:first-child::before,.mw-parser-output .hlist li li:first-child::before{content:\" (\";font-weight:normal}.mw-parser-output .hlist dd dd:last-child::after,.mw-parser-output .hlist dd dt:last-child::after,.mw-parser-output .hlist dd li:last-child::after,.mw-parser-output .hlist dt dd:last-child::after,.mw-parser-output .hlist dt dt:last-child::after,.mw-parser-output .hlist dt li:last-child::after,.mw-parser-output .hlist li dd:last-child::after,.mw-parser-output .hlist li dt:last-child::after,.mw-parser-output .hlist li li:last-child::after{content:\")\";font-weight:normal}.mw-parser-output .hlist ol{counter-reset:listitem}.mw-parser-output .hlist ol>li{counter-increment:listitem}.mw-parser-output .hlist ol>li::before{content:\" \"counter(listitem)\"\\a0 \"}.mw-parser-output .hlist dd ol>li:first-child::before,.mw-parser-output .hlist dt ol>li:first-child::before,.mw-parser-output .hlist li ol>li:first-child::before{content:\" (\"counter(listitem)\"\\a0 \"}BelgianRussian",".mw-parser-output .hlist dl,.mw-parser-output .hlist ol,.mw-parser-output .hlist ul{margin:0;padding:0}.mw-parser-output .hlist dd,.mw-parser-output .hlist dt,.mw-parser-output .hlist li{margin:0;display:inline}.mw-parser-output .hlist.inline,.mw-parser-output .hlist.inline dl,.mw-parser-output .hlist.inline ol,.mw-parser-output .hlist.inline ul,.mw-parser-output .hlist dl dl,.mw-parser-output .hlist dl ol,.mw-parser-output .hlist dl ul,.mw-parser-output .hlist ol dl,.mw-parser-output .hlist ol ol,.mw-parser-output .hlist ol ul,.mw-parser-output .hlist ul dl,.mw-parser-output .hlist ul ol,.mw-parser-output .hlist ul ul{display:inline}.mw-parser-output .hlist .mw-empty-li{display:none}.mw-parser-output .hlist dt::after{content:\": \"}.mw-parser-output .hlist dd::after,.mw-parser-output .hlist li::after{content:\" · \";font-weight:bold}.mw-parser-output .hlist dd:last-child::after,.mw-parser-output .hlist dt:last-child::after,.mw-parser-output .hlist li:last-child::after{content:none}.mw-parser-output .hlist dd dd:first-child::before,.mw-parser-output .hlist dd dt:first-child::before,.mw-parser-output .hlist dd li:first-child::before,.mw-parser-output .hlist dt dd:first-child::before,.mw-parser-output .hlist dt dt:first-child::before,.mw-parser-output .hlist dt li:first-child::before,.mw-parser-output .hlist li dd:first-child::before,.mw-parser-output .hlist li dt:first-child::before,.mw-parser-output .hlist li li:first-child::before{content:\" (\";font-weight:normal}.mw-parser-output .hlist dd dd:last-child::after,.mw-parser-output .hlist dd dt:last-child::after,.mw-parser-output .hlist dd li:last-child::after,.mw-parser-output .hlist dt dd:last-child::after,.mw-parser-output .hlist dt dt:last-child::after,.mw-parser-output .hlist dt li:last-child::after,.mw-parser-output .hlist li dd:last-child::after,.mw-parser-output .hlist li dt:last-child::after,.mw-parser-output .hlist li li:last-child::after{content:\")\";font-weight:normal}.mw-parser-output .hlist ol{counter-reset:listitem}.mw-parser-output .hlist ol>li{counter-increment:listitem}.mw-parser-output .hlist ol>li::before{content:\" \"counter(listitem)\"\\a0 \"}.mw-parser-output .hlist dd ol>li:first-child::before,.mw-parser-output .hlist dt ol>li:first-child::before,.mw-parser-output .hlist li ol>li:first-child::before{content:\" (\"counter(listitem)\"\\a0 \"}BulgarianBritish",".mw-parser-output .plainlist ol,.mw-parser-output .plainlist ul{line-height:inherit;list-style:none;margin:0;padding:0}.mw-parser-output .plainlist ol li,.mw-parser-output .plainlist ul li{margin-bottom:0}<br />Indian (until 1964)<br />British (from 1964)[1]<br />American (from 2016)","Albanian","American (1888–1907, 1956–1959)British (1907–1959)","American, Canadian[citation needed]","Belgian","BosnianAmerican","British (New Zealand)","British and Chinese[1]","British, Irish","CanadianAmerican","Chilean","Cuban","Danish","Finnish","FrenchAmerican","German, French","GermanHungarian (by marriage, 1925)","Hungarian[1]","Icelandic","Irish, British","Italian, Austro-Hungarian","Italian, Portuguese","Korean","New Zealand","Nigerian","Polish–British[1]","Russian, later Soviet[1]","Scots","South AfricanAustralian (since 2006)","South Korean","Spanish","Sri Lankan","Turkish","Zimbabwean"],"values":[106,93,87,35,31,20,19,15,10,10,7,6,6,5,4,4,3,3,3,3,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"type":"pie","hole":0.59999999999999998,"marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+## A Few thoughts
+
+&lt;br&gt;&lt;br&gt;
+.aim-box.tl.w-70[
+
+- Many ways to approach this problem
+- Approach here was to use the standard rvest toolbox
+- Not perfect - much needed cleaning of nationality strings 
+- A bit of quessing of nationalities
+
+]
+
+---
+
+## What else could we have done
+
+- Can scrape more data from goodreads website
+- Goodreads has an API
+- Check out the repository by famguy/rgoodreads to get started
+- Using this API makes querying things like year or gender more straightforward
+- But goodreads has no nationality, so this solution still is useful!
+
+---
+
+## What else for webscraping
+
+* There are easier ways to answer this same question
+* Namely, RSelenium for pages with javascript
+* Learning the hard way can be good sometimes though!
+
+--
+
+We should stop before we start scraping and think about whether we should.
+
+* Check the terms and conditions and terms of use
+* Look for a data licence
+* Consider ethics. Am I violating data privacy? 
+* Be considerate of the volume of queries and query rate limit
+* Can look at the robots.txt file for the website
+
+---
+
+class: center middle bg-gray
+
+.aim-box.tl.w-70[
+#Summary 
+
+- We've learnt the basics of web scraping 
+- Know how to scrape from a statics website in R
+- Work towards an automating our web scraping 
+- And we found out there are many challenges!
+
+]
+
+---
+
+class: transition
+
+## Slides developed by Dr Kate Saunders
+
+---
+
+
+
+
+background-size: cover
+class: title-slide
+background-image: url("images/bg-12.png")
+
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+
+.bottom_abs.width100[
+
+Lecturer: *Kate Saunders*
+
+Department of Econometrics and Business Statistics
+
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;  ETC5512.Clayton-x@monash.edu
+
+&lt;i class="fas fa-calendar-alt"&gt;&lt;/i&gt; Week 12
+
+&lt;br&gt;
+
+]
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="lib/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "magula",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

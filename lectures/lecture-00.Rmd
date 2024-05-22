@@ -1,0 +1,360 @@
+---
+title: "ETC5512: Wild Caught Data"
+subtitle: "Course Information"
+author: "Kate Saunders"
+email: "ETC5512.Clayton-x@monash.edu"
+date: "Week 0"
+length: "0 minutes"
+department: "Department of Econometrics and Business Statistics"
+titlebgimg: "images/bg-03.png"
+output:
+  xaringan::moon_reader:
+    css:
+      - ninjutsu 
+      - "assets/font-awesome-all.css"
+      - "assets/tachyons-addon.css"
+      - "assets/animate.css"
+      - "assets/fira-code.css"
+      - "assets/boxes.css"
+      - "assets/table.css"
+      - "assets/styles.css"
+      - "assets/monash-brand.css"
+      - "assets/monash-fonts.css"
+      - "assets/slide-types.css"
+      - "assets/custom.css"
+    self_contained: false 
+    seal: false 
+    chakra: 'lib/remark-latest.min.js'
+    includes:
+      in_header: "assets/head.html"
+    lib_dir: lib
+    #includes:
+    #  in_header: "assets/custom.html"
+    mathjax: "lib/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    nature:
+      highlightStyle: magula
+      highlightLanguage: r 
+      highlightLines: true
+      highlightSpans: false 
+      countIncrementalSlides: false
+      slideNumberFormat: '%current%/%total%'
+      navigation:
+        scroll: false 
+        touch: true
+        click: false
+      ratio: '16:9'
+---
+
+```{r, include = FALSE}
+current_file <- knitr::current_input()
+basename <- gsub(".Rmd$", "", current_file)
+
+knitr::opts_chunk$set(
+  fig.path = sprintf("images/%s/", basename),
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = FALSE,
+  cache.path = "cache/"
+)
+```
+
+```{r titleslide, child="assets/titleslide.Rmd"}
+```
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+<img src="images/profile-pics/kate-portrait.jpg" width = "200px"/>
+]
+
+<br>
+  
+
+# Kate Saunders 
+*Lecturer of Business Analytics*  
+Monash University
+
+<br>
+
+<i class="fas fa-globe"></i> https://numbat.space/people/current/saunders-kate/
+
+<i class="fas fa-envelope"></i> ETC5512.Clayton-x@monash.edu
+
+<i class="fab fa-twitter"></i> @katerobsau
+
+]
+
+.pa5.w-60[
+
+# About your instructor
+
+* `r emo::ji("graduation")` Dr Saunders has a PhD in statistics   
+
+* `r emo::ji("research")` Her research uses statistical models to understand climate extremes 
+
+* `r emo::ji("scientist")` She is interested in how extreme events are influenced by climate change and natural variability.  
+
+* `r emo::ji("coder")` R underpins her science
+
+* `r emo::ji("coder")` Helping her to create amazing data visualisations and easily communicate ideas with her collaborators.
+
+* `r emo::ji("globe")` Hometown is Ipswich, Queensland
+
+* `r emo::ji("heart")` Likes to play basketball - so let me know if you want to play pick up!
+
+ 
+
+]
+
+
+]
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+<img src="images/profile-pics/janith.jpg" width = "200px"/>
+]
+
+<br>
+
+# Janith Wanniarachchi
+*Tutor in Business Analytics*  
+Monash University
+
+<br>
+
+<!-- <i class="fas fa-globe"></i>  -->
+
+<i class="fas fa-envelope"></i> janith.wanniarachchi@monash.edu
+
+<!-- <i class="fab fa-twitter"></i>  -->
+
+]
+
+.pa5.w-60[
+
+<!-- Janith Wanniarachchi is a first year PhD student at the Department of Economics and Business Statistics. He is currently working off on his research under Prof. Di Cook, Prof. Patricia, Dr. Thiyanga and Dr. Kate Saunder’s supervision on Explainable Artificial Intelligence and Data Visualization applied to the domain of extreme climate events. Before joining Monash University he was an R Shiny Developer at Appsilon building Shiny dashboards for the life sciences industry and working on R packages. His academic journey started as an undergraduate at University of Sri Jayewardenepura in Sri Lanka where he completed his BSc. (Hons.) in Statistics. His research interests are mainly on Explainable Artificial Intelligence, Data Visualization with a dash of Climate Modeling. Apart from his usual research interests, he has an avid interest in D3.js, scrollytelling and writing stories and poems. -->
+
+# About your instructor
+
+* `r emo::ji("graduation")` First year PhD student in the Department of Economics and Business Statistics. 
+
+* `r emo::ji("graduation")` PhD project is in explainable artificial intelligence and data visualization
+
+* `r emo::ji("graduation")` Undergraduate at University of Sri Jayewardenepura in Sri Lanka in BSc. (Hons.) Statistics
+
+*  `r emo::ji("coder")` Work Experience: R Shiny Developer at Appsilon building Shiny dashboards 
+
+* `r emo::ji("heart")` Interested in D3.js, scrollytelling and writing stories and poems.
+
+]]
+
+---
+
+class: fullscreen
+
+.flex.h-100[
+.pa4.w-40.monash-bg-blue.br.white[
+.circle-image-200.center[
+<img src="images/profile-pics/krisanat.jpg" width = "200px"/>
+]
+
+<br>
+
+# Krisanat Anukarnsakulchularp
+*Tutor in Business Analytics*  
+Monash University
+
+<br>
+
+<!-- <i class="fas fa-globe"></i>  -->
+
+<i class="fas fa-envelope"></i> krisanat.anukarnsakulchularp@monash.edu
+
+<!-- <i class="fab fa-twitter"></i>  -->
+
+]
+
+.pa5.w-60[
+
+
+# About your instructor
+
+<!-- I was a Master of Business analytics student who graduated last year. I have been at Monash since my Bachelor degree. My recent research is in animate visualization, and planning to do network visualization in the future. I am from Thailand. I recently published my first CRAN package called animbook. My hobby is playing music. -->
+
+* `r emo::ji("graduation")` Graduated last year with a Masters in Business Analytics 
+
+* `r emo::ji("graduation")` Is a Monash local since undergrad
+
+* `r emo::ji("globe")` Home is Thailand
+
+*  `r emo::ji("coder")` Research is in animate visualization, and with plans to do network visualization
+
+*  `r emo::ji("coder")` Recently published my first CRAN package called animbook! 
+
+* `r emo::ji("heart")` Hobby is playing music.
+
+]]
+
+---
+
+# Introduce yourself in the chat!
+
+.flex.h-100[
+
+.w-15[
+.circle-image-120[
+<img src="images/profile-pics/kate-portrait.jpg" width = "120px"/>
+] 
+.circle-image-120[
+<img src="images/profile-pics/janith.jpg" width = "120px"/>
+]
+]
+.w-15[
+.circle-image-120[
+<img src="images/profile-pics/krisanat.jpg" width = "120px"/>
+] 
+]
+.w-55.pl4[
+* What was your undergraduate degree in?
+* What's your profession or profession you are interested to get in?  
+* Where do you live?
+* What's your hobby? 
+* What's one thing you want everyone to know (about you)? 
+
+]
+
+]
+
+
+
+---
+
+
+# How to ask for help
+
+.flex.h-100[
+
+.w-30[
+
+<br><br><br><br>
+.font_large.center[`r emo::ji("help")`]
+
+.font_large.center[🙋🏽‍♀]
+
+]
+.w-80[
+
+During the lecture, you can:
+
+* write in the chat,
+
+* ask directly (unmute yourself first), or
+
+* raise hand from zoom under Participants.
+
+Otherwise, you can:
+
+* make use of consultation or tutorial period,
+   * See Moodle for the times and zoom links (or room number)
+   * Please only go to your scheduled tutorial stream 
+* post questions in Moodle discussion board, or
+* _if you have a private matter_, send email to <Br><a href="mailto:ETC5512.Clayton-x@monash.edu">ETC5512.Clayton-x@monash.edu</a> from your Monash email.
+]]
+
+---
+# Learning objectives
+
+
+1. Understand the definitions, allowed usage, digital identification and licensing of open data
+
+--
+
+2. Know about common open data sources, how they are used and effectively search for new sources
+
+--
+
+3. Explain the differences between data collection methods and the limitations for data analysis
+
+--
+
+4. Work with the range of different data formats of open data, including APIs
+
+--
+
+5. Understand ethical constraints and privacy limits when working with open data
+
+--
+
+6. Recognise the components of effective curation needed for open data.
+
+---
+
+.pull-left[
+# Philosophically
+
+Think about this unit in the way Dr Mine Çetinkaya-Rundel describes in this talk: 
+
+["Let them eat cake (first)"](https://speakerdeck.com/minecr/let-them-eat-cake-first-b18397a2-9fbd-4bd8-b4b5-a31600c02870?slide=2)
+
+<br><br><br>
+Imagine you're .monash-blue2[new to baking], and you're in a baking class. 
+
+I'm going to present two options for starting the class. .monash-orange2[Which one gives you better sense of the final product?]
+]
+--
+
+.pull-right[
+<img src="images/lecture-01/ingredients.jpg" width="80%">
+
+<img src="images/lecture-01/cake.jpg" width="80%">
+]
+
+---
+class: transition middle
+
+# The case studies you will see in this unit are the cakes 
+
+that we hope you can bake at the end of your data analysis studies.
+
+---
+# Course assessments
+
+.flex.h-100[
+
+.w-50[
+* Weekly quizzes on [FLUX](https://flux.qa/#/login) **due before FRI 10 AM** (20%)
+* There are no quizzes during the mid-semester break.
+* Your lowest two quiz marks are not counted (i.e. you can miss two without any penalty).
+* .monash-red2[Make sure you log onto FLUX with your Monash email].
+* Assignment 1 **due Week 4** (20%)
+* Assignment 2 **due Week 7** (20%)
+* Assignment 3 **due Week 10** (20%)
+* Assignment 4 **due Week 13** (20%)
+
+]
+.w-50[
+
+* Assignments are released two weeks before the due date, you should get started on it as soon as it is released. 
+* If for some reason you miss submitting an assignment, through illness, or personal difficulty, the procedure to follow is (1) notify the CE within seven days of the due date,  at ETC5512.Clayton-x@monash.edu, (2)  you will be awarded the lowest score from the other three for the missed assignment. Failure to submit and notify the CE accordingly will result in a zero score for the assignment. If you miss more than one assignment you will need to re-take the unit at a later date.
+
+]]
+
+
+---
+
+```{r endslide, child="assets/endslide.Rmd"}
+```
