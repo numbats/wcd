@@ -1,0 +1,192 @@
+---
+title: "Tutorial 1"
+format: html
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      eval = FALSE,
+                      cache=TRUE, 
+                      warning=FALSE, 
+                      message=FALSE)
+options(width=80,digits=3)
+```
+
+## Objectives
+
+In this tutorial, you will learn to
+
+-   utilise and access open data sources
+-   assess the collection methods and the quality of the data
+-   write computer code to conduct quality checks of the data
+
+## Preparation
+
+#### Installing R and RStudio
+
+::: callout-tip
+## Start your engines!
+
+You may find it helpful to think about R as the engine and RStudio as the dashboard controls. You need both to drive!
+
+The engine (R) is what runs all of your analysis, while the dashboard (RStudio) provides an interface to efficiently control and navigate.
+:::
+
+![](images/R_vs_RStudio.png)
+
+-   Install R by visiting the [CRAN](https://cran.r-project.org) web site.
+
+-   Install the free version of [RStudio](https://rstudio.com/products/rstudio/download/) for your desktop.
+
+-   Use [this site](https://startr.numbat.space/modules/starter/installation/) to get step-by-step install instructions for your operating system if you need help.
+
+#### Packages
+
+Packages contain code, data and functions that have already been written and are ready to use in your analysis.
+
+For today's tutorial you will need the R packages, `tidyverse`, `here` and `galah`.
+
+Copy and paste the code below into your RStudio Console window to install your packages:
+
+```{r}
+install.packages("tidyverse")
+install.packages("here")
+install.packages("galah")
+```
+
+Once you install a package in R, its there for you to use in the future. However, you may want different packages for different projects. So you need to tell R which packages you want to use.
+
+That means you do need load the package each time you want to use it, using the `library()` function.
+
+```{r}
+library(tidyverse)
+library(here)
+library(galah)
+```
+
+::: callout-tip
+## Think about packages like a lightbulb
+
+You only need to screw in (install) the lightbulb once, but you can turn on the light (load the library) whenever you need it.
+:::
+
+![](images/install_vs_library.jpeg){fig-align="center"}
+
+Note: `tidyverse` actually installs a collection of [commonly used and useful packages](https://www.tidyverse.org/packages/).
+
+#### Data to download
+
+Before you tutorial please also download the following data.
+
+-   Navigate to the airline ontime performance data base by going to <https://www.transtats.bts.gov/>
+
+-   Select "Aviation" from left box
+
+-   and then select "Airline On-Time Performance Data".
+
+-   In the table for "Reporting Carrier On-Time Performance (1987-present)" click "Download"
+
+This will bring you to an interface for choosing a subset.
+
+::: callout-warning
+This data is very big! Follow the instructions below to download a small subset.
+:::
+
+-   At the top filter your data and choose 2020 and January (before the pandemic hit the USA)
+
+-   Select these variables: Year, Month, DayofMonth, DayOfWeek, FlightDate, Reporting_Airline, Tail_Number, Origin, Dest, CRSDepTime, DepTime, DepDelay, CRSArrTime, ArrTime, ArrDelay.
+
+-   Click the "Download" button to get it onto your laptop. (No need to check pre-zipped.)
+
+-   The resulting file is about 50Mb, and the column names are slightly different from the form names, but recongisable as the requested variables: `YEAR`, `MONTH`, `DAY_OF_MONTH`, `DAY_OF_WEEK`, `FL_DATE`, `OP_UNIQUE_CARRIER`, `TAIL_NUM`, `ORIGIN`, `DEST`, `CRS_DEP_TIME`, `DEP_TIME`, `DEP_DELAY`,`CRS_ARR_TIME`,`ARR_TIME`, `ARR_DELAY`
+
+## Exercise 1: US air traffic
+
+### a. Download
+
+```{r}
+library(tidyverse)
+library(here)
+flights <- read_csv(here::here("data/504717774_T_ONTIME_REPORTING.csv")) %>% select(YEAR:ARR_DELAY)
+flights %>% count(YEAR)
+flights %>% count(MONTH)
+```
+
+### b. How was the data collected?
+
+You can check the ["Data profile"](https://www.transtats.bts.gov/DatabaseInfo.asp?QO_VQ=EFD&DB_URL=Z1qr_VQ=E&Z1qr_Qr5p=N8vn6v10&f7owrp6_VQF=D) to help answer for these questions.
+
+(i) Who has the oversight for the data provision?
+(ii) Who reports the data to the data provider?
+(iii) How is the data collected?
+(iv) Is this open data? What type of license is provided? What are you allowed to do with the data?
+(v) What information is in each row of the data set?
+
+### c. Data quality checks
+
+(i) Read in the data
+(ii) Check dates range for the month of January 2020.
+(iii) Count number of flights by carrier. Who has the most flights?
+(iv) Which airport has the most traffic? Does every airport have the same number of incoming and outgoing flights?
+
+```{r eval=FALSE}
+flights %>% select(FL_DATE) %>% summary()
+flights %>% count(OP_UNIQUE_CARRIER, sort = TRUE)
+flights %>% count(ORIGIN, sort = TRUE)
+outgoing <- flights %>% count(ORIGIN) %>% rename(outbound = n)
+incoming <- flights %>% count(DEST) %>% rename(inbound = n)
+traffic <- full_join(outgoing, incoming, by=c("ORIGIN" = "DEST"))
+ggplot(traffic, aes(x=outbound, y=inbound)) + geom_point() +
+  coord_equal()
+```
+
+## Exercise 2: Atlas of Living Australia
+
+The Atlas of Living Australia is a major resource for occurrence data on animals, plants, insects, fish.
+
+### a. Download
+
+(i) Point your browser to https://www.ala.org.au. Check the terms of use. Does it have a license?
+(ii) Using the `galah` library, and the function `occurrences` extract the records for platypus. To download the data from this API you will need to register with your email first.
+
+```{r}
+library(galah)
+
+galah_config(email = "YOUREMAILADDRESS",
+             download_reason_id = 10, 
+             verbose = TRUE)
+
+platypus <- galah_call() %>% 
+  galah_identify("Ornithorhynchus anatinus") %>% 
+  atlas_occurrences()
+
+platypus <- platypus %>% 
+  rename(Longitude = decimalLongitude,
+         Latitude = decimalLatitude) %>%
+  mutate(eventDate = as.Date(eventDate)) %>%
+  filter(!is.na(eventDate)) %>%
+  filter(!is.na(Longitude)) %>%
+  filter(!is.na(Latitude))
+save(platypus, file=here::here("data/platypus.rda"))
+```
+
+### b. Data quality checks
+
+(i) Plot the locations of sightings. Where is Australia are platypus found?
+(ii) What dates of sightings are downloaded?
+
+```{r}
+load(here::here("data/platypus.rda"))
+ggplot(platypus, aes(x=Longitude, y=Latitude)) +
+  geom_point()
+platypus %>% select(eventDate) %>% summary()     
+```
+
+### c. Data collection methods
+
+How is this data collected? Explain the ways that a platpus sighting would be added to the database. Also think about what might be missing from the data?
+
+##### Materials updated and maintained by Dr. Saunders.
+
+##### © Copyright 2025 Monash University
