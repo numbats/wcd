@@ -1,0 +1,69 @@
+---
+title: "ETX2250/ETF5922: An Introduction to Data Visualisation"
+toc: false
+format:
+  html:
+    page-layout: full
+---
+
+This unit uses data visualisation to explore and analyse data sets of all sizes, and it introduces some business analytic models for interpretation and prediction.
+
+## Learning outcomes
+
+1. Critically evaluate the quality of a data visualisation using the principles of graphical excellence
+2. Successfully create high-quality data visualisations for a given dataset using software, such as Power BI or R.
+3. Develop the skills to effectively use data visualisations to communicate insights to an audience
+4. Develop the skills to effectively use data visualisations to communicate in the appropriate medium, report writing, in presentations and digital storytelling.
+5. Apply advanced topics in data visualisation, such as using interactivity and animation to enhance communication.
+
+## Teachers
+
+* **Kate Saunders** - Chief Examiner
+* **Krisanat Anukarnsakulchularp** - Instructor
+* **Bets Ruscoe** - Instructor
+* **Javad Vahdat Atashgah** - Instructor
+
+
+```{r}
+#| label: load_packages
+#| include: false
+#| message: false
+#| warning: false
+#| echo: false
+#| cache: false
+library(tidyverse)
+options(knitr.kable.NA = '')
+source(here::here("course_info.R"))
+week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
+```
+
+## Weekly schedule
+
+* 3 hour workshop, Monday - Wednesday - Friday, 9am-12pm each week
+
+## Consultation
+
+* Monday - Wednesday - Friday, 1pm-3pm each week
+
+```{r}
+#| label: schedule2
+#| message: false
+#| warning: false
+#| echo: false
+#| output: asis
+schedule |>
+    transmute(
+        Week = if_else(Topic == "Mid-semester break", NA, Week, missing = Week),
+        Date = format(Date, "%d %b"),
+        Show = file.exists(glue::glue("./week{Week}/index.qmd")),
+        Show_Tutorial = file.exists(glue::glue("./week{Week}/tutorial/tutorial-0{Week}.qmd")),
+        Show_Solution = file.exists(glue::glue("./week{Week}/tutorial/tutorial-0{Week}-sol.qmd")),
+        Topic = if_else(!Show, Topic, glue::glue('[{{Topic}}](./week{{Week}}/index.html){target="_blank"}', .open = "{{", .close = "}}")),
+        Tutorial = if_else(!Show_Tutorial, "", glue::glue('[{{< fa list-check >}}](./week{{{Week}}}/tutorial/tutorial-0{{{Week}}}.html){target="_blank"}', .open = "{{{", .close = "}}}")),
+        Solution = if_else(!Show_Solution, "", glue::glue('[{{< fa lightbulb >}}](./week{{{Week}}}/tutorial/tutorial-0{{{Week}}}-sol.html){target="_blank"}', .open = "{{{", .close = "}}}"))
+        # Reference = glue::glue("[{Reference}]({Reference_URL})")
+        # Assessments = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})"))
+    ) |>
+    select(-Show, -Show_Tutorial, -Show_Solution) |>
+    knitr::kable(format = "markdown")
+```
