@@ -1,0 +1,93 @@
+---
+title: "Assignment 1"
+format: html
+editor: visual
+---
+
+### Scenario
+
+You are commissioned as an independent business analyst to consult with the Victorian Department of Transport and Planning.
+
+The Victorian Department of Transport and Planning is considering following the lead of New South Wales Transport and Main Roads, and making data on past road incidents available for public download. But, they are yet to be convinced of the benefits of open data. 
+
+Your job will be to download, document and process data needed to create case study examples that can be used in a showcase.
+
+In this hypothetical scenario, you are preparing this data for use by another team member who has experience working with road data types. Be sure to organise the data so that is useful for that team member, and so your documentation can be included as part of a larger report.
+
+## Case Study 1 (15 marks)
+
+The public voted for NSW's worst roads in the [2023 NRMA Rate your road Survey](https://www.mynrma.com.au/media/press-releases/2023/rate-your-road---2023-results-revealed). **You are tasked with investigating if these are indeed the worst roads.** 
+
+*Note do not to over complicate this! Roads are recorded in segments and you do not need to combine the segments for this task. That is a job for your team member. Also note, there is no single one answer to how to define worst road.*
+
+a. (5 marks) You have been assigned one of the problem roads flagged in the survey (see Moodle). Using the [NSW Goverment Portal](https://www.livetraffic.com/historical-data-search/) create a data set for that extended region (50 km radius) that records past traffic incidents.
+
+* Include only the **relevant** incident types in your data set. 
+
+* Restrict your data to an appropriate sample period. Only 3 months of data can be downloaded at one time.
+
+* Combine data from before and after the survey so incident numbers can be compared.
+
+* Save your data as a `.csv` file.
+
+b. (5 marks) Document the download process. 
+
+* Describe the steps you took to download your data, so your process is fully reproducible. 
+
+* Describe how you processed your data, this should include which variables you selected and and if you filtered any rows.
+
+* Be sure to explain how you defined the worst road.
+
+c. (5 marks) Provide a data set description. 
+
+* This must include an explanation of the relevant variables (meta data)
+
+* Explain if your data sample is representative of the population. Also define what the population is.
+
+* Be sure to include any limitations of the data.
+
+* Provide a brief explanation of the usage permission (inferred from the database usage policy details). 
+
+## Case Study 2 (15 marks)
+
+Kangaroo's are the [leading animal cause behind car crashes](https://www.theage.com.au/national/victoria/the-animal-that-causes-the-most-car-crashes-in-victoria-20160412-go46rw.html) in Victoria. **You will also investigate whether your region is at risk from kangaroo collisions**. 
+
+a. (5 marks) Using the atlas of living Australia download occurrence records of kangaroos within your region of interest. (Note 50 km is approximately to 0.5 degrees of both long and lat).
+
+* Include only the **relevant** variables types in your data set. 
+
+* Save your data as a `.csv` file.
+
+b. (5 marks) Document the download process. 
+
+* Describe the steps you took to download your data, so your process is fully reproducible. 
+
+* Describe how you processed your data, this should include which variables you selected and and if you filtered any rows.
+
+c. (5 marks) Provide a data set description.
+
+* This must include an explanation of the relevant variables (meta data)
+
+* Explain if your data sample is representative of the population. Also define what the population is. 
+
+* Be sure to include any limitations of the data.
+
+* Provide a brief explanation of the usage permission (inferred from the database usage policy details). 
+
+<!-- ## Part 3 -->
+
+<!-- According to the Australian Institute of Health and Welfare, in Australia from 2001–2017 there were 96 vehicle-related flood fatalities, which represented 50% of deaths related to flooding [(see link)](https://www.aihw.gov.au/reports/injury/extreme-weather-injuries/contents/rain-and-storms).**You have been tasked with providing a list of closed roads during the 3-week period that hospital admissions, peaked in 2022.**  -->
+
+## Submission (10 marks)
+
+* Answer the questions and submit your report about the data using the Quarto template provided. We do not use word documents in this unit as we want our work to be fully reproducible.
+
+* Submit all code needed to process the data to create the subset.
+
+* Ensure your code will run, and you report will build on another computer. This is important so we can reproduce your report. (Do not submit direct file paths!) 
+
+* Ensure your code is neat and tidy. 
+
+* Include an AI acknowledgement and include links to all queries. Here is [an example of some queries](https://chatgpt.com/share/67aea3e0-ddd4-8011-912c-3619d09dff1d). These contain important assignment hints.
+
+* Include all relevant citations and be sure to cite all R packages used. The function `?citation()` will be helpful here.
