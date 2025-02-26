@@ -1,27 +1,36 @@
 ---
-title: "ETX2250/ETF5922: An Introduction to Data Visualisation"
+title: "ETC5512: Wild Caught Data"
 toc: false
 format:
   html:
     page-layout: full
 ---
 
-This unit uses data visualisation to explore and analyse data sets of all sizes, and it introduces some business analytic models for interpretation and prediction.
+Data can be obtained from many sources. It may be generated via experiments, collected from observational studies or surveys, obtained via sampling, or recorded using sensors. 
 
-## Learning outcomes
+Each type of data has its own characteristics that affect the analysis tools we use. Very large data sets come with their own challenges and require some database skills. 
 
-1. Critically evaluate the quality of a data visualisation using the principles of graphical excellence
-2. Successfully create high-quality data visualisations for a given dataset using software, such as Power BI or R.
-3. Develop the skills to effectively use data visualisations to communicate insights to an audience
-4. Develop the skills to effectively use data visualisations to communicate in the appropriate medium, report writing, in presentations and digital storytelling.
-5. Apply advanced topics in data visualisation, such as using interactivity and animation to enhance communication.
+This unit will equip you with the tools to understand and use different sources of data. Open data sources will be emphasised.
+
+## Learning objectives
+
+1. Understand the definitions, allowed usage, digital identification and licensing of open data
+
+2. Know about common open data sources, how they are used and effectively search for new sources
+
+3. Explain the differences between data collection methods and the limitations for data analysis
+
+4. Work with the range of different data formats of open data, including APIs
+
+5. Understand ethical constraints and privacy limits when working with open data
+
+6. Recognise the components of effective curation needed for open data.
 
 ## Teachers
 
-* **Kate Saunders** - Chief Examiner
-* **Krisanat Anukarnsakulchularp** - Instructor
-* **Bets Ruscoe** - Instructor
-* **Javad Vahdat Atashgah** - Instructor
+* **Kate Saunders** - Lecturer and Chief Examiner
+* **Krisanat Anukarnsakulchularp** - Tutor 
+* **Maliny Po** - Tutor
 
 
 ```{r}
@@ -39,11 +48,13 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Weekly schedule
 
-* 3 hour workshop, Monday - Wednesday - Friday, 9am-12pm each week
+* Seminar: Monday  2 pm - 4 pm
+* Drop in & practice session: Monday 10 - 11 pm (zoom)
+* Consultation: Monday 5 - 6 pm
+* Please refer to your timetable for your tutorial time.
+* Please refer to Moodle for zoom links
 
-## Consultation
-
-* Monday - Wednesday - Friday, 1pm-3pm each week
+## Schedule
 
 ```{r}
 #| label: schedule2

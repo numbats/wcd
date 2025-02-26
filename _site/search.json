@@ -44,441 +44,441 @@
   {
     "objectID": "week1/index.html#etc5523-title",
     "href": "week1/index.html#etc5523-title",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "ETX2250/ETF5922",
     "text": "ETX2250/ETF5922\nAn Introduction to Data Visualisation\nLecturer: Kate Saunders\nDepartment of Econometrics and Business Statistics\n\n\n\n\netx2250-etf5922.caulfield-x@monash.edu\n\n\n Lecture 1\n\n\n&lt;a href=““&gt;"
   },
   {
     "objectID": "week1/index.html#todays-lecture",
     "href": "week1/index.html#todays-lecture",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Today’s lecture",
     "text": "Today’s lecture\n\n\n\n\n\n\nWhat we’ll cover:\n\n\n\nUnit overview and details\nAn Introduction to Data Visualisation\n\nSocietal importance of data visualisation\nLearn about the different types of data\n\nGetting you set up in R (Hands on)"
   },
   {
     "objectID": "week1/index.html#about-your-lecturer",
     "href": "week1/index.html#about-your-lecturer",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "About your Lecturer",
-    "text": "About your Lecturer\n\n\n\n\n\nKate Saunders\nLecturer at Monash University\n\n\n\n🎓 PhD in Statistics\n🌍 Home State is Queensland\n👩‍💻 Research is in statistics of climate extremes\n👨‍💻 Passionate about open data, data visualisation and data ethics\n👩‍💻 Started R coding in 2012 (before tidyverse!)\n❤️ Hobby is playing basketball."
+    "text": "About your Lecturer\n\n\n\n\n\nKate Saunders\nLecturer at Monash University\n\n\n\n🎓 PhD in Statistics\n🌏 Home State is Queensland\n👨‍💻 Research is in statistics of climate extremes\n👩‍💻 Passionate about open data, data visualisation and data ethics\n👨‍💻 Started R coding in 2012 (before tidyverse!)\n❤️ Hobby is playing basketball."
   },
   {
     "objectID": "week1/index.html#about-your-instructor",
     "href": "week1/index.html#about-your-instructor",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "About your Instructor",
-    "text": "About your Instructor\n\n\n\n\n\nKrisanat Anukarnsakulchularp\nPhD Candidate at Monash University\n\n\n\n🎓 Graduated in Masters in Business Analytics\n👨‍🎓 Monash local since undergrad\n🌍 Home Country is Thailand\n👩‍💻 Just started his PhD, he’s researching network visualisation\n👨‍💻 Recently published an R package called animbook!\n❤️ Hobby is playing music."
+    "text": "About your Instructor\n\n\n\n\n\nKrisanat Anukarnsakulchularp\nPhD Candidate at Monash University\n\n\n\n👨‍🎓 Graduated in Masters in Business Analytics\n👨‍🎓 Monash local since undergrad\n🌍 Home Country is Thailand\n👩‍💻 Just started his PhD, he’s researching network visualisation\n👩‍💻 Recently published an R package called animbook!\n❤️ Hobby is playing music."
   },
   {
     "objectID": "week1/index.html#about-your-instructor-1",
     "href": "week1/index.html#about-your-instructor-1",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "About your Instructor",
-    "text": "About your Instructor\n\n\n\n\n\nBets Ruscoe\nPhD Student at Monash University\n\n\n\n👩‍🎓 Studied Econometrics at Monash\n🎓 Worked at Deloitte in the AI & Data team, before coming back for PhD\n👨‍💻 Lover of R and wanted to introduce R at work over Power BI\n🌎 Just returned from a trip to Taiwan\n❤️ Misses eating dumplings everyday for breakfast!"
+    "text": "About your Instructor\n\n\n\n\n\nBets Ruscoe\nPhD Student at Monash University\n\n\n\n👨‍🎓 Studied Econometrics at Monash\n🎓 Worked at Deloitte in the AI & Data team, before coming back for PhD\n👩‍💻 Lover of R and wanted to introduce R at work over Power BI\n🌐 Just returned from a trip to Taiwan\n❤️ Misses eating dumplings everyday for breakfast!"
   },
   {
     "objectID": "week1/index.html#about-your-instructor-2",
     "href": "week1/index.html#about-your-instructor-2",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "About your Instructor",
-    "text": "About your Instructor\n\n\n\n\n\nJavad Vahdat Atashgah\nPhD Candidate at Monash University\n\n\n\n🎓 Just started his PhD in bioformatics\n🌍 Home country is Iran\n👩‍💻 Worked in fields of bioinformatics, finance, hydrology\n👨‍💻 Research underpinned by data and data science\n❤️ Loves finding was to simplify complex statistical ideas using viz!"
+    "text": "About your Instructor\n\n\n\n\n\nJavad Vahdat Atashgah\nPhD Candidate at Monash University\n\n\n\n🎓 Just started his PhD in bioformatics\n🌏 Home country is Iran\n👨‍💻 Worked in fields of bioinformatics, finance, hydrology\n👩‍💻 Research underpinned by data and data science\n❤️ Loves finding was to simplify complex statistical ideas using viz!"
   },
   {
     "objectID": "week1/index.html#why-take-this-unit",
     "href": "week1/index.html#why-take-this-unit",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Why take this unit?",
     "text": "Why take this unit?\n\n\n\n\n\n\n\nImportance of Data Visualisation and Communication\n\n\n\n\nData visualisation is a starting point of every Business Analytics Project.\nA picture says a 1000 words: We can turn data into insights using visualisation\nSearch and show patterns, trends, structure, irregularities, relationships among data\nIntegral for communicating results from an analysis with clarity and efficiency"
   },
   {
     "objectID": "week1/index.html#about-the-unit",
     "href": "week1/index.html#about-the-unit",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "About the unit",
     "text": "About the unit\n\n\n\n\n\n\nSummer Semester is an INTENSIVE unit!\n\n\nWhat that means:\n\n\nWe will cover 12 weeks of material in 4 weeks\nWe will cover 3 lectures each week\nThat’s ~36 hours of study each week!\nYou will need to keep up with the material\nComing to classes and consultations will help you\nLast minute cramming won’t be possible"
   },
   {
     "objectID": "week1/index.html#unit-design",
     "href": "week1/index.html#unit-design",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Unit Design",
     "text": "Unit Design\n\n\n\n\n\n\nNote\n\n\nCompared to normal semesters the content is condensed.\n\n\nThere will be pre-recorded material for you to watch in your own time.\nWatch any pre-recorded material before class\nLectures and workshop material will run together as a block.\nThe balance of lecture material to in class activities to tutorial exercises will change a little each week.\nThe unit is running flexibly so if you want to attend class on zoom you can."
   },
   {
     "objectID": "week1/index.html#learning-objectives",
     "href": "week1/index.html#learning-objectives",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Learning Objectives",
     "text": "Learning Objectives\n\n\n\n\n\n\nAt the end of this unit you will be able to:\n\n\n\n\nCritically evaluate the quality of a data visualisation using the principles of graphical excellence\nSuccessfully create high-quality data visualisations for a given dataset using software, such as Power BI or R.\nDevelop the skills to effectively use data visualisations to communicate insights to an audience\nDevelop the skills to effectively use data visualisations to communicate in the appropriate medium, report writing, in presentations and digital storytelling.\nApply advanced topics in data visualisation, such as using interactivity and animation to enhance communication."
   },
   {
     "objectID": "week1/index.html#overview-of-the-unit",
     "href": "week1/index.html#overview-of-the-unit",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Overview of the unit",
     "text": "Overview of the unit\n\n\n\n\n\n\nWeek 1: Introduction to Data Visualisation\n\n\n\nLecture 1: Getting Started with Data Visualisation\nLecture 2: The Good, the Bad and the Ugly of Data Visualisation\nLecture 3: Data Visualisation in BI\n\n\n\n\n3 quizzes due end of the week"
   },
   {
     "objectID": "week1/index.html#overview-of-the-unit-1",
     "href": "week1/index.html#overview-of-the-unit-1",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Overview of the unit",
     "text": "Overview of the unit\n\n\n\n\n\n\nWeek 2: Visualisation in R\n\n\n\nLecture 4: Visualisation in R: Plots of 1 - 2 Variables\nLecture 5: Data Wrangling in R\nLecture 6: Visualisation in R: Plots of 2 or more Variables\n\n\n\n\n3 quizzes due end of the week.\nAssignment 1 will cover the first two weeks of material."
   },
   {
     "objectID": "week1/index.html#overview-of-the-unit-2",
     "href": "week1/index.html#overview-of-the-unit-2",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Overview of the unit",
     "text": "Overview of the unit\n\n\n\n\n\n\nWeek 3: Language of Visual Communication\n\n\n\nLecture 7: Iterating your Plot Design\nLecture 8: The Art of Visual Storytelling\nLecture 9: Guest Lecture by digital journalist: James Goldie\n\n\n\n\n3 quizzes due end of the week."
   },
   {
     "objectID": "week1/index.html#overview-of-the-unit-3",
     "href": "week1/index.html#overview-of-the-unit-3",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Overview of the unit",
     "text": "Overview of the unit\n\n\n\n\n\n\nWeek 4: Advanced Topics in Visualisation\n\n\nThe training wheels are off!\n\nLecture 10: (TBC) Visualising Uncertainty and Missing Data\nLecture 11: Interactivity and Animation\nLecture 12: Exam Revision\n\n\n\n\n3 quizzes due end of the week.\nAssignment 2 will cover the last two weeks of material."
   },
   {
     "objectID": "week1/index.html#assessment-quizzes",
     "href": "week1/index.html#assessment-quizzes",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Assessment: Quizzes",
     "text": "Assessment: Quizzes\n\n\n\n\n\n\nQuizzes\n\n\n\n\n12 quizzes related to each lecture and tutorial\nCount the best 10 out of 12 quizzes\nThis allows you two “off” quizzes for sudden and short term emergencies.\nQuizzes are worth 1% each\n10% of your total grade\nQuizzes will be due at the end of each week, so 3 quizzes due each Friday.\nNo special consideration for quizzes"
   },
   {
     "objectID": "week1/index.html#assessments-assignments",
     "href": "week1/index.html#assessments-assignments",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Assessments: Assignments",
     "text": "Assessments: Assignments\n\n\n\n\n\n\nAssignments\n\n\n\n\n2 assignments worth 20% each\n40% of your total grade\nAssignment 1 will cover content from weeks 1 and 2\nAssignment 2 will cover content from weeks 3 and 4\nApply for special consideration centrally. (This includes short extensions of 48 hours)\nIf you need special consideration, apply ASAP and no later than 11.55 pm on the day your assessment is due."
   },
   {
     "objectID": "week1/index.html#assessments-exam",
     "href": "week1/index.html#assessments-exam",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Assessments: Exam",
     "text": "Assessments: Exam\n\n\n\n\n\n\nFinal exam\n\n\n\n\nExam is in the Febraury Summer Semester Exam Block\n50% of your total grade\nThis is a Hurdle Assessment\nYou must pass to pass the unit"
   },
   {
     "objectID": "week1/index.html#where-to-go-if-you-need-help",
     "href": "week1/index.html#where-to-go-if-you-need-help",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Where to go if you need help",
     "text": "Where to go if you need help\n\n\n\n\n\n\n1. Ask your peers using the discussion forum\n\n\nSuitable for:\n\n\nGeneral questions about course materials, tutorials, R or assignment clarifications.\nAny emails regarding general matters will be redirected to the discussion forums.\nSharing helps you learn from each other!\nAlso I don’t want to answer the same question twice (three times, four times etc.)\nDo not post code from your assignments or any assignment hints to the discussion portal. I may deduct marks"
   },
   {
     "objectID": "week1/index.html#where-else-to-go-if-you-need-help",
     "href": "week1/index.html#where-else-to-go-if-you-need-help",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Where else to go if you need help",
     "text": "Where else to go if you need help\n\n\n\n\n\n\n2. Attend Consultation\n\n\nSuitable for:\n\n\nWhen you need more specific one-on-one help\nWorking through problems with your tutor\nGetting a head start on your assignments\nSupport debugging your code\nAsking detailed questions about your assignments\nGetting additional feedback on your assessments\nBeing really nerdy about the unit!"
   },
   {
     "objectID": "week1/index.html#for-personal-and-urgent-inqueries",
     "href": "week1/index.html#for-personal-and-urgent-inqueries",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "For personal and urgent inqueries",
     "text": "For personal and urgent inqueries\n\n\n\n\n\n\nUnit Email\n\n\nSuitable for:\n\n\nFor personal questions or issues email etx2250-etf5922.caulfield-x@monash.edu.\nResponse times are within 1 - 2 days but may vary during busy periods.\nAlso email if you notice issues with assessments or Moodle.\nFor remarking, get feedback on your assessment from your tutor and if this does not provide clarity email within 10 days of the due date.\nDo not direct emails to my staff account, I receive a high volume of high volume of emails and they risk going into a black hole and never being seen again!"
   },
   {
     "objectID": "week1/index.html#time-to-get-started",
     "href": "week1/index.html#time-to-get-started",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Time to get started",
     "text": "Time to get started\nLet’s develop some intuition for why data visualisations are important!"
   },
   {
     "objectID": "week1/index.html#a-history-lesson",
     "href": "week1/index.html#a-history-lesson",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "A history lesson",
     "text": "A history lesson\n\n\n\n\n\n\nCholera\n\n\n\n\nIn 1854 there was a breakout of the cholera disease in London killing 616 people.\nAt the time it was speculated that the disease was carried in the air.\nA physician called John Snow was skeptical and began to collect data…"
   },
   {
     "objectID": "week1/index.html#original-map",
     "href": "week1/index.html#original-map",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Original Map",
     "text": "Original Map"
   },
   {
     "objectID": "week1/index.html#close-up",
     "href": "week1/index.html#close-up",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Close Up",
     "text": "Close Up"
   },
   {
     "objectID": "week1/index.html#consequences",
     "href": "week1/index.html#consequences",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Consequences",
     "text": "Consequences\n\n\n\n\n\n\nMap of outbreaks\n\n\n\n\nThe map showed the cholera was more prevalent around a water pump on Broad Street.\nThe pump was closed down.\nEventually it was established that cholera is a water-borne disease.\nData visualisation saves lives!"
   },
   {
     "objectID": "week1/index.html#crimean-war",
     "href": "week1/index.html#crimean-war",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Crimean War",
     "text": "Crimean War\n\n\n\n\n\n\nFlorence Nightingale ❤️\n\n\n\n\nAt the same time Great Britain was at war against Russia in the Crimean peninsula.\nFlorence Nightingale is famous as a nurse who treated the wounded soldiers.\nShe also advocated to the British Parliament for more sanitary conditions in military hospitals.\nShe knew the power of using data visualisation."
   },
   {
     "objectID": "week1/index.html#original-rose-chart",
     "href": "week1/index.html#original-rose-chart",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Original Rose Chart",
     "text": "Original Rose Chart"
   },
   {
     "objectID": "week1/index.html#recreation-of-nightingales-rose-chart",
     "href": "week1/index.html#recreation-of-nightingales-rose-chart",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Recreation of Nightingale’s Rose chart",
     "text": "Recreation of Nightingale’s Rose chart\n\n\nBlue areas: Preventable deaths\nRed areas: Deaths from battle wounds\nBlack areas: Other causes"
   },
   {
     "objectID": "week1/index.html#aftermath",
     "href": "week1/index.html#aftermath",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Aftermath",
     "text": "Aftermath\n\n\n\n\n\n\nRose chart\n\n\n\n\nThe improved sanitation at military hospitals was eventually implemented in civilian hospitals.\nData visualisation saves lives.\nFlorence Nightingale became the first female member of the Royal Statistical Society."
   },
   {
     "objectID": "week1/index.html#napoleon",
     "href": "week1/index.html#napoleon",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Napoleon",
     "text": "Napoleon\n\n\n\n\n\n\nBackground\n\n\n\n\nIn 1812 Napoleon thought it was a good idea to invade Russia.\nThis campaign was a disaster for the French.\nEngineer Charles Joseph Minard captured the extent of this catastrophe using visualisation."
   },
   {
     "objectID": "week1/index.html#minards-plot",
     "href": "week1/index.html#minards-plot",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Minard’s Plot",
     "text": "Minard’s Plot"
   },
   {
     "objectID": "week1/index.html#minards-plot-1",
     "href": "week1/index.html#minards-plot-1",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Minard’s plot",
     "text": "Minard’s plot\n\n\n\n\n\n\nInfographic\n\n\n\nThis visualisation provides information on 6 variables in one chart.\n\nNumber of troops\nWhether troops advance or retreat\nTemperature and time\nLongitude and latitude\n\nDespite the clear message that invading Russia in winter is a bad idea, some people did not learn this lesson."
   },
   {
     "objectID": "week1/index.html#a-bit-more-on-minard",
     "href": "week1/index.html#a-bit-more-on-minard",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "A bit more on Minard",
     "text": "A bit more on Minard\n\n\n1\nSource: https://infowetrust.com/finding-minard] Minard was so well regarded that all Ministers of Public Works in France had his creations in the background of their portraits from 1850-1860."
   },
   {
     "objectID": "week1/index.html#covid19-pandemic",
     "href": "week1/index.html#covid19-pandemic",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "COVID19 Pandemic",
     "text": "COVID19 Pandemic\n\n\n\n\n\n\nBackground\n\n\n\n\nIn the early stages of the COVID19 pandemic, hospital capacity was not able to cope with the amount of cases.\nCollectively as a society we needed to to slow the spread of the virus and reduce the load on our healthcare systems.\nPeople needed to understand and listen to the public health advice about hand washing, social distancing and quarantining etc.\nLet’s look at some visualisations that helped get the importance of this message across!"
   },
   {
     "objectID": "week1/index.html#flattening-the-curve",
     "href": "week1/index.html#flattening-the-curve",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Flattening the Curve",
     "text": "Flattening the Curve\nA visualisation showing the importance of slowing the spread and reduce the peak in cases (Source)."
   },
   {
     "objectID": "week1/index.html#social-distancing",
     "href": "week1/index.html#social-distancing",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Social Distancing",
     "text": "Social Distancing\nA visualisation showing the importance of social distancing (Source)."
   },
   {
     "objectID": "week1/index.html#communicating-climate-change",
     "href": "week1/index.html#communicating-climate-change",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Communicating Climate Change",
     "text": "Communicating Climate Change\n\n\n\n\n\n\nBackground\n\n\n\n\nClimate Change is leading to more frequent and more severe weather\nThere are severe socio-economic consequences as a result of more weather and climate extremes.\nIt is important to communicate with people that our climate is changing.\nIt is also important to communicate that if we reduce our emissions and take rapid action we can slow down the impacts of climate change.\nProfessor Ed Hawkins (University of Reading, UK) created data visualisations to help with this!"
   },
   {
     "objectID": "week1/index.html#warming-spiral",
     "href": "week1/index.html#warming-spiral",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Warming Spiral",
     "text": "Warming Spiral\nA visualisation showing the climate is warming.  This visualisation was shown at the Rio Olympics in 2016!"
   },
   {
     "objectID": "week1/index.html#future-climate",
     "href": "week1/index.html#future-climate",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Future Climate",
     "text": "Future Climate\nA visualisation showing that our choices today will impact our rate of future warming."
   },
   {
     "objectID": "week1/index.html#politics",
     "href": "week1/index.html#politics",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Politics",
     "text": "Politics\n\n\n\n\n\n\nWhy visual political data?\n\n\n\n\nVisualising election data helps people understand and trust the results\nCommon election visualisaitons focus on voter behaviour, such as differences in voters between regional areas and cities, or difference based on voters demographics (e.g. age, gender, income).\nVisualisation also occurs in the polls in the lead up and on election night\nVisualisation is also used by politicians to support their policy platforms"
   },
   {
     "objectID": "week1/index.html#us-elections-polling",
     "href": "week1/index.html#us-elections-polling",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "2024 US Elections: Polling",
     "text": "2024 US Elections: Polling\n\nVoter Needle: Shows election results in context as they come in and displays the uncertainty in the total as votes are counted."
   },
   {
     "objectID": "week1/index.html#us-elections-demographics",
     "href": "week1/index.html#us-elections-demographics",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "2024 US Elections: Demographics",
     "text": "2024 US Elections: Demographics\n\nFrom an article on 2024 US election results."
   },
   {
     "objectID": "week1/index.html#us-elections-policy",
     "href": "week1/index.html#us-elections-policy",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "2024 US Elections: Policy",
     "text": "2024 US Elections: Policy\nAnd here is the chart credited with saving President Trump’s life.\n\nIt doesn’t adhere to the principles of graphical excellence, we’ll show you why and provide a better example later!"
   },
   {
     "objectID": "week1/index.html#matching-the-data-the-plot",
     "href": "week1/index.html#matching-the-data-the-plot",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Matching the data the plot",
     "text": "Matching the data the plot\nThere are lots of different kinds of visualisations.\nBut before we can create these visualisations …\n\n\n\n\n\n\nNeed to learn:\n\n\n\nWhich type of plot works best for what type of data?\nWhat are the different kinds of data variables?\nWhat are different types of data?\nWhat can those different kinds of data represent?\nWhat can you show with that data?\n\n\n\n\nIn other words: we need to learn how to go from Data-to-Viz!"
   },
   {
     "objectID": "week1/index.html#discrete-variables",
     "href": "week1/index.html#discrete-variables",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Discrete Variables",
     "text": "Discrete Variables\n\n\n\n\n\n\nDiscrete Variables\n\n\n\n\nDiscrete variables can take only specific, separate values within a range.\nOften represent counts or whole numbers.\nExample: Number of students in a class, number of cars sold.\nCharacteristics:\n\nFinite set of values1 (e.g. Dice rolls takes values 1 to 6.)\nCannot take on fractional values between two distinct points (e.g. can’t saw in student in half!)\n\n\n\n\n\n\nThis also includes countably finite, so counting numbers, 1, 2, 3, …. \\(\\infty\\), but that’s a bit more technical."
   },
   {
     "objectID": "week1/index.html#categorical-variables",
     "href": "week1/index.html#categorical-variables",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Categorical Variables",
     "text": "Categorical Variables\n\n\n\n\n\n\nCategorical Variables\n\n\n\n\nCategorical variables are a type of discrete variable\nCategorical variables represent categories or groups.\nOften represented by labels or names rather than numbers.\nTwo types of Categorical Variables:\n\nNominal: Categories with no logical order (e.g. your names)\nOrdinal: Categories with a meaningful order (e.g. low, medium, high)"
   },
   {
     "objectID": "week1/index.html#nominal-variables",
     "href": "week1/index.html#nominal-variables",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Nominal Variables",
     "text": "Nominal Variables\n\n\n\n\n\n\nNominal Variables\n\n\n\n\nNominal variables are a type of categorical variable with no ordering.\nExample:\n\nBlood type (A, B, AB, O)\nTypes of pets (dog, cat, bird)\nPeople’s names (Kate, Kris, Bets, Javad).\n\nCharacteristics:\n\nPurely descriptive labels.\nCannot rank or order categories."
   },
   {
     "objectID": "week1/index.html#ordinal-variables",
     "href": "week1/index.html#ordinal-variables",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Ordinal Variables",
     "text": "Ordinal Variables\n\n\n\n\n\n\nOrdinal Variables\n\n\n\n\nOrdinal variables have a natural order, but differences between values need not be meaningful.\nExamples:\n\nSatisfaction levels (satisfied, neutral, dissatisfied),\nEducation levels (high school, bachelor’s, master’s).\n\nCharacteristics:\n\nCategories can be ranked.\nDistances between categories may not be equal."
   },
   {
     "objectID": "week1/index.html#continuous-variables",
     "href": "week1/index.html#continuous-variables",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Continuous Variables",
     "text": "Continuous Variables\n\n\n\n\n\n\nNote\n\n\n\n\nContinuous variables can take any value within a range.\nTypically represent measurements (e.g., height, temperature).\nExamples:\n\nWeight of a person (kg)\nTime taken to complete a task (minutes).\n\nCharacteristics:\n\nInfinite number of possible values within a range.\nCan be divided into smaller increments."
   },
   {
     "objectID": "week1/index.html#section-1",
     "href": "week1/index.html#section-1",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "",
     "text": "Step 1: Is understanding what your data is.\nStep 2: Is understanding what you can show with your data."
   },
   {
     "objectID": "week1/index.html#common-types-of-data",
     "href": "week1/index.html#common-types-of-data",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Common types of data",
     "text": "Common types of data\n\n\n\n\n\n\nSpatial Data\n\n\n\n\nSpatial data represents data related to physical locations or areas.\nExamples:\n\nRegions on a map (Country names) - Discrete\nGeographic coordinates (latitude, longitude) - Continuous\n\nCharacteristics:\n\nUseful for mapping and showing spatial patterns."
   },
   {
     "objectID": "week1/index.html#common-types-of-data-1",
     "href": "week1/index.html#common-types-of-data-1",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Common types of data",
     "text": "Common types of data\n\n\n\n\n\n\nTemporal Data\n\n\n\n\nTemporal data represents data associated with time.\nExamples:\n\nDaily temperature readings (°C) - Continuous\nNumber of natural disasters each year (fires, floods) - Discrete\n\nCharacteristics:\n\nFollows a sequential order.\nUseful for trend analysis and time series forecasting."
   },
   {
     "objectID": "week1/index.html#summary",
     "href": "week1/index.html#summary",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Summary",
     "text": "Summary\n\n\n\n\n\n\nData visualisation is important!\n\n\n\n\nWe’ve seen examples of high profile and important data visualisations.\nWe’ve learnt when data visualisation is done right, it is a powerful tool for communication.\nWe’ve also seen examples of when data visualisation can be misleading.\nAn important part of this unit will be teaching you how to be critical of data visualisation.\nYou will learn what makes a good or bad visualisation, and to identify when a visualisaton is misleading.\nWe will revisit some of these examples in later lectures."
   },
   {
     "objectID": "week1/index.html#summary-1",
     "href": "week1/index.html#summary-1",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Summary",
     "text": "Summary\n\n\n\n\n\n\nData to Visualisation\n\n\n\n\nYou’ve also learnt there are lots of different kinds of visualisations\nWe’ve learnt about different types of variables and what these variables can represent\nThis will be important for when we start building our own data visualisations\nTake a closer look at the Data-to-Viz website to see what kind of data matches best with what plot."
   },
   {
     "objectID": "week1/index.html#first-steps",
     "href": "week1/index.html#first-steps",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "First steps",
     "text": "First steps\n\n\n\n\n\n\nGetting set up\n\n\n\nBy the end of this unit you’ll be creating your own amazing, data visualisations\nBefore you can do that we need to get you set up with the software you’ll use in this unit\nWe’ll now go through the steps to install R and RStudio\nThink about R as the paint (raw materials) and RStudio as the paintbrush and canvas (tools we need to bring the artwork together)."
   },
   {
     "objectID": "week1/index.html#installing-r-and-rstudio",
     "href": "week1/index.html#installing-r-and-rstudio",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Installing R and RStudio",
     "text": "Installing R and RStudio\nWe’ll open RStudio to create data visualisations using R.\nStep 1: Install R\n- Got to https://www.r-project.org/\n- Click \"download R\"\n- Select a mirror (I use the Melbourne one)\n- Install for your operating system\nStep 2: Install RStudio\n- Got to https://www.rstudio.com/products/rstudio/download/\n(you only need the free version)\n- Select download for your system\n- Follow the prompts to install"
   },
   {
     "objectID": "week1/index.html#but-why",
     "href": "week1/index.html#but-why",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "But Why?",
     "text": "But Why?\n\n\n\n\n\n\nWhy do we need a Programming Language\n\n\n\nIt allows us to have reproducible steps, which can be applied for many different data sets\nMake sure the analysis is not just point and click, you can work as a team on it on the same code\nIt also means we can more easily create our own bespoke visualisations\n\n\n\n\n\n\n\n\n\n\nWhy do we use R?\n\n\n\nIt has been around for a while.\nIt is regularly maintained and is open source.\nIt is beginner friendly\nEven if you use other languages, you might still use R for your data visualisations"
   },
   {
     "objectID": "week1/index.html#getting-started-in-r",
     "href": "week1/index.html#getting-started-in-r",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Getting Started in R",
     "text": "Getting Started in R\n\n\n\n\n\n\nLearning a new language is hard!\n\n\n\n\nYou need to think about grammar and structure, and how to communicate well in it!\nYou will make mistakes, lots of them.\nBelow you see code that plots points showing the GDP per capita against life expectancy. The points are coloured by country and the size of the points shows the population.\nIt might look impossible now, but by the end of this semester you will be able to write this yourself!\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(gapminder)\nplot &lt;- ggplot(data = gapminder) + \n  geom_point(aes(x = gdpPercap, y = lifeExp, size = pop, colour = country)) + \n  theme(legend.position = \"none\")\nplot"
   },
   {
     "objectID": "week1/index.html#topics-covered",
     "href": "week1/index.html#topics-covered",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Topics covered",
     "text": "Topics covered\n\nDifferent parts of RStudio\nWorking directories\nReading in data\nR Projects\nAssigning variables\nDifferent variable types\nR Packages"
   },
   {
     "objectID": "week1/index.html#checklist",
     "href": "week1/index.html#checklist",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Checklist",
     "text": "Checklist\n\n\n\n\n\n\nBy the end of this lecture:\n\n\nYou should:\n\nHave installed R and RStudio\nBe able to set up a Project in R\nBe able to read in data from a file\nBe able to install packages and load the package libraries\nBe able to assign variables and run basic functions"
   },
   {
     "objectID": "week1/index.html#how-to-learn-r",
     "href": "week1/index.html#how-to-learn-r",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "How to learn R",
     "text": "How to learn R\n\nCome to lectures and ask questions.\nLook at your tutorial questions before the tutorial, & go along with specific questions.\nTry to avoid copying code - instead focus on writing and understanding each bit.\nPractice! The Tidy Tuesday data sets are a really fun place to start."
   },
   {
     "objectID": "week1/index.html#how-to-learn-r-1",
     "href": "week1/index.html#how-to-learn-r-1",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "How to learn R",
     "text": "How to learn R\n\nHave questions outside of class? Post questions on our discussion forum. You can also test out your knowledge by answering other’s questions.\nCompletely stuck? Come to a consultation and talk it through with your tutor or lecturer.\nTry talking to a figurative rubber duck - sometimes just explaining the problem can help you find a solution.\nUse ChatGPT to help get you started, or to diagnose your errors"
   },
   {
     "objectID": "week1/index.html#academic-integrity",
     "href": "week1/index.html#academic-integrity",
-    "title": "ETX2250/ETF5922: An Introduction to Data Visualisation",
+    "title": "ETC5512: Wild Caught Data",
     "section": "Academic integrity",
     "text": "Academic integrity\nHow do we use these online resources with integrity?\n\n\n\n\n\n\n\n\n\nSome examples here\n\n\n\n\nETX2250/ETF5922"
   },
@@ -642,5 +642,54 @@
     "title": "Assignment 1",
     "section": "Case Study 2 (15 marks)",
     "text": "Case Study 2 (15 marks)\nKangaroo’s are the leading animal cause behind car crashes in Victoria. You will also investigate whether your region is at risk from kangaroo collisions.\n\n(5 marks) Using the atlas of living Australia download occurrence records of kangaroos within your region of interest. (Note 50 km is approximately to 0.5 degrees of both long and lat).\n\n\nInclude only the relevant variables types in your data set.\nSave your data as a .csv file.\n\n\n(5 marks) Document the download process.\n\n\nDescribe the steps you took to download your data, so your process is fully reproducible.\nDescribe how you processed your data, this should include which variables you selected and and if you filtered any rows.\n\n\n(5 marks) Provide a data set description.\n\n\nThis must include an explanation of the relevant variables (meta data)\nExplain if your data sample is representative of the population. Also define what the population is.\nBe sure to include any limitations of the data.\nProvide a brief explanation of the usage permission (inferred from the database usage policy details)."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Data can be obtained from many sources. It may be generated via experiments, collected from observational studies or surveys, obtained via sampling, or recorded using sensors.\nEach type of data has its own characteristics that affect the analysis tools we use. Very large data sets come with their own challenges and require some database skills.\nThis unit will equip you with the tools to understand and use different sources of data. Open data sources will be emphasised."
+  },
+  {
+    "objectID": "index.html#learning-outcomes",
+    "href": "index.html#learning-outcomes",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Learning outcomes",
+    "text": "Learning outcomes\n\nCritically evaluate the quality of a data visualisation using the principles of graphical excellence\nSuccessfully create high-quality data visualisations for a given dataset using software, such as Power BI or R.\nDevelop the skills to effectively use data visualisations to communicate insights to an audience\nDevelop the skills to effectively use data visualisations to communicate in the appropriate medium, report writing, in presentations and digital storytelling.\nApply advanced topics in data visualisation, such as using interactivity and animation to enhance communication."
+  },
+  {
+    "objectID": "index.html#teachers",
+    "href": "index.html#teachers",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Teachers",
+    "text": "Teachers\n\nKate Saunders - Lecturer and Chief Examiner\nKrisanat Anukarnsakulchularp - Tutor\nMaliny Po - Tutor"
+  },
+  {
+    "objectID": "index.html#weekly-schedule",
+    "href": "index.html#weekly-schedule",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Weekly schedule",
+    "text": "Weekly schedule\n\nSeminar: Monday 2 pm - 4 pm\nDrop in & practice session: Monday 10 - 11 pm (zoom)\nConsultation: Monday 5 - 6 pm\nPlease refer to your timetable for your tutorial time.\nPlease refer to Moodle for zoom links"
+  },
+  {
+    "objectID": "index.html#consultation",
+    "href": "index.html#consultation",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Consultation",
+    "text": "Consultation\n\nMonday - Wednesday - Friday, 1pm-3pm each week\n\n\n\n\nWeek\nDate\nTopic\nTutorial\nSolution\n\n\n\n\n1\n03 Mar\nOpen data: definitions, sources and examples\n\n\n\n\n2\n10 Mar\nIntroduction to data collection methods\n\n\n\n\n3\n17 Mar\nCase Study: TBC\n\n\n\n\n4\n24 Mar\nCase Study: Australian census\n\n\n\n\n5\n31 Mar\nCase Study: Australian election data\n\n\n\n\n6\n07 Apr\nCase Study: Combining census and election data\n\n\n\n\n7\n14 Apr\nCase Study: PD model and credit risk\n\n\n\n\n\n21 Apr\nMid-semester break\n\n\n\n\n9\n28 Apr\nCase Study: Data ethics and privacy\n\n\n\n\n10\n05 May\nCase Study: TBC\n\n\n\n\n11\n12 May\nCase Study: Introduction to webscraping\n\n\n\n\n12\n19 May\nRevision: Proper care and feeding of wild caught data"
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\nWeek\nDate\nTopic\nTutorial\nSolution\n\n\n\n\n1\n03 Mar\nOpen data: definitions, sources and examples\n\n\n\n\n2\n10 Mar\nIntroduction to data collection methods\n\n\n\n\n3\n17 Mar\nCase Study: TBC\n\n\n\n\n4\n24 Mar\nCase Study: Australian census\n\n\n\n\n5\n31 Mar\nCase Study: Australian election data\n\n\n\n\n6\n07 Apr\nCase Study: Combining census and election data\n\n\n\n\n7\n14 Apr\nCase Study: PD model and credit risk\n\n\n\n\n\n21 Apr\nMid-semester break\n\n\n\n\n9\n28 Apr\nCase Study: Data ethics and privacy\n\n\n\n\n10\n05 May\nCase Study: TBC\n\n\n\n\n11\n12 May\nCase Study: Introduction to webscraping\n\n\n\n\n12\n19 May\nRevision: Proper care and feeding of wild caught data"
+  },
+  {
+    "objectID": "index.html#learning-objectives",
+    "href": "index.html#learning-objectives",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Learning objectives",
+    "text": "Learning objectives\n\nUnderstand the definitions, allowed usage, digital identification and licensing of open data\nKnow about common open data sources, how they are used and effectively search for new sources\nExplain the differences between data collection methods and the limitations for data analysis\nWork with the range of different data formats of open data, including APIs\nUnderstand ethical constraints and privacy limits when working with open data\nRecognise the components of effective curation needed for open data."
   }
 ]
