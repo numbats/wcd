@@ -1,59 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cwd.numbat.space/week1/tutorial/tutorial-01.html</loc>
-    <lastmod>2025-02-12T03:51:16.592Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cwd.numbat.space/week1/tutorial/tutorial-01-sol_old.html</loc>
-    <lastmod>2024-11-25T07:54:27.182Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cwd.numbat.space/week1/index.html</loc>
-    <lastmod>2024-11-24T05:03:55.407Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cwd.numbat.space/week1/tutorial/tutorial-01_old.html</loc>
-    <lastmod>2024-11-25T07:54:27.182Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cwd.numbat.space/week1/tutorial/tutorial-o1.html</loc>
-    <lastmod>2025-02-12T04:14:59.947Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cwd.numbat.space/week1/tutorial/Getting Started.html</loc>
-    <lastmod>2025-02-12T03:53:33.576Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cwd.numbat.space/assignments/Assignment1.html</loc>
-    <lastmod>2025-02-14T04:03:24.373Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week1/index.html</loc>
-    <lastmod>2025-02-25T09:04:26.785Z</lastmod>
-  </url>
-  <url>
     <loc>https://wcd.numbat.space/index.html</loc>
-    <lastmod>2025-02-26T04:36:13.026Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week1/tutorial/tutorial-01-sol_old.html</loc>
-    <lastmod>2025-02-25T09:04:26.792Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week1/tutorial/tutorial-o1.html</loc>
-    <lastmod>2025-02-25T09:04:26.795Z</lastmod>
+    <lastmod>2025-02-27T00:22:01.257Z</lastmod>
   </url>
   <url>
     <loc>https://wcd.numbat.space/assignments/Assignment1.html</loc>
-    <lastmod>2025-02-25T09:04:26.571Z</lastmod>
+    <lastmod>2025-02-27T00:22:01.255Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week1/tutorial/Getting Started.html</loc>
-    <lastmod>2025-02-25T09:04:26.785Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week1/tutorial/tutorial-01_old.html</loc>
-    <lastmod>2025-02-25T09:04:26.795Z</lastmod>
+    <loc>https://wcd.numbat.space/week1/index.html</loc>
+    <lastmod>2025-03-02T08:15:06.962Z</lastmod>
   </url>
 </urlset>

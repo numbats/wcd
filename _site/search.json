@@ -1,87 +1,108 @@
 [
   {
-    "objectID": "week1/tutorial/tutorial-01.html",
-    "href": "week1/tutorial/tutorial-01.html",
-    "title": "Tutorial 1",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "ETC5512: Wild Caught Data",
     "section": "",
-    "text": "In this tutorial, you will learn to\n\nutilise and access open data sources\nassess the collection methods and the quality of the data\nwrite computer code to conduct quality checks of the data"
+    "text": "Data can be obtained from many sources. It may be generated via experiments, collected from observational studies or surveys, obtained via sampling, or recorded using sensors.\nEach type of data has its own characteristics that affect the analysis tools we use. Very large data sets come with their own challenges and require some database skills.\nThis unit will equip you with the tools to understand and use different sources of data. Open data sources will be emphasised."
   },
   {
-    "objectID": "week1/tutorial/tutorial-01.html#exercise-1-us-air-traffic",
-    "href": "week1/tutorial/tutorial-01.html#exercise-1-us-air-traffic",
-    "title": "Tutorial 1",
-    "section": "Exercise 1: US air traffic",
-    "text": "Exercise 1: US air traffic\n\na. Download\n\nNavigate to the airline ontime performance data base by going to https://www.transtats.bts.gov/\nSelect “Aviation” from left box\nand then “Airline On-Time Performance Data”.\nIn the table for “Reporting Carrier On-Time Performance (1987-present)” click “Download”\n\nThis will bring you to an interface for choosing a subset.\n\n\n\n\n\n\nWarning\n\n\n\nTHE DATA IS VERY BIG SO FOLLOW THE INSTRUCTIONS BELOW TO DOWNLOAD A SMALL SUBSET\n\n\n\nChoose 2020 and January (before the pandemic hit the USA)\nSelect these variables: Year, Month, DayofMonth, DayOfWeek, FlightDate, Reporting_Airline, Tail_Number, Origin, Dest, CRSDepTime, DepTime, DepDelay, CRSArrTime, ArrTime, ArrDelay.\nClick the “Download” button to get it onto your laptop. (No need to check pre-zipped.)\nThe resulting file is about 50Mb, and the column names are slightly different from the form names, but recongisable as the requested variables: YEAR, MONTH, DAY_OF_MONTH, DAY_OF_WEEK, FL_DATE, OP_UNIQUE_CARRIER, TAIL_NUM, ORIGIN, DEST, CRS_DEP_TIME, DEP_TIME, DEP_DELAY,CRS_ARR_TIME,ARR_TIME, ARR_DELAY\n\n\nlibrary(tidyverse)\nlibrary(here)\nflights &lt;- read_csv(here::here(\"data/504717774_T_ONTIME_REPORTING.csv\")) %&gt;% select(YEAR:ARR_DELAY)\nflights %&gt;% count(YEAR)\nflights %&gt;% count(MONTH)\n\n\n\nb. How was the data collected?\nYou can check the “Data profile” to help answer for these questions.\n\nWho has the oversight for the data provision?\nWho reports the data to the data provider?\nHow is the data collected?\nIs this open data? What type of license is provided? What are you allowed to do with the data?\nWhat information is in each row of the data set?\n\n\n\nc. Data quality checks\n\nRead in the data\nCheck dates range for the month of January 2020.\nCount number of flights by carrier. Who has the most flights?\nWhich airport has the most traffic? Does every airport have the same number of incoming and outgoing flights?\n\n\nflights %&gt;% select(FL_DATE) %&gt;% summary()\nflights %&gt;% count(OP_UNIQUE_CARRIER, sort = TRUE)\nflights %&gt;% count(ORIGIN, sort = TRUE)\noutgoing &lt;- flights %&gt;% count(ORIGIN) %&gt;% rename(outbound = n)\nincoming &lt;- flights %&gt;% count(DEST) %&gt;% rename(inbound = n)\ntraffic &lt;- full_join(outgoing, incoming, by=c(\"ORIGIN\" = \"DEST\"))\nggplot(traffic, aes(x=outbound, y=inbound)) + geom_point() +\n  coord_equal()"
+    "objectID": "index.html#learning-objectives",
+    "href": "index.html#learning-objectives",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Learning objectives",
+    "text": "Learning objectives\n\nUnderstand the definitions, allowed usage, digital identification and licensing of open data\nKnow about common open data sources, how they are used and effectively search for new sources\nExplain the differences between data collection methods and the limitations for data analysis\nWork with the range of different data formats of open data, including APIs\nUnderstand ethical constraints and privacy limits when working with open data\nRecognise the components of effective curation needed for open data."
   },
   {
-    "objectID": "week1/tutorial/tutorial-01.html#exercise-2-national-longitudinal-survey-of-youth",
-    "href": "week1/tutorial/tutorial-01.html#exercise-2-national-longitudinal-survey-of-youth",
-    "title": "Tutorial 1",
-    "section": "Exercise 2: National Longitudinal Survey of Youth",
-    "text": "Exercise 2: National Longitudinal Survey of Youth\n❗ The following data contains information presenting sex as a binary variable, and also race as categorical. We realise that sex is not binary. And also that race is an “arbitrary system of visual clasification that does not demarcate distinct subspecies of the human population” (Mindy Thompson Fullilove). Please skip this question if it disturbs you.\n\na. Data download\n\nPoint your browser to https://www.nlsinfo.org/content/cohorts/nlsy79/get-data and login in.\nChoose the NLSY79 study. The first step is to “Choose TagSets”. We’ll use the default selection of variables, which has three demographic variables. (For fun, you could browse the many, many variables available to download to see what information is available.)\nGo to “Save/download” to download the data, choose “Advanced Download”. Change the name from “default” to “NLSY”. This will make a file available to download, that you need to check a box and click “download” to get it to your computer. It will create a folder called “NLSY” on your computer, containing the data in different formats. One of them is a “csv” file. Make sure this folder is in the data directory of your ETC5512 R project.\nThe data arrives with four variables R0000100, R0173600, R0214700, R0214800. Read the codebook to find out what these are.\n\n\n\nb. License and usage\n\nAt the bottom of the web site are links that can help to determine what are the allowed uses. What information does the data provider keep about you?\n\nIs there a license provided with the data? What sort of open data is this? The documentation says that this is public use data. What do you think “public use” means?\n\n\n\nc. About the data\n\nHow was this data collected?\nCheck the levels in the downloaded data. Do they match the codebook? How many individuals are in the sample?\n\n\nnlsy &lt;- read_csv(here::here(\"data/NLSY/NLSY.csv\"))\nnlsy %&gt;% count(R0214700)\nnlsy %&gt;% count(R0214800)\nnlsy %&gt;% count(R0173600)\nnlsy %&gt;% tally()"
+    "objectID": "index.html#teachers",
+    "href": "index.html#teachers",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Teachers",
+    "text": "Teachers\n\nKate Saunders - Lecturer and Chief Examiner\nKrisanat Anukarnsakulchularp - Tutor\nMaliny Po - Tutor"
   },
   {
-    "objectID": "week1/tutorial/tutorial-01.html#exercise-3-atlas-of-living-australia",
-    "href": "week1/tutorial/tutorial-01.html#exercise-3-atlas-of-living-australia",
-    "title": "Tutorial 1",
-    "section": "Exercise 3: Atlas of Living Australia",
-    "text": "Exercise 3: Atlas of Living Australia\nThe Atlas of Living Australia is a major resource for occurrence data on animals, plants, insects, fish.\n\na. Download\n\nPoint your browser to https://www.ala.org.au. Check the terms of use. Does it have a license?\nUsing the galah library, and the function occurrences extract the records for platypus. To download the data from this API you will need to register with your email first.\n\n\nlibrary(galah)\n\ngalah_config(email = \"YOUREMAILADDRESS\",\n             download_reason_id = 10, \n             verbose = TRUE)\n\nplatypus &lt;- galah_call() %&gt;% \n  galah_identify(\"Ornithorhynchus anatinus\") %&gt;% \n  atlas_occurrences()\n\nplatypus &lt;- platypus %&gt;% \n  rename(Longitude = decimalLongitude,\n         Latitude = decimalLatitude) %&gt;%\n  mutate(eventDate = as.Date(eventDate)) %&gt;%\n  filter(!is.na(eventDate)) %&gt;%\n  filter(!is.na(Longitude)) %&gt;%\n  filter(!is.na(Latitude))\nsave(platypus, file=here::here(\"data/platypus.rda\"))\n\n\n\nb. Data quality checks\n\nPlot the locations of sightings. Where is Australia are platypus found?\nWhat dates of sightings are downloaded?\n\n\nload(here::here(\"data/platypus.rda\"))\nggplot(platypus, aes(x=Longitude, y=Latitude)) +\n  geom_point()\nplatypus %&gt;% select(eventDate) %&gt;% summary()     \n\n\n\nc. Data collection methods\nHow is this data collected? Explain the ways that a platpus sighting would be added to the database. Also think about what might be missing from the data?\n\nMaterials updated and maintained by Dr. Saunders.\n\n\n© Copyright 2025 Monash University"
+    "objectID": "index.html#weekly-schedule",
+    "href": "index.html#weekly-schedule",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Weekly schedule",
+    "text": "Weekly schedule\n\nSeminar: Monday 2 pm - 4 pm\nDrop in & practice session: Monday 10 - 11 pm (zoom)\nConsultation: Monday 5 - 6 pm\nPlease refer to your timetable for your tutorial time.\nPlease refer to Moodle for zoom links"
   },
   {
-    "objectID": "week1/tutorial/tutorial-01-sol_old.html",
-    "href": "week1/tutorial/tutorial-01-sol_old.html",
-    "title": "Tutorial 1: Introduction to Data Visualisation",
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Schedule",
+    "text": "Schedule\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nTutorial\nSolution\n\n\n\n\n1\n03 Mar\nOpen data: definitions, sources and examples\n\n\n\n\n2\n10 Mar\nIntroduction to data collection methods\n\n\n\n\n3\n17 Mar\nCase Study: TBC\n\n\n\n\n4\n24 Mar\nCase Study: Australian census\n\n\n\n\n5\n31 Mar\nCase Study: Australian election data\n\n\n\n\n6\n07 Apr\nCase Study: Combining census and election data\n\n\n\n\n7\n14 Apr\nCase Study: PD model and credit risk\n\n\n\n\n\n21 Apr\nMid-semester break\n\n\n\n\n9\n28 Apr\nCase Study: Data ethics and privacy\n\n\n\n\n10\n05 May\nCase Study: TBC\n\n\n\n\n11\n12 May\nCase Study: Introduction to webscraping\n\n\n\n\n12\n19 May\nRevision: Proper care and feeding of wild caught data"
+  },
+  {
+    "objectID": "assignments/Assignment1.html",
+    "href": "assignments/Assignment1.html",
+    "title": "Assignment 1",
     "section": "",
-    "text": "Learning Objectives\n\nGet you started using R\nLearn your way around RStudio.\nBecome familiar with R, RStudio, RStudio projects and Quarto files.\nBecome confident doing basic computation in R.\n\n\n\nPreparation\n\nInstall R and RStudio\nWatch/Read the Introductory materials on R provided\n\n\n\nExercise 1: R Packages\nR has many standard functions, like mean, sum and sqrt. Other functions are stored in R packages that can be loaded as needed for specific tasks.\nOne of the common packages is the tidyverse it contains lots of useful functions for data wrangling and visualisation. The below code checks if the package is already in your package library. If the package is not there if then uses the install.packages function to download it.\n\nif(!require(tidyverse)){\n    install.packages(\"tidyverse\")\n    library(tidyverse)\n}\n\nYou will only need to install a package once.\nWhenever you start a new session in RStudio you will need to load the R packages you need.\n\nlibrary(tidyverse)\n\nInstall the ohwhaley R package:\n\nif(!require(remotes)){\n  install.packages(\"remotes\")\n}\n\n\nremotes::install_github(\"fontikar/ohwhaley\")\n\n\nYour turn:\n\nLoad ohwahely package using library(ohwhaley)\nThen run my favourite R function ohwhaley::say()\n\nIf at any point today you start feeling overwhelmed, enter ohwhaley::say() into your console until you feel better. Then remind yourself learning new things is hard and ask for help from a peer or your tutor.\n\n\n\n\n\n\nSolutions\n\n\n\n\n\n\n\n\n\nlibrary(ohwhaley)\n\n\n\n\n\nohwhaley::say()\n\n\n\n\n\n\n\nExercise 2: Assign a Variable\nR is more than just as a calculator, you can store things in a variable. Here the word variable has a slightly different meaning to the usual statistical meaning.\nLet us start with a simple command, type in a &lt;- 5. Here we assign the value 5 to the variable a.\n\n# This is an R chunk. Enter your code here. Text in R chunks needs to be prefaced with a # so that R knows it is not code. You can run this chunk by pressing the green arrow on the top right hand area of the shaded area. You can also press CTRL+Enter (PC) or CMD + Enter (Mac) with your curser on the relevant line.\n\na &lt;- 5\n\nNote that you can use either &lt;- or = to assign variables.\n\nYour turn:\n\nLet try b = 4\nWe can store more than just numbers in a variable. Try storing your name. e.g. name = 'Jane Doe'.\nWe can use str(name), str(a) to check the structure of the variable, it will show you that variable name contains character and variable a contains numeric.\nR is case sensitive. We create a variable name in previous step, try type NAME\n\n\n\n\n\n\n\nSolutions\n\n\n\n\n\n\n\n\n\nb = 4\n\n\n\n\n\nname = 'Jane Doe'\n\n\n\n\n\nstr(name)\n\n chr \"Jane Doe\"\n\nstr(a)\n\n num 5\n\n\n\n\n\n\nNAME\n\nIt will returns an Error: object 'NAME' not found, this is because name and NAME are two totally different variables where NAME has not been created.\n\n\n\n\n\n\nExercise 3: Basic Computation\nLet continue with: x &lt;- 5, y &lt;- sqrt(16), z &lt;- -3, and w &lt;- x + y + z\n\nx &lt;- 5 \ny &lt;- sqrt(16)\nz &lt;- -3\nw &lt;- x + y + z\n\nsqrt(16) is a function for square root of 16, therefore the value for y is 4 To find the value of w, type it in. The answer should be 6.\n\nw\n\n[1] 6\n\n\nR can be used as a calculator, to subtract use -, to multiply use *, to divide use / and to take powers use ^.\nTo see all assigned variables:\n\nls() # lists out all the variables\n\n[1] \"a\"    \"b\"    \"name\" \"w\"    \"x\"    \"y\"    \"z\"   \n\n\nYou can also look in the environment tab in the top right hand panel of Rstudio to see what variables have been stored.\n\nYour turn:\n\nTry h = x^2 and f = z/y.\n\n\n\n\n\n\n\nSolutions\n\n\n\n\n\n\nh = x^2\nf = z/y\n\n\n\n\n\n\n\nExercise 4: Vectors\nA vector is a list of similar type objects and is a basic data structure in R that can hold values. Previously w had only one value, but we can store multiple values in w by using the command c(). Here c stands for “combine” or “concatenate”.\nFor example try:\n\nConsumption &lt;- c(50, 40, 25, 0)\nConsumption\n\n[1] 50 40 25  0\n\nstr(Consumption)\n\n num [1:4] 50 40 25 0\n\n\nTo create a vector of characters:\n\nDrink &lt;- c('Coke', 'Pepsi', 'Coke', 'Homebrand')\nDrink\n\n[1] \"Coke\"      \"Pepsi\"     \"Coke\"      \"Homebrand\"\n\nstr(Drink)\n\n chr [1:4] \"Coke\" \"Pepsi\" \"Coke\" \"Homebrand\"\n\n\nSometimes when we apply a function to a vector, we apply the function to each element.\n\nYour turn:\n\nFind the log consumption:\n\nlogcons &lt;- log(Consumption)\nstr(logcons)\n\nLet’s create two variables: x1 contains “5,6,3,6,4” y1 contains “3,7,5,1,1”\nCompute the mean for x1 and y1 by using mean()\nWe can find the variance of the final pair using the var function.\nWe can find the correlations between x and y using the cor function.\n\n\n\n\n\n\n\nSolutions\n\n\n\n\n\n\n\n\n\nlogcons&lt;-log(Consumption)\nstr(logcons)\n\n num [1:4] 3.91 3.69 3.22 -Inf\n\n\n\n\n\n\nx1 &lt;- c(5,6,3,6,4)\ny1 &lt;- c(3,7,5,1,1)\n\n\n\n\n\nmean(x1)\n\n[1] 4.8\n\nmean(y1)\n\n[1] 3.4\n\n\n\n\n\n\nvar(x1)\n\n[1] 1.7\n\nvar(y1)\n\n[1] 6.8\n\n\n\n\n\n\ncor(x1, y1)\n\n[1] 0.02941176\n\n\n\n\n\n\nMaterial developed by Dr. Kate Saunders and past lecturers of ETX2250/ETF5922\n\n\n© Copyright 2024 Monash University"
+    "text": "You are commissioned as an independent business analyst to consult with the Victorian Department of Transport and Planning.\nThe Victorian Department of Transport and Planning is considering following the lead of New South Wales Transport and Main Roads, and making data on past road incidents available for public download. But, they are yet to be convinced of the benefits of open data.\nYour job will be to download, document and process data needed to create case study examples that can be used in a showcase.\nIn this hypothetical scenario, you are preparing this data for use by another team member who has experience working with road data types. Be sure to organise the data so that is useful for that team member, and so your documentation can be included as part of a larger report."
   },
   {
-    "objectID": "week1/index.html",
-    "href": "week1/index.html",
-    "title": "Teaching Team",
-    "section": "",
-    "text": "Lecturer: Kate Saunders\nDepartment of Econometrics and Business Statistics\n\n\n\n\netx2250-etf5922.caulfield-x@monash.edu\n\n\n Lecture 1\n\n\n&lt;a href=““&gt;"
+    "objectID": "assignments/Assignment1.html#case-study-1-15-marks",
+    "href": "assignments/Assignment1.html#case-study-1-15-marks",
+    "title": "Assignment 1",
+    "section": "Case Study 1 (15 marks)",
+    "text": "Case Study 1 (15 marks)\nThe public voted for NSW’s worst roads in the 2023 NRMA Rate your road Survey. You are tasked with investigating if these are indeed the worst roads.\nNote do not to over complicate this! Roads are recorded in segments and you do not need to combine the segments for this task. That is a job for your team member. Also note, there is no single one answer to how to define worst road.\n\n(5 marks) You have been assigned one of the problem roads flagged in the survey (see Moodle). Using the NSW Goverment Portal create a data set for that extended region (50 km radius) that records past traffic incidents.\n\n\nInclude only the relevant incident types in your data set.\nRestrict your data to an appropriate sample period. Only 3 months of data can be downloaded at one time.\nCombine data from before and after the survey so incident numbers can be compared.\nSave your data as a .csv file.\n\n\n(5 marks) Document the download process.\n\n\nDescribe the steps you took to download your data, so your process is fully reproducible.\nDescribe how you processed your data, this should include which variables you selected and and if you filtered any rows.\nBe sure to explain how you defined the worst road.\n\n\n(5 marks) Provide a data set description.\n\n\nThis must include an explanation of the relevant variables (meta data)\nExplain if your data sample is representative of the population. Also define what the population is.\nBe sure to include any limitations of the data.\nProvide a brief explanation of the usage permission (inferred from the database usage policy details)."
+  },
+  {
+    "objectID": "assignments/Assignment1.html#case-study-2-15-marks",
+    "href": "assignments/Assignment1.html#case-study-2-15-marks",
+    "title": "Assignment 1",
+    "section": "Case Study 2 (15 marks)",
+    "text": "Case Study 2 (15 marks)\nKangaroo’s are the leading animal cause behind car crashes in Victoria. You will also investigate whether your region is at risk from kangaroo collisions.\n\n(5 marks) Using the atlas of living Australia download occurrence records of kangaroos within your region of interest. (Note 50 km is approximately to 0.5 degrees of both long and lat).\n\n\nInclude only the relevant variables types in your data set.\nSave your data as a .csv file.\n\n\n(5 marks) Document the download process.\n\n\nDescribe the steps you took to download your data, so your process is fully reproducible.\nDescribe how you processed your data, this should include which variables you selected and and if you filtered any rows.\n\n\n(5 marks) Provide a data set description.\n\n\nThis must include an explanation of the relevant variables (meta data)\nExplain if your data sample is representative of the population. Also define what the population is.\nBe sure to include any limitations of the data.\nProvide a brief explanation of the usage permission (inferred from the database usage policy details)."
+  },
+  {
+    "objectID": "assignments/Assignment1.html#submission-10-marks",
+    "href": "assignments/Assignment1.html#submission-10-marks",
+    "title": "Assignment 1",
+    "section": "Submission (10 marks)",
+    "text": "Submission (10 marks)\n\nAnswer the questions and submit your report about the data using the Quarto template provided. We do not use word documents in this unit as we want our work to be fully reproducible.\nSubmit all code needed to process the data to create the subset.\nEnsure your code will run, and you report will build on another computer. This is important so we can reproduce your report. (Do not submit direct file paths!)\nEnsure your code is neat and tidy.\nInclude an AI acknowledgement and include links to all queries. Here is an example of some queries. These contain important assignment hints.\nInclude all relevant citations and be sure to cite all R packages used. The function ?citation() will be helpful here."
   },
   {
     "objectID": "week1/index.html#etc5523-title",
     "href": "week1/index.html#etc5523-title",
     "title": "ETC5512: Wild Caught Data",
-    "section": "ETX2250/ETF5922",
-    "text": "ETX2250/ETF5922\nAn Introduction to Data Visualisation\nLecturer: Kate Saunders\nDepartment of Econometrics and Business Statistics\n\n\n\n\netx2250-etf5922.caulfield-x@monash.edu\n\n\n Lecture 1\n\n\n&lt;a href=““&gt;"
+    "section": "ETC5512",
+    "text": "ETC5512\nWild Caught Data\nLecturer: Kate Saunders\nDepartment of Econometrics and Business Statistics\n\n\n\n\nETC5512.Clayton-x@monash.edu\n\n\n Lecture 1\n\n\n&lt;a href=“wcd.numbat.space”&gt;wcd.numbat.space"
   },
   {
     "objectID": "week1/index.html#todays-lecture",
     "href": "week1/index.html#todays-lecture",
     "title": "ETC5512: Wild Caught Data",
     "section": "Today’s lecture",
-    "text": "Today’s lecture\n\n\n\n\n\n\nWhat we’ll cover:\n\n\n\nUnit overview and details\nAn Introduction to Data Visualisation\n\nSocietal importance of data visualisation\nLearn about the different types of data\n\nGetting you set up in R (Hands on)"
+    "text": "Today’s lecture\n\n\n\n\n\n\nWhat we’ll cover:\n\n\n\nUnit overview and details\nAn Introduction to Open Data\n\nSocietal importance of open data\nWhat makes high quality open data\nLearn about the different types of open data\n\nGetting you set up in R (Drop In Session)"
   },
   {
     "objectID": "week1/index.html#about-your-lecturer",
     "href": "week1/index.html#about-your-lecturer",
     "title": "ETC5512: Wild Caught Data",
     "section": "About your Lecturer",
-    "text": "About your Lecturer\n\n\n\n\n\nKate Saunders\nLecturer at Monash University\n\n\n\n🎓 PhD in Statistics\n🌏 Home State is Queensland\n👨‍💻 Research is in statistics of climate extremes\n👩‍💻 Passionate about open data, data visualisation and data ethics\n👨‍💻 Started R coding in 2012 (before tidyverse!)\n❤️ Hobby is playing basketball."
+    "text": "About your Lecturer\n\n\n\n\n\nKate Saunders\nLecturer at Monash University\n\n\n\n👨‍🎓 PhD in Statistics\n🌏 Home State is Queensland\n👨‍💻 Research is in statistics of climate extremes\n👨‍💻 Passionate about open data, data visualisation and data ethics\n👨‍💻 Started R coding in 2012 (before tidyverse!)\n❤️ Hobby is playing basketball."
   },
   {
     "objectID": "week1/index.html#about-your-instructor",
     "href": "week1/index.html#about-your-instructor",
     "title": "ETC5512: Wild Caught Data",
     "section": "About your Instructor",
-    "text": "About your Instructor\n\n\n\n\n\nKrisanat Anukarnsakulchularp\nPhD Candidate at Monash University\n\n\n\n👨‍🎓 Graduated in Masters in Business Analytics\n👨‍🎓 Monash local since undergrad\n🌍 Home Country is Thailand\n👩‍💻 Just started his PhD, he’s researching network visualisation\n👩‍💻 Recently published an R package called animbook!\n❤️ Hobby is playing music."
+    "text": "About your Instructor\n\n\n\n\n\nKrisanat Anukarnsakulchularp\nPhD Candidate at Monash University\n\n\n\n🎓 Graduated in Masters in Business Analytics\n👨‍🎓 Monash local since undergrad\n🌐 Home Country is Thailand\n👩‍💻 Just started his PhD, he’s researching network visualisation\n👩‍💻 Recently published an R package called animbook!\n❤️ Hobby is playing music."
   },
   {
     "objectID": "week1/index.html#about-your-instructor-1",
     "href": "week1/index.html#about-your-instructor-1",
     "title": "ETC5512: Wild Caught Data",
     "section": "About your Instructor",
-    "text": "About your Instructor\n\n\n\n\n\nBets Ruscoe\nPhD Student at Monash University\n\n\n\n👨‍🎓 Studied Econometrics at Monash\n🎓 Worked at Deloitte in the AI & Data team, before coming back for PhD\n👩‍💻 Lover of R and wanted to introduce R at work over Power BI\n🌐 Just returned from a trip to Taiwan\n❤️ Misses eating dumplings everyday for breakfast!"
+    "text": "About your Instructor\n\n\n\n\n\nMaliny Po\nGraduated in Masters in Business Analytics\n\n\n\n🎓 Undergraduate degree in International Trade and Business Logistics. \n👨‍💻 Former Student in Wild Caught Data.\n👨‍💻 Recently published a data viz package called Sugarglider, as part of the Google Summer of Code program.\n❤️ Enjoys reading books, lego and a good cup of coffee."
   },
   {
     "objectID": "week1/index.html#about-your-instructor-2",
     "href": "week1/index.html#about-your-instructor-2",
     "title": "ETC5512: Wild Caught Data",
     "section": "About your Instructor",
-    "text": "About your Instructor\n\n\n\n\n\nJavad Vahdat Atashgah\nPhD Candidate at Monash University\n\n\n\n🎓 Just started his PhD in bioformatics\n🌏 Home country is Iran\n👨‍💻 Worked in fields of bioinformatics, finance, hydrology\n👩‍💻 Research underpinned by data and data science\n❤️ Loves finding was to simplify complex statistical ideas using viz!"
+    "text": "About your Instructor\n\n\n\n\n\nJavad Vahdat Atashgah\nPhD Candidate at Monash University\n\n\n\n🎓 Just started his PhD in bioformatics\n🌍 Home country is Iran\n👨‍💻 Worked in fields of bioinformatics, finance, hydrology\n👩‍💻 Research underpinned by data and data science\n❤️ Loves finding was to simplify complex statistical ideas using viz!"
   },
   {
     "objectID": "week1/index.html#why-take-this-unit",
@@ -95,7 +116,7 @@
     "href": "week1/index.html#about-the-unit",
     "title": "ETC5512: Wild Caught Data",
     "section": "About the unit",
-    "text": "About the unit\n\n\n\n\n\n\nSummer Semester is an INTENSIVE unit!\n\n\nWhat that means:\n\n\nWe will cover 12 weeks of material in 4 weeks\nWe will cover 3 lectures each week\nThat’s ~36 hours of study each week!\nYou will need to keep up with the material\nComing to classes and consultations will help you\nLast minute cramming won’t be possible"
+    "text": "About the unit\n\n\n\n\n\n\nUnit Design\n\n\n\n\n2 hours of seminars each week\n1 hour tutorial each week\nExpect ~12 hours of contact and study each week\nWe are learning to code. You will need to keep up with the material.\nComing to classes and consultations will help you!\nThere is also a drop in and practice session!"
   },
   {
     "objectID": "week1/index.html#unit-design",
@@ -109,14 +130,14 @@
     "href": "week1/index.html#learning-objectives",
     "title": "ETC5512: Wild Caught Data",
     "section": "Learning Objectives",
-    "text": "Learning Objectives\n\n\n\n\n\n\nAt the end of this unit you will be able to:\n\n\n\n\nCritically evaluate the quality of a data visualisation using the principles of graphical excellence\nSuccessfully create high-quality data visualisations for a given dataset using software, such as Power BI or R.\nDevelop the skills to effectively use data visualisations to communicate insights to an audience\nDevelop the skills to effectively use data visualisations to communicate in the appropriate medium, report writing, in presentations and digital storytelling.\nApply advanced topics in data visualisation, such as using interactivity and animation to enhance communication."
+    "text": "Learning Objectives\n\n\n\n\n\n\nAt the end of this unit you will be able to:\n\n\n\n\nUnderstand the definitions, allowed usage, digital identification and licensing of open data\nKnow about common open data sources, how they are used and effectively search for new sources\nExplain the differences between data collection methods and the limitations for data analysis\nWork with the range of different data formats of open data, including APIs\nUnderstand ethical constraints and privacy limits when working with open data\nRecognise the components of effective curation needed for open data."
   },
   {
     "objectID": "week1/index.html#overview-of-the-unit",
     "href": "week1/index.html#overview-of-the-unit",
     "title": "ETC5512: Wild Caught Data",
     "section": "Overview of the unit",
-    "text": "Overview of the unit\n\n\n\n\n\n\nWeek 1: Introduction to Data Visualisation\n\n\n\nLecture 1: Getting Started with Data Visualisation\nLecture 2: The Good, the Bad and the Ugly of Data Visualisation\nLecture 3: Data Visualisation in BI\n\n\n\n\n3 quizzes due end of the week"
+    "text": "Overview of the unit\n\n\n\n\n\n\nMoodle\n\n\nLet’s look at the Moodle."
   },
   {
     "objectID": "week1/index.html#overview-of-the-unit-1",
@@ -151,7 +172,7 @@
     "href": "week1/index.html#assessments-assignments",
     "title": "ETC5512: Wild Caught Data",
     "section": "Assessments: Assignments",
-    "text": "Assessments: Assignments\n\n\n\n\n\n\nAssignments\n\n\n\n\n2 assignments worth 20% each\n40% of your total grade\nAssignment 1 will cover content from weeks 1 and 2\nAssignment 2 will cover content from weeks 3 and 4\nApply for special consideration centrally. (This includes short extensions of 48 hours)\nIf you need special consideration, apply ASAP and no later than 11.55 pm on the day your assessment is due."
+    "text": "Assessments: Assignments\n\n\n\n\n\n\nAssignments\n\n\n\n\n4 assignments worth 25% each\n100% of your total grade\nAssignment 1 will cover content from weeks 1 to 3\nAssignment 2 will cover content from weeks 4 to 6\nAssignment 3 will cover content from weeks 7 to 9\nAssignment 4 will cover content from weeks 1 to 12\nNote: Failure to submit and notify the CE accordingly will result in a zero score for the assignment.\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nIf you miss more than one assignment you will need to re-take the unit at a later date."
   },
   {
     "objectID": "week1/index.html#assessments-exam",
@@ -179,14 +200,14 @@
     "href": "week1/index.html#for-personal-and-urgent-inqueries",
     "title": "ETC5512: Wild Caught Data",
     "section": "For personal and urgent inqueries",
-    "text": "For personal and urgent inqueries\n\n\n\n\n\n\nUnit Email\n\n\nSuitable for:\n\n\nFor personal questions or issues email etx2250-etf5922.caulfield-x@monash.edu.\nResponse times are within 1 - 2 days but may vary during busy periods.\nAlso email if you notice issues with assessments or Moodle.\nFor remarking, get feedback on your assessment from your tutor and if this does not provide clarity email within 10 days of the due date.\nDo not direct emails to my staff account, I receive a high volume of high volume of emails and they risk going into a black hole and never being seen again!"
+    "text": "For personal and urgent inqueries\n\n\n\n\n\n\nUnit Email\n\n\nSuitable for:\n\n\nFor personal questions or issues email ETC5512.Clayton-x@monash.edu.\nResponse times are within 1 - 2 days but may vary during busy periods.\nAlso email if you notice issues with assessments or Moodle.\nFor remarking or to get feedback on your assessment from your tutor, your must email within 10 days of receiving your marks.\nDo not direct emails to my staff account, I receive a high volume of high volume of emails and they risk going into a black hole and never being seen again!"
   },
   {
     "objectID": "week1/index.html#time-to-get-started",
     "href": "week1/index.html#time-to-get-started",
     "title": "ETC5512: Wild Caught Data",
     "section": "Time to get started",
-    "text": "Time to get started\nLet’s develop some intuition for why data visualisations are important!"
+    "text": "Time to get started\nStuff"
   },
   {
     "objectID": "week1/index.html#a-history-lesson",
@@ -389,7 +410,7 @@
     "href": "week1/index.html#section-1",
     "title": "ETC5512: Wild Caught Data",
     "section": "",
-    "text": "Step 1: Is understanding what your data is.\nStep 2: Is understanding what you can show with your data."
+    "text": "Orphans\n\n\n\nFile dumped on an archive\nStale, could date your results\nFound in places like https://data.gov.au"
   },
   {
     "objectID": "week1/index.html#common-types-of-data",
@@ -410,7 +431,7 @@
     "href": "week1/index.html#summary",
     "title": "ETC5512: Wild Caught Data",
     "section": "Summary",
-    "text": "Summary\n\n\n\n\n\n\nData visualisation is important!\n\n\n\n\nWe’ve seen examples of high profile and important data visualisations.\nWe’ve learnt when data visualisation is done right, it is a powerful tool for communication.\nWe’ve also seen examples of when data visualisation can be misleading.\nAn important part of this unit will be teaching you how to be critical of data visualisation.\nYou will learn what makes a good or bad visualisation, and to identify when a visualisaton is misleading.\nWe will revisit some of these examples in later lectures."
+    "text": "Summary\n\n\n\n\n\n\nOpen data: definitions, sources and examples\n\n\n\n\nIntroduced you to the Open Data Fundamentals\neg. power for societal good, where to access, limitations, licences\nData Quality Elements\neg. meta data, machine readable, FAIR, five star ratings\nWild Caught Data Meaning\nand other flavours of open data\nTeaching philosophy of cake first!"
   },
   {
     "objectID": "week1/index.html#summary-1",
@@ -422,7 +443,7 @@
   {
     "objectID": "week1/index.html#first-steps",
     "href": "week1/index.html#first-steps",
-    "title": "ETC5512: Wild Caught Data",
+    "title": "Learning Approaches",
     "section": "First steps",
     "text": "First steps\n\n\n\n\n\n\nGetting set up\n\n\n\nBy the end of this unit you’ll be creating your own amazing, data visualisations\nBefore you can do that we need to get you set up with the software you’ll use in this unit\nWe’ll now go through the steps to install R and RStudio\nThink about R as the paint (raw materials) and RStudio as the paintbrush and canvas (tools we need to bring the artwork together)."
   },
@@ -431,7 +452,7 @@
     "href": "week1/index.html#installing-r-and-rstudio",
     "title": "ETC5512: Wild Caught Data",
     "section": "Installing R and RStudio",
-    "text": "Installing R and RStudio\nWe’ll open RStudio to create data visualisations using R.\nStep 1: Install R\n- Got to https://www.r-project.org/\n- Click \"download R\"\n- Select a mirror (I use the Melbourne one)\n- Install for your operating system\nStep 2: Install RStudio\n- Got to https://www.rstudio.com/products/rstudio/download/\n(you only need the free version)\n- Select download for your system\n- Follow the prompts to install"
+    "text": "Installing R and RStudio\nWe’ll open RStudio to create data visualisations using R.\n\n\n\n\n\n\nStep 1: Install R\n\n\n\nGot to https://www.r-project.org/\nClick “download R”\nSelect a mirror (I use the Melbourne one)\nInstall for your operating system\n\n\n\n\n\n\n\n\n\n\nStep 2: Install RStudio\n\n\n\nGot to https://www.rstudio.com/products/rstudio/download/ (you only need the free version)\nSelect download for your system\nFollow the prompts to install"
   },
   {
     "objectID": "week1/index.html#but-why",
@@ -445,251 +466,440 @@
     "href": "week1/index.html#getting-started-in-r",
     "title": "ETC5512: Wild Caught Data",
     "section": "Getting Started in R",
-    "text": "Getting Started in R\n\n\n\n\n\n\nLearning a new language is hard!\n\n\n\n\nYou need to think about grammar and structure, and how to communicate well in it!\nYou will make mistakes, lots of them.\nBelow you see code that plots points showing the GDP per capita against life expectancy. The points are coloured by country and the size of the points shows the population.\nIt might look impossible now, but by the end of this semester you will be able to write this yourself!\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(gapminder)\nplot &lt;- ggplot(data = gapminder) + \n  geom_point(aes(x = gdpPercap, y = lifeExp, size = pop, colour = country)) + \n  theme(legend.position = \"none\")\nplot"
+    "text": "Getting Started in R\n\n\n\n\n\n\nLearning a new language is hard!\n\n\n\n\nYou need to think about grammar and structure, and how to communicate well in it!\nYou will make mistakes, lots of them.\nBelow you see code that plots points showing the GDP per capita against life expectancy. The points are coloured by country and the size of the points shows the population.\nIt might look impossible now, but by the end of this semester you will be able to write this yourself!\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(gapminder)\nplot &lt;- ggplot(data = gapminder) + \n  geom_point(aes(x = gdpPercap, y = lifeExp, size = pop, colour = country)) + \n  theme(legend.position = \"none\")\nplot \n\n\n\n\n\nETC5512"
   },
   {
     "objectID": "week1/index.html#topics-covered",
     "href": "week1/index.html#topics-covered",
-    "title": "ETC5512: Wild Caught Data",
+    "title": "Learning Approaches",
     "section": "Topics covered",
     "text": "Topics covered\n\nDifferent parts of RStudio\nWorking directories\nReading in data\nR Projects\nAssigning variables\nDifferent variable types\nR Packages"
   },
   {
     "objectID": "week1/index.html#checklist",
     "href": "week1/index.html#checklist",
-    "title": "ETC5512: Wild Caught Data",
+    "title": "Learning Approaches",
     "section": "Checklist",
     "text": "Checklist\n\n\n\n\n\n\nBy the end of this lecture:\n\n\nYou should:\n\nHave installed R and RStudio\nBe able to set up a Project in R\nBe able to read in data from a file\nBe able to install packages and load the package libraries\nBe able to assign variables and run basic functions"
   },
   {
     "objectID": "week1/index.html#how-to-learn-r",
     "href": "week1/index.html#how-to-learn-r",
-    "title": "ETC5512: Wild Caught Data",
+    "title": "Learning Approaches",
     "section": "How to learn R",
     "text": "How to learn R\n\nCome to lectures and ask questions.\nLook at your tutorial questions before the tutorial, & go along with specific questions.\nTry to avoid copying code - instead focus on writing and understanding each bit.\nPractice! The Tidy Tuesday data sets are a really fun place to start."
   },
   {
     "objectID": "week1/index.html#how-to-learn-r-1",
     "href": "week1/index.html#how-to-learn-r-1",
-    "title": "ETC5512: Wild Caught Data",
+    "title": "Learning Approaches",
     "section": "How to learn R",
     "text": "How to learn R\n\nHave questions outside of class? Post questions on our discussion forum. You can also test out your knowledge by answering other’s questions.\nCompletely stuck? Come to a consultation and talk it through with your tutor or lecturer.\nTry talking to a figurative rubber duck - sometimes just explaining the problem can help you find a solution.\nUse ChatGPT to help get you started, or to diagnose your errors"
   },
   {
     "objectID": "week1/index.html#academic-integrity",
     "href": "week1/index.html#academic-integrity",
-    "title": "ETC5512: Wild Caught Data",
+    "title": "Learning Approaches",
     "section": "Academic integrity",
-    "text": "Academic integrity\nHow do we use these online resources with integrity?\n\n\n\n\n\n\n\n\n\nSome examples here\n\n\n\n\nETX2250/ETF5922"
+    "text": "Academic integrity\nHow do we use these online resources with integrity?\n\nSome examples here\n\n\n\nETC5512"
   },
   {
-    "objectID": "week1/index.html#footnotes",
-    "href": "week1/index.html#footnotes",
-    "title": "Teaching Team",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nSource: https://infowetrust.com/finding-minard] Minard was so well regarded that all Ministers of Public Works in France had his creations in the background of their portraits from 1850-1860.↩︎\nThis also includes countably finite, so counting numbers, 1, 2, 3, …. \\infty, but that’s a bit more technical.↩︎"
+    "objectID": "week1/index.html#lets-get-to-know-each-other",
+    "href": "week1/index.html#lets-get-to-know-each-other",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Let’s Get to Know Each Other!",
+    "text": "Let’s Get to Know Each Other!\n\n\n\n\n\n\nBreakout Sesson: Your turn 📝\n\n\n\nWhat was your undergraduate degree in?\nWhat’s your profession or profession you are interested to get in?\n\nWhat’s your hobby?\nWhat’s a fun fact you want everyone to know (about you)?\nIf you could work with any data set what would it be?\n\n\n\n\n\nInstructor notes: - Give students 2-3 minutes to think about answers - Have them share in small groups first - Then ask for volunteers to share with the whole group - Try to identify common interests or unique backgrounds\n\n\n\n\n\n\n\nQuick tip\n\n\nFinding connections with your classmates now can lead to great project collaborations later!"
   },
   {
-    "objectID": "week1/tutorial/tutorial-01_old.html",
-    "href": "week1/tutorial/tutorial-01_old.html",
-    "title": "Tutorial 1: Introduction to Data Visualisation",
-    "section": "",
-    "text": "Learning Objectives\n\nGet you started using R\nLearn your way around RStudio.\nBecome familiar with R, RStudio, RStudio projects and Quarto files.\nBecome confident doing basic computation in R.\n\n\n\nPreparation\n\nInstall R and RStudio\nWatch/Read the Introductory materials on R provided\n\n\n\nExercise 1: R Packages\nR has many standard functions, like mean, sum and sqrt. Other functions are stored in R packages that can be loaded as needed for specific tasks.\nOne of the common packages is the tidyverse it contains lots of useful functions for data wrangling and visualisation. The below code checks if the package is already in your package library. If the package is not there if then uses the install.packages function to download it.\n\nif(!require(tidyverse)){\n    install.packages(\"tidyverse\")\n    library(tidyverse)\n}\n\nYou will only need to install a package once.\nWhenever you start a new session in RStudio you will need to load the R packages you need.\n\nlibrary(tidyverse)\n\nInstall the ohwhaley R package:\n\nif(!require(remotes)){\n  install.packages(\"remotes\")\n}\n\n\nremotes::install_github(\"fontikar/ohwhaley\")\n\n\nYour turn:\n\nLoad ohwahely package using library(ohwhaley)\nThen run my favourite R function ohwhaley::say()\n\nIf at any point today you start feeling overwhelmed, enter ohwhaley::say() into your console until you feel better. Then remind yourself learning new things is hard and ask for help from a peer or your tutor.\n\n\n\nExercise 2: Assign a Variable\nR is more than just as a calculator, you can store things in a variable. Here the word variable has a slightly different meaning to the usual statistical meaning.\nLet us start with a simple command, type in a &lt;- 5. Here we assign the value 5 to the variable a.\n\n# This is an R chunk. Enter your code here. Text in R chunks needs to be prefaced with a # so that R knows it is not code. You can run this chunk by pressing the green arrow on the top right hand area of the shaded area. You can also press CTRL+Enter (PC) or CMD + Enter (Mac) with your curser on the relevant line.\n\na &lt;- 5\n\nNote that you can use either &lt;- or = to assign variables.\n\nYour turn:\n\nLet try b = 4\nWe can store more than just numbers in a variable. Try storing your name. e.g. name = 'Jane Doe'.\nWe can use str(name), str(a) to check the structure of the variable, it will show you that variable name contains character and variable a contains numeric.\nR is case sensitive. We create a variable name in previous step, try type NAME\n\n\n\n\nExercise 3: Basic Computation\nLet continue with: x &lt;- 5, y &lt;- sqrt(16), z &lt;- -3, and w &lt;- x + y + z\n\nx &lt;- 5 \ny &lt;- sqrt(16)\nz &lt;- -3\nw &lt;- x + y + z\n\nsqrt(16) is a function for square root of 16, therefore the value for y is 4 To find the value of w, type it in. The answer should be 6.\n\nw\n\n[1] 6\n\n\nR can be used as a calculator, to subtract use -, to multiply use *, to divide use / and to take powers use ^.\nTo see all assigned variables:\n\nls() # lists out all the variables\n\n[1] \"a\" \"w\" \"x\" \"y\" \"z\"\n\n\nYou can also look in the environment tab in the top right hand panel of Rstudio to see what variables have been stored.\n\nYour turn:\n\nTry h = x^2 and f = z/y.\n\n\n\n\nExercise 4: Vectors\nA vector is a list of similar type objects and is a basic data structure in R that can hold values. Previously w had only one value, but we can store multiple values in w by using the command c(). Here c stands for “combine” or “concatenate”.\nFor example try:\n\nConsumption &lt;- c(50, 40, 25, 0)\nConsumption\n\n[1] 50 40 25  0\n\nstr(Consumption)\n\n num [1:4] 50 40 25 0\n\n\nTo create a vector of characters:\n\nDrink &lt;- c('Coke', 'Pepsi', 'Coke', 'Homebrand')\nDrink\n\n[1] \"Coke\"      \"Pepsi\"     \"Coke\"      \"Homebrand\"\n\nstr(Drink)\n\n chr [1:4] \"Coke\" \"Pepsi\" \"Coke\" \"Homebrand\"\n\n\nSometimes when we apply a function to a vector, we apply the function to each element.\n\nYour turn:\n\nFind the log consumption:\n\nlogcons &lt;- log(Consumption)\nstr(logcons)\n\nLet’s create two variables: x1 contains “5,6,3,6,4” y1 contains “3,7,5,1,1”\nCompute the mean for x1 and y1 by using mean()\nWe can find the variance of the final pair using the var function.\nWe can find the correlations between x and y using the cor function.\n\n\nMaterial developed by Dr. Kate Saunders and past lecturers of ETX2250/ETF5922\n\n\n© Copyright 2024 Monash University"
+    "objectID": "week1/index.html#assessments-assignments-1",
+    "href": "week1/index.html#assessments-assignments-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Assessments: Assignments",
+    "text": "Assessments: Assignments\n\n\n\n\n\n\nSpecial Consideration\n\n\n\nApply for special consideration centrally. (This includes short extensions of 48 hours)\nIf you need special consideration, apply ASAP and no later than 11.55 pm on the day your assessment is due.\n\nIf you need an extended extension through illness, or personal difficulty, in addition to applying for special consideration:\n\nnotify the CE within seven days of the due date, at ETC5512.Clayton-x@monash.edu,\nyou will be granted permission to complete an additional assessment at the end of semester (during the exam period)."
   },
   {
-    "objectID": "week1/tutorial/tutorial-01.html#objectives",
-    "href": "week1/tutorial/tutorial-01.html#objectives",
-    "title": "Tutorial 1",
-    "section": "",
-    "text": "In this tutorial, you will learn to\n\nutilise and access open data sources\nassess the collection methods and the quality of the data\nwrite computer code to conduct quality checks of the data"
+    "objectID": "week1/index.html#assessments",
+    "href": "week1/index.html#assessments",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Assessments",
+    "text": "Assessments\n\n\n\n\n\n\nAssignments\n\n\n\n\n4 assignments worth 25% each\n100% of your total grade\nAssignment 1 will cover content from weeks 1 to 3 (Due week 4)\nAssignment 2 will cover content from weeks 4 to 6 (Due week 7)\nAssignment 3 will cover content from weeks 7 to 9 (Due week 10)\nAssignment 4 will cover content from weeks 1 to 12 (Due in exam block)\nYou’ll get at least 2 weeks to complete each assignment.\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nFailure to submit and notify the CE accordingly will result in a zero score for the assignment.\nIf you miss more than one assignment you will need to re-take the unit at a later date."
   },
   {
-    "objectID": "week1/tutorial/tutorial-01.html#preparation",
-    "href": "week1/tutorial/tutorial-01.html#preparation",
-    "title": "Tutorial 1",
-    "section": "Preparation",
-    "text": "Preparation\n\nInstalling R and RStudio\n\n\n\n\n\n\nStart your engines!\n\n\n\nYou may find it helpful to think about R as the engine and RStudio as the dashboard controls. You need both to drive!\nThe engine (R) is what runs all of your analysis, while the dashboard (RStudio) provides an interface to efficiently control and navigate.\n\n\n\n\nInstall R by visiting the CRAN web site.\nInstall the free version of RStudio for your desktop.\nUse this site to get step-by-step install instructions for your operating system if you need help.\n\n\n\nPackages\nPackages contain code, data and functions that have already been written and are ready to use in your analysis.\nFor today’s tutorial you will need the R packages, tidyverse, here and galah.\nCopy and paste the code below into your RStudio Console window to install your packages:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"here\")\ninstall.packages(\"galah\")\n\nOnce you install a package in R, its there for you to use in the future. However, you may want different packages for different projects. So you need to tell R which packages you want to use.\nThat means you do need load the package each time you want to use it, using the library() function.\n\nlibrary(tidyverse)\nlibrary(here)\nlibrary(galah)\n\n\n\n\n\n\n\nThink about packages like a lightbulb\n\n\n\nYou only need to screw in (install) the lightbulb once, but you can turn on the light (load the library) whenever you need it.\n\n\n\n\n\n\n\nNote: tidyverse actually installs a collection of commonly used and useful packages."
+    "objectID": "week1/index.html#assessments-1",
+    "href": "week1/index.html#assessments-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Assessments",
+    "text": "Assessments\n\n\n\n\n\n\nSpecial Consideration\n\n\n\n\nApply for special consideration centrally. (This includes short extensions of 48 hours)\nIf you need special consideration, apply ASAP and no later than 11.55 pm on the day your assessment is due.\nYou can miss an assignment through illness, or personal difficulty. In that instance, provided you’ve applied for special consideration, I can grant permission to complete a replacement assignment instead at a later date."
   },
   {
-    "objectID": "week1/tutorial/tutorial-01.html#exercise-2-atlas-of-living-australia",
-    "href": "week1/tutorial/tutorial-01.html#exercise-2-atlas-of-living-australia",
-    "title": "Tutorial 1",
-    "section": "Exercise 2: Atlas of Living Australia",
-    "text": "Exercise 2: Atlas of Living Australia\nThe Atlas of Living Australia is a major resource for occurrence data on animals, plants, insects, fish.\n\na. Download\n\nPoint your browser to https://www.ala.org.au. Check the terms of use. Does it have a license?\nUsing the galah library, and the function occurrences extract the records for platypus. To download the data from this API you will need to register with your email first.\n\n\nlibrary(galah)\n\ngalah_config(email = \"YOUREMAILADDRESS\",\n             download_reason_id = 10, \n             verbose = TRUE)\n\nplatypus &lt;- galah_call() %&gt;% \n  galah_identify(\"Ornithorhynchus anatinus\") %&gt;% \n  atlas_occurrences()\n\nplatypus &lt;- platypus %&gt;% \n  rename(Longitude = decimalLongitude,\n         Latitude = decimalLatitude) %&gt;%\n  mutate(eventDate = as.Date(eventDate)) %&gt;%\n  filter(!is.na(eventDate)) %&gt;%\n  filter(!is.na(Longitude)) %&gt;%\n  filter(!is.na(Latitude))\nsave(platypus, file=here::here(\"data/platypus.rda\"))\n\n\n\nb. Data quality checks\n\nPlot the locations of sightings. Where is Australia are platypus found?\nWhat dates of sightings are downloaded?\n\n\nload(here::here(\"data/platypus.rda\"))\nggplot(platypus, aes(x=Longitude, y=Latitude)) +\n  geom_point()\nplatypus %&gt;% select(eventDate) %&gt;% summary()     \n\n\n\nc. Data collection methods\nHow is this data collected? Explain the ways that a platpus sighting would be added to the database. Also think about what might be missing from the data?\n\nMaterials updated and maintained by Dr. Saunders.\n\n\n© Copyright 2025 Monash University"
+    "objectID": "week1/index.html#drop-in-practice-session",
+    "href": "week1/index.html#drop-in-practice-session",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Drop In Practice Session",
+    "text": "Drop In Practice Session\nWrite about these"
   },
   {
-    "objectID": "week1/tutorial/tutorial-o1.html",
-    "href": "week1/tutorial/tutorial-o1.html",
-    "title": "Tutorial 1",
-    "section": "",
-    "text": "In this tutorial, you will learn to\n\nutilise and access open data sources\nassess the collection methods and the quality of the data\nwrite computer code to conduct quality checks of the data"
+    "objectID": "week1/index.html#about-the-unit-1",
+    "href": "week1/index.html#about-the-unit-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "About the Unit",
+    "text": "About the Unit\n\n\n\n\n\n\n NEW:  Drop in and Practice Session\n\n\n\n\nWe’ll use these to flesh out ideas from lectures\nThe format will change week to week depending on unit needs.\nSometimes I’ll run through examples and live code.\nSometimes I’ll answer your questions.\nSometimes I’ll run through topics to supplement your learning.\nEmail me through each week questions you’d like me to work through!"
   },
   {
-    "objectID": "week1/tutorial/tutorial-o1.html#objectives",
-    "href": "week1/tutorial/tutorial-o1.html#objectives",
-    "title": "Tutorial 1",
-    "section": "",
-    "text": "In this tutorial, you will learn to\n\nutilise and access open data sources\nassess the collection methods and the quality of the data\nwrite computer code to conduct quality checks of the data"
+    "objectID": "week1/index.html#drop-in-sessions",
+    "href": "week1/index.html#drop-in-sessions",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Drop In Sessions",
+    "text": "Drop In Sessions\n\n\n\n\n\n\nNEW: Drop in and Practice Session\n\n\n\n\nWe’ll use these to flesh out ideas from lectures\nThese will be recorded\nThe format will change week to week depending on unit needs.\nSometimes I’ll run through examples and live code.\nSometimes I’ll answer your questions.\nSometimes I’ll run through topics to supplement your learning.\nEmail me through each week questions you’d like me to work through!"
   },
   {
-    "objectID": "week1/tutorial/tutorial-o1.html#preparation",
-    "href": "week1/tutorial/tutorial-o1.html#preparation",
-    "title": "Tutorial 1",
-    "section": "Preparation",
-    "text": "Preparation\n\nInstalling R and RStudio\n\n\n\n\n\n\nStart your engines!\n\n\n\nYou may find it helpful to think about R as the engine and RStudio as the dashboard controls. You need both to drive!\nThe engine (R) is what runs all of your analysis, while the dashboard (RStudio) provides an interface to efficiently control and navigate.\n\n\n\n\nInstall R by visiting the CRAN web site.\nInstall the free version of RStudio for your desktop.\nUse this site to get step-by-step install instructions for your operating system if you need help.\n\n\n\nPackages\nPackages contain code, data and functions that have already been written and are ready to use in your analysis.\nFor today’s tutorial you will need the R packages, tidyverse, here and galah.\nCopy and paste the code below into your RStudio Console window to install your packages:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"here\")\ninstall.packages(\"galah\")\n\nOnce you install a package in R, its there for you to use in the future. However, you may want different packages for different projects. So you need to tell R which packages you want to use.\nThat means you do need load the package each time you want to use it, using the library() function.\n\nlibrary(tidyverse)\nlibrary(here)\nlibrary(galah)\n\n\n\n\n\n\n\nThink about packages like a lightbulb\n\n\n\nYou only need to screw in (install) the lightbulb once, but you can turn on the light (load the library) whenever you need it.\n\n\n\n\n\n\n\nNote: tidyverse actually installs a collection of commonly used and useful packages.\n\n\nData to download\nBefore you tutorial please also download the following data.\n\nNavigate to the airline ontime performance data base by going to https://www.transtats.bts.gov/\nSelect “Aviation” from left box\nand then select “Airline On-Time Performance Data”.\nIn the table for “Reporting Carrier On-Time Performance (1987-present)” click “Download”\n\nThis will bring you to an interface for choosing a subset.\n\n\n\n\n\n\nWarning\n\n\n\nThis data is very big! Follow the instructions below to download a small subset.\n\n\n\nAt the top filter your data and choose 2020 and January (before the pandemic hit the USA)\nSelect these variables: Year, Month, DayofMonth, DayOfWeek, FlightDate, Reporting_Airline, Tail_Number, Origin, Dest, CRSDepTime, DepTime, DepDelay, CRSArrTime, ArrTime, ArrDelay.\nClick the “Download” button to get it onto your laptop. (No need to check pre-zipped.)\nThe resulting file is about 50Mb, and the column names are slightly different from the form names, but recongisable as the requested variables: YEAR, MONTH, DAY_OF_MONTH, DAY_OF_WEEK, FL_DATE, OP_UNIQUE_CARRIER, TAIL_NUM, ORIGIN, DEST, CRS_DEP_TIME, DEP_TIME, DEP_DELAY,CRS_ARR_TIME,ARR_TIME, ARR_DELAY"
+    "objectID": "week1/index.html#philosophy",
+    "href": "week1/index.html#philosophy",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Philosophy",
+    "text": "Philosophy\nThink about this unit in the way Dr Mine Çetinkaya-Rundel describes in this talk: “Let them eat cake (first)”\nImagine you’re new to baking, and you’re in a baking class. I’m going to present two options for starting the class. Which one gives you better sense of the final product?\nADD PICTURES HERE"
   },
   {
-    "objectID": "week1/tutorial/tutorial-o1.html#exercise-1-us-air-traffic",
-    "href": "week1/tutorial/tutorial-o1.html#exercise-1-us-air-traffic",
-    "title": "Tutorial 1",
-    "section": "Exercise 1: US air traffic",
-    "text": "Exercise 1: US air traffic\n\na. Download\n\nlibrary(tidyverse)\nlibrary(here)\nflights &lt;- read_csv(here::here(\"data/504717774_T_ONTIME_REPORTING.csv\")) %&gt;% select(YEAR:ARR_DELAY)\nflights %&gt;% count(YEAR)\nflights %&gt;% count(MONTH)\n\n\n\nb. How was the data collected?\nYou can check the “Data profile” to help answer for these questions.\n\nWho has the oversight for the data provision?\nWho reports the data to the data provider?\nHow is the data collected?\nIs this open data? What type of license is provided? What are you allowed to do with the data?\nWhat information is in each row of the data set?\n\n\n\nc. Data quality checks\n\nRead in the data\nCheck dates range for the month of January 2020.\nCount number of flights by carrier. Who has the most flights?\nWhich airport has the most traffic? Does every airport have the same number of incoming and outgoing flights?\n\n\nflights %&gt;% select(FL_DATE) %&gt;% summary()\nflights %&gt;% count(OP_UNIQUE_CARRIER, sort = TRUE)\nflights %&gt;% count(ORIGIN, sort = TRUE)\noutgoing &lt;- flights %&gt;% count(ORIGIN) %&gt;% rename(outbound = n)\nincoming &lt;- flights %&gt;% count(DEST) %&gt;% rename(inbound = n)\ntraffic &lt;- full_join(outgoing, incoming, by=c(\"ORIGIN\" = \"DEST\"))\nggplot(traffic, aes(x=outbound, y=inbound)) + geom_point() +\n  coord_equal()"
+    "objectID": "week1/index.html#let-them-eat-cake",
+    "href": "week1/index.html#let-them-eat-cake",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Let Them Eat Cake",
+    "text": "Let Them Eat Cake"
   },
   {
-    "objectID": "week1/tutorial/tutorial-o1.html#exercise-2-atlas-of-living-australia",
-    "href": "week1/tutorial/tutorial-o1.html#exercise-2-atlas-of-living-australia",
-    "title": "Tutorial 1",
-    "section": "Exercise 2: Atlas of Living Australia",
-    "text": "Exercise 2: Atlas of Living Australia\nThe Atlas of Living Australia is a major resource for occurrence data on animals, plants, insects, fish.\n\na. Download\n\nPoint your browser to https://www.ala.org.au. Check the terms of use. Does it have a license?\nUsing the galah library, and the function occurrences extract the records for platypus. To download the data from this API you will need to register with your email first.\n\n\nlibrary(galah)\n\ngalah_config(email = \"YOUREMAILADDRESS\",\n             download_reason_id = 10, \n             verbose = TRUE)\n\nplatypus &lt;- galah_call() %&gt;% \n  galah_identify(\"Ornithorhynchus anatinus\") %&gt;% \n  atlas_occurrences()\n\nplatypus &lt;- platypus %&gt;% \n  rename(Longitude = decimalLongitude,\n         Latitude = decimalLatitude) %&gt;%\n  mutate(eventDate = as.Date(eventDate)) %&gt;%\n  filter(!is.na(eventDate)) %&gt;%\n  filter(!is.na(Longitude)) %&gt;%\n  filter(!is.na(Latitude))\nsave(platypus, file=here::here(\"data/platypus.rda\"))\n\n\n\nb. Data quality checks\n\nPlot the locations of sightings. Where is Australia are platypus found?\nWhat dates of sightings are downloaded?\n\n\nload(here::here(\"data/platypus.rda\"))\nggplot(platypus, aes(x=Longitude, y=Latitude)) +\n  geom_point()\nplatypus %&gt;% select(eventDate) %&gt;% summary()     \n\n\n\nc. Data collection methods\nHow is this data collected? Explain the ways that a platpus sighting would be added to the database. Also think about what might be missing from the data?\n\nMaterials updated and maintained by Dr. Saunders.\n\n\n© Copyright 2025 Monash University"
+    "objectID": "week1/index.html#new-slide",
+    "href": "week1/index.html#new-slide",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "New Slide",
+    "text": "New Slide"
   },
   {
-    "objectID": "week1/tutorial/Getting Started.html",
-    "href": "week1/tutorial/Getting Started.html",
-    "title": "Getting Started",
-    "section": "",
-    "text": "In this tutorial, you will learn to\n\nutilise and access open data sources\nassess the collection methods and the quality of the data\nwrite computer code to conduct quality checks of the data"
+    "objectID": "week1/index.html#other-slide",
+    "href": "week1/index.html#other-slide",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Other slide",
+    "text": "Other slide\n\nThe case studies you will see in this unit are the cakes.\nWe hope you at the end of your data analysis studies you can bake the cakes!"
   },
   {
-    "objectID": "week1/tutorial/Getting Started.html#objectives",
-    "href": "week1/tutorial/Getting Started.html#objectives",
-    "title": "Getting Started",
-    "section": "",
-    "text": "In this tutorial, you will learn to\n\nutilise and access open data sources\nassess the collection methods and the quality of the data\nwrite computer code to conduct quality checks of the data"
+    "objectID": "week1/index.html#unit-resources",
+    "href": "week1/index.html#unit-resources",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Unit Resources",
+    "text": "Unit Resources\n\n\n\n\n\n\n\nTwo Locations\n\n\n\nUnit Website: Everything is displayed on the same page and is easy to access\nMoodle: Where you submit your assignments, the discussion forum is located and I’ll make unit announcements.\nUnit Github: Contains all the code, data etc to produce the unit content and website."
   },
   {
-    "objectID": "week1/tutorial/Getting Started.html#preparation",
-    "href": "week1/tutorial/Getting Started.html#preparation",
-    "title": "Getting Started",
-    "section": "Preparation",
-    "text": "Preparation\n\nInstalling R and RStudio\n\n\n\n\n\n\nStart your engines!\n\n\n\nYou may find it helpful to think about R as the engine and RStudio as the dashboard controls. You need both to drive!\nThe engine (R) is what runs all of your analysis, while the dashboard (RStudio) provides an interface to efficiently control and navigate.\n\n\n\n\nInstall R by visiting the CRAN web site.\nInstall the free version of RStudio for your desktop.\nUse this site to get step-by-step install instructions for your operating system if you need help.\n\n\n\nPackages\nPackages contain code, data and functions that have already been written and are ready to use in your analysis.\nFor today’s tutorial you will need the R packages, tidyverse, here and galah.\nCopy and paste the code below into your RStudio Console window to install your packages:\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"here\")\ninstall.packages(\"galah\")\n\nOnce you install a package in R, its there for you to use in the future. However, you may want different packages for different projects. So you need to tell R which packages you want to use.\nThat means you do need load the package each time you want to use it, using the library() function.\n\nlibrary(tidyverse)\nlibrary(here)\nlibrary(galah)\n\n\n\n\n\n\n\nThink about packages like a lightbulb\n\n\n\nYou only need to screw in (install) the lightbulb once, but you can turn on the light (load the library) whenever you need it.\n\n\n\n\n\n\n\nNote: tidyverse actually installs a collection of commonly used and useful packages.\n\n\nData to download\nBefore you tutorial please also download the following data.\n\n\na. Download\n\nNavigate to the airline ontime performance data base by going to https://www.transtats.bts.gov/\nSelect “Aviation” from left box\nand then “Airline On-Time Performance Data”.\nIn the table for “Reporting Carrier On-Time Performance (1987-present)” click “Download”\n\nThis will bring you to an interface for choosing a subset.\n\n\n\n\n\n\nWarning\n\n\n\nTHE DATA IS VERY BIG SO FOLLOW THE INSTRUCTIONS BELOW TO DOWNLOAD A SMALL SUBSET\n\n\n\nChoose 2020 and January (before the pandemic hit the USA)\nSelect these variables: Year, Month, DayofMonth, DayOfWeek, FlightDate, Reporting_Airline, Tail_Number, Origin, Dest, CRSDepTime, DepTime, DepDelay, CRSArrTime, ArrTime, ArrDelay.\nClick the “Download” button to get it onto your laptop. (No need to check pre-zipped.)\nThe resulting file is about 50Mb, and the column names are slightly different from the form names, but recongisable as the requested variables: YEAR, MONTH, DAY_OF_MONTH, DAY_OF_WEEK, FL_DATE, OP_UNIQUE_CARRIER, TAIL_NUM, ORIGIN, DEST, CRS_DEP_TIME, DEP_TIME, DEP_DELAY,CRS_ARR_TIME,ARR_TIME, ARR_DELAY"
+    "objectID": "week1/index.html#unit-philosophy",
+    "href": "week1/index.html#unit-philosophy",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Unit Philosophy",
+    "text": "Unit Philosophy\nLet Them Eat Cake\nThink about this unit in the way Dr Mine Çetinkaya-Rundel describes in this talk: “Let them eat cake (first)”\nImagine you’re new to baking, and you’re in a baking class. I’m going to present two options for starting the class. Which one gives you better sense of the final product?\nADD PICTURES HERE"
   },
   {
-    "objectID": "week1/tutorial/Getting Started.html#exercise-1-us-air-traffic",
-    "href": "week1/tutorial/Getting Started.html#exercise-1-us-air-traffic",
-    "title": "Getting Started",
-    "section": "Exercise 1: US air traffic",
-    "text": "Exercise 1: US air traffic\n\na. Download\n\nlibrary(tidyverse)\nlibrary(here)\nflights &lt;- read_csv(here::here(\"data/504717774_T_ONTIME_REPORTING.csv\")) %&gt;% select(YEAR:ARR_DELAY)\nflights %&gt;% count(YEAR)\nflights %&gt;% count(MONTH)\n\n\n\nb. How was the data collected?\nYou can check the “Data profile” to help answer for these questions.\n\nWho has the oversight for the data provision?\nWho reports the data to the data provider?\nHow is the data collected?\nIs this open data? What type of license is provided? What are you allowed to do with the data?\nWhat information is in each row of the data set?\n\n\n\nc. Data quality checks\n\nRead in the data\nCheck dates range for the month of January 2020.\nCount number of flights by carrier. Who has the most flights?\nWhich airport has the most traffic? Does every airport have the same number of incoming and outgoing flights?\n\n\nflights %&gt;% select(FL_DATE) %&gt;% summary()\nflights %&gt;% count(OP_UNIQUE_CARRIER, sort = TRUE)\nflights %&gt;% count(ORIGIN, sort = TRUE)\noutgoing &lt;- flights %&gt;% count(ORIGIN) %&gt;% rename(outbound = n)\nincoming &lt;- flights %&gt;% count(DEST) %&gt;% rename(inbound = n)\ntraffic &lt;- full_join(outgoing, incoming, by=c(\"ORIGIN\" = \"DEST\"))\nggplot(traffic, aes(x=outbound, y=inbound)) + geom_point() +\n  coord_equal()"
+    "objectID": "week1/index.html#two-column-slide",
+    "href": "week1/index.html#two-column-slide",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Two-Column Slide",
+    "text": "Two-Column Slide\n\n\nLeft Column\n\nPoint 1\nPoint 2\nPoint 3\n\n\nRight Column\nThis is content for the right column. You can include:\n\nLists\nImages\nCode\n\nOr even equations: \\(E = mc^2\\)"
   },
   {
-    "objectID": "week1/tutorial/Getting Started.html#exercise-2-atlas-of-living-australia",
-    "href": "week1/tutorial/Getting Started.html#exercise-2-atlas-of-living-australia",
-    "title": "Getting Started",
-    "section": "Exercise 2: Atlas of Living Australia",
-    "text": "Exercise 2: Atlas of Living Australia\nThe Atlas of Living Australia is a major resource for occurrence data on animals, plants, insects, fish.\n\na. Download\n\nPoint your browser to https://www.ala.org.au. Check the terms of use. Does it have a license?\nUsing the galah library, and the function occurrences extract the records for platypus. To download the data from this API you will need to register with your email first.\n\n\nlibrary(galah)\n\ngalah_config(email = \"YOUREMAILADDRESS\",\n             download_reason_id = 10, \n             verbose = TRUE)\n\nplatypus &lt;- galah_call() %&gt;% \n  galah_identify(\"Ornithorhynchus anatinus\") %&gt;% \n  atlas_occurrences()\n\nplatypus &lt;- platypus %&gt;% \n  rename(Longitude = decimalLongitude,\n         Latitude = decimalLatitude) %&gt;%\n  mutate(eventDate = as.Date(eventDate)) %&gt;%\n  filter(!is.na(eventDate)) %&gt;%\n  filter(!is.na(Longitude)) %&gt;%\n  filter(!is.na(Latitude))\nsave(platypus, file=here::here(\"data/platypus.rda\"))\n\n\n\nb. Data quality checks\n\nPlot the locations of sightings. Where is Australia are platypus found?\nWhat dates of sightings are downloaded?\n\n\nload(here::here(\"data/platypus.rda\"))\nggplot(platypus, aes(x=Longitude, y=Latitude)) +\n  geom_point()\nplatypus %&gt;% select(eventDate) %&gt;% summary()     \n\n\n\nc. Data collection methods\nHow is this data collected? Explain the ways that a platpus sighting would be added to the database. Also think about what might be missing from the data?\n\nMaterials updated and maintained by Dr. Saunders.\n\n\n© Copyright 2025 Monash University"
+    "objectID": "week1/index.html#let-them-eat-cake-1",
+    "href": "week1/index.html#let-them-eat-cake-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Let Them Eat Cake",
+    "text": "Let Them Eat Cake\nADD PICTURES HERE"
   },
   {
-    "objectID": "assignments/Assignment1.html",
-    "href": "assignments/Assignment1.html",
-    "title": "Assignment 1",
-    "section": "",
-    "text": "You are commissioned as an independent business analyst to consult with the Victorian Department of Transport and Planning.\nThe Victorian Department of Transport and Planning is considering following the lead of New South Wales Transport and Main Roads, and making data on past road incidents available for public download. But, they are yet to be convinced of the benefits of open data.\nYour job will be to download, document and process data needed to create case study examples that can be used in a showcase.\nIn this hypothetical scenario, you are preparing this data for use by another team member who has experience working with road data types. Be sure to organise the data so that is useful for that team member, and so your documentation can be included as part of a larger report."
+    "objectID": "week1/index.html#raw-ingredients-or-final-product",
+    "href": "week1/index.html#raw-ingredients-or-final-product",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Raw Ingredients or Final Product?",
+    "text": "Raw Ingredients or Final Product?\n\n\nThink about this unit in the way Dr Mine Çetinkaya-Rundel describes in this talk: “Let them eat cake (first)”\n Imagine you’re new to baking, and you’re in a baking class.\n There are two options: which gives you better sense of the final product?"
   },
   {
-    "objectID": "assignments/Assignment1.html#case-study-1",
-    "href": "assignments/Assignment1.html#case-study-1",
-    "title": "Assignment 1",
-    "section": "Case Study 1",
-    "text": "Case Study 1\nThe public voted for NSW’s worst roads in the 2023 NRMA Rate your road Survey. You are tasked with investigating if these are indeed the worst roads.\nNote do not to over complicate this! Roads are recorded in segments and you do not need to combine the segments for this task. That is a job for your team member.\n\n(5 marks) You have been assigned one of the problem roads flagged in the survey (see Moodle). Using the NSW Goverment Portal create a dataset for that extended region (25 km radius) that records past traffic incidents.\n\n\nInclude only the relevant incident types in your data set.\nRestrict your data to an appropriate sample period, as only 3 months of data can be downloaded at one time.\nCombine data from before and after the survey so incident numbers can be compared.\nSave your data as a .csv file.\n\n\n(5 marks) Document the download process.\n\n\nDescribe the steps you took to download your data, so your process is fully reproducible.\nInclude a description on which variables you selected and which rows you filtered to support the analysis of the ‘worst’ road. (There is no single correct answer here).\n\n\n(5 marks) Provide a data set description.\n\n\nThis must include an explanation of the relevant variables (meta data)\nA explanation about your data sample and whether it can be considered to be representative of the population (also define what the population is).\nAny limitations of the data.\nA brief explanation of the usage permission (inferred from the database usage policy details)."
+    "objectID": "week1/index.html#the-cooking-analogy",
+    "href": "week1/index.html#the-cooking-analogy",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "The Cooking Analogy",
+    "text": "The Cooking Analogy\n\n\n\n\n\n\n\n\nThe Textbook Learner\n\n\n\nStudies cuisine history and science first\nMemorises ingredients and properties\nLearns techniques one at a time\nReads recipes multiple times before attempting\nMeasures everything precisely\nUnderstands the chemistry\nFollows instructions to the letter\n\n\n\n\n\n\n\n\n\n\n\nThe Example Learner\n\n\n\nWatches experienced cooks in action\nJumps in and recreates dishes they’ve seen\nLearns through trial and error\nFocuses on outcome rather than process\nBuilds intuition through observation\nDevelops “feel” through practice\nAdapts recipes based on experience"
   },
   {
-    "objectID": "assignments/Assignment1.html#part-2",
-    "href": "assignments/Assignment1.html#part-2",
-    "title": "Assignment 1",
-    "section": "Part 2",
-    "text": "Part 2\nKangaroo’s are the leading animal cause behind car crashes in Victoria. Using the Atlas of living Australia data, you identify areas with high kangaroo populations in regional NSW. You will cross reference with recent animal related car accidents. This will help identify if these areas are potential problem hotspots."
+    "objectID": "week1/index.html#how-do-you-learn-best",
+    "href": "week1/index.html#how-do-you-learn-best",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "How Do You Learn Best?",
+    "text": "How Do You Learn Best?\n\n\n\n\n\n\nBreakout Discussion\n\n\n\nWhich approach feels more natural to you?\nWhat are the advantages of each?\nWhen might one approach work better than the other?\nHow can understanding your learning style help you succeed?"
   },
   {
-    "objectID": "assignments/Assignment1.html#part-3",
-    "href": "assignments/Assignment1.html#part-3",
-    "title": "Assignment 1",
-    "section": "Part 3",
-    "text": "Part 3\nAccording to the Australian Institute of Health and Welfare, in Australia from 2001–2017 there were 96 vehicle-related flood fatalities, which represented 50% of deaths related to flooding (see link).You have been tasked with providing a list of closed roads during the 3-week period that hospital admissions, peaked in 2022."
+    "objectID": "week1/index.html#unit-philosophy-1",
+    "href": "week1/index.html#unit-philosophy-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Unit Philosophy",
+    "text": "Unit Philosophy\n\n\n\n\n\n\n\nCakes and Case Studies\n\n\n\n\nThe case studies you will see in this unit are the cakes.\nBy showing you what these case studies look like (cakes), we are helping you learn how to perform your own data analysis studies by example!\nThis may be different to how you’ve learnt in the past.\nPlease approach this unit philosophy with openness.\nAnd for textbook learners: Check out the textbook R for data science"
   },
   {
-    "objectID": "assignments/Assignment1.html#submission-10-marks",
-    "href": "assignments/Assignment1.html#submission-10-marks",
-    "title": "Assignment 1",
-    "section": "Submission (10 marks)",
-    "text": "Submission (10 marks)\n\nAnswer the questions and submit your report about the data using the Quarto template provided. We do not use word documents in this unit as we want our work to be fully reproducible.\nSubmit all code needed to process the data to create the subset.\nEnsure your code will run, and you report will build on another computer. This is important so we can reproduce your report. (Do not submit direct file paths!)\nEnsure your code is neat and tidy.\nInclude an AI acknowledgement and include links to all queries. Here is an example of some queries. These contain important assignment hints.\nInclude all relevant citations and be sure to cite all R packages used. The function ?citation() will be helpful here."
+    "objectID": "week1/index.html#learning-r",
+    "href": "week1/index.html#learning-r",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Learning R",
+    "text": "Learning R\n\n\n\n\n\n\nGetting set up\n\n\n\nBy the end of this unit you’ll be performing your own analytics case studies\nBefore you can do that we need to get you set up with the software you’ll use in this unit\nWe’ll now go through the steps to install R and RStudio\nThink about R as the engine and RStudio as the dashboard and controls.\nWe need both to drive a car."
   },
   {
-    "objectID": "assignments/Assignment1.html#case-study-1-15-marks",
-    "href": "assignments/Assignment1.html#case-study-1-15-marks",
-    "title": "Assignment 1",
-    "section": "Case Study 1 (15 marks)",
-    "text": "Case Study 1 (15 marks)\nThe public voted for NSW’s worst roads in the 2023 NRMA Rate your road Survey. You are tasked with investigating if these are indeed the worst roads.\nNote do not to over complicate this! Roads are recorded in segments and you do not need to combine the segments for this task. That is a job for your team member. Also note, there is no single one answer to how to define worst road.\n\n(5 marks) You have been assigned one of the problem roads flagged in the survey (see Moodle). Using the NSW Goverment Portal create a data set for that extended region (50 km radius) that records past traffic incidents.\n\n\nInclude only the relevant incident types in your data set.\nRestrict your data to an appropriate sample period. Only 3 months of data can be downloaded at one time.\nCombine data from before and after the survey so incident numbers can be compared.\nSave your data as a .csv file.\n\n\n(5 marks) Document the download process.\n\n\nDescribe the steps you took to download your data, so your process is fully reproducible.\nDescribe how you processed your data, this should include which variables you selected and and if you filtered any rows.\nBe sure to explain how you defined the worst road.\n\n\n(5 marks) Provide a data set description.\n\n\nThis must include an explanation of the relevant variables (meta data)\nExplain if your data sample is representative of the population. Also define what the population is.\nBe sure to include any limitations of the data.\nProvide a brief explanation of the usage permission (inferred from the database usage policy details)."
+    "objectID": "week1/index.html#open-data-is",
+    "href": "week1/index.html#open-data-is",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Open Data is …",
+    "text": "Open Data is …\n\n\n\n\n\n\n\nOpen data is … 1\n\n\n\na raw material for the digital age but,\nit’s unlike coal, timber or diamonds,\nit can be used by anyone and everyone at the same time.\n\n\n\n\nhttps://www.europeandataportal.eu/elearning/en/module1/#/id/co-01"
   },
   {
-    "objectID": "assignments/Assignment1.html#part-2-15-marks",
-    "href": "assignments/Assignment1.html#part-2-15-marks",
-    "title": "Assignment 1",
-    "section": "Part 2 (15 marks)",
-    "text": "Part 2 (15 marks)\nKangaroo’s are the leading animal cause behind car crashes in Victoria. You will also investigate whether your region is at risk from kangaroo collisions.\n\n(5 marks) Using the atlas of living Australia download occurrence records of kangaroos within your region of interest. (Note 50 km is approximately to 0.5 degrees of both long and lat).\n\n\nInclude only the relevant variables types in your data set.\nSave your data as a .csv file.\n\n\n(5 marks) Document the download process.\n\n\nDescribe the steps you took to download your data, so your process is fully reproducible.\nDescribe how you processed your data, this should include which variables you selected and and if you filtered any rows.\n\n\n(5 marks) Provide a data set description.\n\n\nThis must include an explanation of the relevant variables (meta data)\nExplain if your data sample is representative of the population. Also define what the population is.\nBe sure to include any limitations of the data.\nProvide a brief explanation of the usage permission (inferred from the database usage policy details)."
-  },
-  {
-    "objectID": "assignments/Assignment1.html#case-study-2-15-marks",
-    "href": "assignments/Assignment1.html#case-study-2-15-marks",
-    "title": "Assignment 1",
-    "section": "Case Study 2 (15 marks)",
-    "text": "Case Study 2 (15 marks)\nKangaroo’s are the leading animal cause behind car crashes in Victoria. You will also investigate whether your region is at risk from kangaroo collisions.\n\n(5 marks) Using the atlas of living Australia download occurrence records of kangaroos within your region of interest. (Note 50 km is approximately to 0.5 degrees of both long and lat).\n\n\nInclude only the relevant variables types in your data set.\nSave your data as a .csv file.\n\n\n(5 marks) Document the download process.\n\n\nDescribe the steps you took to download your data, so your process is fully reproducible.\nDescribe how you processed your data, this should include which variables you selected and and if you filtered any rows.\n\n\n(5 marks) Provide a data set description.\n\n\nThis must include an explanation of the relevant variables (meta data)\nExplain if your data sample is representative of the population. Also define what the population is.\nBe sure to include any limitations of the data.\nProvide a brief explanation of the usage permission (inferred from the database usage policy details)."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
+    "objectID": "week1/index.html#section",
+    "href": "week1/index.html#section",
     "title": "ETC5512: Wild Caught Data",
     "section": "",
-    "text": "Data can be obtained from many sources. It may be generated via experiments, collected from observational studies or surveys, obtained via sampling, or recorded using sensors.\nEach type of data has its own characteristics that affect the analysis tools we use. Very large data sets come with their own challenges and require some database skills.\nThis unit will equip you with the tools to understand and use different sources of data. Open data sources will be emphasised."
+    "text": "Long shelf life, highly processed\n\n\n\nConvenient, but contains unhealthy ingredients, and is a bad habit\neg iris, mtcars, titanic, handwritten digits\nFound at eg UCI Machine learning archive"
   },
   {
-    "objectID": "index.html#learning-outcomes",
-    "href": "index.html#learning-outcomes",
+    "objectID": "week1/index.html#what-makes-data-open",
+    "href": "week1/index.html#what-makes-data-open",
     "title": "ETC5512: Wild Caught Data",
-    "section": "Learning outcomes",
-    "text": "Learning outcomes\n\nCritically evaluate the quality of a data visualisation using the principles of graphical excellence\nSuccessfully create high-quality data visualisations for a given dataset using software, such as Power BI or R.\nDevelop the skills to effectively use data visualisations to communicate insights to an audience\nDevelop the skills to effectively use data visualisations to communicate in the appropriate medium, report writing, in presentations and digital storytelling.\nApply advanced topics in data visualisation, such as using interactivity and animation to enhance communication."
+    "section": "What makes data open?",
+    "text": "What makes data open?\n\n\n\n\n\n\nImportant\n\n\nOpen data is measured by what it can be used for, not by how it is made available.\n\n\n\n\n\n\n\n\n\nOpen Data Considerations\n\n\n\n\nUse limitations: No limitations that prevent particular uses.\nUse limitations: Anyone free to use, modify, combine and share, even commercially.\nData cost: Free to use does not mean that it must be free to access.\nData cost: Cost to creating, maintaining and publishing usable data.\nData cost: Live data and big data can incur ongoing costs.\nReuse: Free to use, reuse and redistribute it - even commercially."
   },
   {
-    "objectID": "index.html#teachers",
-    "href": "index.html#teachers",
+    "objectID": "week1/index.html#definition-open-data",
+    "href": "week1/index.html#definition-open-data",
     "title": "ETC5512: Wild Caught Data",
-    "section": "Teachers",
-    "text": "Teachers\n\nKate Saunders - Lecturer and Chief Examiner\nKrisanat Anukarnsakulchularp - Tutor\nMaliny Po - Tutor"
+    "section": "Definition open data",
+    "text": "Definition open data\n\n\n\n\n\n\nImportant\n\n\nOpen data can be freely used, modified, and shared by anyone for any purpose\n\n\n\n\n\n\n\n\n\nTwo types of data openness:\n\n\n\n\nThe data must be legally open, which means they must be placed in the public domain or under liberal terms of use with minimal restrictions.\nThe data must be technically open, which means they must be published in electronic formats that are machine readable and non-proprietary, so that anyone can access and use the data using common, freely available software tools. Data must also be publicly available and accessible on a public server, without password or firewall restrictions. 1\n\n\n\n\n\nhttp://opendefinition.org/"
   },
   {
-    "objectID": "index.html#weekly-schedule",
-    "href": "index.html#weekly-schedule",
+    "objectID": "week1/index.html#concept-check",
+    "href": "week1/index.html#concept-check",
     "title": "ETC5512: Wild Caught Data",
-    "section": "Weekly schedule",
-    "text": "Weekly schedule\n\nSeminar: Monday 2 pm - 4 pm\nDrop in & practice session: Monday 10 - 11 pm (zoom)\nConsultation: Monday 5 - 6 pm\nPlease refer to your timetable for your tutorial time.\nPlease refer to Moodle for zoom links"
+    "section": "Concept Check",
+    "text": "Concept Check\n\n\n\n\n\n\n\nPop Quiz! ❤️\n\n\nTry the quizzes here"
   },
   {
-    "objectID": "index.html#consultation",
-    "href": "index.html#consultation",
+    "objectID": "week1/index.html#why-do-we-need-open-data",
+    "href": "week1/index.html#why-do-we-need-open-data",
     "title": "ETC5512: Wild Caught Data",
-    "section": "Consultation",
-    "text": "Consultation\n\nMonday - Wednesday - Friday, 1pm-3pm each week\n\n\n\n\nWeek\nDate\nTopic\nTutorial\nSolution\n\n\n\n\n1\n03 Mar\nOpen data: definitions, sources and examples\n\n\n\n\n2\n10 Mar\nIntroduction to data collection methods\n\n\n\n\n3\n17 Mar\nCase Study: TBC\n\n\n\n\n4\n24 Mar\nCase Study: Australian census\n\n\n\n\n5\n31 Mar\nCase Study: Australian election data\n\n\n\n\n6\n07 Apr\nCase Study: Combining census and election data\n\n\n\n\n7\n14 Apr\nCase Study: PD model and credit risk\n\n\n\n\n\n21 Apr\nMid-semester break\n\n\n\n\n9\n28 Apr\nCase Study: Data ethics and privacy\n\n\n\n\n10\n05 May\nCase Study: TBC\n\n\n\n\n11\n12 May\nCase Study: Introduction to webscraping\n\n\n\n\n12\n19 May\nRevision: Proper care and feeding of wild caught data"
+    "section": "Why do we need open data?",
+    "text": "Why do we need open data?\n\n\n\n\n\n\nImportant\n\n\nHelp make governments more transparent.\n\nOpen data allowed citizens in Canada to save the government billions in fraudulent charitable donations\n\nBuilding new business opportunities\n\nTransport for London has released open data that developers have used to build over 800 transport apps.\n\nProtecting the planet\n\nOpen data can supoort early warning systems for environmental disasters\nOpen data is also helping consumers to understand their personal impacts on the environment\n\nResource"
   },
   {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
+    "objectID": "week1/index.html#why-license-open-data",
+    "href": "week1/index.html#why-license-open-data",
     "title": "ETC5512: Wild Caught Data",
-    "section": "Schedule",
-    "text": "Schedule\n\n\n\nWeek\nDate\nTopic\nTutorial\nSolution\n\n\n\n\n1\n03 Mar\nOpen data: definitions, sources and examples\n\n\n\n\n2\n10 Mar\nIntroduction to data collection methods\n\n\n\n\n3\n17 Mar\nCase Study: TBC\n\n\n\n\n4\n24 Mar\nCase Study: Australian census\n\n\n\n\n5\n31 Mar\nCase Study: Australian election data\n\n\n\n\n6\n07 Apr\nCase Study: Combining census and election data\n\n\n\n\n7\n14 Apr\nCase Study: PD model and credit risk\n\n\n\n\n\n21 Apr\nMid-semester break\n\n\n\n\n9\n28 Apr\nCase Study: Data ethics and privacy\n\n\n\n\n10\n05 May\nCase Study: TBC\n\n\n\n\n11\n12 May\nCase Study: Introduction to webscraping\n\n\n\n\n12\n19 May\nRevision: Proper care and feeding of wild caught data"
+    "section": "Why license open data?",
+    "text": "Why license open data?\n\n\n\n\n\n\nImportant\n\n\n\nLicences tells people how they can access, use and share data.\n\n\n\n\n\n\n\n\n\n\nLicenses\n\n\n\nWithout a licence, users may find themselves in a legal grey area. Data may be ‘publicly available’, but users may not have permission to access, use and share it under general copyright or database laws.\nAn open data licence is an explicit permission to use the data for both commercial and non-commercial purposes.\nOpen data publishers should provide easy access to the licence for all datasets that are available to access, use and share.\nOrganisations and governments use Open Data licenses to clearly explain the conditions under which their data may be used."
   },
   {
-    "objectID": "index.html#learning-objectives",
-    "href": "index.html#learning-objectives",
+    "objectID": "week1/index.html#open-data-from-large-organisations",
+    "href": "week1/index.html#open-data-from-large-organisations",
     "title": "ETC5512: Wild Caught Data",
-    "section": "Learning objectives",
-    "text": "Learning objectives\n\nUnderstand the definitions, allowed usage, digital identification and licensing of open data\nKnow about common open data sources, how they are used and effectively search for new sources\nExplain the differences between data collection methods and the limitations for data analysis\nWork with the range of different data formats of open data, including APIs\nUnderstand ethical constraints and privacy limits when working with open data\nRecognise the components of effective curation needed for open data."
+    "section": "Open data from large organisations",
+    "text": "Open data from large organisations\n\n\n\n\n\n\nGlobally\n\n\n\nhttp://dataportals.org/search\nhttp://data.un.org/\nhttps://datacatalog.worldbank.org/\nhttps://data.gov/ (US)\nhttps://opendataimpactmap.org/eap (EAP)\n\n\n\n\n\n\n\n\n\n\nAustralian governement examples:\n\n\n\nhttp://www.data.gov.au/\nhttps://www.data.vic.gov.au/\nhttps://data.melbourne.vic.gov.au/"
+  },
+  {
+    "objectID": "week1/index.html#open-data-licenses",
+    "href": "week1/index.html#open-data-licenses",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Open data licenses",
+    "text": "Open data licenses\n\n\n\n\n\n\nTLDR\n\n\nMany licenses include both a summary version, intended to convey the most important concepts to all users, and a detailed version that provides the complete legal foundation.\n\n\n\n\n\n\n\n\n\nExamples include\n\n\n\nStandard re-usable license: consistent and broadly recognized terms of use\n\nCreative Commons, particularly CC-By and CC0 https://creativecommons.org/\nOpen Database License https://opendatacommons.org/licenses/odbl/\n\nBespoke licenses: governments and international organizations developed\n\nUK Open Government License http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\nThe World Bank Terms of Use https://data.worldbank.org/summary-terms-of-use"
+  },
+  {
+    "objectID": "week1/index.html#concept-check-1",
+    "href": "week1/index.html#concept-check-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Concept Check",
+    "text": "Concept Check\n\n\n\n\n\n\n\nPop Quiz! ❤️\n\n\nTry the quizzes here"
+  },
+  {
+    "objectID": "week1/index.html#metadata-data-about-data",
+    "href": "week1/index.html#metadata-data-about-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Metadata: data about data",
+    "text": "Metadata: data about data\n\n\n\n\n\n\n\n\nInformation components\n\n\n\nSource\nStructure\nUnderlying methodology\nTopical\nGeographic and/or temporal coverage\nLicense\nWhen it was last updated\nHow it is maintained\n\n\n\n\n\n\n\n\n\n\n\nStandards frameworks\n\n\n\nDublin Core Metadata Initiative (DCMI) provides a framework and core vocabulary of metadata terms\n\ndublincore.org\n\nGovernments develop metadata models for uniformity\n\nproject-open-data.cio.gov\n\nAustralian government metadata standards\n\nNational Archives\nAIHW"
+  },
+  {
+    "objectID": "week1/index.html#examples-from-canadian-government",
+    "href": "week1/index.html#examples-from-canadian-government",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Examples from Canadian government",
+    "text": "Examples from Canadian government\n\n\n\n\n\n\n\n\nExample datasets\n\n\n\nResettled refugees\nCanada emergency wage subsidy (CEWS)\n\n\n\n\n\n\n\n\n\n\n\nKey metadata elements\n\n\n\nTitle: what data contains and where it comes from\nDescription: details to quickly understand relevance\nPublisher: who originated and maintains the dataset\nLicense: terms of use\nContact information: for questions or clarification\nFrequency: interval data is updated\nDate modified: last update timestamp\nSpatial coverage: relevant geographic area\nTemporal coverage: time period covered\nOpen data formats: available file formats"
+  },
+  {
+    "objectID": "week1/index.html#machine-readable",
+    "href": "week1/index.html#machine-readable",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Machine Readable",
+    "text": "Machine Readable\n\n\n\n\n\n\nWarning\n\n\n‘machine readable’ is not synonymous with ‘digitally accessible’\nHistorical efforts have focused on: - pushing static information about government programs and services to the web, - where the intended use is a human who can read, print, and take actions based on reading. - It’s a narrow vision of the expected users and uses of the information."
+  },
+  {
+    "objectID": "week1/index.html#five-star-open-data-scheme",
+    "href": "week1/index.html#five-star-open-data-scheme",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Five star open data scheme",
+    "text": "Five star open data scheme\n\n\n\n\n\n\n5 ⭐ ratings:\n\n\nThis web site 5 ⭐: Open Data at provides a rating system for deploying open data.\n\n⭐ An open license.\nMake your stuff available on the Web (whatever format) under an open license\n⭐, ⭐ Re-usable format.\nMake it available as structured data (e.g., A proprietary format like excel instead of image scan of a table.)\n⭐, ⭐, ⭐ Open format.\nMake it available in a non-proprietary open format (e.g., CSV instead of Excel)\n⭐, ⭐, ⭐, ⭐ use (Uniform Resource Identifiers (URIs).\nURIs help you reference your data, like a unique address and gives context to the values.\n⭐, ⭐, ⭐, ⭐, ⭐ Linked data\nYour data doesn’t exist in isolation. Your data links/ connects to other relevant data sets."
+  },
+  {
+    "objectID": "week1/index.html#fair-principles-for-scientific-data",
+    "href": "week1/index.html#fair-principles-for-scientific-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "FAIR principles for scientific data",
+    "text": "FAIR principles for scientific data\nLearn more at fair.org\n\n\n\n\n\n\nFAIR Principles\n\n\n\n\nFindable Metadata and data should be easy to find for both humans and computers. Machine-readable metadata are essential for automatic discovery of datasets and services.\nAccessible Once the user finds the required data, they need to know how can they accessed that data, possibly including authentication and authorisation.\nInteroperable The data usually need to be integrated with other data. In addition, the data need to interoperate with applications or workflows for analysis, storage, and processing.\nReusable The ultimate goal of FAIR is to optimise the reuse of data. To achieve this, metadata and data should be well-described so that they can be replicated and/or combined in different settings."
+  },
+  {
+    "objectID": "week1/index.html#publishing-data",
+    "href": "week1/index.html#publishing-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Publishing data",
+    "text": "Publishing data\n\n\n\n\n\n\nPublishing Your Data\n\n\n\nResearch data is increasingly seen as part of the corpus of scholarly publications.\nPublishers, funders and governments support researchers to publish their data outputs by various policies, guidelines and mandates.\nObtaining a Digital Object Identifier system (DOI) provides a persistent identifier, and can be used for data. Two services in Australia:\n\nAustralian Research Data Commons (ARDC) can generate a DOI for you.\nAustralian National Data Service\n\nMany open data sets provide information on how to cite them, when used in other forms of publication.\nSee more guidelines at ARDS and ARDC."
+  },
+  {
+    "objectID": "week1/index.html#open-data-quality",
+    "href": "week1/index.html#open-data-quality",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Open data quality",
+    "text": "Open data quality\n\n\n\n\n\n\nLegal requirements:\n\n\n\nProtect sensitive information like personal data\nPreserve the rights of data owners\nPromote correct use of the data\n\n\n\n\n\n\n\n\n\n\nPractical requirements:\n\n\nIf you provide a link to the data on a website: * Update the data regularly if it changes * Commit to continue to make the data available\n\n\n\n\n\n\n\n\n\nTechnical requirements:\n\n\n\nThink about the format in which the data is published\nThe structure of the data\nThe channels through which the data is available"
+  },
+  {
+    "objectID": "week1/index.html#common-pitfalls-with-open-data",
+    "href": "week1/index.html#common-pitfalls-with-open-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Common pitfalls with open data",
+    "text": "Common pitfalls with open data\n\n\n\n\n\n\nWatch out for:\n\n\n\nMixed date formats american/european\nMultiple representations differences in abbreviations, capitalisation, spacing\nDuplicate records\nRedundant data\nMixed numerical scales\nSpelling errors\nInconsistent naming\nMissing values"
+  },
+  {
+    "objectID": "week1/index.html#what-is-hidden-data",
+    "href": "week1/index.html#what-is-hidden-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What is hidden data?",
+    "text": "What is hidden data?\n\n\n\n\n\nOpen Data Institute - Dave Tarrant - EDP Module 12 from Open Data Institute on Vimeo.\n\n\nLet’s look at https://www.realestate.com.au/buy"
+  },
+  {
+    "objectID": "week1/index.html#some-of-my-favourite-examples-of-open-data",
+    "href": "week1/index.html#some-of-my-favourite-examples-of-open-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Some of my favourite examples of open data",
+    "text": "Some of my favourite examples of open data\n\nAirline traffic in the USA https://www.bts.gov \nAustralian Bureau of Statistics http://stat.data.abs.gov.au\nAustralian Electoral Commission https://www.aec.gov.au\nNational Longitudinal Survey of Youth (NLSY) https://www.nlsinfo.org/investigator/pages/search?s=NLSY79\nAtlas of Living Australia https://www.ala.org.au\nAustralian bushfires from satellite hotspot remote sensing https://www.eorc.jaxa.jp/ptree/registration_top.html (also see resulting analysis at https://ebsmonash.shinyapps.io/VICfire/)\nJohn Hopkins Coronavirus tracking https://coronavirus.jhu.edu/data\nOECD Programme for International Student Assessment http://www.oecd.org/pisa/data/\nMelbourne pedestrian counting system http://www.pedestrian.melbourne.vic.gov.au/"
+  },
+  {
+    "objectID": "week1/index.html#well-spend-some-time-here-taking-a-look-at-these-open-data-examples",
+    "href": "week1/index.html#well-spend-some-time-here-taking-a-look-at-these-open-data-examples",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "We’ll spend some time here taking a look at these open data examples",
+    "text": "We’ll spend some time here taking a look at these open data examples\nConsider the interface\nLook for licensing\nExplanations of what’s in the data\nMetadata"
+  },
+  {
+    "objectID": "week1/index.html#slide",
+    "href": "week1/index.html#slide",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Slide",
+    "text": "Slide\n ### Orphans\n\nFile dumped on an archive\nStale, could date your results\n\nFound in places like https://data.gov.au"
+  },
+  {
+    "objectID": "week1/index.html#orphans",
+    "href": "week1/index.html#orphans",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Orphans",
+    "text": "Orphans\n Orphans:\n\nFile dumped on an archive\nStale, could date your results\n\nFound in places like https://data.gov.au"
+  },
+  {
+    "objectID": "week1/index.html#synthetic",
+    "href": "week1/index.html#synthetic",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Synthetic",
+    "text": "Synthetic\n\nSynthetic\n\nUsed primarily these days for privacy protection\nCorrect up to the model used to simulate the data - misses interesting structure in data not captured by model\nVery pretty, very consistent, but it can burn you\neg OECD Programme for International Student Assessment A generalised linear model is fitted to the scores, with predictors such as school, gender, … Model is used to simulate a score for each student.\neg Also be aware of fraud Article in the Lancet (2020)"
+  },
+  {
+    "objectID": "week1/index.html#fresh-and-local",
+    "href": "week1/index.html#fresh-and-local",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Fresh and Local",
+    "text": "Fresh and Local\n\n\n\n\n\n\n\n\nFresh and local\n\n\n\nWild data, collected locally, and impacting our own lives\neg Melbourne pedestrian counts"
+  },
+  {
+    "objectID": "week1/index.html#wild-caught-data-1",
+    "href": "week1/index.html#wild-caught-data-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Wild-caught data",
+    "text": "Wild-caught data\n\n\n\n\n\n\nOur working definition\n\n\nWild caught data is:\n\n\ndata the can be freely used, modified, and shared by anyone for any purpose, AND\nThe data source is traceable, the data collection is transparent, and the data is updated as new measurements arrive, AND\nIn case of data processing, the process is clearly described and reproducible."
+  },
+  {
+    "objectID": "week1/index.html#what-about-your-favourite-datasets",
+    "href": "week1/index.html#what-about-your-favourite-datasets",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What about your favourite datasets?",
+    "text": "What about your favourite datasets?\n\n\n\n\n\n\nAre they Wild?\n\n\n\n\n✅ Freely available to be used and modified\n✅ Can be shared\n✅ Data provenance is clear\n✅ How the data was collected is transparent\n✅ Data is updated as new measurements become available\n✅ Any processing of this data is clear"
+  },
+  {
+    "objectID": "week1/index.html#section-2",
+    "href": "week1/index.html#section-2",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Synthetic\n\n\n\nUsed primarily these days for privacy protection\nCorrect up to the model used to simulate the data - misses interesting structure in data not captured by model\nVery pretty, very consistent, but it can burn you\neg OECD Programme for International Student Assessment A generalised linear model is fitted to the scores, with predictors such as school, gender, … Model is used to simulate a score for each student.\neg Also be aware of fraud Article in the Lancet (2020)"
+  },
+  {
+    "objectID": "week1/index.html#section-3",
+    "href": "week1/index.html#section-3",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Wild\n\n\n\nFresh, interesting, exciting\nBut also challenging!\nReal world data sets, with real world messiness\neg US Bureau of Transportation Statistics air traffic database"
+  },
+  {
+    "objectID": "week1/index.html#section-4",
+    "href": "week1/index.html#section-4",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Fresh and local\n\n\n\nBest kind of wild data\nCollected locally, and about our own lives\neg Melbourne pedestrian counts"
+  },
+  {
+    "objectID": "week1/index.html#section-5",
+    "href": "week1/index.html#section-5",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Fresh and local\n\n\n\nBest kind of wild data\nCollected locally, and about our own lives\neg Melbourne pedestrian counts"
+  },
+  {
+    "objectID": "week1/index.html#from-the-open-data-institute",
+    "href": "week1/index.html#from-the-open-data-institute",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "From the Open Data Institute",
+    "text": "From the Open Data Institute\n\n\n\n\n\nOpen Data Institute - Dave Tarrant - EDP Module 1 from Open Data Institute on Vimeo."
+  },
+  {
+    "objectID": "week1/index.html#quick-comment",
+    "href": "week1/index.html#quick-comment",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Quick comment",
+    "text": "Quick comment\n\n\n\n\n\n\nLicence type\n\n\n\nStandard licenses can offer several advantages over bespoke licenses.\nStandard licences have greater recognition among users, increased interoperability, and greater ease of compliance."
+  },
+  {
+    "objectID": "week1/index.html#machine-readable-1",
+    "href": "week1/index.html#machine-readable-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Machine Readable",
+    "text": "Machine Readable\n\n\n\n\n\n\nMachine Readable\n\n\n\nMachine readable formats expand field of vision to new users and new uses and require technologies like XML and JSON\n\n😿 PDF is not suitably machine readable\n😀 CSV (or XLSX, XLS) is common, and universally accessible, but should be structured for analysis not for reading\n😸 XML, JSON is verbose, can contain metadata, but needs special readers\n🤩 API provides an interface that other software can utilise to automatically extract and process"
+  },
+  {
+    "objectID": "week1/index.html#concept-check-2",
+    "href": "week1/index.html#concept-check-2",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Concept Check",
+    "text": "Concept Check\n\n\n\n\n\n\n\nPop Quiz! ❤️\n\n\nTry the quizzes here"
+  },
+  {
+    "objectID": "week1/index.html#some-more-examples-of-open-data",
+    "href": "week1/index.html#some-more-examples-of-open-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Some more examples of open data",
+    "text": "Some more examples of open data\n\n\n\n\n\n\nNote\n\n\n\nAirline traffic in the USA https://www.bts.gov \nAustralian Bureau of Statistics http://stat.data.abs.gov.au\nAustralian Electoral Commission https://www.aec.gov.au\nNational Longitudinal Survey of Youth (NLSY) https://www.nlsinfo.org/investigator/pages/search?s=NLSY79\nAtlas of Living Australia https://www.ala.org.au\nAustralian bushfires from satellite hotspot remote sensing https://www.eorc.jaxa.jp/ptree/registration_top.html (also see resulting analysis at https://ebsmonash.shinyapps.io/VICfire/)\nJohn Hopkins Coronavirus tracking https://coronavirus.jhu.edu/data\nOECD Programme for International Student Assessment http://www.oecd.org/pisa/data/\nMelbourne pedestrian counting system http://www.pedestrian.melbourne.vic.gov.au/"
+  },
+  {
+    "objectID": "week1/index.html#in-your-own-time",
+    "href": "week1/index.html#in-your-own-time",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "In your own time",
+    "text": "In your own time\n\n\n\n\n\n\nExercise\n\n\nLook at these open data examples:\n\nConsider the interface\nLook for licensing\nExplanations of what’s in the data\nMetadata"
   }
 ]
