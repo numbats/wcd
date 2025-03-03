@@ -17,8 +17,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Learning Objectives
 
--   Learn your way around RStudio.
--   Become confident doing basic computation using R in RStudio.
+- Utilise and access open data sources 
+- Assess the collection methods and the quality of the data
+- Write code to conduct quality checks of the data
+-   Also learn your way around RStudio.
 
 ### Before your tutorial
 
@@ -36,7 +38,7 @@ These should take you \~ 40 minutes.
 
 ## Package Installation 
 
-Run the below code to install the packages we need for today's tutorial. Remember you only need to install packages once.
+Run the below code to install the packages we need for today's tutorial. 
 
 ```{r}
 #| eval: false
@@ -44,7 +46,7 @@ install.packages("tidyverse")
 install.packages("galah")
 ```
 
-Once the packages are installed load in the libraries so we can use them in today's class. 
+Once the packages are installed, load the packages using the `library()` function.
 
 ```{r}
 #| eval: false
@@ -52,7 +54,9 @@ library(tidyverse)
 library(galah)
 ```
 
-Installing packages is like screwing in a lightbulb, loading the library is like turning the switch on and off. You only need to screw in the lightbulb once (install the package), but you can turn the light on many times (load the library).
+Installing packages is like screwing in a lightbulb. Loading the package from the library is like turning the switch on and off. 
+
+You only need to screw in the lightbulb once (install the package), but you can turn the light on many times (load the library).
 
 ## Exercise 1: Atlas of Living Australia
 
@@ -69,10 +73,8 @@ ii. Using the `galah` library, and the function `occurrences` extract the record
 
 library(galah)
 
-# Change the below code to your email address
-your_email = "ADD_YOUR_EMAIL_HERE"
-
-galah_config(email = your_email,
+# add your email address below
+galah_config(email = "ADD_YOUR_EMAIL_HERE",
              download_reason_id = 10, 
              verbose = TRUE)
 
@@ -140,11 +142,11 @@ When you are getting started if can be useful check your basic understanding of 
 
 Some tips: 
 
-* Use the help menu to look up what functions do, e.g. run `?write_csv`
+* Use the help menu to look up what functions do, e.g. `?write_csv`
 
-* Copy and paste code chunks in Generative AI and ask it to explain to you through what the code is doing.
+* Copy and paste code chunks in Generative AI and ask it to explain what the code is doing.
 
-It can then be useful to go back and add comments to your code to explain what the different pieces do.
+Then go back and add comments to your code to explain what the different pieces do.
 
 :::
 
@@ -154,7 +156,7 @@ i. Try finding examples of each of the different flavours of data we discussed i
 
 * Find the license information
 
-* Find the meta data. 
+* Look at the meta data. 
 
 ii. Also be sure to complete the Open Data Insitute Quizzes from Lectures to consolidate your understanding.
 
