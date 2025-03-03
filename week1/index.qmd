@@ -1233,8 +1233,7 @@ We'll open RStudio to create data visualisations using R.
 -   Make sure the analysis is not just point and click, you can work as
     a team on it on the same code
 
--   It also means we can more easily create our own bespoke
-    visualisations
+-   It also means we can more easily perform our own case studies in analytics
 :::
 
 ::: callout-note
