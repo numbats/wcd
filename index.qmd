@@ -55,10 +55,12 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Consults 
 
-* Kate: Monday 11 - 12 pm (In person and zoom)
-* Kris: Tuesday 2 - 3:30 pm (In person)
-* Maliny: Wednesday 3:30 - 5 pm (In person)
-* Refer to Moodle for room locations and zoom links
+* Kate: Monday 11 - 12 pm. 
+(Room 64, Level 5, Building H, Caulfield Campus or see Moodle for zoom link)
+* Kris: Tuesday 2 - 3:30 pm  
+(Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)
+* Maliny: Wednesday 3:30 - 5 pm  
+(Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)
 
 ## Schedule
 
