@@ -918,8 +918,68 @@ Here is one that studies the ["Safety and Efficacy of C21 in Subjects With COVID
 
 ::::
 
-<!-- # Drop In Slides {background-color="#006DAE"} -->
+# Drop In Slides {background-color="#006DAE"}
 
-<!-- ##  -->
+## Ex-Tropical Cyclone Alfred 
 
-<!-- Will be added later -->
+:::callout-note 
+## News and Warnings
+
+* [Latest News 10 hrs ago ABC ](https://www.abc.net.au/news/2025-03-09/cyclone-alfred-forecast/105029884)
+
+* [Latest News 2 hrs ago ABC ](https://www.abc.net.au/news/2025-03-10/qld-nsw-ex-ropical-cyclone-alfred-flooding-clean-up/105030178)
+
+* [Queensland Warning Dashboard](https://www.disaster.qld.gov.au/warnings)
+
+* [New South Wales Warning Dashboard](https://www.hazardwatch.gov.au/)
+
+:::
+
+## Warning-Value Chain 
+
+<center>
+![](images/lecture-02/Value_chain.png)
+</center>
+
+* Hoffmann, D., Ebert, E. E., Mooney, C., Golding, B., & Potter, S. (2023). Using value chain approaches to evaluate the end-to-end warning chain. Advances in Science and Research, 20, 73-79.
+
+## Today's Drop In & Practice 
+
+::: callout-tip
+## Your Job:
+
+* Find data sets that are useful along the warning value chain
+
+* Check licences for those data sets, are they open? 
+
+* Review the data sets for FAIR Principles and 5-star quality
+
+* These data sets are important for 
+  * Innovating / creating solutions 
+  * Evaluating warning response 
+  * Planning for the future 
+
+::: 
+
+## IPCC AR6 Risk Framework
+
+In addition to the warning value chain consider:
+
+<center>
+![](images/lecture-02/IPCC_Risk_framework.png)
+</center>
+
+## To get you started 
+
+::: callout-note 
+## Try to find some of your own!
+
+* [Nearby Emergency Services](https://digital.atlas.gov.au/)
+
+* [Live Traffic NSW](https://www.livetraffic.com/) and [Qld Traffic](https://qldtraffic.qld.gov.au/)
+
+* [Qld Power: Energex](https://www.energex.com.au/outages/outage-finder/emergency-outages-text-view/?council=Gold%20Coast%20City&startSuburb=all&suburb=)
+
+* [Bureau of Meteorology](http://www.bom.gov.au/?ref=logo)
+
+:::
