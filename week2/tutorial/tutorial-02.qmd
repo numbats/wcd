@@ -39,6 +39,8 @@ Also install
 ```{r}
 #| eval: false
 install.packages("tibble")
+install.packages("maps")
+install.packages("ggthemes")
 ```
 
 ## Exercise 1 
@@ -65,7 +67,8 @@ Download the data and plot the fueling locations on a map, coloured by fuel type
 
 ```{r}
 library(tidyverse)
-
+library(ggthemes)
+library(maps)
 
 # Note you can read data directly from a website
 stations <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-01/stations.csv')
