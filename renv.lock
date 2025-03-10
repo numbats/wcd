@@ -57,13 +57,13 @@
     },
     "MASS": {
       "Package": "MASS",
-      "Version": "7.3-57",
+      "Version": "7.3-60.0.1",
       "Source": "Repository",
       "Priority": "recommended",
-      "Date": "2022-04-05",
-      "Revision": "$Rev: 3564 $",
+      "Date": "2024-01-12",
+      "Revision": "$Rev: 3621 $",
       "Depends": [
-        "R (>= 3.3.0)",
+        "R (>= 4.0)",
         "grDevices",
         "graphics",
         "stats",
@@ -89,7 +89,8 @@
       "NeedsCompilation": "yes",
       "Author": "Brian Ripley [aut, cre, cph], Bill Venables [ctb], Douglas M. Bates [ctb], Kurt Hornik [trl] (partial port ca 1998), Albrecht Gebhardt [trl] (partial port ca 1998), David Firth [ctb]",
       "Maintainer": "Brian Ripley <ripley@stats.ox.ac.uk>",
-      "Repository": "CRAN"
+      "Repository": "https://packagemanager.posit.co/cran/2024-04-26",
+      "Encoding": "UTF-8"
     },
     "Matrix": {
       "Package": "Matrix",
