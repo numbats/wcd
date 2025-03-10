@@ -1,5 +1,40 @@
 [
   {
+    "objectID": "week1/tutorial/tutorial-01.html",
+    "href": "week1/tutorial/tutorial-01.html",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "",
+    "text": "Utilise and access open data sources\nAssess the collection methods and the quality of the data\nWrite code to conduct quality checks of the data\nAlso learn your way around RStudio."
+  },
+  {
+    "objectID": "week1/tutorial/tutorial-01.html#package-installation",
+    "href": "week1/tutorial/tutorial-01.html#package-installation",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "Package Installation",
+    "text": "Package Installation\nRun the below code to install the packages we need for today’s tutorial.\n\ninstall.packages(\"tidyverse\")\ninstall.packages(\"galah\")\n\nOnce the packages are installed, load the packages using the library() function.\n\nlibrary(tidyverse)\nlibrary(galah)\n\nInstalling packages is like screwing in a lightbulb. Loading the package from the library is like turning the switch on and off.\nYou only need to screw in the lightbulb once (install the package), but you can turn the light on many times (load the library)."
+  },
+  {
+    "objectID": "week1/tutorial/tutorial-01.html#exercise-1-atlas-of-living-australia",
+    "href": "week1/tutorial/tutorial-01.html#exercise-1-atlas-of-living-australia",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "Exercise 1: Atlas of Living Australia",
+    "text": "Exercise 1: Atlas of Living Australia\nThe Atlas of Living Australia is a major resource for occurrence data on animals, plants, insects, fish.\n\na. Download\n\nPoint your browser to https://www.ala.org.au. Check the terms of use. Does it have a license?\nUsing the galah library, and the function occurrences extract the records for platypus. To download the data from this API you will need to register with your email first. Once you’ve done that change the code below so it has your email.\n\n\nlibrary(galah)\n\n# add your email address below\ngalah_config(email = \"ADD_YOUR_EMAIL_HERE\",\n             download_reason_id = 10, \n             verbose = TRUE)\n\nplatypus &lt;- galah_call() |&gt; \n  galah_identify(\"Ornithorhynchus anatinus\") |&gt; \n  atlas_occurrences()\n\nTake a look at the data you downloaded.\n\nView(platypus)\n\n\nLet’s do some data wrangling to tidy up our data.\n\n\nplatypus &lt;- platypus |&gt; \n  rename(Longitude = decimalLongitude,\n         Latitude = decimalLatitude) |&gt;\n  mutate(eventDate = as.Date(eventDate)) |&gt;\n  filter(!is.na(eventDate)) |&gt;\n  filter(!is.na(Longitude)) |&gt;\n  filter(!is.na(Latitude))\n\n\nSave our result. To save both your data and the file your are working on in the same place, in the top menu go to Session &gt; Set Working Directory &gt; To Source File Location. (If you are already familiar with R Projects you may like to use that instead.)\n\n\nplatypus_file_name = \"platypus.csv\" \nwrite_csv(platypus, file = platypus_file_name)\n\n\n\nb. Data quality checks\n\nPlot the locations of sightings. Where in Australia are platypus found?\n\n\nread_csv(platypus_file_name)\n\nggplot(platypus, aes(x=Longitude, y=Latitude)) +\n  geom_point()\n\n\nWhat dates of sightings are downloaded?\n\n\nplatypus |&gt; select(eventDate) |&gt; summary()     \n\n\n\nc. Data collection methods\nHow is this data collected? Explain the ways that a platypus sighting would be added to the database. Also think about what might be missing from the data?"
+  },
+  {
+    "objectID": "week1/tutorial/tutorial-01.html#learning-to-code",
+    "href": "week1/tutorial/tutorial-01.html#learning-to-code",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "Learning to code",
+    "text": "Learning to code\n\n\n\n\n\n\nTip\n\n\n\nWhen you are getting started if can be useful check your basic understanding of what each piece of code does.\nSome tips:\n\nUse the help menu to look up what functions do, e.g. ?write_csv\nCopy and paste code chunks in Generative AI and ask it to explain what the code is doing.\n\nThen go back and add comments to your code to explain what the different pieces do."
+  },
+  {
+    "objectID": "week1/tutorial/tutorial-01.html#additional-exercises",
+    "href": "week1/tutorial/tutorial-01.html#additional-exercises",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "Additional Exercises",
+    "text": "Additional Exercises\n\nTry finding examples of each of the different flavours of data we discussed in class.\n\n\nFind the license information\nLook at the meta data.\n\n\nAlso be sure to complete the Open Data Insitute Quizzes from Lectures to consolidate your understanding.\n\n\n© Copyright Monash University"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "ETC5512: Wild Caught Data",
@@ -25,14 +60,378 @@
     "href": "index.html#weekly-schedule",
     "title": "ETC5512: Wild Caught Data",
     "section": "Weekly schedule",
-    "text": "Weekly schedule\n\nSeminar: Monday 2 pm - 4 pm\nDrop in & practice session: Monday 10 - 11 pm (zoom)\nConsultation: Monday 5 - 6 pm\nPlease refer to your timetable for your tutorial time.\nPlease refer to Moodle for zoom links"
+    "text": "Weekly schedule\n\nSeminar: Monday 2 pm - 4 pm\nDrop in & practice session: Monday 10 - 11 pm (zoom)\nRefer to your timetable for your tutorial time\nRefer to Moodle for room locations and zoom links"
+  },
+  {
+    "objectID": "index.html#consults",
+    "href": "index.html#consults",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Consults",
+    "text": "Consults\n\nKate: Monday 11 - 12 pm. (Room 64, Level 5, Building H, Caulfield Campus or see Moodle for zoom link)\nKris: Tuesday 2 - 3:30 pm\n(Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)\nMaliny: Wednesday 3:30 - 5 pm\n(Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)"
   },
   {
     "objectID": "index.html#schedule",
     "href": "index.html#schedule",
     "title": "ETC5512: Wild Caught Data",
     "section": "Schedule",
-    "text": "Schedule\n\n\n\n\n\n\n\n\n\n\nWeek\nDate\nTopic\nTutorial\nSolution\n\n\n\n\n1\n03 Mar\nOpen data: definitions, sources and examples\n\n\n\n\n2\n10 Mar\nIntroduction to data collection methods\n\n\n\n\n3\n17 Mar\nCase Study: TBC\n\n\n\n\n4\n24 Mar\nCase Study: Australian census\n\n\n\n\n5\n31 Mar\nCase Study: Australian election data\n\n\n\n\n6\n07 Apr\nCase Study: Combining census and election data\n\n\n\n\n7\n14 Apr\nCase Study: PD model and credit risk\n\n\n\n\n\n21 Apr\nMid-semester break\n\n\n\n\n9\n28 Apr\nCase Study: Data ethics and privacy\n\n\n\n\n10\n05 May\nCase Study: TBC\n\n\n\n\n11\n12 May\nCase Study: Introduction to webscraping\n\n\n\n\n12\n19 May\nRevision: Proper care and feeding of wild caught data"
+    "text": "Schedule\n\n\n\nWeek\nDate\nTopic\nTutorial\nSolution\n\n\n\n\n1\n03 Mar\nOpen data: definitions, sources and examples\n\n\n\n\n2\n10 Mar\nIntroduction to data collection methods\n\n\n\n\n3\n17 Mar\nCase Study: TBC\n\n\n\n\n4\n24 Mar\nCase Study: Australian census\n\n\n\n\n5\n31 Mar\nCase Study: Australian election data\n\n\n\n\n6\n07 Apr\nCase Study: Combining census and election data\n\n\n\n\n7\n14 Apr\nCase Study: PD model and credit risk\n\n\n\n\n\n21 Apr\nMid-semester break\n\n\n\n\n9\n28 Apr\nCase Study: Data ethics and privacy\n\n\n\n\n10\n05 May\nCase Study: TBC\n\n\n\n\n11\n12 May\nCase Study: Introduction to webscraping\n\n\n\n\n12\n19 May\nRevision: Proper care and feeding of wild caught data"
+  },
+  {
+    "objectID": "week2/index.html#etc5523-title",
+    "href": "week2/index.html#etc5523-title",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "ETC5512",
+    "text": "ETC5512\nLecture 2: Introduction to Data Collection Methods\nLecturer: Kate Saunders\nDepartment of Econometrics and Business Statistics\n\n\n\n\nETC5512.Clayton-x@monash.edu\n\n\n Wild Caught Data\n\n\n wcd.numbat.space"
+  },
+  {
+    "objectID": "week2/index.html#what-would-you-be-curious-about",
+    "href": "week2/index.html#what-would-you-be-curious-about",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What would you be curious about … ?",
+    "text": "What would you be curious about … ?\n\n… about air travel in the USA?"
+  },
+  {
+    "objectID": "week2/index.html#what-would-you-be-curious-about-1",
+    "href": "week2/index.html#what-would-you-be-curious-about-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What would you be curious about … ?",
+    "text": "What would you be curious about … ?\n\n… about people in Australia?"
+  },
+  {
+    "objectID": "week2/index.html#what-would-you-be-curious-about-2",
+    "href": "week2/index.html#what-would-you-be-curious-about-2",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What would you be curious about … ?",
+    "text": "What would you be curious about … ?\n\n… about how people vote in Australia?"
+  },
+  {
+    "objectID": "week2/index.html#what-would-you-be-curious-about-3",
+    "href": "week2/index.html#what-would-you-be-curious-about-3",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What would you be curious about … ?",
+    "text": "What would you be curious about … ?\n\n… About Animals in Australia"
+  },
+  {
+    "objectID": "week2/index.html#section",
+    "href": "week2/index.html#section",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Data Analysis starts with curiosity\nbut needs to be\ntempered with skepticism"
+  },
+  {
+    "objectID": "week2/index.html#todays-lecture",
+    "href": "week2/index.html#todays-lecture",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Today’s lecture",
+    "text": "Today’s lecture\n\n\n\n\n\n\nWhat we’ll cover:\n\n\n\nAsking questions about our data\nThinking about if our data is suitable to answer those questions\nThat means learning about different types of sampling\nLearn about how data is collected"
+  },
+  {
+    "objectID": "week2/index.html#planet-cute-creatures",
+    "href": "week2/index.html#planet-cute-creatures",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Planet Cute Creatures",
+    "text": "Planet Cute Creatures\n\n\n\n\n\n\n\nQuestions\n\n\n\n\nHow many yellow, green and red alien creatures?\nWhat is the distribution of the height of the alien creatures?\nAre yellow creatures more likely to have hair?\nDoes the hair growth formula work on these creatures?"
+  },
+  {
+    "objectID": "week2/index.html#section-1",
+    "href": "week2/index.html#section-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Now that we have a question\n\nwe can find/use/collect data\n\nto obtain answers."
+  },
+  {
+    "objectID": "week2/index.html#how-do-we-get-the-data",
+    "href": "week2/index.html#how-do-we-get-the-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "How do we get the data?",
+    "text": "How do we get the data?\n\n\nWhat is the population?\n\n\nIt is rare to have resources to measure ALL of the population, take we a sample."
+  },
+  {
+    "objectID": "week2/index.html#section-2",
+    "href": "week2/index.html#section-2",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Population parameters:\n\nGreen: 6/53=0.113,\n\nYellow: 22/53=0.416,\n\nRed: 25/53=0.472.\n\nTypically don’t know the values.\n\n\nSample statistics:\n\nGreen: 1/21=0.048,\n\nYellow: 10/21=0.476,\n\nRed: 10/21=0.476.\n\nAre estimates of true parameters."
+  },
+  {
+    "objectID": "week2/index.html#understanding-the-population",
+    "href": "week2/index.html#understanding-the-population",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Understanding the population",
+    "text": "Understanding the population\n\n\n\n\n\n\nImportant\n\n\nCollecting data on the entire population is normally too expensive or infeasible!\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\nIf we can collect data on the entire population it is called a census\nOften only collect data only on a subset of the population.\nSo how should we sample the population?\nThere are many sampling schemes!"
+  },
+  {
+    "objectID": "week2/index.html#why-sample",
+    "href": "week2/index.html#why-sample",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Why sample",
+    "text": "Why sample\n\n\n\n\n\n\n\nGoal of a sampling scheme\n\n\nWe want to get accurate information from the sample in order to answer your question about the population."
+  },
+  {
+    "objectID": "week2/index.html#when-sampling-think-about",
+    "href": "week2/index.html#when-sampling-think-about",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "When sampling think about",
+    "text": "When sampling think about\n\n\n\n\n\n\nThink!!!\n\n\nAccurate sampling involves identifying:\n\n\nThe population of interest (e.g. if studying about male baldness pattern, your population of interest is the biologically male population),\nwhat responses (dependent variables) or covariates (explanatory or independent or predictor variables) to capture and how to measure it (e.g. do you collect their age? Which range of age they are in? Their hair count? The thickness of the hair?),\nthe sample size (how many samples do we need?),\nany structure that will be in the data (e.g. population structures, repeated cross-sectional data, panel or longitudinal data), and\nany restrictions (e.g. ethical concerns, limitation on collecting data)."
+  },
+  {
+    "objectID": "week2/index.html#some-sampling-types",
+    "href": "week2/index.html#some-sampling-types",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Some sampling types",
+    "text": "Some sampling types\n\n\n\n\n\n\n\n\nSimple random sampling\n\n\nEvery unit in the population has the same sample probability to be drawn.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStratified random sampling\n\n\nUnits are drawn from non-overlapping sub-populations."
+  },
+  {
+    "objectID": "week2/index.html#sampling-strategies",
+    "href": "week2/index.html#sampling-strategies",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Sampling strategies",
+    "text": "Sampling strategies\n\n\n\n\n\n\nSampling strategies combine knowledge about the population with statistical methods.\n\n\nFor example:\n\n\ndesigning so your sample estimates give (theoretically) unbiased estimates of the population parameters,\nsample so the data will be representative of the subpopulations (e.g. stratified random sampling), or\noversampling or undersampling to compensate for imbalance in classes.\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n What might go wrong with a simple random sampling of 10 creatures from this population?"
+  },
+  {
+    "objectID": "week2/index.html#random-and-non-random-selections",
+    "href": "week2/index.html#random-and-non-random-selections",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Random and non-random selections",
+    "text": "Random and non-random selections\nUnits (population members) ideally are sampled randomly, but often selections are made in a non-random manner.\n\n\n\n\n\n\nExample\n\n\nIf I survey every 10th household in a street, is that a random selection?\n\n\n\n\n\n\n\n\n\nImportant\n\n\nWhat do you think can go wrong if we don’t sample randomly?"
+  },
+  {
+    "objectID": "week2/index.html#whats-wrong-with-these-examples",
+    "href": "week2/index.html#whats-wrong-with-these-examples",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What’s wrong with these examples?",
+    "text": "What’s wrong with these examples?\n\n\n\n\n\n\nBreakout Session: Discussion\n\n\n\nYou want to know the attitude of the creatures aboout working at home.\nSo you call phone numbers listed in the order of telephone directory and stop when you have 20 observations.\nYou want to get the hair count distribution of the Planet Cute Creatures population.\nSo you sample creatures from the Society of Bald Extraterrestrials.\nItems 1 and 2 are toy examples. Do you know of any examples of bad sample design in the real world?"
+  },
+  {
+    "objectID": "week2/index.html#reality-of-data-collection",
+    "href": "week2/index.html#reality-of-data-collection",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Reality of data collection",
+    "text": "Reality of data collection\n\n\n\n\n\n\n\nDesigning a data collection is hard.\n\n\n\n\nThere may be unknown or hidden structures in the population.\nIt may add complex structural elements, e.g.\n\nCross-sectional, repeated cross-sectional (e.g. case-control),\nPanel or longitudinal (e.g. cohort studies), and so on.\nClusters or hierarchies (e.g. students in schools in states)\n\nYou may have introduce unintended or unknown structures in the data, e.g. confounded variables.\nIt’s further complicated by:\n\nNon-response,\nMissing data,\nMis-measured data,\nDropouts, and censoring,\n….. 😱"
+  },
+  {
+    "objectID": "week2/index.html#observational-studies",
+    "href": "week2/index.html#observational-studies",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Observational Studies",
+    "text": "Observational Studies\n\n\n\n\n\n\nObservational Studies\n\n\n\n\nSampling from a population typically yields data considered to be an observational studies.\nAlmost all open data are from observational studies.\nAn observational study aims to draw inferences about a population from a sample where independent variables are not intentionally allocated to units within the sample for the purpose of a study.\nData considered in observational studies are observational data."
+  },
+  {
+    "objectID": "week2/index.html#examples-of-observational-studies",
+    "href": "week2/index.html#examples-of-observational-studies",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Examples of Observational Studies",
+    "text": "Examples of Observational Studies\n\n\n\n\n\n\nTip\n\n\n\nWho will win the 2022 Australian federal election?\nSurvey households\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nWhere are the best schools?\nGovernment administrative data\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nWho is buying my products?\nCustomer database"
+  },
+  {
+    "objectID": "week2/index.html#experimental-studies",
+    "href": "week2/index.html#experimental-studies",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Experimental studies",
+    "text": "Experimental studies\n\n\n\n\n\n\nExperimental studies\n\n\n\nA scientific claim generally needs to be validated by an experimental study.\nIn an experimental study, a causal variable of interest (referred to as treatment) is administered to recipients while holding other covariates at controlled settings to observe responses.\nData from an experiment are referred to as experimental data."
+  },
+  {
+    "objectID": "week2/index.html#examples",
+    "href": "week2/index.html#examples",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Examples",
+    "text": "Examples\n\n\n\n\n\n\n\nTip\n\n\n\nIs the vaccine effective against flu?\nThe data of whether the person who was administered the vaccine or placebo caught the flu afterwards.\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nWhich fertiliser brand is most effective for wheat yield?\nYield data from crop field trial with plots treated with one of the three fertiliser brands.\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nDoes the A/B website design affect customer purchase rates?\nPurchase data from an experiment where customers were randomly shown either version A or B of the website."
+  },
+  {
+    "objectID": "week2/index.html#experimental-units",
+    "href": "week2/index.html#experimental-units",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Experimental units",
+    "text": "Experimental units\n\n\n\n\n\n\n\nNote\n\n\nExperimental units are recipients of the allocated treatment such that no sub-division of it can receive another treatment independently.\n\nFor the fertiliser example: The experimental units are the plots of land (fields) receiving different fertilisers.\nFor the vaccine example: The experimental units are the individual patients who receive either vaccine or placebo.\nIn the A/B testing example: The experimental units are the individual website visitors who see version A or B."
+  },
+  {
+    "objectID": "week2/index.html#observational-units",
+    "href": "week2/index.html#observational-units",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Observational units",
+    "text": "Observational units\n\n\n\n\n\n\n\nNote\n\n\nObservational units are units that you measure the response on.\n\nFor the fertiliser example: The observational units are the same plots of land where wheat yield is measured.\nFor the vaccine example: The observational units are the same individual patients whose flu status is observed.\nIn the A/B testing example: The observational units are the same website visitors whose purchasing behavior is tracked."
+  },
+  {
+    "objectID": "week2/index.html#observational-units-1",
+    "href": "week2/index.html#observational-units-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Observational Units",
+    "text": "Observational Units\n\n\n\n\n\n\n\n\nNote\n\n\n\nObservational unit is not the observation (the response)! The wheat yield, flu status, and purchase decisions are the observations, not the observational units.\nSometimes the experimental units are the same as the observational units, as in these examples."
+  },
+  {
+    "objectID": "week2/index.html#concept-check",
+    "href": "week2/index.html#concept-check",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Concept check",
+    "text": "Concept check\n\n\n\n\n\n\n\nWarning\n\n\n\nProf Android delivers their lecture by reciting word-to-word from the text in a monotone.\nProf Alien delivers their lecture by transmitting the information directly to the students mind.\nYou want to see if one of the methods is more effective.\nStudents in class 1, 3, 4, 7 and 10 have Prof Android.\nStudents in class 2, 5, 6, 8 and 9 have Prof Alien.\n\n\n\n\n\n\n\n\n\n\n\nWhat are the experimental units?\n\n\n\n\nIt’s the classes."
+  },
+  {
+    "objectID": "week2/index.html#concept-check-1",
+    "href": "week2/index.html#concept-check-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Concept Check",
+    "text": "Concept Check\n\n\n\n\n\n\n\nWarning\n\n\nCarrying on from the previous example…\n\nStudents all sit for the same exam.\nYou record the exam mark for each student.\n\n\n\n\n\n\n\n\n\n\n\nWhat are the observational units?\n\n\n\n\nIt’s the students."
+  },
+  {
+    "objectID": "week2/index.html#example-french-fries-hot-chips",
+    "href": "week2/index.html#example-french-fries-hot-chips",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Example: french fries (hot chips)",
+    "text": "Example: french fries (hot chips)\n\n\n10 week sensory experiment, 12 individuals assessed taste of french fries on several scales, fried in one of 3 different oils, replicated twice."
+  },
+  {
+    "objectID": "week2/index.html#example-french-fries-hot-chips-1",
+    "href": "week2/index.html#example-french-fries-hot-chips-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Example: french fries (hot chips)",
+    "text": "Example: french fries (hot chips)\n\n\n\n\n\n\n\n\nStudy details\n\n\n\nThe treatment is oil, and there are 3 of them.\nThe experimental units are batches of chips.\nThe observational units are the tasters.\nReplication is the two batches of each oil for each week.\nWeeks could be considered to be blocks, because the taste might change as the oil ages.\nThe outcome or measured variable is the rating factor. There are five taste factors recorded.\nRandomisation applied to order of tasting (probably), but tasters should be blind to the type of oil."
+  },
+  {
+    "objectID": "week2/index.html#systematic-design-of-experiments",
+    "href": "week2/index.html#systematic-design-of-experiments",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Systematic Design of Experiments",
+    "text": "Systematic Design of Experiments\nRandomisation is applied to order of tasting (probably).\n\n\n\n\n\n\nCaution\n\n\n\n\nWhy don’t we order the treatments in a systematic order?\nIsn’t this easier to manage the experiment?\nSystematic designs are prone to bias and confounding."
+  },
+  {
+    "objectID": "week2/index.html#randomisation",
+    "href": "week2/index.html#randomisation",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Randomisation",
+    "text": "Randomisation\n\n\n\n\n\n\nTreatments\n\n\n\nTreatments should be allocated randomly to experimental units.\n\nThis avoids:\n\n\nsystematic bias - e.g. all flu vaccine A tested in January (summer) and all flu vaccine B tested in July (winter).\nselection bias - e.g. giving the treatment that you are testing to the sick patients and placebo to those that are healthy.\nother bias - e.g. the lab technician giving the treatment to the first rat that is taken out of the cage."
+  },
+  {
+    "objectID": "week2/index.html#blocking",
+    "href": "week2/index.html#blocking",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Blocking",
+    "text": "Blocking\nBlocks are used to group the experimental units into alike units.\n\n\n\n\n\n\nBlocking\n\n\n\n\nIf well done, blocking can lower the variance of treatment contrasts which increase power.\nA non-homogeneous block (i.e. units within block are not alike) can decrease the power of the experiment.\nYou can form blocks from Natural discrete divisions between experimental units.\ne.g. in experiments with people, the gender and age groups makes an obvious block.\nGrouping experimental units with similar continuous gradients.\ne.g., if the experiment is spread out in time or space and there exists no obvious natural boundaries, then an arbitrary boundary may be chosen to group experimental units that are contiguous in time or space."
+  },
+  {
+    "objectID": "week2/index.html#the-salk-vaccine-field-trial",
+    "href": "week2/index.html#the-salk-vaccine-field-trial",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "The Salk Vaccine Field Trial",
+    "text": "The Salk Vaccine Field Trial\n\n\n\n\n\n\nSalk Vaccine Field Trial\n\n\n\nThe first polio epidemic hit the United States in 1916 claiming hundreds of thousands of victims, especially children.\nNational Foundation for Infantile Paralysis (NFIP) was ready to test the vaccine developed by Jonas Salk in the real world.\nA controlled experiment was proposed to test the effectiveness of the vaccine on grade 1, 2 and 3 children at selected school districts though the country where the risk of polio was high.\nIn total two million children were involved although not all parents consented to their children to be vaccinated.\n\nSource: Freedman, Pisani & Purves (2010) Statistics. 4th edition"
+  },
+  {
+    "objectID": "week2/index.html#trial-design",
+    "href": "week2/index.html#trial-design",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Trial Design",
+    "text": "Trial Design\n\n\n\n\n\n\n\n\nDesign for the NFIP Study\n\n\nVaccinate all grade 2 children whose parents would consent, leaving children in grades 1 and 3 as controls.\n\nCan grade 2 children whose parents did not consent be included as control?\nWhat are the potential issues with such a design?\nPolio is a contact disease. Would incidences of disease be higher in grade 2?\n\n\n\n\n\n\n\n\n\n\n\nRandomised controlled trial\n\n\nAn alternate vaccine trial randomly assigned the vaccine and placebo to children."
+  },
+  {
+    "objectID": "week2/index.html#some-study-details",
+    "href": "week2/index.html#some-study-details",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Some study details",
+    "text": "Some study details\n\n\n\n\n\n\nDetails\n\n\n\nThe rate is the number of polio cases per 100,000 in each group.\nRCT and NFIP trial sampled from school districts with similar exposures to the polio virus.\nGroups labelled with Not Vaccination (no consent), Control and Placebo group did not receive the vaccine.\n\n\n\n\n\n\n\n\n\n\nResults\n\n\nLet’s take a look at the results now - Why is the rate of polio cases different?"
+  },
+  {
+    "objectID": "week2/index.html#vaccine-results",
+    "href": "week2/index.html#vaccine-results",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Vaccine Results",
+    "text": "Vaccine Results\n\n\n\nThe NFIP Study\n\n\nGroup\nParticipants\nRate\n\n\n\n\nVaccinated (Grade 2)\n221,998\n25\n\n\nControl (Grade 1 & 3)\n725,173\n54\n\n\nNot Vaccination (Grade 2, no consent)\n123,605\n44\n\n\nIncomplete Vaccination(Grade 2, incomplete)\n9,904\n40\n\n\n\n\n\nRandomised controlled trial\n\n\nGroup\nParticipants\nRate\n\n\n\n\nVaccinated\n200,745\n28\n\n\nPlacebo\n201,229\n71\n\n\nNot Vaccination(no consent)\n338,778\n46\n\n\nIncomplete Vaccination\n8,484\n24"
+  },
+  {
+    "objectID": "week2/index.html#possible-explanations",
+    "href": "week2/index.html#possible-explanations",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Possible explanations",
+    "text": "Possible explanations\n\n\n\n\n\n\nTip\n\n\n\n\nHigher income parents would more likely consent to treatment than lower-income parents.\nChildren of higher income parents are more vulnerable to polio.\nMany forms of polio are hard to diagnose and in borderline cases."
+  },
+  {
+    "objectID": "week2/index.html#limitations-in-social-experiments",
+    "href": "week2/index.html#limitations-in-social-experiments",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Limitations in (social) experiments",
+    "text": "Limitations in (social) experiments\n\n\n\n\n\n\nThink about\n\n\n\nCooperation needed from participants\nEthical objections\nSubstitution bias\nSample attrition\nHawthorne effect\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nBasically, designing and running experiments are hard."
+  },
+  {
+    "objectID": "week2/index.html#taxonomy-of-types-of-data-studies",
+    "href": "week2/index.html#taxonomy-of-types-of-data-studies",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Taxonomy of types of data studies",
+    "text": "Taxonomy of types of data studies\n\n\n\n\n\n\nTypes\n\n\n\n\nExperimental data: the gold standard of data collection, but very difficult\nObservational data:\n\ncensus: all (or close to all) members of the population are measured\nsurvey sample: each member of the population has a known probability of being selected into the sample, eg cohort study, cross-sectional, case-control, cluster/hierarchical, multi-stage\nnon-random sample: it is not known how the sample relates to the population\ncensored: events might happen outside of observation interval, eg observed up to 30,000km but brake failure was at 45,000 km\noccurrences: only when an incident is observed is it recorded, eg wildlife sightings, warranty claims, complaints"
+  },
+  {
+    "objectID": "week2/index.html#important-1",
+    "href": "week2/index.html#important-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Important",
+    "text": "Important\n\n\n\n\n\n\n\nSample and Population\n\n\nKnowing how the sample of data relates to the population is an essential ingredient for making inferential statements and making decisions with data."
+  },
+  {
+    "objectID": "week2/index.html#observational-what-type-or-experimental-data",
+    "href": "week2/index.html#observational-what-type-or-experimental-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Observational (what type) or experimental data?",
+    "text": "Observational (what type) or experimental data?\n\n\n\n\n\n\nWhat type of data is ?\n\n\nData: Airline traffic (on-time performance database) in the USA as available from https://www.bts.gov.\nWhat is in it: Records of every commercial flight operated in the USA since the 1980s, that has carried passengers.\n\n\nOBSERVATIONAL, CENSUS\nAlways ask yourself “What is missing?”"
+  },
+  {
+    "objectID": "week2/index.html#observational-what-type-or-experimental-data-1",
+    "href": "week2/index.html#observational-what-type-or-experimental-data-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Observational (what type) or experimental data?",
+    "text": "Observational (what type) or experimental data?\n\n\n\n\n\n\nWhat type of data is ?\n\n\nData: National Longitudinal Survey of Youth 1979 from the US Bureau of Labour Statistics https://www.nlsinfo.org/content/cohorts/NLSY79\nWhat is in it: Records data about people born between 1957 and 1964. At the time of first interview, respondents’ ages ranged from 14 to 22.\n\n\nOBSERVATIONAL, SURVEY SAMPLE\nAlways ask yourself “What is the population?”"
+  },
+  {
+    "objectID": "week2/index.html#observational-what-type-or-experimental-data-2",
+    "href": "week2/index.html#observational-what-type-or-experimental-data-2",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Observational (what type) or experimental data?",
+    "text": "Observational (what type) or experimental data?\n\n\n\n\n\n\nWhat type of data is ?\n\n\nData: Atlas of Living Australia at https://www.ala.org.au.\nWhat is in it: The Atlas of Living Australia (ALA) is a collaborative, digital, open infrastructure that pulls together Australian biodiversity data from multiple sources, making it accessible and reusable.\nThe ALA helps to create a more detailed picture of Australia’s biodiversity for scientists, policy makers, environmental planners and land managers, industry and the general public, and enables them to work more efficiently.\n\n\nOBSERVATIONAL, OCCURRENCE\nAlways ask yourself “What is missing?” and “What is the population?”"
+  },
+  {
+    "objectID": "week2/index.html#observational-what-type-or-experimental-data-3",
+    "href": "week2/index.html#observational-what-type-or-experimental-data-3",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Observational (what type) or experimental data?",
+    "text": "Observational (what type) or experimental data?\n\n\n\n\n\n\nData\n\n\nData / what is it: The US National Institute of Health provides a catalog of medical studies including many COVID studies. Here is one that studies the “Safety and Efficacy of C21 in Subjects With COVID-19”.\n\n\nEXPERIMENTAL\nThink about what are the treatments? Experimental units? Outcome measure? Randomisation?"
+  },
+  {
+    "objectID": "week2/index.html#summary",
+    "href": "week2/index.html#summary",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Summary",
+    "text": "Summary\n\n\n\n\n\n\nIntroduction to Data Collection Methods\n\n\n\n\nEncouraged you to be curious about your data!\nNow understand the difference between sample vs population\nCovered important aspects to sampling design\nExposed you to different types of data collection methods\nGoing forward: Think critically about whether the data collected is suitable for what you are curious about!"
+  },
+  {
+    "objectID": "week2/index.html#ex-tropical-cyclone-alfred",
+    "href": "week2/index.html#ex-tropical-cyclone-alfred",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Ex-Tropical Cyclone Alfred",
+    "text": "Ex-Tropical Cyclone Alfred\n\n\n\n\n\n\nNews and Warnings\n\n\n\nLatest News 10 hrs ago ABC\nLatest News 2 hrs ago ABC\nQueensland Warning Dashboard\nNew South Wales Warning Dashboard"
+  },
+  {
+    "objectID": "week2/index.html#warning-value-chain",
+    "href": "week2/index.html#warning-value-chain",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Warning-Value Chain",
+    "text": "Warning-Value Chain\n\n\n\n\nHoffmann, D., Ebert, E. E., Mooney, C., Golding, B., & Potter, S. (2023). Using value chain approaches to evaluate the end-to-end warning chain. Advances in Science and Research, 20, 73-79."
+  },
+  {
+    "objectID": "week2/index.html#todays-drop-in-practice",
+    "href": "week2/index.html#todays-drop-in-practice",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Today’s Drop In & Practice",
+    "text": "Today’s Drop In & Practice\n\n\n\n\n\n\nYour Job:\n\n\n\nFind data sets that are useful along the warning value chain\nCheck licences for those data sets, are they open?\nReview the data sets for FAIR Principles and 5-star quality\nThese data sets are important for\n\nInnovating / creating solutions\nEvaluating warning response\nPlanning for the future"
+  },
+  {
+    "objectID": "week2/index.html#ipcc-ar6-risk-framework",
+    "href": "week2/index.html#ipcc-ar6-risk-framework",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "IPCC AR6 Risk Framework",
+    "text": "IPCC AR6 Risk Framework\nIn addition to the warning value chain consider:"
+  },
+  {
+    "objectID": "week2/index.html#to-get-you-started",
+    "href": "week2/index.html#to-get-you-started",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "To get you started",
+    "text": "To get you started\n\n\n\n\n\n\nTry to find some of your own!\n\n\n\nNearby Emergency Services\nLive Traffic NSW and Qld Traffic\nQld Power: Energex\nBureau of Meteorology\n\n\n\n\n\n\n\n\nETC5512"
   },
   {
     "objectID": "assignments/Assignment1.html",
@@ -61,5 +460,425 @@
     "title": "Assignment 1",
     "section": "Submission (10 marks)",
     "text": "Submission (10 marks)\n\nAnswer the questions and submit your report about the data using the Quarto template provided. We do not use word documents in this unit as we want our work to be fully reproducible.\nSubmit all code needed to process the data to create the subset.\nEnsure your code will run, and you report will build on another computer. This is important so we can reproduce your report. (Do not submit direct file paths!)\nEnsure your code is neat and tidy.\nInclude an AI acknowledgement and include links to all queries. Here is an example of some queries. These contain important assignment hints.\nInclude all relevant citations and be sure to cite all R packages used. The function ?citation() will be helpful here."
+  },
+  {
+    "objectID": "week1/index.html#etc5523-title",
+    "href": "week1/index.html#etc5523-title",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "ETC5512",
+    "text": "ETC5512\nWild Caught Data\nLecturer: Kate Saunders\nDepartment of Econometrics and Business Statistics\n\n\n\n\nETC5512.Clayton-x@monash.edu\n\n\n Lecture 1\n\n\n&lt;a href=“wcd.numbat.space”&gt;wcd.numbat.space"
+  },
+  {
+    "objectID": "week1/index.html#todays-lecture",
+    "href": "week1/index.html#todays-lecture",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Today’s lecture",
+    "text": "Today’s lecture\n\n\n\n\n\n\nWhat we’ll cover:\n\n\n\nUnit overview and details\nAn Introduction to Open Data\n\nSocietal importance of open data\nWhat makes high quality open data\nLearn about the different types of open data\n\nGetting you set up in R (Drop In Session)"
+  },
+  {
+    "objectID": "week1/index.html#about-your-lecturer",
+    "href": "week1/index.html#about-your-lecturer",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "About your Lecturer",
+    "text": "About your Lecturer\n\n\n\n\n\nKate Saunders\nLecturer at Monash University\n\n\n\n🎓 PhD in Statistics\n🌏 Home State is Queensland\n👩‍💻 Research is in statistics of climate extremes\n👨‍💻 Passionate about open data, data visualisation and data ethics\n👨‍💻 Started R coding in 2012 (before tidyverse!)\n❤️ Hobby is playing basketball."
+  },
+  {
+    "objectID": "week1/index.html#about-your-instructor",
+    "href": "week1/index.html#about-your-instructor",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "About your Instructor",
+    "text": "About your Instructor\n\n\n\n\n\nKrisanat Anukarnsakulchularp\nPhD Candidate at Monash University\n\n\n\n🎓 Graduated in Masters in Business Analytics\n🎓 Monash local since undergrad\n🌎 Home Country is Thailand\n👩‍💻 Just started his PhD, he’s researching network visualisation\n👩‍💻 Recently published an R package called animbook!\n❤️ Hobby is playing music."
+  },
+  {
+    "objectID": "week1/index.html#about-your-instructor-1",
+    "href": "week1/index.html#about-your-instructor-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "About your Instructor",
+    "text": "About your Instructor\n\n\n\n\n\nMaliny Po\nGraduated in Masters in Business Analytics\n\n\n\n👨‍🎓 Undergraduate degree in International Trade and Business Logistics. \n👨‍💻 Former Student in Wild Caught Data.\n👩‍💻 Recently published a data viz package called Sugarglider, as part of the Google Summer of Code program.\n❤️ Enjoys reading books, lego and a good cup of coffee."
+  },
+  {
+    "objectID": "week1/index.html#lets-get-to-know-each-other",
+    "href": "week1/index.html#lets-get-to-know-each-other",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Let’s Get to Know Each Other!",
+    "text": "Let’s Get to Know Each Other!\n\n\n\n\n\n\nBreakout Sesson: Your turn 📝\n\n\n\nWhat was your undergraduate degree in?\nWhat’s your profession or profession you are interested to get in?\n\nWhat’s your hobby?\nWhat’s a fun fact you want everyone to know (about you)?\nIf you could work with any data set what would it be?\n\n\n\n\n\nInstructor notes: - Give students 2-3 minutes to think about answers - Have them share in small groups first - Then ask for volunteers to share with the whole group - Try to identify common interests or unique backgrounds\n\n\n\n\n\n\n\nQuick tip\n\n\nFinding connections with your classmates now can lead to great project collaborations later!"
+  },
+  {
+    "objectID": "week1/index.html#about-the-unit",
+    "href": "week1/index.html#about-the-unit",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "About the unit",
+    "text": "About the unit\n\n\n\n\n\n\nUnit Design\n\n\n\n\n2 hours of seminars each week\n1 hour tutorial each week\nExpect ~12 hours of contact and study each week\nWe are learning to code. You will need to keep up with the material.\nComing to classes and consultations will help you!\nThere is also a drop in and practice session!"
+  },
+  {
+    "objectID": "week1/index.html#learning-objectives",
+    "href": "week1/index.html#learning-objectives",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Learning Objectives",
+    "text": "Learning Objectives\n\n\n\n\n\n\nAt the end of this unit you will be able to:\n\n\n\n\nUnderstand the definitions, allowed usage, digital identification and licensing of open data\nKnow about common open data sources, how they are used and effectively search for new sources\nExplain the differences between data collection methods and the limitations for data analysis\nWork with the range of different data formats of open data, including APIs\nUnderstand ethical constraints and privacy limits when working with open data\nRecognise the components of effective curation needed for open data."
+  },
+  {
+    "objectID": "week1/index.html#drop-in-sessions",
+    "href": "week1/index.html#drop-in-sessions",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Drop In Sessions",
+    "text": "Drop In Sessions\n\n\n\n\n\n\nNEW: Drop in and Practice Session\n\n\n\n\nWe’ll use these to flesh out ideas from lectures\nThese will be recorded\nThe format will change week to week depending on unit needs.\nSometimes I’ll run through examples and live code.\nSometimes I’ll answer your questions.\nSometimes I’ll run through topics to supplement your learning.\nEmail me through each week questions you’d like me to work through!"
+  },
+  {
+    "objectID": "week1/index.html#assessments",
+    "href": "week1/index.html#assessments",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Assessments",
+    "text": "Assessments\n\n\n\n\n\n\nAssignments\n\n\n\n\n4 assignments worth 25% each\n100% of your total grade\nAssignment 1 will cover content from weeks 1 to 3 (Due week 4)\nAssignment 2 will cover content from weeks 4 to 6 (Due week 7)\nAssignment 3 will cover content from weeks 7 to 9 (Due week 10)\nAssignment 4 will cover content from weeks 1 to 12 (Due in exam block)\nYou’ll get at least 2 weeks to complete each assignment.\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nFailure to submit and notify the CE accordingly will result in a zero score for the assignment.\nIf you miss more than one assignment you will need to re-take the unit at a later date."
+  },
+  {
+    "objectID": "week1/index.html#assessments-1",
+    "href": "week1/index.html#assessments-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Assessments",
+    "text": "Assessments\n\n\n\n\n\n\nSpecial Consideration\n\n\n\n\nApply for special consideration centrally. (This includes short extensions of 48 hours)\nIf you need special consideration, apply ASAP and no later than 11.55 pm on the day your assessment is due.\nYou can miss an assignment through illness, or personal difficulty. In that instance, provided you’ve applied for special consideration, I can grant permission to complete a replacement assignment instead at a later date."
+  },
+  {
+    "objectID": "week1/index.html#unit-resources",
+    "href": "week1/index.html#unit-resources",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Unit Resources",
+    "text": "Unit Resources\n\n\n\n\n\n\n\nTwo Locations\n\n\n\nUnit Website: Everything is displayed on the same page and is easy to access\nMoodle: Where you submit your assignments, the discussion forum is located and I’ll make unit announcements.\nUnit Github: Contains all the code, data etc to produce the unit content and website."
+  },
+  {
+    "objectID": "week1/index.html#where-to-go-if-you-need-help",
+    "href": "week1/index.html#where-to-go-if-you-need-help",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Where to go if you need help",
+    "text": "Where to go if you need help\n\n\n\n\n\n\n1. Ask your peers using the discussion forum\n\n\nSuitable for:\n\n\nGeneral questions about course materials, tutorials, R or assignment clarifications.\nAny emails regarding general matters will be redirected to the discussion forums.\nSharing helps you learn from each other!\nAlso I don’t want to answer the same question twice (three times, four times etc.)\nDo not post code from your assignments or any assignment hints to the discussion portal. I may deduct marks"
+  },
+  {
+    "objectID": "week1/index.html#where-else-to-go-if-you-need-help",
+    "href": "week1/index.html#where-else-to-go-if-you-need-help",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Where else to go if you need help",
+    "text": "Where else to go if you need help\n\n\n\n\n\n\n2. Attend Consultation\n\n\nSuitable for:\n\n\nWhen you need more specific one-on-one help\nWorking through problems with your tutor\nGetting a head start on your assignments\nSupport debugging your code\nAsking detailed questions about your assignments\nGetting additional feedback on your assessments\nBeing really nerdy about the unit!"
+  },
+  {
+    "objectID": "week1/index.html#for-personal-and-urgent-inqueries",
+    "href": "week1/index.html#for-personal-and-urgent-inqueries",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "For personal and urgent inqueries",
+    "text": "For personal and urgent inqueries\n\n\n\n\n\n\nUnit Email\n\n\nSuitable for:\n\n\nFor personal questions or issues email ETC5512.Clayton-x@monash.edu.\nResponse times are within 1 - 2 days but may vary during busy periods.\nAlso email if you notice issues with assessments or Moodle.\nFor remarking or to get feedback on your assessment from your tutor, your must email within 10 days of receiving your marks.\nDo not direct emails to my staff account, I receive a high volume of high volume of emails and they risk going into a black hole and never being seen again!"
+  },
+  {
+    "objectID": "week1/index.html#raw-ingredients-or-final-product",
+    "href": "week1/index.html#raw-ingredients-or-final-product",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Raw Ingredients or Final Product?",
+    "text": "Raw Ingredients or Final Product?\n\n\nThink about this unit in the way Dr Mine Çetinkaya-Rundel describes in this talk: “Let them eat cake (first)”\n Imagine you’re new to baking, and you’re in a baking class.\n There are two options: which gives you better sense of the final product?"
+  },
+  {
+    "objectID": "week1/index.html#the-cooking-analogy",
+    "href": "week1/index.html#the-cooking-analogy",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "The Cooking Analogy",
+    "text": "The Cooking Analogy\n\n\n\n\n\n\n\n\nThe Textbook Learner\n\n\n\nStudies cuisine history and science first\nMemorises ingredients and properties\nLearns techniques one at a time\nReads recipes multiple times before attempting\nMeasures everything precisely\nUnderstands the chemistry\nFollows instructions to the letter\n\n\n\n\n\n\n\n\n\n\n\nThe Example Learner\n\n\n\nWatches experienced cooks in action\nJumps in and recreates dishes they’ve seen\nLearns through trial and error\nFocuses on outcome rather than process\nBuilds intuition through observation\nDevelops “feel” through practice\nAdapts recipes based on experience"
+  },
+  {
+    "objectID": "week1/index.html#how-do-you-learn-best",
+    "href": "week1/index.html#how-do-you-learn-best",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "How Do You Learn Best?",
+    "text": "How Do You Learn Best?\n\n\n\n\n\n\nBreakout Discussion\n\n\n\nWhich approach feels more natural to you?\nWhat are the advantages of each?\nWhen might one approach work better than the other?\nHow can understanding your learning style help you succeed?"
+  },
+  {
+    "objectID": "week1/index.html#unit-philosophy-1",
+    "href": "week1/index.html#unit-philosophy-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Unit Philosophy",
+    "text": "Unit Philosophy\n\n\n\n\n\n\n\nCakes and Case Studies\n\n\n\n\nThe case studies you will see in this unit are the cakes.\nBy showing you what these case studies look like (cakes), we are helping you learn how to perform your own data analysis studies by example!\nThis may be different to how you’ve learnt in the past.\nPlease approach this unit philosophy with openness.\nAnd for textbook learners: Check out the textbook R for data science"
+  },
+  {
+    "objectID": "week1/index.html#open-data-is",
+    "href": "week1/index.html#open-data-is",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Open Data is …",
+    "text": "Open Data is …\n\n\n\n\n\n\n\nOpen data is … 1\n\n\n\na raw material for the digital age but,\nit’s unlike coal, timber or diamonds,\nit can be used by anyone and everyone at the same time.\n\n\n\n\nhttps://www.europeandataportal.eu/elearning/en/module1/#/id/co-01"
+  },
+  {
+    "objectID": "week1/index.html#from-the-open-data-institute",
+    "href": "week1/index.html#from-the-open-data-institute",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "From the Open Data Institute",
+    "text": "From the Open Data Institute\n\n\n\n\n\nOpen Data Institute - Dave Tarrant - EDP Module 1 from Open Data Institute on Vimeo."
+  },
+  {
+    "objectID": "week1/index.html#what-makes-data-open",
+    "href": "week1/index.html#what-makes-data-open",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What makes data open?",
+    "text": "What makes data open?\n\n\n\n\n\n\nImportant\n\n\nOpen data is measured by what it can be used for, not by how it is made available.\n\n\n\n\n\n\n\n\n\nOpen Data Considerations\n\n\n\n\nUse limitations: No limitations that prevent particular uses.\nUse limitations: Anyone free to use, modify, combine and share, even commercially.\nData cost: Free to use does not mean that it must be free to access.\nData cost: Cost to creating, maintaining and publishing usable data.\nData cost: Live data and big data can incur ongoing costs.\nReuse: Free to use, reuse and redistribute it - even commercially."
+  },
+  {
+    "objectID": "week1/index.html#definition-open-data",
+    "href": "week1/index.html#definition-open-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Definition open data",
+    "text": "Definition open data\n\n\n\n\n\n\nImportant\n\n\nOpen data can be freely used, modified, and shared by anyone for any purpose\n\n\n\n\n\n\n\n\n\nTwo types of data openness:\n\n\n\n\nThe data must be legally open, which means they must be placed in the public domain or under liberal terms of use with minimal restrictions.\nThe data must be technically open, which means they must be published in electronic formats that are machine readable and non-proprietary, so that anyone can access and use the data using common, freely available software tools. Data must also be publicly available and accessible on a public server, without password or firewall restrictions. 1\n\n\n\n\n\nhttp://opendefinition.org/"
+  },
+  {
+    "objectID": "week1/index.html#concept-check",
+    "href": "week1/index.html#concept-check",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Concept Check",
+    "text": "Concept Check\n\n\n\n\n\n\n\nPop Quiz! ❤️\n\n\nTry the quizzes here"
+  },
+  {
+    "objectID": "week1/index.html#why-do-we-need-open-data",
+    "href": "week1/index.html#why-do-we-need-open-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Why do we need open data?",
+    "text": "Why do we need open data?\n\n\n\n\n\n\nImportant\n\n\nHelp make governments more transparent.\n\nOpen data allowed citizens in Canada to save the government billions in fraudulent charitable donations\n\nBuilding new business opportunities\n\nTransport for London has released open data that developers have used to build over 800 transport apps.\n\nProtecting the planet\n\nOpen data can supoort early warning systems for environmental disasters\nOpen data is also helping consumers to understand their personal impacts on the environment\n\nResource"
+  },
+  {
+    "objectID": "week1/index.html#open-data-from-large-organisations",
+    "href": "week1/index.html#open-data-from-large-organisations",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Open data from large organisations",
+    "text": "Open data from large organisations\n\n\n\n\n\n\nGlobally\n\n\n\nhttp://dataportals.org/search\nhttp://data.un.org/\nhttps://datacatalog.worldbank.org/\nhttps://data.gov/ (US)\nhttps://opendataimpactmap.org/eap (EAP)\n\n\n\n\n\n\n\n\n\n\nAustralian governement examples:\n\n\n\nhttp://www.data.gov.au/\nhttps://www.data.vic.gov.au/\nhttps://data.melbourne.vic.gov.au/"
+  },
+  {
+    "objectID": "week1/index.html#why-license-open-data",
+    "href": "week1/index.html#why-license-open-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Why license open data?",
+    "text": "Why license open data?\n\n\n\n\n\n\nImportant\n\n\n\nLicences tells people how they can access, use and share data.\n\n\n\n\n\n\n\n\n\n\nLicenses\n\n\n\nWithout a licence, users may find themselves in a legal grey area. Data may be ‘publicly available’, but users may not have permission to access, use and share it under general copyright or database laws.\nAn open data licence is an explicit permission to use the data for both commercial and non-commercial purposes.\nOpen data publishers should provide easy access to the licence for all datasets that are available to access, use and share.\nOrganisations and governments use Open Data licenses to clearly explain the conditions under which their data may be used."
+  },
+  {
+    "objectID": "week1/index.html#open-data-licenses",
+    "href": "week1/index.html#open-data-licenses",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Open data licenses",
+    "text": "Open data licenses\n\n\n\n\n\n\nTLDR\n\n\nMany licenses include both a summary version, intended to convey the most important concepts to all users, and a detailed version that provides the complete legal foundation.\n\n\n\n\n\n\n\n\n\nExamples include\n\n\n\nStandard re-usable license: consistent and broadly recognized terms of use\n\nCreative Commons, particularly CC-By and CC0 https://creativecommons.org/\nOpen Database License https://opendatacommons.org/licenses/odbl/\n\nBespoke licenses: governments and international organizations developed\n\nUK Open Government License http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/\nThe World Bank Terms of Use https://data.worldbank.org/summary-terms-of-use"
+  },
+  {
+    "objectID": "week1/index.html#quick-comment",
+    "href": "week1/index.html#quick-comment",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Quick comment",
+    "text": "Quick comment\n\n\n\n\n\n\nLicence type\n\n\n\nStandard licenses can offer several advantages over bespoke licenses.\nStandard licences have greater recognition among users, increased interoperability, and greater ease of compliance."
+  },
+  {
+    "objectID": "week1/index.html#concept-check-1",
+    "href": "week1/index.html#concept-check-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Concept Check",
+    "text": "Concept Check\n\n\n\n\n\n\n\nPop Quiz! ❤️\n\n\nTry the quizzes here"
+  },
+  {
+    "objectID": "week1/index.html#metadata-data-about-data",
+    "href": "week1/index.html#metadata-data-about-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Metadata: data about data",
+    "text": "Metadata: data about data\n\n\n\n\n\n\n\n\nInformation components\n\n\n\nSource\nStructure\nUnderlying methodology\nTopical\nGeographic and/or temporal coverage\nLicense\nWhen it was last updated\nHow it is maintained\n\n\n\n\n\n\n\n\n\n\n\nStandards frameworks\n\n\n\nDublin Core Metadata Initiative (DCMI) provides a framework and core vocabulary of metadata terms\n\ndublincore.org\n\nGovernments develop metadata models for uniformity\n\nproject-open-data.cio.gov\n\nAustralian government metadata standards\n\nNational Archives\nAIHW"
+  },
+  {
+    "objectID": "week1/index.html#examples-from-canadian-government",
+    "href": "week1/index.html#examples-from-canadian-government",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Examples from Canadian government",
+    "text": "Examples from Canadian government\n\n\n\n\n\n\n\n\nExample datasets\n\n\n\nResettled refugees\nCanada emergency wage subsidy (CEWS)\n\n\n\n\n\n\n\n\n\n\n\nKey metadata elements\n\n\n\nTitle: what data contains and where it comes from\nDescription: details to quickly understand relevance\nPublisher: who originated and maintains the dataset\nLicense: terms of use\nContact information: for questions or clarification\nFrequency: interval data is updated\nDate modified: last update timestamp\nSpatial coverage: relevant geographic area\nTemporal coverage: time period covered\nOpen data formats: available file formats"
+  },
+  {
+    "objectID": "week1/index.html#machine-readable",
+    "href": "week1/index.html#machine-readable",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Machine Readable",
+    "text": "Machine Readable\n\n\n\n\n\n\nWarning\n\n\n‘machine readable’ is not synonymous with ‘digitally accessible’\nHistorical efforts have focused on: - pushing static information about government programs and services to the web, - where the intended use is a human who can read, print, and take actions based on reading. - It’s a narrow vision of the expected users and uses of the information."
+  },
+  {
+    "objectID": "week1/index.html#machine-readable-1",
+    "href": "week1/index.html#machine-readable-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Machine Readable",
+    "text": "Machine Readable\n\n\n\n\n\n\nMachine Readable\n\n\n\nMachine readable formats expand field of vision to new users and new uses and require technologies like XML and JSON\n\n😿 PDF is not suitably machine readable\n😀 CSV (or XLSX, XLS) is common, and universally accessible, but should be structured for analysis not for reading\n😸 XML, JSON is verbose, can contain metadata, but needs special readers\n🤩 API provides an interface that other software can utilise to automatically extract and process"
+  },
+  {
+    "objectID": "week1/index.html#five-star-open-data-scheme",
+    "href": "week1/index.html#five-star-open-data-scheme",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Five star open data scheme",
+    "text": "Five star open data scheme\n\n\n\n\n\n\n5 ⭐ ratings:\n\n\nThis web site 5 ⭐: Open Data at provides a rating system for deploying open data.\n\n⭐ An open license.\nMake your stuff available on the Web (whatever format) under an open license\n⭐, ⭐ Re-usable format.\nMake it available as structured data (e.g., A proprietary format like excel instead of image scan of a table.)\n⭐, ⭐, ⭐ Open format.\nMake it available in a non-proprietary open format (e.g., CSV instead of Excel)\n⭐, ⭐, ⭐, ⭐ use (Uniform Resource Identifiers (URIs).\nURIs help you reference your data, like a unique address and gives context to the values.\n⭐, ⭐, ⭐, ⭐, ⭐ Linked data\nYour data doesn’t exist in isolation. Your data links/ connects to other relevant data sets."
+  },
+  {
+    "objectID": "week1/index.html#fair-principles-for-scientific-data",
+    "href": "week1/index.html#fair-principles-for-scientific-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "FAIR principles for scientific data",
+    "text": "FAIR principles for scientific data\nLearn more at fair.org\n\n\n\n\n\n\nFAIR Principles\n\n\n\no * Findable Metadata and data should be easy to find for both humans and computers. Machine-readable metadata are essential for automatic discovery of datasets and services.\n\nAccessible Once the user finds the required data, they need to know how can they accessed that data, possibly including authentication and authorisation.\nInteroperable The data usually need to be integrated with other data. In addition, the data need to interoperate with applications or workflows for analysis, storage, and processing.\nReusable The ultimate goal of FAIR is to optimise the reuse of data. To achieve this, metadata and data should be well-described so that they can be replicated and/or combined in different settings."
+  },
+  {
+    "objectID": "week1/index.html#publishing-data",
+    "href": "week1/index.html#publishing-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Publishing data",
+    "text": "Publishing data\n\n\n\n\n\n\nPublishing Your Data\n\n\n\nResearch data is increasingly seen as part of the corpus of scholarly publications.\nPublishers, funders and governments support researchers to publish their data outputs by various policies, guidelines and mandates.\nObtaining a Digital Object Identifier system (DOI) provides a persistent identifier, and can be used for data. Two services in Australia:\n\nAustralian Research Data Commons (ARDC) can generate a DOI for you.\nAustralian National Data Service\n\nMany open data sets provide information on how to cite them, when used in other forms of publication.\nSee more guidelines at ARDS and ARDC."
+  },
+  {
+    "objectID": "week1/index.html#open-data-quality",
+    "href": "week1/index.html#open-data-quality",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Open data quality",
+    "text": "Open data quality\n\n\n\n\n\n\nLegal requirements:\n\n\n\nProtect sensitive information like personal data\nPreserve the rights of data owners\nPromote correct use of the data\n\n\n\n\n\n\n\n\n\n\nPractical requirements:\n\n\nIf you provide a link to the data on a website: * Update the data regularly if it changes * Commit to continue to make the data available\n\n\n\n\n\n\n\n\n\nTechnical requirements:\n\n\n\nThink about the format in which the data is published\nThe structure of the data\nThe channels through which the data is available"
+  },
+  {
+    "objectID": "week1/index.html#common-pitfalls-with-open-data",
+    "href": "week1/index.html#common-pitfalls-with-open-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Common pitfalls with open data",
+    "text": "Common pitfalls with open data\n\n\n\n\n\n\nWatch out for:\n\n\n\nMixed date formats american/european\nMultiple representations differences in abbreviations, capitalisation, spacing\nDuplicate records\nRedundant data\nMixed numerical scales\nSpelling errors\nInconsistent naming\nMissing values"
+  },
+  {
+    "objectID": "week1/index.html#what-is-hidden-data",
+    "href": "week1/index.html#what-is-hidden-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What is hidden data?",
+    "text": "What is hidden data?\n\n\n\n\n\nOpen Data Institute - Dave Tarrant - EDP Module 12 from Open Data Institute on Vimeo.\n\n\nLet’s look at https://www.realestate.com.au/buy"
+  },
+  {
+    "objectID": "week1/index.html#concept-check-2",
+    "href": "week1/index.html#concept-check-2",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Concept Check",
+    "text": "Concept Check\n\n\n\n\n\n\n\nPop Quiz! ❤️\n\n\nTry the quizzes here"
+  },
+  {
+    "objectID": "week1/index.html#some-more-examples-of-open-data",
+    "href": "week1/index.html#some-more-examples-of-open-data",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Some more examples of open data",
+    "text": "Some more examples of open data\n\n\n\n\n\n\nNote\n\n\n\nAirline traffic in the USA https://www.bts.gov \nAustralian Bureau of Statistics http://stat.data.abs.gov.au\nAustralian Electoral Commission https://www.aec.gov.au\nNational Longitudinal Survey of Youth (NLSY) https://www.nlsinfo.org/investigator/pages/search?s=NLSY79\nAtlas of Living Australia https://www.ala.org.au\nAustralian bushfires from satellite hotspot remote sensing https://www.eorc.jaxa.jp/ptree/registration_top.html (also see resulting analysis at https://ebsmonash.shinyapps.io/VICfire/)\nJohn Hopkins Coronavirus tracking https://coronavirus.jhu.edu/data\nOECD Programme for International Student Assessment http://www.oecd.org/pisa/data/\nMelbourne pedestrian counting system http://www.pedestrian.melbourne.vic.gov.au/"
+  },
+  {
+    "objectID": "week1/index.html#in-your-own-time",
+    "href": "week1/index.html#in-your-own-time",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "In your own time",
+    "text": "In your own time\n\n\n\n\n\n\nExercise\n\n\nLook at these open data examples:\n\nConsider the interface\nLook for licensing\nExplanations of what’s in the data\nMetadata"
+  },
+  {
+    "objectID": "week1/index.html#section",
+    "href": "week1/index.html#section",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Long shelf life, highly processed\n\n\n\nConvenient, but contains unhealthy ingredients, and is a bad habit\neg iris, mtcars, titanic, handwritten digits\nFound at eg UCI Machine learning archive"
+  },
+  {
+    "objectID": "week1/index.html#section-1",
+    "href": "week1/index.html#section-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Orphans\n\n\n\nFile dumped on an archive\nStale, could date your results\nFound in places like https://data.gov.au"
+  },
+  {
+    "objectID": "week1/index.html#section-2",
+    "href": "week1/index.html#section-2",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Synthetic\n\n\n\nUsed primarily these days for privacy protection\nCorrect up to the model used to simulate the data - misses interesting structure in data not captured by model\nVery pretty, very consistent, but it can burn you\neg OECD Programme for International Student Assessment A generalised linear model is fitted to the scores, with predictors such as school, gender, … Model is used to simulate a score for each student.\neg Also be aware of fraud Article in the Lancet (2020)"
+  },
+  {
+    "objectID": "week1/index.html#section-3",
+    "href": "week1/index.html#section-3",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Wild\n\n\n\nFresh, interesting, exciting\nBut also challenging!\nReal world data sets, with real world messiness\neg US Bureau of Transportation Statistics air traffic database"
+  },
+  {
+    "objectID": "week1/index.html#section-4",
+    "href": "week1/index.html#section-4",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "",
+    "text": "Fresh and local\n\n\n\nBest kind of wild data\nCollected locally, and about our own lives\neg Melbourne pedestrian counts"
+  },
+  {
+    "objectID": "week1/index.html#wild-caught-data-1",
+    "href": "week1/index.html#wild-caught-data-1",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Wild-caught data",
+    "text": "Wild-caught data\n\n\n\n\n\n\nOur working definition\n\n\nWild caught data is:\n\n\ndata the can be freely used, modified, and shared by anyone for any purpose, AND\nThe data source is traceable, the data collection is transparent, and the data is updated as new measurements arrive, AND\nIn case of data processing, the process is clearly described and reproducible."
+  },
+  {
+    "objectID": "week1/index.html#what-about-your-favourite-datasets",
+    "href": "week1/index.html#what-about-your-favourite-datasets",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "What about your favourite datasets?",
+    "text": "What about your favourite datasets?\n\n\n\n\n\n\nAre they Wild?\n\n\n\n\n✅ Freely available to be used and modified\n✅ Can be shared\n✅ Data provenance is clear\n✅ How the data was collected is transparent\n✅ Data is updated as new measurements become available\n✅ Any processing of this data is clear"
+  },
+  {
+    "objectID": "week1/index.html#summary",
+    "href": "week1/index.html#summary",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Summary",
+    "text": "Summary\n\n\n\n\n\n\nOpen data: definitions, sources and examples\n\n\n\n\nIntroduced you to the Open Data Fundamentals\neg. power for societal good, where to access, limitations, licences\nData Quality Elements\neg. meta data, machine readable, FAIR, five star ratings\nWild Caught Data Meaning\nand other flavours of open data\nTeaching philosophy of cake first!"
+  },
+  {
+    "objectID": "week1/index.html#learning-r",
+    "href": "week1/index.html#learning-r",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Learning R",
+    "text": "Learning R\n\n\n\n\n\n\nGetting set up\n\n\n\nBy the end of this unit you’ll be performing your own analytics case studies\nBefore you can do that we need to get you set up with the software you’ll use in this unit\nWe’ll now go through the steps to install R and RStudio\nThink about R as the engine and RStudio as the dashboard and controls.\nWe need both to drive a car."
+  },
+  {
+    "objectID": "week1/index.html#installing-r-and-rstudio",
+    "href": "week1/index.html#installing-r-and-rstudio",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Installing R and RStudio",
+    "text": "Installing R and RStudio\nWe’ll open RStudio to create data visualisations using R.\n\n\n\n\n\n\nStep 1: Install R\n\n\n\nGot to https://www.r-project.org/\nClick “download R”\nSelect a mirror (I use the Melbourne one)\nInstall for your operating system\n\n\n\n\n\n\n\n\n\n\nStep 2: Install RStudio\n\n\n\nGot to https://www.rstudio.com/products/rstudio/download/ (you only need the free version)\nSelect download for your system\nFollow the prompts to install"
+  },
+  {
+    "objectID": "week1/index.html#but-why",
+    "href": "week1/index.html#but-why",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "But Why?",
+    "text": "But Why?\n\n\n\n\n\n\nWhy do we need a Programming Language\n\n\n\nIt allows us to have reproducible steps, which can be applied for many different data sets\nMake sure the analysis is not just point and click, you can work as a team on it on the same code\nIt also means we can more easily perform our own case studies in analytics\n\n\n\n\n\n\n\n\n\n\nWhy do we use R?\n\n\n\nIt has been around for a while.\nIt is regularly maintained and is open source.\nIt is beginner friendly\nEven if you use other languages, you might still use R for your data visualisations"
+  },
+  {
+    "objectID": "week1/index.html#getting-started-in-r",
+    "href": "week1/index.html#getting-started-in-r",
+    "title": "ETC5512: Wild Caught Data",
+    "section": "Getting Started in R",
+    "text": "Getting Started in R\n\n\n\n\n\n\nLearning a new language is hard!\n\n\n\n\nYou need to think about grammar and structure, and how to communicate well in it!\nYou will make mistakes, lots of them.\nBelow you see code that plots points showing the GDP per capita against life expectancy. The points are coloured by country and the size of the points shows the population.\nIt might look impossible now, but by the end of this semester you will be able to write this yourself!\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(gapminder)\nplot &lt;- ggplot(data = gapminder) + \n  geom_point(aes(x = gdpPercap, y = lifeExp, size = pop, colour = country)) + \n  theme(legend.position = \"none\")\nplot \n\n\n\n\n\nETC5512"
+  },
+  {
+    "objectID": "week2/tutorial/tutorial-02.html",
+    "href": "week2/tutorial/tutorial-02.html",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "",
+    "text": "Identify whether data are experimental or observational\nDelineate the data collection methods\nLogically suggest the population that a sample represents"
+  },
+  {
+    "objectID": "week2/tutorial/tutorial-02.html#package-installation",
+    "href": "week2/tutorial/tutorial-02.html#package-installation",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "Package Installation",
+    "text": "Package Installation\nEnsure you have the packages installed from Week 1’s tutorial.\nAlso install\n\ninstall.packages(\"tibble\")\ninstall.packages(\"maps\")\ninstall.packages(\"ggthemes\")"
+  },
+  {
+    "objectID": "week2/tutorial/tutorial-02.html#exercise-1",
+    "href": "week2/tutorial/tutorial-02.html#exercise-1",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nThis question relates to the Tidy Tuesday Data on locations of alternative fuel recharging stations. Have a read through this site, and also visit the link to the data providers, DOT.\n\na. About the data\nRead the details about the data at DOT. How is this data collected, do you think?\n\n\nb. Data type\nWhat type of data is this? (observational, experimental, survey, census)\n\n\nc. Population vs sample\nDescribe the population, and what is the sample.\n\n\nd. Download and plot the data\nDownload the data and plot the fueling locations on a map, coloured by fuel type.\n\nlibrary(tidyverse)\nlibrary(ggthemes)\nlibrary(maps)\n\n# Note you can read data directly from a website\nstations &lt;- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-01/stations.csv')\n\n# Get the map data for the USA\nusa &lt;- map_data(\"state\")\n\n# Filter to continental USA using map boundary\nstations &lt;- stations |&gt;\n  filter(between(LONGITUDE, min(usa$long)-1, max(usa$long)+1),\n         between(LATITUDE, min(usa$lat)-1, max(usa$lat)+1))\n\n# Plot the sites on a map \n# Create a different map for each fuel type \n\nggplot() + \n  geom_path(data=usa, aes(x=long, y=lat, group=group), colour=\"grey80\") + \n  geom_point(data=stations, aes(x=LONGITUDE, \n                                y=LATITUDE,\n                                colour=FUEL_TYPE_CODE),\n             alpha=0.8) +\n  facet_wrap(~FUEL_TYPE_CODE, ncol=4) +\n  coord_map() +\n  theme_map() +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\ne. New Fuel Stations\nCount the number of new stations by month, and make a time series plot by fuel type.\n\n# Time line of opening\nstations |&gt;\n  mutate(OPEN_DATE = as.Date(OPEN_DATE)) |&gt;\n  filter(!is.na(OPEN_DATE)) |&gt;\n  mutate(m = month(OPEN_DATE),\n         yr = year(OPEN_DATE)) |&gt;\n  mutate(open_yrmth = as.Date(paste(yr, m, \"01\", sep=\"-\"), \"%Y-%M-%d\")) |&gt;\n  group_by(open_yrmth, FUEL_TYPE_CODE) |&gt;\n  summarise(nopen = n(), .groups = \"drop\") |&gt;\nggplot(aes(x=open_yrmth, \n           y=nopen, \n           colour=FUEL_TYPE_CODE)) +\n  geom_line() +\n  facet_wrap(~FUEL_TYPE_CODE, ncol=4, scales=\"free_y\") +\n  ylab(\"# opening\") +\n  scale_x_date(\"\", date_labels=\"%y\") +\n  theme(legend.position = \"none\")\n\n\n\n\n\n\n\n\n\n\ng. Fuel growth\nIf the question to answer is “which alternative fuel vehicle is the fastest growing?” what is the explanatory (independent, predictor) variable and what is the response variable?"
+  },
+  {
+    "objectID": "week2/tutorial/tutorial-02.html#exercise-2",
+    "href": "week2/tutorial/tutorial-02.html#exercise-2",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nHere we will look at the Chocolate bar ratings. Details (brief) of how the data was collected are provided here and more about the data itself is here.\n\nchocolate &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-18/chocolate.csv')\n\n\na. Type of data\nWhat type of data is this? (observational, experimental, survey, census)\n\n\nb. Data collection\nHow is the data collected?\n\n\nc. Population vs sample\nDescribe the population.\n\n\nd. Response and predictor variables\nFor the question “Which country of origin of the bean obtains the best rating?” state the response and predictor variables.\n\n\ne. Visualise your data\nMake a plot to answer the previous question. (Only use countries with more than 10 records.)\n\n# Which countries have more than 10 \nkeep &lt;- chocolate |&gt;\n  count(country_of_bean_origin, sort = TRUE) |&gt;\n  filter(n&gt;10) |&gt;\n  pull(country_of_bean_origin)\n\n# Filter to those countries\nchocolate_countries = chocolate |&gt;\n  filter(country_of_bean_origin %in% keep) \n\n# Plot the results\n  ggplot(data = chocolate_countries, aes(x=fct_reorder(country_of_bean_origin, rating, mean), \n             y=rating)) +\n    geom_jitter(width=0.1) + \n    stat_summary(fun = mean, fun.min = median, fun.max = median,\n                 geom = \"point\", colour = \"orange\") +\n    xlab(\"\") + \n    coord_flip()"
+  },
+  {
+    "objectID": "week2/tutorial/tutorial-02.html#in-your-own-time",
+    "href": "week2/tutorial/tutorial-02.html#in-your-own-time",
+    "title": "ETC5512: Instruction to Open Data",
+    "section": "In your own time",
+    "text": "In your own time\nRead the description of the study titled “Clearing the Fog: Is Hydroxychloroquine Effective in Reducing COVID-19 Progression (COVID-19)”.\n\na. Data type\nWhat type of data is this? (observational, experimental, survey, census)\n\n\nb. Study Participants\nHow many subjects participated in the study at the start, and to completion?\n\n\nc. Study details\nWhat are the:\n\nexperimental units?\nfactor?\nblocking factors?\nresponse variable (outcome measures)?\n\n\n\nd. Study desing\nHow are subjects assigned to treatment groups?\n\n\ne. Study results\nWhat were the results of the study?\n\n\nf. Analyse results\nConstruct the data from the results reported. Compute the proportion of subjects with progression of COVID after 5 days, for the two treatments. Include the standard error of the estimate.\n\nhcq &lt;- tibble(trt = c(\"standard\", \"standard\", \"hcq\", \"hcq\"),\n              progression = c(\"all\", \"yes\", \"all\", \"yes\"), \n              count = c(151, 5, 349, 11))\nhcq |&gt; \n  pivot_wider(names_from = \"progression\", values_from = \"count\") |&gt;\n  mutate(p = yes/all) |&gt;\n  mutate(se = sqrt(p*(1-p)/all))\n\n# A tibble: 2 × 5\n  trt        all   yes      p      se\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1 standard   151     5 0.0331 0.0146 \n2 hcq        349    11 0.0315 0.00935\n\n\n\n\ng. Study conculstions\nBased on the proportions and their standard errors, why would the result of the study be that HCQ does NOT improve the outcomes of COVID patients?\n\n\nh. Population vs sample\nWhat is the population for this experiment?\n\n© Copyright Monash University"
   }
 ]
