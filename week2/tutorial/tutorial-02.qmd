@@ -64,8 +64,6 @@ Describe the population, and what is the sample.
 Download the data and plot the fueling locations on a map, coloured by fuel type.
 
 ```{r}
-#| cache: true
-
 library(tidyverse)
 
 
