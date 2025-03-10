@@ -37,7 +37,7 @@ Ensure you have the packages installed from Week 1's tutorial.
 Also install 
 
 ```{r}
-#| eval: false
+
 install.packages("tibble")
 install.packages("maps")
 install.packages("ggthemes")
