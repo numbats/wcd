@@ -1,0 +1,64 @@
+---
+title: 'ETC5512: Instruction to Open Data'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+```{r loadpackages}
+library(tidyverse)
+library(galah)
+```
+
+# Tutorial Solution
+
+## Exercise 1: Atlas of Living Australia
+
+(i) Point your browser to https://www.ala.org.au. Check the terms of use. Does it have a license?
+
+*Yes. The licence is [creative commons 3.0](https://creativecommons.org/licenses/by/3.0/au/).*
+
+(ii) Using the `galah` library, and the function `occurrences` extract the records for platypus.
+
+*Helpful tip: To run the code to download the data you must register using your email address on the ALA webpage first*
+
+### b. Data quality checks
+
+(i) Plot the locations of sightings. Where is Australia are platypus found?
+
+*Platypus are mostly found along the East coast of Australia, and also Tasmania.* 
+
+*You may notice a few platypus sightings in the middle of the ocean or in Western Australia that do not make sense. These are not locations where platypus are known to live.*
+
+```{r}
+#| eval: false 
+
+platypus_file_name = "platypus.csv" 
+read_csv(platypus_file_name)
+ggplot(platypus, aes(x=Longitude, y=Latitude)) +
+  geom_point()
+```
+
+(ii) What dates of sightings are downloaded?
+
+```{r}
+#| eval: false
+range(platypus$eventDate)
+```
+
+*My date range was: "1599-12-31" to "2025-03-08", your date range may different slightly if the database has been recently updated.*
+
+*While there are representations of Australian animals in indigenous rock art that date back thousands of years - it is highly unlikely that these earliest records are related to those. It is far more likely these dates are mistakes.* 
+
+### c. Data collection methods
+
+How is this data collected? Explain the ways that a platpus sighting would be added to the database. Also think about what might be missing from the data?
+
+*This data is mostly provided on a voluntary basis, some by researchers, some by citizen scientists. This means that it is not systematic, so there may be locations where platypus are found that people don't go. These places would then not be represented in the database.*
+
+##### © Copyright Monash University
