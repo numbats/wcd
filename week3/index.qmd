@@ -1,0 +1,591 @@
+---
+pagetitle: "ETC5512"
+subtitle: "Case study: US air traffic"
+author: "Lecturer: Kate Saunders"
+email: "ETC5512.Clayton-x@monash.edu"
+date: "Wild Caught Data" # why
+length: "120 minutes"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "wcd.numbat.space"
+footer: "ETC5512"
+format: 
+  revealjs: 
+    logo: images/monash-one-line-black-rgb.png
+    slide-number: c
+    multiplex: false
+    theme: ../assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 720
+    css: [../assets/custom.css, ../assets/lecture-01.css]
+    include-after-body: "../assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  out.width = "100%",
+  fig.align = "center",
+  dev.args = list(bg = 'transparent'),
+  fig.retina = 3,
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  cache = FALSE,
+  cache.path = "cache/"
+)
+if(!require(emoji))
+  install.packages("emoji")
+library(emoji)
+
+```
+
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue} {#etc5523-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li><i class="fas fa-envelope"></i>`r rmarkdown::metadata$email`</li>
+
+<li><i class="fas fa-calendar-alt"></i>
+`r rmarkdown::metadata$date`</li>
+
+<li><i class="fas fa-globe"></i>
+`r rmarkdown::metadata[["unit-url"]]`</li>
+
+</ul>
+
+<br>
+:::
+
+## Today's lecture
+
+::: callout-note
+## What we'll cover:
+
+::: incremental 
+
+- We are going to get curious about US airline traffic
+
+- Guide you to think about important variables in the data 
+
+- Show you how others have gotten curious before you
+
+- Answer our curious questions using data visualisation
+
+:::
+
+:::
+
+# Case Study: US airline data {background-color="#006DAE"}
+
+## US Airline Traffic Data
+
+You can find the data [here](
+ https://www.transtats.bts.gov/DataIndex.asp)
+
+<center>
+<img src="images/data-expo/BTS_website.png" />
+</center>
+
+## Download the data
+
+:::callout-note 
+## Steps 
+
+- Navigate to the airline ontime performance data base by going to 
+https://www.transtats.bts.gov/
+
+- Select "Aviation" from left box
+
+- Then select "Airline On-Time Performance Data" 
+
+- In the table, find "Reporting Carrier On-Time Performance (1987-present)" click "Download"
+
+- This will bring you to an interface for choosing a subset.
+
+::: 
+
+## Download the Data 
+
+:::callout-warning 
+## THE DATA IS VERY BIG!!! 
+
+* Not all of it might be relevant to the question you want to answer 
+
+* To start you might like to download a sample to understand what the data looks like 
+
+::: 
+
+## Download the Data 
+
+If you were to download the data from the website - 
+
+:::callout-note 
+## Example
+
+- Choose 2020 and January (before the pandemic hit the USA)
+
+- Select these variables:  Year, Month, DayofMonth, DayOfWeek, FlightDate, Reporting_Airline, Tail_Number, Origin, Dest, CRSDepTime, DepTime, DepDelay, CRSArrTime, ArrTime, ArrDelay. 
+
+- Click the "Download" button to get it onto your laptop. (No need to check pre-zipped.) 
+
+- The resulting file is about 50Mb, and the column names are slightly different from the form names, but recongisable as the requested variables: `YEAR`, `MONTH`, `DAY_OF_MONTH`, `DAY_OF_WEEK`, `FL_DATE`, `OP_UNIQUE_CARRIER`, `TAIL_NUM`, `ORIGIN`, `DEST`, `CRS_DEP_TIME`, `DEP_TIME`, `DEP_DELAY`,`CRS_ARR_TIME`,`ARR_TIME`, `ARR_DELAY`
+
+:::
+
+## Sneak Peak 
+
+Lucky for us there is an R package, `nycflights13`, with a sample of this data for us to take a quick look.
+
+```{r}
+#| echo: true
+#| eval: true
+
+library(nycflights13)
+data(airlines)
+data(airports)
+data(flights)
+data(planes)
+data(weather)
+```
+
+## What's in a row?
+
+```{r}
+#| echo: true
+#| message: false
+
+airlines[1, ]
+flights[1, ]
+airports[1, ]
+planes[1, ]
+```
+
+
+## Important to share
+
+:::callout-caution 
+## Documenting and communicating
+
+* There is a lag in records appearing on the site, can be several months
+
+* There is a data dictionary that explains all the variables
+
+* Links at bottom of the site tells you what web site collects about  you when you visit (Privacy Policy)
+
+* There is no clear license or policy on usage - Hunt around and check! 
+
+:::
+
+## What would you be curious about? 
+
+::: callout-tip
+## Breakout discussion
+
+**Remember: Start with a question**
+
+- Decide what you be curious about? 
+
+- Are the variables you need available in the data? 
+
+- Loook at the meta data and the data dictionary. 
+
+- Also take a *quick* look for a licence 
+
+- Discuss what type of data collection is this? (e.g. experimental or observational? Census, survey sampling or occurrence?) 
+
+- Discuss what is the population? And what does a representative sample look like?
+
+:::
+
+# Motivation {background-color="#006DAE"}
+
+## Motivation
+
+American Statistical Association Statistical Graphics and Computing Sections [2009 Data Expo](https://community.amstat.org/jointscsg-section/dataexpo/dataexpo2009) provided all of the commercial flight records for air travel in the USA from October 1987 to April 2008 as part of a competition. 
+
+<center>
+<img src="images/data-expo/data-expo-prize-award.jpg" width="600px">
+</center>
+
+## About the competition data
+
+::::{.columns}
+
+:::{.column width=50%}
+
+* nearly 120 million records
+* 12Gb of space uncompressed
+* 1.6Gb compressed
+
+The data for the competition is still available because it was given a DOI: [https://doi.org/10.7910/DVN/HG7NV7](https://doi.org/10.7910/DVN/HG7NV7). `r emoji("cartwheel")`
+
+:::
+
+:::{.column width=50%}
+
+Organisers provided instructions on how to set up an [**sqlite database**]{.monash-orange2}, and access from R.
+
+<br><br>
+
+Read about [accessing databases from R]{.monash-blue} at this [RStudio site](https://db.rstudio.com/databases/sqlite/) is a good starting place to read about working with a sqlite database.
+
+:::
+
+::::
+
+
+## Questions provided
+
+:::callout-note 
+## What one could get curious about 
+:::{.incremental}
+
+- When is the best time of day/day of week/time of year to fly to minimise delays?
+- Do older planes suffer more delays?
+- How does the number of people flying between different locations change over time?
+- How well does weather predict plane delays?
+- Can you detect cascading failures as delays in one airport create delays in others? Are there critical links in the system?
+- Participants could also decide for themselves what to analyse.
+
+
+:::
+:::
+
+
+## Processing
+
+:::callout-tip
+## Breakout-discussion
+
+**How would you start to process the data to answer ...**
+
+:::{.incremental}
+
+- When is the best time of day/day of week/time of year to fly to minimise delays?
+
+- Are some carriers operating more efficiently?
+
+- Do some carriers operate more broadly than others?
+
+- Do older planes suffer more delays?
+
+:::
+:::
+
+<!-- --- -->
+<!-- class: transition -->
+
+# What did the prize winners do? {background-color="#006DAE"}
+
+<!-- --- -->
+<!-- class: motivator -->
+## First prize `r emoji("trophy")` [^1]
+
+<center>
+<img src="images/data-expo/wicklin-allison.jpg" width="1000px" />
+</center>
+
+[^1]: Rick Wicklin, Robert Allison
+
+
+## What is in your data?
+
+Its good practice to show a useful view of entire data, to get a rough sense of major patterns.
+
+:::callout-tip 
+## Think about
+
+* [Temporal trend:]{style="color: "#006DAE";} A major component of this data is traffic patterns over time.
+
+* [Spatial pattern:]{style="color: "#006DAE";} Airports are distributed across the country, explore how the traffic operates relative to this geography.
+
+* [Carriers:]{style="color: "#006DAE";} Are some carriers operating more widely, or more efficiently?
+
+:::
+
+
+## High Level Overview
+
+<center>
+<img src="images/data-expo/wicklin-allison1.png" style="width: 700px; box-shadow: 1px 1px 5px 10px #888888;" />
+</center>
+
+## What you can expect
+
+<center>
+<img src="images/data-expo/wicklin-allison2.png" style="width: 600px; box-shadow: 1px 1px 5px 10px #888888;" />
+</center>
+
+## Overview Figure: Delays 
+
+<center>
+<img src="images/data-expo/wicklin-allison4.png" style="width: 1000px; box-shadow: 1px 1px 5px 10px #888888;" />
+</center>
+
+## Think about it `r emoji("thinking")`
+
+<br><br>
+
+:::{.callout-note}
+## Choices
+
+[Delay]{.monash-orange2} was used in providing an overview.
+
+- What other aggregates could have been used?
+
+- Why was delay chosen?
+
+:::
+
+## Temporal  trend
+
+<img src="images/data-expo/wicklin-allison9.png" style="width: 1100px; box-shadow: 1px 1px 5px 10px #888888;" />
+
+## Temporal  trend
+
+<img src="images/data-expo/wicklin-allison5.png" style="width: 1100px; box-shadow: 1px 1px 5px 10px #888888;" />
+
+
+## Spatial
+
+<center>
+<img src="images/data-expo/wicklin-allison7.png" style="box-shadow: 1px 1px 5px 10px #888888; height: 600px" />
+</center>
+
+## Carrier
+
+<center>
+<img src="images/data-expo/wicklin-allison6.png" style="width: 1000px; box-shadow: 1px 1px 5px 10px #888888;" />
+</center>
+
+## Take-home messages
+
+<center>
+<img src="images/data-expo/wicklin-allison3.png" style="width: 500px; box-shadow: 1px 1px 5px 10px #888888;" />
+</center>
+
+# Same data: Another approach {background-color="#006DAE"}
+ 
+## Second prize `r set.seed(5);emoji("medal")`[^2]
+
+<img src="images/data-expo/airlines_poster.jpg" width="1150px" />
+
+[^2]: [Hofmann, Cook, Kielion, Schloerke, Hobbs, Loy, Mosley, Rockoff, Sun, Wrolstad, Yin](https://amstat.tandfonline.com/doi/abs/10.1198/jcgs.2011.3de#.XsbqbS97G61)
+
+<!-- --- -->
+<!-- .flex[ -->
+<!-- .w-45[ -->
+## Analysis overview {.smaller}
+
+::::{.columns}
+
+:::{.column width=50%}
+
+- Overview: flight paths over country
+- Analysis:
+    - Traffic patterns over time, including 911, and strikes, bankruptcies
+    - Delays over time, and by day, hour
+    - Airport efficiency
+    - Carrier efficiency
+    - Ghost flights: what's a ghost flight?
+    - Mapping traffic spatially, and animating
+- Curious findings
+
+:::
+
+:::{.column width=50%}
+
+<img src="images/data-expo/believe_it_or_not.png" width="120%" />
+
+:::
+
+::::
+
+## Processing
+
+
+:::{.callout-note}
+## Think about the steps
+
+As we work through the summary plots, think about:
+
+:::incremental 
+
+- what needs to be done to the data to get to this summary
+
+- what do you learn from each display, what's expected, what's surprising
+
+- what other ways might the same information be presented, or other calculations made
+
+:::
+
+:::
+
+## Traffic patterns over time{.smaller}
+
+<center>
+<img src="images/data-expo/airlines_volume.jpg"  style="width: 1100px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+Number of flights in millions per year: steadily increasing volume until 2001, with a big drop in 2002. Volume recovered in 2003, and flattens 2004-7, with another drop in 2008. What happened in 2001? What was happening in 2008?
+
+## Traffic patterns at selected airports
+
+<center>
+<img src="images/data-expo/airlines_volume_selected.jpg"  style="width: 1100px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Delays
+
+<center>
+<img src="images/data-expo/airlines_delays.jpg"  style="width: 750px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Delays, by year
+
+<center>
+<img src="images/data-expo/airlines_delay_byyear.jpg"  style="width: 800px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Delays, by carrier
+
+<center>
+<img src="images/data-expo/airlines_delay_bycarrier.jpg"  style="width: 900px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Delays, by airport
+
+<center>
+<img src="images/data-expo/airlines_delays_byairport.jpg"  style="width: 325px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Delays, by day
+
+<center>
+<img src="images/data-expo/airlines_delay_byday.jpg"  style="width: 1100px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Fuel use by carrier
+
+<center>
+<img src="images/data-expo/airlines_fuel_use.jpg"  style="width: 900px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Fuel efficiency
+
+<center>
+<img src="images/data-expo/airlines_fuel_efficiency.jpg"  style="width: 900px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Ghost flights
+
+<center>
+<img src="images/data-expo/airlines_ghosts.jpg"  style="width: 1000px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Ghost flights, wasted fuel
+
+<center>
+<img src="images/data-expo/airlines_ghosts_fuel.jpg"  style="width: 900px; box-shadow: 1px 1px 5px 10px #888888;"/>
+</center>
+
+## Deeper look: 
+
+If you want to look at what tools were used and why you can review the following [paper site](https://amstat.tandfonline.com/doi/suppl/10.1198/jcgs.2011.3de?scroll=top).
+
+It contains a subset of the analysis materials including data and code for downloading.
+
+<!-- - sqlite database: Inspired by the guidelines provided by the organisers we created a `mysql` database, on a central server that all team members could access with a password. Each person accessed the data through R. -->
+<!-- - R packages: `RMySQL`, `DBI`, `ggplot2` -->
+
+<!-- <!-- TODO: Removed database stuff from here --> 
+
+# Summary {background-color="#006DAE"}
+
+## Working with wild data
+
+:::callout-tip 
+## Working with wild data can be daunting!
+
+:::incremental 
+
+1. Start with questions that might be answered using the data.
+
+2. Map out a pipeline to process the data, to address the question.
+
+3. Think about what might be expected, so results can be "externally validated".
+
+::: 
+:::
+
+<center>
+![](images/wild_vs_domesticated3.jpeg)
+</center>
+
+## Summary
+
+:::: callout-note
+## First Case Study
+
+::: incremental
+
+- Generated insights from wild data! 
+
+- Reviewed two approaches to the same data set 
+
+- Saw the beauty of working with wild data - Same data, different approaches, different insights!
+
+:::
+:::
+
+::: callout-caution 
+## For your Assignment:
+
+::: incremental
+
+- Saw an example of documenting your download process 
+
+- Discussed what a representative sample would be in this example
+
+- Discussed how we would need to process our data to answer our questions 
+
+- Importantly considered data collection and data limitations. In this example, watch out for Ghost Flights! 
+
+:::
+
+:::
+
+# Drop In {background-color="#006DAE"}
+
+## Drop In 
+
+:::callout-note 
+## What we cover: 
+
+- Explore the NSW Live Traffic Transport Data 
+
+- Discuss the assignment template 
+
+- Review R Projects and Quarto documents
+
+- Look at file pathways to avoid direct referencing
+
+:::
+
