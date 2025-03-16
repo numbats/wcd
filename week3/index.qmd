@@ -44,6 +44,10 @@ if(!require(emoji))
   install.packages("emoji")
 library(emoji)
 
+if (!require(nycflights13)) {
+  install.packages("nycflights13")
+}
+
 ```
 
 
