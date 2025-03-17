@@ -12,29 +12,27 @@ knitr::opts_chunk$set(
   fig.height = 6,
   out.width = "100%",
   fig.retina = 3,
-  echo = FALSE
+  echo = FALSE # Change this to show your code 
 )
-
-show_code = FALSE
 ```
 
 ## Learning Objectives
 
 The goal of today is to create your own insights from the US Airline Traffic data.
 
-You will practice: 
+You will practice:
 
-* Processing variables and data wrangling
-* Visualising your results
-* Using an R Project and quarto file to organise your code and results in a reproducible way.
+-   Processing variables and data wrangling
+-   Visualising your results
+-   Using an R Project and quarto file to organise your code and results in a reproducible way.
 
 ### Before your tutorial
 
-**Download the project template from Moodle**. Go to Week 3 > Real Time > Download the .zip file.
+**Download the project template from Moodle**. Go to Week 3 \> Real Time \> Download the .zip file.
 
 For this week and next week, you should ensure you have worked through the [startR modules](https://startr.numbat.space/) on Tidy Data and the module on Quarto Basics.
 
-These should take you ~ 2 hours.
+These should take you \~ 2 hours.
 
 ### Package Installation
 
@@ -60,7 +58,7 @@ library(ggthemes)
 
 ```
 
-## Cheat Sheets 
+## Cheat Sheets
 
 You can find a link to a pdf [cheat sheet](https://rstudio.github.io/cheatsheets/data-transformation.pdf) on data wrangling here.
 
@@ -70,7 +68,7 @@ These are great and give you an overview of functions you may find useful.
 
 ## Exercise 1
 
-Explore your data! These tasks should be done using the dplyr and tidy wrangling verbs. (These are similar to SQL functions for wrangling.) 
+Explore your data! These tasks should be done using the dplyr and tidy wrangling verbs. (These are similar to SQL functions for wrangling.)
 
 To get you started there is already data in the data folder for you to use. Refer to the US website for the data dictionary.
 
@@ -116,11 +114,11 @@ lax_delays
 d.  Make a side-by-side boxplot of the delays for each carrier, at the busiest airport.
 
     i.  Think about transforming delay because it has a skewed distribution. (If you use a transformation on the axis, check the number of missings. It may be that a lof of data is excluded and you need to do the transformation with `mutate`.)
-    
+
     ii. Sort the carrier axis by the median delay (this is tricky! Hint: use the `forcats` package).
-    
+
     iii. Make nice labels on the axis
-    
+
     iv. Write a paragraph on what is learned about the delays by carrier
 
 ```{r plots, eval=FALSE}
@@ -146,7 +144,7 @@ lax |> count(is.na(DEP_DELAY))
 
 Here we are going to make a map of flights.
 
-a. Plot the airport locations on a map. You should filter the airports to only the latest location. Airports sometimes move. 
+a.  Plot the airport locations on a map. You should filter the airports to only the latest location. Airports sometimes move.
 
 ```{r map, eval=FALSE}
 airport_locations <- read_csv(here("data","airports.csv")) |>
