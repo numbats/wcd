@@ -1,0 +1,318 @@
+---
+title: "Week 3 Tutorial"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = FALSE
+)
+
+show_code = FALSE
+```
+
+## Learning Objectives
+
+The goal of today is to create your own insights from the US Airline Traffic data.
+
+You will practice: 
+
+* Processing variables and data wrangling
+* Visualising your results
+* Using an R Project and quarto file to organise your code and results in a reproducible way.
+
+### Before your tutorial
+
+**Download the project template from Moodle**. Go to Week 3 > Real Time > Download the .zip file.
+
+For this week and next week, you should ensure you have worked through the [startR modules](https://startr.numbat.space/) on Tidy Data and the module on Quarto Basics.
+
+These should take you ~ 2 hours.
+
+### Package Installation
+
+We will need the below packages for this week's tutorial. If you haven't already, install these packages.
+
+```{r loadlibs, eval=FALSE, echo = TRUE}
+
+# Pages reading in your data and for wrangling
+library(tidyverse)
+library(here)
+
+# Packages for time zone matching
+library(lutz)
+library(lubridate) # also part of tidyverse
+
+# Packages for maps
+library(maps)
+library(ggthemes)
+
+# Other packages for plotting 
+library(patchwork)
+library(ggthemes)
+
+```
+
+## Cheat Sheets 
+
+You can find a link to a pdf [cheat sheet](https://rstudio.github.io/cheatsheets/data-transformation.pdf) on data wrangling here.
+
+You may also like to look at the other cheat sheets on this website, specifically `tidyr` and `lubridate` on this same [website](https://rstudio.github.io/cheatsheets/).
+
+These are great and give you an overview of functions you may find useful.
+
+## Exercise 1
+
+Explore your data! These tasks should be done using the dplyr and tidy wrangling verbs. (These are similar to SQL functions for wrangling.) 
+
+To get you started there is already data in the data folder for you to use. Refer to the US website for the data dictionary.
+
+a.  Find the carrier that had the most flights during the month. Determine which carrier this is?
+
+```{r topcarrier, eval=FALSE}
+flights <- read_csv(here("data", "flights.csv"))
+
+carrier <- flights |>
+  group_by(OP_CARRIER) |>
+  tally(sort=TRUE) |>
+  collect()
+
+carrier |> head(5)
+```
+
+b.  Which airport had the most departing traffic?
+
+```{r topairport, eval=FALSE}
+origin <- flights |>
+  group_by(ORIGIN) |>
+  tally(sort=TRUE) |>
+  collect()
+
+origin |> head(5)
+```
+
+c.  Compute the smallest, largest and median departure delay for the busiest airport. What would it mean if the median departure delay was negative?
+
+```{r delays, eval=FALSE}
+lax <- flights |>
+  filter(ORIGIN == "LAX") |>
+  collect()
+
+lax_delays <- lax |> 
+  summarise(m1 = min(DEP_DELAY, na.rm=TRUE), 
+                 m2 = max(DEP_DELAY, na.rm=TRUE), 
+                 m3 = median(DEP_DELAY, na.rm=TRUE))
+
+lax_delays
+```
+
+d.  Make a side-by-side boxplot of the delays for each carrier, at the busiest airport.
+
+    i.  Think about transforming delay because it has a skewed distribution. (If you use a transformation on the axis, check the number of missings. It may be that a lof of data is excluded and you need to do the transformation with `mutate`.)
+    
+    ii. Sort the carrier axis by the median delay (this is tricky! Hint: use the `forcats` package).
+    
+    iii. Make nice labels on the axis
+    
+    iv. Write a paragraph on what is learned about the delays by carrier
+
+```{r plots, eval=FALSE}
+lax |>
+  mutate(DEP_DELAY_log = log10(DEP_DELAY+30)) |>
+  mutate(OP_CARRIER = fct_reorder(as_factor(OP_CARRIER), DEP_DELAY_log, 
+                median, na.rm=TRUE)) |>
+  ggplot(aes(x=OP_CARRIER, y=DEP_DELAY_log)) + 
+  geom_point(alpha=0.3) + 
+  geom_violin(draw_quantiles = c(0.25, 0.5, 0.75), fill = "orange") + 
+  xlab("carrier") + 
+  ylab("Departure delay (log)") +
+  theme_bw()
+```
+
+e.  How many records, of the busiest airport, have missing values for departure delay?
+
+```{r laxmissing, eval=FALSE}
+lax |> count(is.na(DEP_DELAY)) 
+```
+
+## Exercise 2
+
+Here we are going to make a map of flights.
+
+a. Plot the airport locations on a map. You should filter the airports to only the latest location. Airports sometimes move. 
+
+```{r map, eval=FALSE}
+airport_locations <- read_csv(here("data","airports.csv")) |>
+  filter(AIRPORT_IS_LATEST == 1, AIRPORT_IS_CLOSED != 1,
+         AIRPORT_COUNTRY_CODE_ISO == "US") |>
+  select(AIRPORT, DISPLAY_AIRPORT_NAME, LONGITUDE, LATITUDE) 
+
+usa_bbox <- c(-130, # min long
+              20, # min lat
+              -60, # max long
+              55) # max lat
+usa_map_data <- map_data('usa')
+
+# Only continental locations will be considered
+airport_locations <- airport_locations |>
+  filter(LONGITUDE>usa_bbox[1], LONGITUDE<usa_bbox[3], 
+         LATITUDE>usa_bbox[2], LATITUDE<usa_bbox[4])
+
+# usa_map +
+ggplot(data = usa_map_data, aes(x = long, y = lat, group = group)) +
+  geom_polygon(col = "black", fill = "forestgreen", alpha = 0.25) +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()) +
+  coord_fixed(1.3) +
+  geom_point(
+    data = airport_locations,
+    aes(x = LONGITUDE, LATITUDE),
+    inherit.aes = FALSE,
+    colour = "black", alpha = 0.5, size = 2
+  )
+```
+
+c.  Now the fun part, lets take a day's worth of flights, and plot all the flights. You will need to join the day of flights data with the airport locations, using both the origin and destination.
+
+```{r paths, eval=FALSE}
+jan1 <- flights  |>
+  filter(DAY_OF_MONTH==1) |> 
+  select(DAY_OF_MONTH, ORIGIN, DEST, DEP_TIME, ARR_TIME,
+         OP_CARRIER, TAIL_NUM)
+
+# Remove flights that have a missing ORIGIN or DEST lat/long
+# because they are outside continental US
+jan1_flights <- jan1 |> 
+  left_join(airporAit_locations, by=c("ORIGIN" = "AIRPORT")) |> 
+  rename(ORIGIN_lon = LONGITUDE, ORIGIN_lat = LATITUDE, 
+         ORIGIN_name = DISPLAY_AIRPORT_NAME) |>
+  left_join(airport_locations, by=c("DEST" = "AIRPORT")) |>
+  rename(DEST_lon = LONGITUDE, DEST_lat = LATITUDE, 
+         DEST_name = DISPLAY_AIRPORT_NAME) |>
+  filter(!is.na(ORIGIN_lon)) |>
+  filter(!is.na(DEST_lon)) |>
+  filter(!is.na(DEP_TIME))
+
+ggplot() +
+  geom_polygon(data = usa_map_data, aes(x = long, y = lat, group = group), col = "black", fill = "forestgreen", alpha = 0.15) +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()) +
+  coord_fixed(1.3) +
+  geom_segment(data=jan1_flights, 
+                     aes(x=ORIGIN_lon, 
+                         xend=DEST_lon,
+                         y=ORIGIN_lat,
+                         yend=DEST_lat), 
+                     colour="#9651A0", alpha=0.01) +
+  geom_point(data=jan1_flights, aes(x=ORIGIN_lon, ORIGIN_lat),
+             colour="#746FB2", alpha = 0.1, size=1) +
+  theme_map()
+```
+
+d.  Choose the two major carriers for your day of data, and make two separate maps of flights, one for each carrier. Compare and contrast the carrier flight patterns.
+
+```{r track, eval=FALSE, fig.height=4}
+p1 <- ggplot() + 
+  geom_polygon(data = usa_map_data, aes(x = long, y = lat, group = group), col = "black", fill = "forestgreen", alpha = 0.15) +
+  geom_segment(data=filter(jan1_flights, 
+                           OP_CARRIER == "DL"), 
+                     aes(x=ORIGIN_lon, 
+                         xend=DEST_lon,
+                         y=ORIGIN_lat,
+                         yend=DEST_lat), 
+                     colour="#9651A0", alpha=0.1) +
+  geom_point(data=jan1_flights, 
+             aes(x=ORIGIN_lon, ORIGIN_lat),
+             colour="#746FB2", alpha=0.1, size=1) +
+  theme_map() + ggtitle("Delta")
+
+p2 <- ggplot() + 
+  geom_polygon(data = usa_map_data, aes(x = long, y = lat, group = group), col = "black", fill = "forestgreen", alpha = 0.15) +
+  geom_segment(data=filter(jan1_flights, 
+                           OP_CARRIER == "WN"), 
+                     aes(x=ORIGIN_lon, 
+                         xend=DEST_lon,
+                         y=ORIGIN_lat,
+                         yend=DEST_lat), 
+                     colour="#9651A0", alpha=0.1) +
+  geom_point(data=jan1_flights, 
+             aes(x=ORIGIN_lon, ORIGIN_lat),
+             colour="#746FB2", alpha=0.1, size=1) +
+  theme_map() + ggtitle("Southwest")
+
+p1 + p2
+```
+
+e.  ADVANCED: Now we are going to examine change in patterns over the course of a day. You will need to convert departure time into a standard time. Then break it into one of four categories: midnight-6am, 6am-noon, noon-6pm, 6pm-midnight. Using all the carriers again, make separate maps for each quarter of the day. Compare the traffic over these four time blocks.
+
+```{r timezone, eval=FALSE}
+jan1_flights <- jan1_flights |> 
+  mutate(ORIGIN_tz = tz_lookup_coords(ORIGIN_lat, 
+                              ORIGIN_lon, warn=FALSE),
+         DEST_tz = tz_lookup_coords(DEST_lat, 
+                              DEST_lon, warn=FALSE)) |>
+  mutate(DateTime = paste0("2020-02-01 ", 
+                           substr(DEP_TIME, 1, 2),":", 
+                           substr(DEP_TIME, 3, 4), ":00"))
+
+# Can't keep datetime with different time zones in the same variable
+jan1_flights <- jan1_flights |>
+  mutate(
+    DateTime_NY = force_tzs(ymd_hms(DateTime),
+      tzones = ORIGIN_tz, tzone_out = "America/New_York"))
+
+# Now break into four time categories
+jan1_flights <- jan1_flights |> 
+  mutate(TimeOfDay = case_when(
+    hour(DateTime_NY) < 7 ~ "early",
+    between(hour(DateTime_NY), 7, 11) ~ "morning",
+    between(hour(DateTime_NY), 12, 17) ~ "afternoon",
+    hour(DateTime_NY) > 17 ~ "evening")
+  ) |>
+  mutate(TimeOfDay = factor(TimeOfDay, levels=c("early", "morning", "afternoon", "evening")))
+
+ggplot() + 
+  geom_polygon(data = usa_map_data, aes(x = long, y = lat, group = group), col = "black", fill = "forestgreen", alpha = 0.15) +
+  geom_point(data=jan1_flights, aes(x=ORIGIN_lon, y=ORIGIN_lat),
+             colour="#746FB2", alpha=0.1, size=2) +
+  facet_wrap(~TimeOfDay, ncol=2) +
+  theme_map()
+
+```
+
+f.  ADVANCED: Use the standardised times to follow the path of one plane during the day.
+
+```{r N243WN, eval=FALSE}
+
+# Track the path of one plane
+N243WN <- jan1_flights |> 
+  filter(TAIL_NUM == "N243WN") |>
+  arrange(DateTime_NY)
+
+ggplot() + 
+  geom_polygon(data = usa_map_data, aes(x = long, y = lat, group = group), col = "black", fill = "forestgreen", alpha = 0.15) +
+  geom_segment(data=N243WN, 
+               aes(x=ORIGIN_lon, y=ORIGIN_lat, 
+                   xend=DEST_lon, yend=DEST_lat),
+               colour = "orange", size=2) +
+  theme_map()
+```
