@@ -20,7 +20,7 @@ show_code = FALSE
 
 ## Learning Objectives
 
-The goal of today is to create your own insights using from the US Airline Traffic data.
+The goal of today is to create your own insights from the US Airline Traffic data.
 
 You will practice: 
 
@@ -32,17 +32,17 @@ You will practice:
 
 **Download the project template from Moodle**. Go to Week 3 > Real Time > Download the .zip file.
 
-For this week and next week, you should ensure you have worked through the startR modules on Tidy Data and the module on Quarto Basics.
+For this week and next week, you should ensure you have worked through the [startR modules](https://startr.numbat.space/) on Tidy Data and the module on Quarto Basics.
 
 These should take you ~ 2 hours.
 
 ### Package Installation
 
-Install the below packages for this week.
+We will need the below packages for this week's tutorial. If you haven't already, install these packages.
 
 ```{r loadlibs, eval=FALSE, echo = TRUE}
 
-# Pages for wrangling
+# Pages reading in your data and for wrangling
 library(tidyverse)
 library(here)
 
@@ -66,11 +66,13 @@ You can find a link to a pdf [cheat sheet](https://rstudio.github.io/cheatsheets
 
 You may also like to look at the other cheat sheets on this website, specifically `tidyr` and `lubridate` on this same [website](https://rstudio.github.io/cheatsheets/).
 
+These are great and give you an overview of functions you may find useful.
+
 ## Exercise 1
 
-Explore your data! These tasks should be done using the dplyr interface, so that the **tidy wrangling verbs** can be used. (These are similar to SQL functions.) 
+Explore your data! These tasks should be done using the dplyr and tidy wrangling verbs. (These are similar to SQL functions for wrangling.) 
 
-To get you started there is data ready for you to use in the data folder.
+To get you started there is already data in the data folder for you to use. Refer to the US website for the data dictionary.
 
 a.  Find the carrier that had the most flights during the month. Determine which carrier this is?
 
