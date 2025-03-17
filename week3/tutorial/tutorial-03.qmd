@@ -30,6 +30,8 @@ You will practice:
 
 ### Before your tutorial
 
+**Download the project template from Moodle**. Go to Week 3 > Real Time > Download the .zip file.
+
 For this week and next week, you should ensure you have worked through the startR modules on Tidy Data and the module on Quarto Basics.
 
 These should take you ~ 2 hours.
