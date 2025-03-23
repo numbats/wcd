@@ -72,7 +72,12 @@ Explore your data! These tasks should be done using the dplyr and tidy wrangling
 
 To get you started there is already data in the data folder for you to use. Refer to the US website for the data dictionary.
 
+**Everything needed to complete the tutorial was in the** [tutorial-03.zip](https://wcd.numbat.space/tutorials/tutorial-03.zip) **on Moodle. Here are some of the things you will find when running the code.**
+
 a.  Find the carrier that had the most flights during the month. Determine which carrier this is?
+
+    *\
+    WN = Southwest had the most flights.*
 
 ```{r topcarrier, eval=FALSE}
 flights <- read_csv(here("data", "flights.csv"))
@@ -85,7 +90,9 @@ carrier <- flights |>
 carrier |> head(5)
 ```
 
-b.  Which airport had the most departing traffic?
+b.  Which airport had the most departing traffic?\
+    \
+    *LAX = Los Angeles had the most departing flights.*
 
 ```{r topairport, eval=FALSE}
 origin <- flights |>
@@ -96,7 +103,9 @@ origin <- flights |>
 origin |> head(5)
 ```
 
-c.  Compute the smallest, largest and median departure delay for the busiest airport. What would it mean if the median departure delay was negative?
+c.  Compute the smallest, largest and median departure delay for the busiest airport. What would it mean if the median departure delay was negative?\
+    \
+    *LAX is the busiest airport. The smallest departure delay for the month was much less than 0, which means the flight left early, quite early. The longest delay was a day later. (This looks like a time zone calculation error.) The median delay was is less than 0. That means that 50% of the flights left before scheduled.*
 
 ```{r delays, eval=FALSE}
 lax <- flights |>
@@ -120,6 +129,9 @@ d.  Make a side-by-side boxplot of the delays for each carrier, at the busiest a
     iii. Make nice labels on the axis
 
     iv. Write a paragraph on what is learned about the delays by carrier
+
+\
+*Overall, there is not much difference in the median delays, and the variation in delays between carriers. American Airlines (AA) and Southwest (WN) have the highest median delay and Frontier Airlines (F9) has the lowest median delay. Skywest (OO) has the flight with the longest delay.*
 
 ```{r plots, eval=FALSE}
 lax |>
@@ -228,6 +240,8 @@ ggplot() +
 
 d.  Choose the two major carriers for your day of data, and make two separate maps of flights, one for each carrier. Compare and contrast the carrier flight patterns.
 
+*I chose Delta and Southwest. It looks a little like Delta has more of a hub system. We see this because both airlines are high volume carriers, but spatially it looks like Southwest has more flights than Delta. Delta flights are operating between fewer airports, and Southwest is more distributed, serving many more airports.*
+
 ```{r track, eval=FALSE, fig.height=4}
 p1 <- ggplot() + 
   geom_polygon(data = usa_map_data, aes(x = long, y = lat, group = group), col = "black", fill = "forestgreen", alpha = 0.15) +
@@ -261,6 +275,8 @@ p1 + p2
 ```
 
 e.  ADVANCED: Now we are going to examine change in patterns over the course of a day. You will need to convert departure time into a standard time. Then break it into one of four categories: midnight-6am, 6am-noon, noon-6pm, 6pm-midnight. Using all the carriers again, make separate maps for each quarter of the day. Compare the traffic over these four time blocks.
+
+*There's not a lot to see in four big groups like this. Its an exercise in working with time. And also in ordering the four groups appropriately.*
 
 ```{r timezone, eval=FALSE}
 jan1_flights <- jan1_flights |> 
@@ -298,6 +314,8 @@ ggplot() +
 ```
 
 f.  ADVANCED: Use the standardised times to follow the path of one plane during the day.
+
+*Plane N243WN have 8 flights during the day, but it goes back and forth between three airports.*
 
 ```{r N243WN, eval=FALSE}
 
