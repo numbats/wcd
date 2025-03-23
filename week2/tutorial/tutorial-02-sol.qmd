@@ -53,13 +53,19 @@ This question relates to the [Tidy Tuesday Data on locations of alternative fuel
 
 Read the details about the data at [DOT](https://data-usdot.opendata.arcgis.com/datasets/usdot::alternative-fueling-stations/about). How is this data collected, do you think?
 
+*The U.S. Department of Energy collects this data in partnership with Clean Cities coalitions and their stakeholders to help fleets and consumers find alternative fueling stations." The implication is that alternative fueling stations provide the details of their service station to the database.*
+
 ### b. Data type
 
 What type of data is this? (observational, experimental, survey, census)
 
+*This is closer to a census than any other type. It is beneficial for a fuel provider to be listed in the database, so we would expect that data is available for (almost) all fuel providers.*
+
 ### c. Population vs sample
 
 Describe the population, and what is the sample.
+
+*This data could be considered to be the population, not a sample, for a particular time point. It is collected over time, so the data will continue to expand to include new records.*
 
 ### d. Download and plot the data
 
@@ -69,6 +75,7 @@ Download the data and plot the fueling locations on a map, coloured by fuel type
 library(tidyverse)
 library(ggthemes)
 library(maps)
+library(mapproj)
 
 # Note you can read data directly from a website
 stations <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-03-01/stations.csv')
@@ -124,6 +131,8 @@ ggplot(aes(x=open_yrmth,
 
 If the question to answer is "which alternative fuel vehicle is the fastest growing?" what is the explanatory (independent, predictor) variable and what is the response variable?
 
+*The response variable will be the count of new stations (or cumulative count or rate of growth) relative to time, and the explanatory variable is fuel type. The data suggests that electric is the fastest growing, and it is rapidly expanding.*
+
 ## Exercise 2
 
 Here we will look at the [Chocolate bar ratings](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-01-18/readme.md). Details (brief) of how the data was collected are provided [here](https://github.com/rfordatascience/tidytuesday/issues/408) and more about the data itself is [here](http://flavorsofcacao.com/chocolate_database.html).
@@ -136,17 +145,27 @@ chocolate <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/
 
 What type of data is this? (observational, experimental, survey, census)
 
+*Observational*
+
 ### b. Data collection
 
 How is the data collected?
+
+*"The Manhattan Chocolate Society’s Brady Brelinski has reviewed 2,500+ bars of craft chocolate since 2006, and compiles his findings into a copy-paste-able table that lists each bar’s manufacturer, bean origin, percent cocoa, ingredients, review notes, and numerical rating. Related: Craft chocolate makers in the US and Canada, also compiled by Brelinski."*
+
+*These are ratings given for chocolates, probably sourced and chosen by one person, over a period of time.*
 
 ### c. Population vs sample
 
 Describe the population.
 
+*This is a tough one. We'd like to think that these ratings might be useful for our own tastes. However, only one person did the tasting. This likely yields more comparable ratings than if many people tasted them all. Technically the population is that one person, and their perception of the chocolates. Thus the ratings may not infer how other people perceive the chocolates.*
+
 ### d. Response and predictor variables
 
 For the question "Which country of origin of the bean obtains the best rating?" state the response and predictor variables.
+
+*The response (dependent) variable is rating, and country of bean origin is the predictor (or explanatory or independent variable).*
 
 ### e. Visualise your data
 
@@ -174,6 +193,8 @@ chocolate_countries = chocolate |>
     coord_flip()
 ```
 
+*There is a lot of variability from country to country, and some chocolates have received very low ratings. Overall Congo has the highest average rating by Brelinski, followed by Cuba, Vietnam, and our near neighbour Papua New Guinea.*
+
 ## In your own time
 
 Read the description of the study titled ["Clearing the Fog: Is Hydroxychloroquine Effective in Reducing COVID-19 Progression (COVID-19)"](https://clinicaltrials.gov/ct2/show/NCT04491994).
@@ -182,9 +203,13 @@ Read the description of the study titled ["Clearing the Fog: Is Hydroxychloroqui
 
 What type of data is this? (observational, experimental, survey, census)
 
+*This is clearly data from a designed experiment.*
+
 ### b. Study Participants
 
 How many subjects participated in the study at the start, and to completion?
+
+*180 started in the control group and 360 in the HCQ group. These dropped to 151 and 349, respectively. Thus, 540 subjects started, and 500 completed the experiment.*
 
 ### c. Study details
 
@@ -195,13 +220,23 @@ What are the:
 -   blocking factors?
 -   response variable (outcome measures)?
 
+*The experimental units are the subjects. The factor is the type of treatment received (control or HCQ).*
+
+*"Randomization rules were designed by Dr. Wasim Alamgir together with principal investigators and implemented by an independent statistician who was not involved in data analysis. Stratified random sampling was applied to stratify all eligible patients according to age, gender and comorbidities." Participants were assigned to treatment groups by stratified sampling using age, gender and comorbidities as the strata, so these would be the blocks.*
+
+*"After start of treatment, development of fever \> 101 F for \> 72 hours, shortness of breath by minimal exertion (10-Step walk test), derangement of basic lab parameters (ALC \< 1000 or raised CRP) or appearance of infiltrates on CXR during course of treatment was labeled as progression irrespective of PCR status." The response variable was whether these symptoms persisted at 5 days.*
+
 ### d. Study desing
 
 How are subjects assigned to treatment groups?
 
+*"Randomization rules were designed by Dr. Wasim Alamgir together with principal investigators and implemented by an independent statistician who was not involved in data analysis. Stratified random sampling was applied to stratify all eligible patients according to age, gender and comorbidities." Participants were assigned to treatment groups by stratified sampling using age, gender and comorbidities as the strata.*
+
 ### e. Study results
 
 What were the results of the study?
+
+*There was no difference between the subjects treated with HCQ relative to the control. Interestingly, and something of an aside to the main results, is that most patients did not have a progression (see next question, and the numbers reported).*
 
 ### f. Analyse results
 
@@ -217,12 +252,16 @@ hcq |>
   mutate(se = sqrt(p*(1-p)/all))
 ```
 
-### g. Study conculstions
+### g. Study conculsions
 
 Based on the proportions and their standard errors, why would the result of the study be that HCQ does NOT improve the outcomes of COVID patients?
+
+*The proportions for each group are really similar, and the standard error would place both estimates within one standard error of the other. This is strong evidence that both groups of subjects have similar outcomes.*
 
 ### h. Population vs sample
 
 What is the population for this experiment?
+
+*This is tough. It is a designed experiment, where age, gender and comobidities have been controlled to be equal between the two groups. The experiment was conducted in Pakistan, with the local population and local conditions. The results may be more applicable for these conditions. However, human DNA is very much the same across all sorts of demographics. That experiments are conducted in various communities is usually considered to be irrelevant, and the results are expected to be relevant broadly to other communities. So the population for this study would be considered to be adult humans, quite generally.*
 
 ##### © Copyright Monash University
