@@ -285,7 +285,7 @@ Later on we are going to do some graphing using different categorical ranges. So
 tbl_G17_tidy = tbl_G17_tidy |>
   unite("income", c(income_min, income_max), remove = FALSE) |>
   unite("age", c(age_min, age_max), remove = FALSE)
-View(tbl_G17_tidy)
+# View(tbl_G17_tidy)
 ```
 
 -   Repeat the above for the SA1 data. This should be as easy as changing `data_paths` from `STE_paths` to `SA1_paths`.
