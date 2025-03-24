@@ -274,7 +274,7 @@ tbl_G17_tidy <- tbl_G17_long_formatted |>
   mutate(category = str_remove(category, "_yrs")) |>
   separate_wider_delim(cols = category, delim = "_",
                        names = c("sex", "income_min", "income_max", "age_min", "age_max")) 
-View(tbl_G17_tidy)
+# View(tbl_G17_tidy)
 ```
 
 -   What is the importance of the `mutate` call using `str_remove()`?
