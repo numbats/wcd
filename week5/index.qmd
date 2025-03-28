@@ -1,0 +1,705 @@
+---
+pagetitle: "ETC5512"
+subtitle: "Australian election data"
+author: Kate Saunders
+email: "ETC5512.Clayton-x@monash.edu"
+date: "Wild Caught Data"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "wcd.numbat.space"
+footer: "ETC5512"
+format: 
+  revealjs: 
+    logo: images/monash-one-line-black-rgb.png
+    slide-number: c
+    multiplex: false
+    theme: ../assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 720
+    css: [../assets/custom.css, ../assets/lecture-01.css]
+    include-after-body: "../assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = FALSE,
+  cache.path = "cache/"
+)
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue} {#etc5523-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li><i class="fas fa-envelope"></i>`r rmarkdown::metadata$email`</li>
+
+<li><i class="fas fa-calendar-alt"></i>
+`r rmarkdown::metadata$date`</li>
+
+<li><i class="fas fa-globe"></i>
+`r rmarkdown::metadata[["unit-url"]]`</li>
+
+</ul>
+
+<br>
+:::
+
+## Today's Lecture
+
+::: {.callout-note .incremental}
+## What we'll cover
+
+- Learn about Australian election data
+- Look at results from the last election
+- Learn how to visualise the election results spatially in a few ways
+
+:::
+
+. . . 
+
+::: {.callout-note .incremental}
+## From a coding perspective:
+
+- This will require learning about [spatial mapping in R]{.monash-blue}.
+
+- You will also need to learn about different [mapping projections]{.monash-blue}
+
+:::
+
+# Australian Election Data {background-color="#006DAE"}
+
+## Australian Election Data
+
+<br>
+
+::: {.callout-note .incremental}
+
+## Important Information
+
+- Much like the census, the election attempts to collect the data from the population.
+
+- In Australia, it is **compulsory** by law to vote in elections if you are an Australian citizen [or eligible British subject]{.smaller} aged 18 years old or over and have lived in your address for at least one month.
+
+- The [Australian Electoral Commission](https://www.aec.gov.au/) (AEC) is an independent federal agency in charge of federal Australian elections and provides the geographical boundaries of the electoral divisions.
+
+:::
+
+<!-- --- slide break --- -->
+
+## Some questions 
+
+<br>
+
+::: {.callout-important}
+## Quick quiz
+
+1. When was the last federal election in Australia?
+2. How often is the federal election conducted in Australia?
+3. How many electoral divisions are there in the last federal election?
+4. What is the population for the Australian federal election?
+:::
+
+<!-- --- slide break --- -->
+
+## 2022 Australian Federal Election
+
+::: {.columns}
+::: {.column width="50%"}
+::: {.callout-note .incremental}
+## Aussie Politics
+
+- Parliament of Australia comprises two houses:
+  * Senate (upper house) comprising 76 senators
+  * House of Representatives (lower house) comprising 151 members
+- Government is formed by the party or coalition with majority of the seats in the lower house
+- The 2022 Australian Federal Election was held on Sat 21st May 2022
+- The next federal election will likely be held in the next few months!
+
+:::
+:::
+
+::: {.column width="50%"}
+::: {.callout-note}
+
+## Parties 
+
+**Two major parties**: Labour and the Coalition. Coalition combines Liberals and Nationals. 
+
+<img src="images/lecture-05/logo-labor.png" height="40px">
+
+<img src="images/lecture-05/logo-liberal.png" height="60px"> 
+      
+<img src="images/lecture-05/logo-national.png" height="30px">
+      
+**There are also minor parties** like the Greens and One Nation, and Independents.
+
+<img src="images/lecture-05/logo-green.png" height="50px">
+  
+<img src="images/lecture-05/logo-one-nation.png" height="50px"> 
+  
+:::
+:::
+:::
+
+<!-- --- slide break --- -->
+
+## Ballots 
+
+* **House of Representatives** uses the instant-runoff voting system
+* Senate uses the single transferable voting system
+
+<center>
+<img class = "ba" src="images/lecture-05/hor-paper.jpg">     .    <img class = "ba" src="images/lecture-05/senate-atl-sample.png">
+</center>
+
+<!-- --- slide break --- -->
+
+# Data on Voter Counts {background-color="#006DAE"}
+
+<!-- --- slide break --- -->
+
+## 2022 Australian Federal Election Data
+
+::: {.callout-note}
+## Let's download some data 
+
+Go to 
+[https://results.aec.gov.au](https://results.aec.gov.au)
+
+Download the distribution of preferences by candidate by division for the 2022 Australian Federal Election
+
+Select: 
+
+1. 2022 federal election
+2. Downloads
+3. Distribution of preferences by candidate by division
+
+:::
+
+. . . 
+
+::: {.callout-note appearance="minimal"}
+
+Can also download directly using the link:
+[https://results.aec.gov.au/27966/Website/Downloads/HouseDopByDivisionDownload-27966.csv](https://results.aec.gov.au/27966/Website/Downloads/HouseDopByDivisionDownload-27966.csv)
+
+::: 
+
+## Voting Data
+
+House of Representatives
+
+```{r votes, message = FALSE, warning = FALSE}
+library(tidyverse)
+votes <- read_csv("https://results.aec.gov.au/27966/Website/Downloads/HouseDopByDivisionDownload-27966.csv", skip = 1)
+glimpse(votes)
+```
+
+<!-- --- slide break --- -->
+
+## Electoral district of [Monash]{.monash-blue}
+
+Let's have a look at the electoral district named "Monash"
+
+```{r echo = FALSE}
+votes_monash = votes |> 
+  filter(DivisionNm == "Monash")
+glimpse(votes_monash)
+```
+
+<!-- --- slide break --- -->
+
+## District: Monash
+
+::: {.columns}
+::: {.column width="65%"}
+
+```{r votes-monash}
+votes_monash <- votes |>
+  # get the preference count only
+  filter(CalculationType == "Preference Count") |>
+  # get the Monash division
+  filter(DivisionNm == "Monash")
+glimpse(votes_monash)
+```
+
+:::
+::: {.column width="35%"}
+
+![](images/lecture-05/hor-paper.jpg){class="bw2"}
+
+:::
+
+:::
+
+<!-- --- slide break --- -->
+
+## Visualising the counts
+
+```{r vote-counts, fig.width = 12, fig.height = 4.5, echo = FALSE}
+
+ggplot(votes_monash) +
+  geom_col(aes(x = CalculationValue, y = Surname)) +
+  geom_text(aes(label = paste("Count", CountNumber)),
+    x = 10000, y = 3, size = 16, color = "#ee64a4",
+    alpha = 0.4, hjust = "left"
+  ) +
+  facet_wrap(~CountNumber) + 
+  theme_bw()
+```
+
+<!-- --- slide break --- -->
+
+## Better
+
+Order candidates by counts!!!
+
+```{r vote-counts-better, fig.width = 12, fig.height = 4.5, echo = FALSE}
+
+mutate(votes_monash, Surname = fct_reorder(Surname, CalculationValue, sum)) %>% 
+  ggplot() +
+  geom_col(aes(x = CalculationValue, y = Surname)) +
+  geom_text(aes(label = paste("Count", CountNumber + 1)),
+    x = 10000, y = 3, size = 16, color = "#ee64a4", alpha = 0.4, hjust = "left"
+  ) +
+  facet_wrap(~CountNumber) + 
+  theme_bw()
+```
+
+<div style="position:absolute;right:20px;bottom:20px">
+<b>Winner</b>: <br>Russel<br> Broadbent<br>
+<img width = "180px" src="images/lecture-05/broadbent-russel.jpeg" />
+</div>
+
+<!-- --- slide break --- -->
+
+## Code
+
+```{r vote-counts-better-code, eval = FALSE}
+
+votes_monash_for_plotting |> 
+  mutate(Surname = fct_reorder(Surname, CalculationValue, sum))  #<<
+
+ggplot(votes_monahs_for_plotting) +
+  geom_col(aes(x = CalculationValue, y = Surname)) +
+  geom_text(aes(label = paste("Count", CountNumber + 1)),
+    x = 10000, y = 3, size = 16, color = "#ee64a4", alpha = 0.4, hjust = "left"
+  ) +
+  facet_wrap(~CountNumber) + 
+  theme_bw()
+```
+
+<!-- --- slide break --- -->
+
+## Where is the electoral district of [Monash]{.monash-blue}?
+
+It *doesn't* include Monash Clayton campus- [Check here](https://aec.gov.au/profiles/vic/monash.htm).
+
+![](images/lecture-05/aec-monash-boundary.png){fig-align="center"}
+
+<!-- --- slide break --- -->
+
+## Electoral district of [Hotham]{.monash-blue}
+
+Does include Monash Clayton campus - [Check here](https://aec.gov.au/profiles/vic/hotham.htm).
+
+![](images/lecture-05/aec-hotham-boundary.png){fig-align="center"}
+
+<!-- --- slide break --- -->
+
+# Maps of Electoral Results  {background-color="#006DAE"}
+
+<!-- --- slide break --- -->
+
+## Australian Electorates Divisions
+
+::: {.columns}
+::: {.column width="65%"}
+
+![Australia electoral divisions in the 2022 election](images/lecture-05/aec_map_2022.png)
+
+:::
+::: {.column width="35%"}
+
+There were 151 electorates in 2022.
+
+::: {.callout-note appearance="minimal"}
+The [geographical boundaries of the electoral divisions]{.monash-blue} are determined by the [Redistribution Committee]{.monash-blue} and are [redrawn]{.monash-blue} every so often to ensure similar number of electors in each electoral division for a given state or territory.
+:::
+
+:::
+:::
+
+<!-- --- slide break --- -->
+
+## Electoral Boundaries
+
+::: {.callout-warning}
+## Warning!
+Electoral boundaries can change across years
+
+:::
+
+::: {.callout-note}
+## Break out discussion
+
+* Have any boundaries changed from 2022 to 2025?
+
+* If so which ones? 
+
+* What would that mean for comparing election results between years?
+
+:::
+
+<!-- LIKE TO ADD: References on changing electoral boundaries in 2025 and their importance internationally  -->
+
+<!-- --- slide break --- -->
+
+## GIS data
+
+::: {.callout-tip} 
+## GIS 
+
+GIS stands for Geographic Information System. 
+
+GIS is a framework for capturing and inspecting geographical data.
+
+:::
+
+<!-- --- slide break --- -->
+
+## Federal electoral boundary
+
+::: {.callout-note}
+## Electoral Boundaries 
+
+- Data is found at
+[https://www.aec.gov.au/electorates/gis/licence.htm](https://www.aec.gov.au/electorates/gis/licence.htm)
+
+- Agree to the license to get to the download page:
+
+> "The Licensee must make End-users aware the data was sourced from the Australian Electoral Commission and is used under licence."
+
+> Note: the federal electoral boundary is provided by Australian Electoral Commission  
+© Commonwealth of Australia (Australian Electoral Commission) 2025
+
+- Download the ESRI zip file for Victoria.
+
+- To work with spatial data, we use the [sf]{.monash-blue} R-package.
+
+:::
+
+<!-- --- slide break --- -->
+
+## Working with spatial data
+
+::: {.scrollable}
+```{r aec-map}
+library(sf)
+aec_map <- read_sf(here::here("data/vic-july-2021-esri/E_VIC21_region.shp")) |> st_simplify(dTolerance = 250)
+
+head(aec_map)
+```
+:::
+
+<!-- --- slide break --- -->
+
+## Geometry object
+
+::: {.scrollable}
+```{r aec-geometry, message = TRUE}
+aec_map$geometry[[1]]
+```
+:::
+
+## Visualisation in `ggplot`
+
+```{r plain-aec-map}
+ggplot(data = aec_map) +
+  geom_sf()
+```
+
+<!-- --- slide break --- -->
+
+## Combining election winners and map
+
+```{r winner-map}
+winners <- votes |>
+  # get the winner
+  filter(Elected == "Y" & CountNumber == 0 & CalculationType == "Preference Count") |>
+  # join the data
+  right_join(aec_map, by = c("DivisionNm" = "Elect_div")) |>
+  select(DivisionNm, PartyAb, PartyNm, geometry)
+
+```
+
+## Combining election winners and map
+
+```{r}
+ggplot(winners) +
+  geom_sf(aes(fill = PartyAb, geometry = geometry))
+```
+
+<!-- --- slide break --- -->
+
+## Detective work
+
+:::callout-caution
+
+Watch out for mismatched Division Names 
+
+:::incremental 
+
+* e.g. "McEwen" vs "Mcewen" 
+
+* That caught me out last year, but it seems like its fixed.
+
+* For cases like these you might need fuzzy/partial string matching 
+
+* Try `agrepl()` function
+
+:::
+
+:::
+
+<!-- --- slide break --- -->
+
+## Using colors wisely
+
+```{r electoral_map_wins}
+aus_colours <- c(
+  "ALP" = "#DE3533", "LNP" = "#ADD8E6", "KAP" = "#8B0000",
+  "GVIC" = "#10C25B", "XEN" = "#ff6300", "LP" = "#0047AB",
+  "NP" = "#0a9cca", "IND" = "#000000", "GRN" = "#006400"
+)
+
+ggplot(winners) +
+  geom_sf(aes(fill = PartyAb, geometry = geometry)) +
+  scale_fill_manual(name = "Party", values = aus_colours) +
+  theme_void() +
+  theme(legend.position = "bottom")
+```
+
+<!-- --- slide break --- -->
+
+## Zoom 
+
+```{r electoral_map_wins-zoom}
+ggplot(winners) +
+  geom_sf(aes(fill = PartyAb, geometry = geometry)) +
+  scale_fill_manual(name = "Party", values = aus_colours) +
+  theme_void() +
+  theme(legend.position = "bottom") + 
+  xlim(c(144.5,145.5)) + 
+  ylim(c(-39,-37.5))
+
+```
+
+<!-- --- slide break --- -->
+
+## Traditional Maps
+
+![](images/lecture-05/traditional_map.png){fig-align="center"}
+
+Reference: [](https://www.mattcowgill.com/posts/election_sugarbag/election_sugarbag.html)
+
+<!-- --- slide break --- -->
+
+## Hex Maps 
+
+![](images/lecture-05/sugar_bag_map.png){fig-align="center"}
+
+Reference: [](https://www.mattcowgill.com/posts/election_sugarbag/election_sugarbag.html)
+
+## Visualising Maps
+
+:::callout-caution  
+## Watch out 
+
+* Traditional maps can be mislead you about election results
+
+* Larger areas don't mean more votes
+
+* Better to give equal visual weight 
+
+:::
+
+<!-- --- slide break --- -->
+
+# Coordinate reference system (CRS) {background-color="#006DAE"}
+
+<!-- --- slide break --- -->
+
+## Geographic coordinate reference systems
+
+::::: columns
+::: {.column width="50%"}
+
+:::{.callout-note appearance="minimal"}
+
+* **Geographic CRSs** identify a location on the Earth's surface by *longitude* and *latitude*.
+* **Longitude** is the East-West direction in angular distance from the Prime Meridian plane.
+* **Latitude** is the angular distance North or South of the equatorial plane.
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+![](images/lecture-05/simple-geomap.png)
+:::
+:::
+
+<!-- --- slide break --- -->
+
+## Projected coordinate reference systems
+
+::::: columns
+::: {.column width="50%"}
+
+:::{.callout-note appearance="minimal"}
+
+-   All projected CRSs are based on a geographic CRS.
+-   Map projections convert the three-dimensional surface of the Earth into Easting and Northing (x and y) values (typically meters) in a projected CRS.
+-   These projected CRSs are based on Cartesian coordinates on a implicitly flat surface.
+-   Some deformations are introduced in the process, e.g. area, direction, distance or shape, while preserving one or two of these properties.
+:::
+
+:::
+
+::: {.column width="50%"}
+
+```{r world-maps, echo = FALSE, fig.height = 3.5}
+library(maps)
+
+world_map <- maps::map("world", plot = FALSE, fill = TRUE)
+
+world1 <- sf::st_as_sf(world_map)
+
+world2 <- sf::st_transform(
+  world1,
+  "+proj=laea +y_0=0 +lon_0=155 +lat_0=-90 +ellps=WGS84 +no_defs"
+)
+
+pt <- data.frame(x = 0, y = 0) |>
+  sf::st_as_sf(coords = 1:2, 
+               crs = sf::st_crs(world1)) |>
+  sf::st_transform(sf::st_crs(world2))
+
+
+ggplot() +
+  geom_sf(data = world2) +
+  geom_sf(data = pt, color = "red", size = 3)
+
+ggplot() +
+  geom_sf(data = world1) +
+  annotate("point",
+    x = 0, y = 0, color = "red",
+    size = 3
+  )
+```
+
+:::
+:::::
+
+::: footer
+[Lovelace, Robin, Jakub Nowosad and Jannes Muenchow (2019). Geocomputation with R. The R Series. CRC Press.](https://geocompr.robinlovelace.net/spatial-class.html#crs-intro)
+:::
+
+<!-- --- slide break --- -->
+
+## Well Known Text (WKT)
+
+* Open Geospatial Consortium (OGC) developed an open standard format for describing CRSs called [**WKT**](https://portal.opengeospatial.org/files/18-010r7)
+
+```{r}
+
+aus_map <- read_sf(here::here("data/2021-Cwlth_electoral_boundaries_ESRI/2021_ELB_region.shp")) |>
+  sf::st_make_valid()|>
+  sf::st_simplify(dTolerance = 1000)
+
+sf::st_crs(aus_map)
+```
+<!-- --- slide break --- -->
+
+## GDA94 Map Projection 
+
+```{r aecmap, fig.height = 3}
+ggplot(aus_map) +
+  geom_sf()
+```
+<!-- --- slide break --- -->
+
+## Changing map projections
+
+::: {.callout-note appearance="minimal"}
+
+* Map projections may be modified in multiple methods (it's beyond this unit to delve deep into this).
+
+* Below uses the Lambert azimuthal equal-area projection centered on the longitude and latitude of (rough) Melbourne coordinates via [`proj4string`](https://proj.org/index.html):
+
+::: 
+
+```{r ausmap-proj}
+aus_map_transformed = aus_map |>
+  sf::st_transform(crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=145 +lat_0=-38")
+
+ggplot(aus_map_transformed) +
+  geom_sf(col = "forestgreen")
+```
+
+<!-- --- slide break --- -->
+
+# Wrap Up {background-color="#006DAE"}
+
+## Summary
+
+::: callout-note
+## Australian Election Case Study
+
+::: incremental
+
+* We went through how to find and understand the data available in the 2021 Australian census.
+
+* Learnt about census data collection and data limitations. 
+
+* Taste of detective work: Understanding the file structures and what the data contains.
+
+* Also learnt about tidy data
+
+* Covered the basics of string manipulation
+
+:::
+
+:::
+
+<!-- --- slide break --- -->
+
+
+
+
