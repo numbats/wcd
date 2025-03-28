@@ -684,15 +684,13 @@ ggplot(aus_map_transformed) +
 
 ::: incremental
 
-* We went through how to find and understand the data available in the 2021 Australian census.
+* We went through how to find and use data from the Australian election
 
-* Learnt about census data collection and data limitations. 
+* This included how to deal with preferential voting counts
 
-* Taste of detective work: Understanding the file structures and what the data contains.
+* Learnt about how to plot maps in R using the sf package
 
-* Also learnt about tidy data
-
-* Covered the basics of string manipulation
+* This required learning about coordinate reference systems
 
 :::
 
