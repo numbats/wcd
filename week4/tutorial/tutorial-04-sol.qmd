@@ -106,7 +106,7 @@ dim(tbl_G17) # gives dimensions of the new dataset
 tbl_G17_long <- tbl_G17 |>
   pivot_longer(cols = -1, names_to = "category",
                values_to = "count")
-View(tbl_G17_long)
+# View(tbl_G17_long)
 
 # We want to split the strings using the "_"
 # But there are multiple different cases to consider
@@ -126,7 +126,8 @@ table(underscore_count_per_category)
 
 # Use this code to explore the different sub cases we are going to need to code for
 pattern_val = "ov" #Neg, Negtve, more, PI, ov, 85ov, 85_yrs
-View(tbl_G17_long |> filter(str_detect(category, pattern_val)))
+
+# View(tbl_G17_long |> filter(str_detect(category, pattern_val)))
 
 # Lots can go wrong in string matching
 # You need to be very very precise in what you ask for
@@ -154,7 +155,7 @@ tbl_G17_tidy <- tbl_G17_long_formatted |>
                        names = c("sex", "income_min", "income_max", "age_min", "age_max")) |>
   unite("income", c(income_min, income_max), remove = FALSE) |>
   unite("age", c(age_min, age_max), remove = FALSE)
-View(tbl_G17_tidy)
+# View(tbl_G17_tidy)
 
 tbl_G17_tidy_STE = tbl_G17_tidy
 
