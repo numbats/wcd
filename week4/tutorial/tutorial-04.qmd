@@ -46,16 +46,13 @@ Below is an example of how to get started.
 
 -   Create an `exercise-04.qmd` under the `analysis` (or similarly named) folder.
 
-2. **Getting the census data**
+2.  **Getting the census data**
 
 -   Go to <https://www.abs.gov.au/census/find-census-data/datapacks> selecting the following options:
 
--   2021 Census Datapacks
-        -   General Community Profile
-        -   All geographies
-        -   Vic
+-   2021 Census Datapacks - General Community Profile - All geographies - Vic
 
-  The downloaded file would be called `2021_GCP_ALL_for_Vic_short-header.zip`.
+The downloaded file would be called `2021_GCP_ALL_for_Vic_short-header.zip`.
 
 -   Unzip this file and save the folder in the `data` folder you set up.
 
@@ -98,7 +95,8 @@ tutorial-04
 
 **Practice regular expression**
 
-Consider the following vector `A` and `B`. 
+Consider the following vector `A` and `B`.
+
 ```{r}
 A <- c("F_300_399_55_64_yrs", 
        "F_1_149_35_44_yrs", 
@@ -114,7 +112,7 @@ B <- c(A,
        "M_150_299_25_34_yrs")
 ```
 
-The first letter has information on the sex, followed by minimum income, maximum income, minimum age, and maximum age separated by `_`, with some exceptions for certain age and income categories (e.g. `Neg_Nil` is negative or nil income, `85ov` is 85 years or over). 
+The first letter has information on the sex, followed by minimum income, maximum income, minimum age, and maximum age separated by `_`, with some exceptions for certain age and income categories (e.g. `Neg_Nil` is negative or nil income, `85ov` is 85 years or over).
 
 We want to wrangle this vector to extract the variables and later make them their own columns in a data frame. Try using the functions `str_split()`, `str_replace()` and or `str_remove()` to do this.
 
@@ -145,10 +143,10 @@ Start with loading the `tidyverse` package and setting the path ways to the data
 library(tidyverse)
 census_path <- here::here("data/2021_GCP_all_for_VIC_short-header/2021 Census GCP All Geographies for VIC")
 
-SA1_paths <- glue::glue(census_path, "/{geo}/VIC/2021Census_G17{alpha}_VIC_SA1.csv",
+SA1_paths <- glue::glue(census_path, "/{geo}/VIC/2021Census_G17{alpha}_VIC_{geo}.csv",
                         geo = "SA1", alpha = c("A", "B", "C"))
 
-STE_paths <- glue::glue(census_path, "/{geo}/VIC/2021Census_G17{alpha}_VIC_STE.csv",
+STE_paths <- glue::glue(census_path, "/{geo}/VIC/2021Census_G17{alpha}_VIC_{geo}.csv",
                         geo = "STE", alpha = c("A", "B", "C"))
 
 ```
@@ -180,7 +178,7 @@ STE_G17A <- read_csv(STE_paths[1])
 
 -   How many rows and columns does `STE_G17A` contain?
 
-Part of our mission today is to make this data into a tidy form. The first step to this is pivoting the data from it's wide format into a long format. Check out the [tidyverse cheat sheet](https://rstudio.github.io/cheatsheets/tidyr.pdf) for some extra help understanding how the data is being combined. 
+Part of our mission today is to make this data into a tidy form. The first step to this is pivoting the data from it's wide format into a long format. Check out the [tidyverse cheat sheet](https://rstudio.github.io/cheatsheets/tidyr.pdf) for some extra help understanding how the data is being combined.
 
 ```{r}
 STE_G17A_long <- STE_G17A |>
@@ -189,7 +187,6 @@ STE_G17A_long <- STE_G17A |>
 ```
 
 Use `View()` to compare `STE_G17A` before and `STE_G17A_long` after.
-
 
 -   What about the other STE_paths? Is the data structured similarly?\
     *The answer is yes, so let's read in all the data and combine it together.*
