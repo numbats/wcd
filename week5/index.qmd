@@ -525,7 +525,7 @@ ggplot(winners) +
 
 ![](images/lecture-05/traditional_map.png){fig-align="center"}
 
-Reference: [](https://www.mattcowgill.com/posts/election_sugarbag/election_sugarbag.html)
+[Reference:](https://www.mattcowgill.com/posts/election_sugarbag/election_sugarbag.html)
 
 <!-- --- slide break --- -->
 
@@ -533,7 +533,7 @@ Reference: [](https://www.mattcowgill.com/posts/election_sugarbag/election_sugar
 
 ![](images/lecture-05/sugar_bag_map.png){fig-align="center"}
 
-Reference: [](https://www.mattcowgill.com/posts/election_sugarbag/election_sugarbag.html)
+[Reference](https://www.mattcowgill.com/posts/election_sugarbag/election_sugarbag.html)
 
 ## Visualising Maps
 
@@ -698,6 +698,353 @@ ggplot(aus_map_transformed) +
 
 <!-- --- slide break --- -->
 
+# Questions {background-color="#006DAE"}
 
+<!-- --- slide break --- -->
 
+# Drop In - Getting started in ggplot2 {background-color="#006DAE"}
 
+*Notes from Kate's unit on data Visualisation and Communication ETX2250/ETF5922
+
+## Shrek
+
+::: callout-tip
+### Shrek and ggplot2
+
+Don't be scared of `ggplot2`, it's just like Shrek!
+
+Get to know it before you judge it!
+
+*"Ogres have layers. Onions have layers. You get it? We both have layers"* - Shrek
+:::
+
+![](images/lecture-05/donkey-and-shrek.jpg){fig-align="center"}
+
+## The Layers
+
+:::: callout-note
+## Key layers include:
+
+::: incremental
+-   **Data**:
+    -   The dataset you're visualising.\
+-   **Aesthetic Mappings (`aes()` for short)**:
+    -   Map variables to visual properties like x, y, color, size, etc.\
+-   **Geometries (`geom_*`)**:
+    -   Define the type of plot (e.g., bars, lines, points).
+-   **Scales**:
+    -   Control how data maps to aesthetics (e.g., axis limits, color gradients).
+-   **Facets**:
+    -   Split the data into multiple panels (e.g., `facet_wrap()`).
+-   **Themes**:
+    -   Customise the non-data components (e.g., background, grid lines).
+:::
+::::
+
+## Base Layer
+
+Start by creating an empty plot on which to add your layers. We'll add layers to this plot using `+`.
+
+```{r echo = TRUE}
+library(ggplot2)
+
+ggplot()
+
+```
+
+## Data Layer
+
+::: callout-note
+-   First step is to add our data
+
+-   I'm going to use this data set I prepared earlier
+:::
+
+```{r echo = TRUE}
+boston_celtics = read_csv(here::here("data/boston_celtics.csv")) |> 
+   filter(season == 2025)
+head(boston_celtics)
+```
+
+## Reading Data
+
+::: callout-important
+## Checklist
+
+-   Remember you need to tell R where to look for this file by setting your working directory
+
+-   Setting up a R Project helps with this!
+
+-   Check you current working directory with `getwd()`
+
+-   Check your file is in this directory - `file.exists` or `list.files()` are helpful for this.
+
+-   After your read in your data look at it using `View()` of `head()`
+
+-   Make sure it looks like what you expect
+
+-   Also check the structure of your data. Try `summary` or `str()`.
+
+-   If all that seems good - we can add it to our plot!
+:::
+
+## Add you data layer
+
+It's still an empty plot because we haven't told R what to do with the data yet.
+
+```{r echo = TRUE}
+ggplot(data = boston_celtics) 
+```
+
+## Geometry Layer (geom)
+
+:::: callout-note
+## geom
+
+::: incremental
+-   Let's create a coloumn plot
+
+-   Use the geometry layer - `geom_col`
+
+-   Similar to `geom_bar` (but does slightly different things)
+
+-   If you type `?geom_` in your Console and hit tab to scroll through a list of all the different plot geometries
+
+-   Think of all these types is like the Visualisation Pane in Power BI
+:::
+::::
+
+## Bar Plot
+
+::: callout-note
+## Add your geom
+
+This is what your code should look like when you add your geom layer
+:::
+
+```{r echo = TRUE, eval = FALSE}
+ggplot(data = boston_celtics) + 
+  geom_col()
+```
+
+::: callout-warning
+-   But ... this code won't work yet, because we haven't added our aesthetic layer
+
+-   The **aesthetic layer** defines how data is mapped to visual properties in your plot
+
+    -   *e.g what goes on the x/y axes*
+:::
+
+## Aesthetic Layer
+
+:::: callout-note
+### Common Aesthetic Mappings
+
+Use the `aes()` function to map variables to aesthetics.
+
+The common parts are:
+
+::: incremental
+-   **x**: The variable on the x-axis.
+
+-   **y**: The variable on the y-axis.
+
+-   **color**: The color of points, lines, or outlines.
+
+-   **fill**: The fill color for bars, areas, or shapes.
+
+-   **size**: The size of points or lines.\
+
+-   **shape**: The shape of points (e.g., circles, triangles).
+
+-   **alpha**: The transparency level.
+:::
+::::
+
+## Adding the aesthetic layer
+
+```{r echo = TRUE, fig.align = 'center'}
+ggplot(data = boston_celtics, aes(x = game_date, y = team_score)) + 
+  geom_col() 
+```
+
+## Another Option
+
+::: callout-important
+If you are going to use multiple data types or need multiple aesthetics layers it is better to put the code about the data and the aesthetics in the geom layer directly.
+:::
+
+```{r echo = TRUE, fig.align = 'center'}
+ggplot() + 
+  geom_col(data = boston_celtics, aes(x = game_date, y = team_score)) 
+```
+
+## Colour and Fill
+
+Set the [bar colour](https://r-graph-gallery.com/42-colors-names.html) to Green
+
+```{r echo = TRUE, fig.align = 'center'}
+ggplot() + 
+  geom_col(data = boston_celtics, aes(x = game_date, y = team_score), col = "forestgreen") 
+```
+
+## Colour and Fill
+
+Set the [bar fill](https://r-graph-gallery.com/42-colors-names.html) to Green
+
+```{r echo = TRUE, fig.align = 'center'}
+ggplot() + 
+  geom_col(data = boston_celtics, aes(x = game_date, y = team_score), fill = "forestgreen") 
+```
+
+## Scale Layer
+
+Next layer is the visual elements is scale. *e.g. axis limits and color scales*
+
+```{r echo = TRUE, fig.align = 'center'}
+ggplot(data = boston_celtics) + 
+  geom_col(aes(x = game_date, y = team_score, fill = team_winner))
+
+```
+
+## Colour and Fill In Code
+
+::: callout-note
+## Common misunderstandings
+
+-   If it the asethetic mapping is the name of a variable then you need to put it in the the `aes()` brackets
+
+-   If it is fixed, e.g. you want to colour everything black, then it is just in the `geom_*()` bracket.
+
+-   Depending on what geom you use, there may be a difference between colour and fill
+
+-   Both spellings of colour and color will work
+:::
+
+## Using In Built Fill/Colour Scales
+
+You can use the inbuilt palettes from [RColourBrewer](https://r-graph-gallery.com/42-colors-names.html)
+
+```{r echo = TRUE, fig.align = 'center'}
+ggplot(data = boston_celtics) + 
+  geom_col(aes(x = game_date, y = team_score, fill = team_winner), col = "gray") + 
+  scale_fill_brewer(palette = "Greens") 
+```
+
+## Using Manual Fill/Colour Scales
+
+You can also change fill/colour scales manually using `scale_colour_manual` or `scale_fill_manual`.
+
+```{r echo = TRUE, fig.align = 'center'}
+ggplot(data = boston_celtics) + 
+  geom_col(aes(x = game_date, y = team_score, fill = team_winner), col = "gray") +
+  scale_fill_manual(label = c("Loss", "Win"), values = c("TRUE" = "forestgreen", "FALSE" = "lightgreen"))
+```
+
+## Colour Scales
+
+:::: callout-note
+## Colour Scales
+
+IMO: Colour scales are on the hardest parts about learning `ggplot2`
+
+::: incremental
+-   To change colour scale, use `scale_colour_*`
+
+-   To change fill scale, use `scale_fill_*`
+
+-   Check out all the different types of scales using the help menu `?scale_colour` and hit tab.
+
+-   Note for discrete variables needing distinct colours, such as categorical variables, you can use `scale_*_brewer`
+
+-   For variables needing a smooth gradient use `scale_*_distiller`
+
+-   You can also set colours manually using `scale_*_manual`
+:::
+::::
+
+<small> Note \* here is like a blank space and it means there are multiple things that could be inserted here </small>
+
+## Themes
+
+::: callout-note
+### Themes
+
+-   Here is a list of the [themes](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+
+-   My favourite is `theme_bw()`.
+:::
+
+## Default Theme
+
+::: callout-note
+## Grey Background
+
+-   The default background for `ggplot2` is arguably chartjunk.
+
+-   But - There are good reasons for using it.
+:::
+
+*"We can still see the gridlines to aid in the judgement of position (Cleveland, 1993b), but they have little visual impact and we can easily "tune" them out... Finally, the grey background creates a continuous field of colour which ensures that the plot is perceived as a single visual entity." -Wickham on the grey background*\
+Source: ggplot2: Elegant Graphics for Data Analysis.
+
+## Changing Theme Background
+
+Here I change the theme background to `theme_bw()`.
+
+```{r echo = TRUE, fig.align='center'}
+ggplot(data = boston_celtics) + 
+  geom_col(aes(x = game_date, y = team_score, fill = team_winner), col = "gray") +
+  scale_fill_manual(label = c("Loss", "Win"), values = c("TRUE" = "forestgreen", "FALSE" = "lightgreen")) + 
+  theme_bw() 
+```
+
+## Plot Theme Specifics
+
+::: callout-note
+## Plot Theme Specifics
+
+-   To tune the more specific aspects of your theme, we use the `theme()` layer.
+
+-   Look up `?theme` there are a lot of options!
+:::
+
+## Changing Theme Specifics
+
+Here I move the legend to the bottom and remove the legend label.
+
+```{r echo = TRUE, fig.align='center'}
+ggplot(data = boston_celtics) + 
+  geom_col(aes(x = game_date, y = team_score, fill = team_winner), col = "gray") +
+  scale_fill_manual(label = c("Loss", "Win"), values = c("TRUE" = "forestgreen", "FALSE" = "lightgreen")) + 
+  theme_bw() + 
+  theme(legend.position = "bottom", legend.title = element_blank())
+```
+
+## Polising your plot
+
+The `theme()` layer is also were you can specifics about titles, text and axes. You could also change label names in the theme, but `xlab`, `ylab` and `ggtitle` are easier to use.
+
+```{r echo = TRUE}
+celtics_plot <- ggplot(data = boston_celtics) + 
+  geom_col(aes(x = game_date, y = team_score, fill = team_winner), col = "gray") +
+  scale_fill_manual(label = c("Loss", "Win"), values = c("TRUE" = "forestgreen", "FALSE" = "lightgreen")) + 
+  theme_bw() + 
+  theme(
+    legend.position = "bottom", 
+    legend.title = element_blank(),
+    plot.title = element_text(size = 20), 
+    axis.title.x = element_text(size = 15),  
+    axis.title.y = element_text(size = 15),  
+    axis.text = element_text(size = 12),      
+    legend.text = element_text(size = 12)) + 
+  xlab("Game Date") + 
+  ylab("Team Score") + 
+  ggtitle("Boston Celtics 2025 Season so far")
+```
+
+## Final plot
+
+```{r echo = TRUE, fig.align='center'}
+celtics_plot
+```
