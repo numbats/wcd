@@ -39,7 +39,8 @@ election_data = election_data |>
 data_path = "data/vic-july-2021-esri/E_VIC21_region.shp" 
 
 vic_election_map <- read_sf(here::here(data_path)) |>
-  mutate(DivisionNm = toupper(Elect_div))
+  mutate(DivisionNm = toupper(Elect_div)) |>
+  st_zm()
 
 vic_election_map = vic_election_map |>
   left_join(election_data, by = "DivisionNm")
@@ -60,7 +61,7 @@ party_colors <- c(
 a)  
 
 ```{r vicmap19}
-ggplot(st_zm(vic_election_map)) +
+ggplot(vic_election_map) +
    geom_sf(aes(geometry = geometry, fill = PartyAb), 
                   color = "white") + 
    coord_sf(xlim = c(144.8, 145.2), ylim = c(-38.1, -37.6)) +
@@ -72,7 +73,7 @@ ggplot(st_zm(vic_election_map)) +
 b)  
 
 ```{r crop-map, warning = FALSE, message = FALSE}
-crop_map <- st_zm(vic_election_map) |> 
+crop_map <- vic_election_map |> 
   st_crop(xmin = 144.8, xmax = 145.2,
           ymin = -38.1, ymax = -37.6)
 
