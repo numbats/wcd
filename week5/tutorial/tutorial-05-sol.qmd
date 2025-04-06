@@ -12,7 +12,8 @@ knitr::opts_chunk$set(
   fig.height = 6,
   out.width = "100%",
   fig.retina = 3,
-  echo = TRUE
+  echo = TRUE,
+  eval = FALSE
 )
 ```
 
@@ -23,7 +24,7 @@ library(tidyverse)
 library(sf)
 ```
 
-```{r election-data, eval = TRUE, message = FALSE}
+```{r election-data, message = FALSE}
 url = "https://results.aec.gov.au/27966/Website/Downloads/HouseDopByDivisionDownload-27966.csv"
 
 election_data <- read_csv(url, skip = 1)
@@ -46,7 +47,7 @@ vic_election_map = vic_election_map |>
   left_join(election_data, by = "DivisionNm")
 ```
 
-```{r party-colors, eval = TRUE}
+```{r party-colors}
 party_colors <- c(
   "ALP" = "#DE3533",
   "GVIC" = "#10C25B",
