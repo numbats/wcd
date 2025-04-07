@@ -56,7 +56,7 @@ SA1map <- read_sf(here::here("data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuw
 
 ii. Calculate the centroids for each SA1 region.
 
-```{r income-map, echo = FALSE, message = FALSE, warning = FALSE}
+```{r income-map, message = FALSE, warning = FALSE}
 SA1map <- SA1map |>
    mutate(centroid = st_centroid(geom))
 ```
@@ -77,8 +77,8 @@ iv. Plot the median weekly personal income data on top of the electoral boundari
 
 ```{r}
 ggplot() +
-   geom_sf(data = st_zm(SA1map), aes(geometry = centroid, color = Median_tot_prsnl_inc_weekly), shape = 3) + 
-   geom_sf(data = st_zm(vic_map), aes(geometry = geometry), fill = "transparent", size = 1.3, color = "gray") +
+   geom_sf(data = SA1map, aes(geometry = centroid, color = Median_tot_prsnl_inc_weekly), shape = 3) + 
+   geom_sf(data = vic_map, aes(geometry = geometry), fill = "transparent", size = 1.3, color = "gray") +
    coord_sf(xlim = c(144.8, 145.2), ylim = c(-38.1, -37.6)) +
   scale_color_viridis_c(name = "Median weekly\nperson income", option = "magma") +
   theme_minimal()
