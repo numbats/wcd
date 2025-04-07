@@ -28,23 +28,29 @@ schedule <- tribble(
 # ...
 # Assignment 4: details
 
-selected_dates <- seq(as.Date(start_semester), by = "week", length.out = 13)
-# selected_dates <- all_dates[all_dates != mid_semester_break]
+all_dates <- seq(as.Date(start_semester), 
+                      by = "week", 
+                      length.out = 13)
+selected_dates <- all_dates[all_dates != mid_semester_break]
 
 # Add mid-semester break
 calendar <- tibble(Date = selected_dates) |>
-    mutate(Week = row_number())
+    mutate(Week = row_number()) |> 
+    bind_rows(data.frame(Date = as_date(mid_semester_break), 
+                         Week = NA)) |>
+    arrange(Date)
 
 # Add calendar to schedule
 schedule <- schedule |>
-    left_join(calendar, by = "Week") |>
+    full_join(calendar, by = "Week") |>
     mutate(
-        Week = if_else(Date == mid_semester_break, NA, Week),
+        # Week = if_else(Date == mid_semester_break, NA, Week),
         Topic = if_else(Date == mid_semester_break, "Mid-semester break", Topic),
-        Reference = if_else(Date == mid_semester_break, NA, Reference),
-        Reference_URL = if_else(Date == mid_semester_break, NA, Reference_URL)
+        # Reference = if_else(Date == mid_semester_break, NA, Reference),
+        # Reference_URL = if_else(Date == mid_semester_break, NA, Reference_URL)
     ) |>
-    select(Week, Date, everything())
+    select(Week, Date, everything()) |>
+    arrange(Date)
 
 # Add assignment details
 lastmon <- function(x) {
