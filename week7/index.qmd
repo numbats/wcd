@@ -1,6 +1,6 @@
 ---
 pagetitle: "ETC5512"
-subtitle: "Combining Australian census and election data"
+subtitle: "PD Models and Credit Risk"
 author: Kate Saunders
 email: "ETC5512.Clayton-x@monash.edu"
 date: "Wild Caught Data"
