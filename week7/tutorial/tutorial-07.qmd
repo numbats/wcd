@@ -1,0 +1,124 @@
+---
+title: "Week 7 Tutorial"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  eval = FALSE
+)
+```
+
+## Learning Objectives
+
+In this tutorial, you will looking at the Fannie Mae performance data on single family loans.\
+\
+You will be learning how to:
+
+-   import large data
+-   compare the default risk for different periods
+-   practice data wrangling skills, and
+-   as always use critical thinking for analysis
+
+### Before your tutorial
+
+1.  Download and unzip the [ETC5512-week07.zip](https://drive.google.com/file/d/1QbtZuPjj-8GTT_ft4PlSEXy9JQDHMIgj/view?usp=sharing) file provided, and notice the file structure for this week looks like:
+
+```         
+etc5512-week07
+├── tutorial-07.Rmd
+├── final data
+│   ├──  2016_2022_data.rds
+├── raw data
+├── prep
+│   ├──  00_read_data.R
+│   ├──  01_import_data.R
+│   ├──  02_combine.R
+└── etc5512-week07.Rproj
+```
+
+2.  Import the data by loading the R data file, it has file type .rds . See `?readRDS`.
+
+***Note:*** This file has been pre-processed for you to work on the exercises in this tutorial - but it will still take time to read in.
+
+This data contains the Fannie Mae Single Home Loan data from year 2016Q1 to 2022Q3.
+
+```{r, message=FALSE, eval=FALSE}
+alldata <- readRDS(here::here("final data", "2016_22_data.rds"))
+```
+
+::: callout-tip
+## RDS files
+
+-   .rds files are more efficient for storing large datasets
+-   .rds fild compress and preserve R data types
+-   .csv files take up more space and require conversion when imported
+:::
+
+## Exercises
+
+a.  Create a table of default rate (based on 60, 90, 120 and 180 days of delinquency) by origination year and quarter. Hint: You might want to convert the `ORIG_DTE` to a date format first.\
+    \
+    Do you observe something peculiar from the table? Explain why.
+
+b.  Draw a U.S. map to show the default rate based on 90 days delinquency just for the year of 2016. Which states are having the top 3 highest default rate?
+
+c.  Draw a histogram to show the distribution of FICO Scores in different years. What do you notice?
+
+d.  The way FICO score is being interpreted is very tricky. A small increase at higher score does not have the same meaning as a small increase at the lower score. Therefore, regrouping the variable is needed. Regroup the variable of FICO scores as below (you need to use the variable as your independent variable to complete the exercise in your own time).
+
+```{r echo=FALSE, message=FALSE}
+my_tbl <- tibble::tribble(
+  ~Credit.Score, ~Rating,
+             "300-579",      "Poor",
+             "580-669",      "Fair",
+             "670-739",      "Good",
+            "740-799", "Very Good",
+            "800-850", "Exceptional"
+  )
+
+require(knitr)
+kable(my_tbl, digits = 3, row.names = FALSE, align = "c",
+              caption = NULL)
+```
+
+## Optional: In your own time
+
+The data that you have used so far is pre-processed from the raw data that you can get from [Fannie Mae Single-Family Homeloan Data](https://capitalmarkets.fanniemae.com/credit-risk-transfer/single-family-credit-risk-transfer/fannie-mae-single-family-loan-performance-data). Try the steps below to pre-process the data by yourself by just using the data from 2016Q1 to 2022Q3 as an exercise.
+
+Before you get started, install relevant R-packages.
+
+```{r, message=FALSE, eval=FALSE}
+### Required packages
+list.of.packages <- c("MASS", "data.table", "tidyverse", "here", "stringr",
+                      "lubridate", "ggplot2", "usmap", "gganimate")
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+if(length(new.packages)) install.packages(new.packages)
+invisible(lapply(list.of.packages, require, character.only = TRUE))
+```
+
+1.  **Download the data**
+    -   Go to this [page](https://capitalmarkets.fanniemae.com/credit-risk-transfer/single-family-credit-risk-transfer/fannie-mae-single-family-loan-performance-data). On the right panel, click `Access the Data`. Register for an account if you have not (it is free). Click `Hp (historical loan credit performance data)`/`Download data`/Choose the year 2021Q1 to 2021Q3. The downloaded data should be placed under the `data` -\> `raw` folder.
+2.  **Convert each file to a smaller size**
+    -   Open `01_import_data.R` (under `prep` folder) and run the script.
+    -   Your output file should have `_stat.csv` at the end (located in raw folder). The code has been pre-written for you in the `00_read_data.R` script.
+    -   Try to understand the code in the `00_read_data.R` to see how the data is being converted from transactions data to single account level data.
+3.  **Combining data**
+    -   Run `02_combine.R` (Under `prep` folder. It may takes a while to load. You should get a 20 million records. Yes, 20 millions row!).
+4.  **Analyze data**
+    -   Now the data is ready!
+    -   Use the data and replicate the plots in the lecture.
+    -   Answer the below questions:
+        -   Which state has the highest default rate?\
+        -   What type of customers are more risky? Those have higher LMI or lower LMI?\
+        -   Are those customers with higher interest rate at origination has higher chances of default?
+
+#### Copyright Monash University

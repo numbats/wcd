@@ -1,0 +1,366 @@
+---
+title: "Week 7 Tutorial Solutions"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  eval = FALSE
+)
+```
+
+### Before your tutorial
+
+1.  Download and unzip the [ETC5512-week07.zip](https://drive.google.com/file/d/1QbtZuPjj-8GTT_ft4PlSEXy9JQDHMIgj/view?usp=sharing) file provided, and notice the file structure for this week looks like:
+
+```         
+etc5512-week07
+├── tutorial-07.Rmd
+├── final data
+│   ├──  2016_2022_data.rds
+├── raw data
+├── prep
+│   ├──  00_read_data.R
+│   ├──  01_import_data.R
+│   ├──  02_combine.R
+└── etc5512-week07.Rproj
+```
+
+2.  Import the data by loading the R data file, it has file type .rds . See `?readRDS`.
+
+***Note:*** This file has been pre-processed for you to work on the exercises in this tutorial - but it will still take time to read in.
+
+This data contains the Fannie Mae Single Home Loan data from year 2016Q1 to 2022Q3.
+
+```{r, message=FALSE, eval=FALSE}
+alldata <- readRDS(here::here("final data", "2016_22_data.rds"))
+```
+
+## Exercies
+
+a.  Create a table of default rate (based on 60, 90, 120 and 180 days of delinquency) by origination year and quarter. You might want to convert the `ORIG_DTE` to a date format first. Do you observe something peculiar from the table? Explain why.
+
+```{r}
+dim(alldata)
+# Familiarize yourself with the variables
+colnames(alldata)
+```
+
+```{r}
+library(tidyverse)
+
+#Convert orig_dte to date format
+alldata <- alldata |> 
+  mutate(orig_yq = quarter(ymd(ORIG_DTE), type = "year.quarter"),
+         orig_yr = year(ymd(ORIG_DTE)))
+
+# default rate by origination year quarter
+alldata |> 
+  group_by(orig_yq) |> 
+  summarise(D180 = sum(!is.na(F180_DTE))/length(F180_DTE),
+            D120 = sum(!is.na(F120_DTE))/length(F120_DTE),
+            D90 = sum(!is.na(F90_DTE))/length(F90_DTE),
+            D60 = sum(!is.na(F60_DTE))/length(F60_DTE)) -> delin.table
+
+delin.table
+
+delin.table |> 
+  pivot_longer(cols = starts_with("D"),
+               names_to = "Delinquency Days",
+               values_to = "Rate") |> 
+  filter(orig_yq >= 2016.1) |> 
+  ggplot(aes(x = orig_yq,
+             y = Rate,
+             colour = `Delinquency Days` )) +
+  geom_line() +
+  labs(
+    title = "Fannie Mae default rates by origination year",
+    subtitle = "based on 30-year fixed-rate mortgage",
+    caption = "Data source: Fannie Mae's Single Home Loan",
+    y = "Default rate",
+    x = "Loan Origination Quarter")
+```
+
+-   Remember that we only get the data from 2016 onward, but the loan can be started before Fannie Mae acquired the loan from the financial institution, so, we just have to discard all information before 2016.\
+-   Generally, the defaulted rate are quite consistent except during the onset of COVID.\
+-   The default rate is low for loan originated from year 2021 onward. Why? This is because the loan are still new! The highest default rate normally occurs during year 5 of the loan. How interesting! Think further on why this is happening.
+
+b.  Draw a U.S. map to show the default rate based on 90 days delinquency just for the year of 2016. Which states are having the top 3 highest default rate?
+
+```{r}
+library(usmap)
+datamap <- alldata |> 
+  filter(orig_yr == 2016) |> 
+  group_by(state, orig_yr) |> 
+  summarize(D90 = sum(!is.na(F90_DTE))/length(F90_DTE))
+
+plot_usmap(
+  data = datamap,
+  labels = TRUE,
+  values = "D90",
+  color = "red"
+) +
+  scale_fill_continuous(name = "Delinquency by 90 days", low = "white", high = "red") +
+  theme(legend.position = "right") 
+```
+
+-   Texas, Nevada, Florida and New York city are the worst in term of having the highest default rate.
+
+c.  Draw histograms to show the distribution of FICO Scores in different years. What do you notice?
+
+```{r, warning=FALSE, message=FALSE}
+# Here is the code for one plot 
+
+#Delinquency by FICO Scores
+ggplot(alldata |> filter(orig_yr == 2016),
+       aes(x = CSCORE_B,
+           group = orig_yr,
+           )) +
+  geom_histogram(fill = "red") +
+  ggtitle("FICO scores distribution") +
+  labs(subtitle = ("Year: 2016"),
+       y = "Frequency",
+       x = "FICO Score") 
+```
+
+-   More borrowing from higher FICO scores group.
+
+d.  The way FICO score is being interpreted is very tricky. A small increase at higher score does not have the same meaning as a small increase at the lower score. Therefore, regrouping the variable is needed. Regroup the variable of FICO scores as below.
+
+```{r echo=FALSE, message=FALSE}
+my_tbl <- tibble::tribble(
+  ~Credit.Score, ~Rating,
+             "300-579",      "Poor",
+             "580-669",      "Fair",
+             "670-739",      "Good",
+            "740-799", "Very Good",
+            "800-850", "Exceptional"
+  )
+
+require(knitr)
+kable(my_tbl, digits = 3, row.names = FALSE, align = "c",
+              caption = NULL)
+
+```
+
+```{r}
+alldata |> 
+  mutate(FICO_status = case_when(
+           CSCORE_B < 580 ~ "Poor",
+           CSCORE_B < 670 ~ "Fair",
+           CSCORE_B < 740 ~ "Good",
+           CSCORE_B < 800 ~ "VeryGood",
+           TRUE ~ "Exceptional"
+         ))  -> newdata
+#head(newdata)
+```
+
+## In your own time: Extra
+
+The data that you have used so far is pre-processed from the raw data that you can get from [Fannie Mae Single-Family Homeloan Data](https://capitalmarkets.fanniemae.com/credit-risk-transfer/single-family-credit-risk-transfer/fannie-mae-single-family-loan-performance-data). Try the steps below to pre-process the data by yourself by just using the data from 2016Q1 to 2022Q3 as an exercise.
+
+1.  **Download the data**
+    -   Go to this [page](https://capitalmarkets.fanniemae.com/credit-risk-transfer/single-family-credit-risk-transfer/fannie-mae-single-family-loan-performance-data). On the right panell click `Access the Data`. Register for an account if you have not (it is free). Click `Hp (historical loan credit performance data)`/`Download data`/Choose the year 2021Q1 to 2021Q3. The downloaded data should be placed under the `data` -\> `raw` folder.
+2.  **Convert each file to a smaller size**
+    -   Open `01_import_data.R` (under `prep` folder) and run the script.
+    -   Your output file should have `_stat.csv` at the end (located in raw folder). The code has been pre-written for you in the `00_read_data.R` script.
+    -   Try to understand the code in the `00_read_data.R` to see how the data is being converted from transactions data to single account level data.
+3.  **Combining data**
+    -   Run `02_combine.R` (Under `prep` folder. It may takes a while to load. You should get a 20 million records. Yes, 20 millions row!).
+4.  **Analyze data**
+    -   Now the data is ready!
+    -   Use the data and replicate the plots in the lecture.
+    -   Try to explore the questions below:
+        -   Which state has the highest default rate?\
+        -   What type of customers are more risky? Those have higher LMI or lower LMI?\
+        -   Are those customers with higher interest rate at origination has higher chances of default?
+
+```{r}
+# some solutions are provided here
+
+data <- readRDS(paste0("final data/", "2016_22_data.rds"))
+
+# some data are duplicated
+alldata <- dplyr::distinct(data)
+
+# Convert orig_dte to date format
+alldata <- alldata |>
+  mutate(orig_yq = quarter(ymd(ORIG_DTE), type = "year.quarter"),
+         orig_yr = year(ymd(ORIG_DTE)))
+
+# Question: Default rate by vintage
+alldata |>
+  group_by(orig_yq) |>
+  summarise(D180 = sum(!is.na(F180_DTE))/length(F180_DTE),
+            D120 = sum(!is.na(F120_DTE))/length(F120_DTE),
+            D90 = sum(!is.na(F90_DTE))/length(F90_DTE),
+            D60 = sum(!is.na(F60_DTE))/length(F60_DTE)) -> delin.table
+
+delin.table |>
+  pivot_longer(cols = starts_with("D"),
+               names_to = "Delinquency Days",
+               values_to = "Rate") |>
+  filter(orig_yq >= 2016.1) |>
+  ggplot(aes(x = orig_yq,
+             y = Rate,
+             colour = `Delinquency Days` )) +
+  geom_line() +
+  labs(
+    title = "Fannie Mae default rates by origination year",
+    subtitle = "based on 30-year fixed-rate mortgage",
+    caption = "Data source: Fannie Mae's Single Home Loan",
+    y = "Default rate",
+    x = "Loan Origination Quarter")
+
+ggsave("delinquent.png")
+
+# Delinquency by FICO Scores
+ggplot(alldata |> filter(orig_yr >= 2016),
+       aes(x = CSCORE_B,
+           group = orig_yr,
+       )) +
+  geom_histogram(fill = "red") +
+  ggtitle("FICO scores distribution from year 2016 to 2021") +
+  labs(subtitle = ("Year: {closest_state}"),
+       y = "Frequency",
+       x = "FICO Score") +
+  transition_states(orig_yr,
+                    transition_length = 6,
+                    state_length = 1) -> plot1
+his_anim <- animate(plot1)
+anim_save("Fico histogram.gif", his_anim)
+
+# US Map
+datamap <- alldata |>
+  filter(orig_yq >= 2016.1) |>
+  group_by(state, orig_yr) |>
+  summarize(D90 = sum(!is.na(F90_DTE))/length(F90_DTE))
+
+plot_usmap(
+  data = datamap,
+  labels = TRUE,
+  values = "D90",
+  color = "red"
+) +
+  scale_fill_continuous(name = "Delinquency by 90 days", low = "white", high = "red") +
+  theme(legend.position = "right") -> mapPlot
+
+transitionMap <- mapPlot +
+  labs(title = "Delinquency 90 Days {as.integer(frame_time)}") +
+  transition_time(orig_yr)
+
+anim <- animate(transitionMap, fps = 10)
+anim_save("map.gif")
+
+
+# Question: The default rate of FM loan
+alldata |>
+  filter(!(is.na(F180_DTE))) |>
+  group_by(time1 = quarter(ymd(F180_DTE), type = "year.quarter")) |>
+  summarise(def = n()) -> tot_def
+
+def_table <- cbind(tot_def)
+i = 1
+for (time2 in tot_def$time1) {
+  def_table$no_cust[i] = sum(alldata$orig_yq <= time2)
+  i = i +1
+}
+
+def_table |>
+  mutate(rate = def/no_cust*100*4) -> def_table
+
+def_table |>
+  ggplot(aes(x = time1,
+             y = rate)) +
+  geom_line() +
+  scale_y_continuous(
+    labels = scales::number_format(accuracy = 0.01,
+                                   decimal.mark = '.')) +
+  labs(
+    title = "Fannie Mae default rates over time",
+    subtitle = "based on 30-year fixed-rate mortgage",
+    caption = "Data source: Fannie Mae's Single Home Loan",
+    y = "Annualized default rate (%)",
+    x = "Time")
+
+ggsave("def_rate_overtime.png")
+
+# Question: The default rate by FICO
+alldata |>
+  filter(orig_yr >= 2016) |>
+  group_by(CSCORE_B) |>
+  summarise(rate = sum(!is.na(F180_DTE))/length(LOAN_ID)) |>
+  ggplot(aes(x= CSCORE_B, y = rate)) +
+  geom_col() +
+  labs(x = 'FICO Score',
+       y = 'Default rate')
+
+# Question: The default rate by LTV
+alldata |>
+  filter(orig_yr >= 2016) |>
+  group_by(oltv) |>
+  summarise(rate = sum(!is.na(F180_DTE))/length(LOAN_ID)) |>
+  ggplot(aes(x= oltv, y = rate)) +
+  geom_col() +
+  labs(x = 'Original Loan To Value Ratio',
+       y = 'Default rate')
+
+# Question: The default rate by DTI
+alldata |>
+  filter(orig_yr >= 2016) |>
+  group_by(dti) |>
+  summarise(rate = sum(!is.na(F180_DTE))/length(LOAN_ID)) |>
+  ggplot(aes(x= dti, y = rate)) +
+  geom_col() +
+  labs(x = 'Debt to Income Ratio',
+       y = 'Default rate')
+
+# Question: Average credit score by vintage
+alldata |>
+  filter(orig_yr >= 2016) |>
+  group_by(orig_yq) |>
+  summarise(avg_score = mean(CSCORE_B, na.rm=T),
+            sd_score_up = avg_score + 1 * sd(CSCORE_B, na.rm=T),
+            sd_score_lo = avg_score - 1 * sd(CSCORE_B, na.rm=T),
+            sd_score_up2 = avg_score + 2 * sd(CSCORE_B, na.rm=T),
+            sd_score_lo2 = avg_score - 2 * sd(CSCORE_B, na.rm=T)) |>
+  ggplot(aes(x=orig_yq, y = avg_score)) +
+  geom_line() +
+  geom_ribbon(aes(fill = "1 std dev", ymin = sd_score_lo, ymax = sd_score_up), alpha = 0.15) +
+  geom_ribbon(aes(fill = "2 std dev", ymin = sd_score_lo2, ymax = sd_score_up2), alpha = 0.15) +
+  scale_fill_manual("", values = c("red", "#fc03d3")) +
+  labs(title = 'Average Credit Score by Vintage')
+```
+
+```{r}
+# Which state has the highest default rate?  
+alldata |> 
+  count(state) |> 
+  filter(n == max(n))
+
+## California!
+
+# What type of customers are more risky? Those have higher LMI or lower LMI?  s
+alldata |> 
+  mutate(default = as.factor(ifelse(!is.na(F90_DTE), 1, 0))) |> 
+  ggplot(aes(x=mi_pct, fill = default)) +
+  geom_bar(position = "fill")
+
+## No evidence from the visualization.
+
+# Are those customers with higher interest rate at origination has higher chances of default?
+alldata |> 
+  mutate(default = as.factor(ifelse(!is.na(F90_DTE), 1, 0))) |> 
+  ggplot(aes(x=orig_rt, fill = default)) +
+  geom_bar(position = "fill")
+
+## Yes, it looks like those have higher interest rate charged are more likely to default.
+```
