@@ -104,7 +104,7 @@ fivenum(melb_SA1$Median_tot_prsnl_inc_weekly)
 ggplot(melb_SA1, aes(x = Median_tot_prsnl_inc_weekly)) +
    geom_histogram() + 
   theme_bw() + 
-  xlab("Median of Total Personal Weekly Income") + 
+  xlab("Median of Total Personal Weekly Income") +
   ylab("Count")
 ```
 
@@ -136,5 +136,26 @@ SEDmap <- read_sf(here::here("data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuw
 ```
 
 Reminder the SED regions are NOT the same as the electoral boundaries.
+
+```{r}
+SEDmap <- read_sf(here::here("data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuwa_vic_short.gpkg"),
+   layer = "census2016_eiuwa_vic_sed_short"
+) |>
+   mutate(centroid = st_centroid(geom))
+
+melb_SED <- SEDmap |>
+   filter(st_intersects(centroid, melb_geometry, sparse = FALSE)[, 1])
+
+fivenum(melb_SED$Median_tot_prsnl_inc_weekly)
+
+ggplot(melb_SED, aes(x = Median_tot_prsnl_inc_weekly)) +
+   geom_histogram() + 
+  theme_bw() + 
+  xlab("Median of Total Personal Weekly Income") + 
+  ylab("Count")
+```
+
+\
+\*An estimate of the median total person weekly income is \$947 using SA1 data and \$816.5 using the SED data.\*
 
 #### Copyright Monash University
