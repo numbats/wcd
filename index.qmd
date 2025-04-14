@@ -57,9 +57,11 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 * Kate: Monday 11 - 12 pm. 
 (Room 64, Level 5, Building H, Caulfield Campus or see Moodle for zoom link)
-* Kris: Tuesday 2 - 3:30 pm  
+* Kris: Tuesday  <span style="color:red;"> **2:30 - 3:30 pm** </span> 
 (Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)
-* Maliny: Wednesday 3:30 - 5 pm  
+* Maliny: Wednesday <span style="color:red;"> **3:30 - 4:30 pm** </span>  
+(Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)
+* <span style="color:red;"> **New session** </span> Alternates Kris and Maliny: Thursday 3:30 - 4:30 pm 
 (Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)
 
 ## Schedule
