@@ -1,0 +1,140 @@
+---
+title: "Week 6 Tutorial"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  eval = FALSE # hack fix for sf problem
+)
+```
+
+## Learning Objectives
+
+In this tutorial, you will be combining data from the Australia election and the Australian census.\
+\
+You will be learning how to:
+
+-   Integrate data from different source to make exploratory inferences
+-   Compare summary statistics by region using different geographical statistics
+-   We will use the 2016 census data (you will use 2021 data on your assignment)
+
+### Before your tutorial
+
+**1. Get the geographical boundaries for 2016 census regions**.
+
+Go to https://www.abs.gov.au/census/find-census-data/geopackages select the following options:
+
+-   2016\
+-   Victoria\
+-   Employment, Income and Unpaid Work (EIUW).\
+-   EIUW GeoPackage A.
+
+**2. You will also need the data for the 2018 electoral boundaries**.
+
+You have a copy of the 2022 boundaries from Tutorial 5, but for today download the [2018 boundaries](https://www.aec.gov.au/electorates/gis/gis_datadownload.htm) from here. These are closer to the 2016 year of the census.
+
+## Exercise 6A
+
+**Read in the data from different sources**
+
+i.  Import the 2016 GeoPackage data with SA1 regions.
+
+```{r}
+library(tidyverse)
+library(sf)
+SA1map <- read_sf(here::here("data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuwa_vic_short.gpkg"), layer = "census2016_eiuwa_vic_sa1_short")
+```
+
+ii. Calculate the centroids for each SA1 region.
+
+```{r income-map, message = FALSE, warning = FALSE}
+SA1map <- SA1map |>
+   mutate(centroid = st_centroid(geom))
+```
+
+iii. Read in the data containing the electoral boundaries.
+
+```{r, message=FALSE}
+vic_map <- read_sf(here::here("data/vic-july-2018-esri/E_AUGFN3_region.shp")) |> 
+   # to match up with election data
+   mutate(DivisionNm = toupper(Elect_div))
+```
+
+## Exercise 6B
+
+**Integrate in the data from different sources**
+
+iv. Plot the median weekly personal income data on top of the electoral boundaries like below. Can you find which regions have wealthy individuals?\
+    \
+    *The inner city noticeably has regions with higher median weekly personal income.*
+
+```{r}
+ggplot() +
+   geom_sf(data = SA1map, aes(geometry = centroid, color = Median_tot_prsnl_inc_weekly), shape = 3) + 
+   geom_sf(data = vic_map, aes(geometry = geometry), fill = "transparent", size = 1.3, color = "gray") +
+   coord_sf(xlim = c(144.8, 145.2), ylim = c(-38.1, -37.6)) +
+  scale_color_viridis_c(name = "Median weekly\nperson income", option = "magma") +
+  theme_minimal()
+```
+
+![](../images/lecture-06/tute-06-fig.jpeg){fig-align="center"}
+
+v.  Estimate a median weekly personal income for the Melbourne district.
+
+```{r}
+melb_geometry <- vic_map |>
+   filter(DivisionNm == "MELBOURNE") |>
+   pull(geometry)
+
+melb_SA1 <- SA1map |>
+   filter(st_intersects(centroid, melb_geometry, sparse = FALSE)[, 1]) |>
+  filter(Median_age_persons != 0)
+
+fivenum(melb_SA1$Median_tot_prsnl_inc_weekly)
+
+ggplot(melb_SA1, aes(x = Median_tot_prsnl_inc_weekly)) +
+   geom_histogram() + 
+  theme_bw() + 
+  xlab("Median of Total Personal Weekly Income") + 
+  ylab("Count")
+```
+
+*Think about your results*
+
+-   Looking at the map above, there is one electorate won by the Green party. Notice, this is where a lot of wealthy individuals live.
+
+-   Can you say that those who vote for the Green party are rich individuals? Why or why not? Discuss with your classmates.\
+    \
+    *We cannot say that those who voted for Green are wealthy individuals from this data alone. There appears to be a large heterogeneity within the electorate (named Melbourne) that the Greens party won.*
+
+-   Why do some geographical regions look sparse in terms of the census reported median weekly personal income?\
+    \
+    *Each SA1 region contains approximately the same number of people. Some geographical regions look sparse since the SA1 region is physically large, most notably in the rural areas.*
+
+-   What is **ecological fallacy**? How does it relate to your conclusions from before?\
+    \
+    *An ecological fallacy is a mistaken statistical interpretation of data when inferences about the individuals are deduced from the group to which those individuals belong. For example, the Melbourne electorate has many wealthy individuals which make the median weekly personal income high in that electorate. It is wrong to conclude that a typical person selected in the Melbourne electorate will be wealthy.*
+
+## In your own time: Exercise 6C
+
+**Compare with different a layer**
+
+Repeat 6B using now the SED regions. How does the estimate of median weekly personal income for the Melbourne district differ to your calculation from 6B? What about estimates in other districts?
+
+```{r}
+SEDmap <- read_sf(here::here("data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuwa_vic_short.gpkg"), 
+                  layer = "census2016_eiuwa_vic_sed_short")
+```
+
+Reminder the SED regions are NOT the same as the electoral boundaries.
+
+#### Copyright Monash University
