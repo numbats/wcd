@@ -1,0 +1,92 @@
+---
+title: "Week 8 Tutorial"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  eval = FALSE
+)
+```
+
+## Learning Objectives
+
+In this tutorial, you will be considering a case study scenario in data ethics. 
+
+You will:
+
+-   Practice identifying different schools of ethical thought
+-   Practice being ethical analysts
+
+### Before your tutorial
+
+Read through the scenario below. You will be discussing this scenario in small groups during your tutorial. 
+
+It is important to be prepared for this group discussion that you **individually reflect on this scenario**. Form an opinion or identify places where you may like to ask questions.
+
+## Individual Reflection:
+
+Use Belmont report as a guideline:
+
+* Are there any issues with consent? 
+
+* What level of risk is the study? 
+* Can any risks be mitigated? 
+
+* What are the benefits of the study?
+
+Now consider the following ethical checklist [checklist](https://deon.drivendata.org/#default-checklist). 
+
+* Do you find there are other concerns that you didn't identify previously?
+
+* Should these concerns be considered? 
+
+### Scenario
+
+Researchers from a large, international social media platform wish to collaborate with a research team from a university based in the Australia. The university research team is interested in how small behavioral modifications can make an impact on an individual's well-being. They are experienced in running laboratory based studies where participants are invited to participate in a study, allocated to either an intervention or control group, and their well-being is monitored. The large social media platform has recently branched out to include personal fitness tracking as one facet of the ways people connect. Other connections include long and short messages posted publicly (like a blog). There is no network component - all individuals on the platform can access all other individual's data. 
+
+In the proposed collaboration, the social media platform offers to share all of their available data from their user community with the researchers. The researchers would then consider how changes to behaviors (as measured through fitness data) relate to changes in well-being (as measured through semantic analysis of written messages). To create a causally identifiable relationship, industry researchers will use small nudge messages to encourage particular physical behaviors (like going for a walk) to identify whether the change in physical behavior had an impact on wellness. They regularly use nudge messaging to encourage particular healthy behaviors, and have also experimented to identify which nudge is most effective, so this is not a change from their standard practices. 
+
+The researchers believe there are low to negligible risks to participants. As the data is mostly openly available to all users on the platform, the researchers from the social media platform won't be giving away any data that couldn't be web scraped - they would just be saving the university researchers some effort. Similarly, as anyone could obtain this data with some difficulty, the university researchers don't see any reason for any particular data protection plan. 
+
+When participants joined the platform, they consented to the terms and conditions. These terms and conditions clearly stated that data could be used for "research and quality assurance purposes". 
+
+In terms of potential benefits, if there does appear to be a direct relationship between physical behaviors and well-being, this would potentially provide a mechanism to improve the well-being of its user base. 
+
+### Exercise 8A: Quick exercise
+
+Identify the school of ethics based on the different statement below.
+
+1. The action is good if it follows the rules.
+
+2. The action is good if the consequences are good.
+
+3. The action is good if it's what a virtues person would do.
+
+### Exercise 8B: Group Discussion
+
+* Get in groups of 3 - 6 students. 
+* Select a chairperson from the group and set a timer for 30 minutes. The chairperson should facilitate discussion on the study, making sure that everyone in the group has a chance to raise their concerns based on their individual reflection. Discuss any key points thatt arise.
+
+* At the end of this process you must come to a definite conclusion. Either:
+
+* The data can be used for study.  
+* The data cannot be used for study.  
+
+* The data can be used for study with modifications.  
+
+### End of tutorial: Reflection
+
+* Share the conclusions you came to. Did all of the group members come to the same conclusions? 
+
+* What do you think impacted any differences or similarities in the conclusions the groups came to? 
+
+#### Copyright Monash University
