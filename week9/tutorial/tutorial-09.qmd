@@ -1,0 +1,66 @@
+---
+title: "Week 8 Tutorial"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  eval = FALSE
+)
+```
+
+## Learning Objectives
+
+In this tutorial, you will
+
+-   Use re-identification to explore challenges with open data
+-   Use data modification tools to reduce the risk of identification
+-   Test the data modification of your class mates
+
+### Before your tutorial
+
+Download the data sets for this tutorial from the Moodle. There is also a README.txt file you may find useful to understand the datasets.
+
+## Exercise 9A
+
+Read the `survey_data.csv` file into R. This is simulated data designed to represent a medical survey. The hypothetical premise is that participants were invited to attend a center to take part in a short study investigating blood sugar levels and eating habits. The data was openly released with variables including the date and time of testing (morning (9-11:59), afternoon(12:00-4:59), evening(5 - 9pm), coding whether the respondent had high blood sugar (measured in binary high/normal), their age (measured in years), their sex (M/F).
+
+a.  Read the data into R and use your exploratory data tools to explore the data.
+
+b.  What do you notice about the date of study?
+
+c.  To de-identify the data, the researchers removed directly identifying information, aggregated blood sugar into a binary variable, aggregated testing time into clinically meaningful bins and released only a sample of their data, where they only released one day's worth - 40 participants. Do you think this is sufficient given what you know of the data environment?
+
+d.  Now consider the second dataset. As participants were leaving the trial, they were asked if they would consider giving blood to save lives. All said yes. As part of a promotion run by the center, blood donors were asked if they would consider giving their age, sex and name to be published on the website to encourage others to give blood. All consented and data was uploaded in real time (which is represented by date and time in the dataset). Read in the second data set and explore.
+
+e.  Given this more complex data context, can you use your skills in tidyverse to identify the participants in the data?
+
+## Exercise 9B
+
+Using the tools and the example code from the lectures, attempt to de-identify the main survey data. There is not one solution to this, so you will need to consider:
+
+a.  Which variables(s) made is possible to identify individuals in the data?
+
+b.  What de-identification tools would be most appropriate to solve the challenges caused by these variables?
+
+c.  Is it possible to remove all possible risk? Consider the balance between reducing risk and reducing utility.
+
+## In your own time: Excercise 9C
+
+Lastly we will see if another data user could identify individuals in your data. Email, Github or otherwise exchange your new de-identified data with a friend in the class.
+
+a.  Can you identify individuals using your friend's de-identified data?
+
+b.  Did you and your friend make the same decisions to de-identify the data? If not, what are the pros and cons of each?
+
+c.  How do you think peer review can assist data de-identification procedures?
+
+#### Copyright Monash University
