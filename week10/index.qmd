@@ -1,0 +1,1151 @@
+---
+pagetitle: "ETC5512"
+subtitle: "Introduction to web scraping"
+author: Kate Saunders
+email: "ETC5512.Clayton-x@monash.edu"
+date: "Wild Caught Data"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "wcd.numbat.space"
+footer: "ETC5512"
+format: 
+  revealjs: 
+    logo: images/monash-one-line-black-rgb.png
+    slide-number: c
+    multiplex: false
+    theme: ../assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 720
+    css: [../assets/custom.css, ../assets/lecture-01.css]
+    include-after-body: "../assets/after-body.html"
+    chalkboard:
+      boardmarker-width: 5
+      buttons: true
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.height = 4,
+  fig.align = "center",
+  fig.retina = 3,
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  cache = FALSE,
+  cache.path = "cache/"
+)
+
+```
+
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue} {#etc5523-title background-image="images/bg-01.png"}
+
+### `r rmarkdown::metadata$subtitle`
+
+Lecturer: *`r rmarkdown::metadata$author`*
+
+`r rmarkdown::metadata$department`
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li><i class="fas fa-envelope"></i>`r rmarkdown::metadata$email`</li>
+
+<li><i class="fas fa-calendar-alt"></i>
+`r rmarkdown::metadata$date`</li>
+
+<li><i class="fas fa-globe"></i>
+`r rmarkdown::metadata[["unit-url"]]`</li>
+
+</ul>
+
+<br>
+:::
+
+## Journey so far
+
+::: callout-tip
+## Journey
+
+-   Weeks 1 - 2: Introducing you to open data and data collection
+
+-   Weeks 4 - 7: Different data case studies (cakes!!!)
+
+-   Weeks 8 - 9: Data ethics and data privacy
+
+-   Week 10: **Today two goals:** Show you web-scraping & have some fun!
+:::
+
+## Motivation
+
+<center>
+
+<blockquote class="twitter-tweet" data-lang="en">
+
+<p lang="en" dir="ltr">
+
+The most important thing I've ever done for learning R is to
+paradoxically stop "learning" (e.g. classes and problem sets) and start
+doing. Take a problem you have at work or school or a dataset you find
+interesting and get to work. Then write it up and post on githib or a
+blog. <a href="https://t.co/9aQZJRrlFK">https://t.co/9aQZJRrlFK</a>
+
+</p>
+
+— We are R-Ladies (@WeAreRLadies)
+<a href="https://twitter.com/WeAreRLadies/status/1110229736956067840?ref_src=twsrc%5Etfw">March
+25, 2019</a>
+
+</blockquote>
+
+<!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+
+## After my PhD - I wanted to read more!
+
+<center>
+
+<iframe src="https://giphy.com/embed/WoWm8YzFQJg5i" width="480" height="351" frameBorder="0" class="giphy-embed" allowFullScreen>
+
+</iframe>
+
+<p><a href="https://giphy.com/gifs/cartoons-comics-sea-reading-WoWm8YzFQJg5i"></a></p>
+
+</center>
+
+. . .
+
+::: {.callout-note style="width: 75%; margin: 0 auto;"}
+## Question
+
+How should I choose what to read?
+
+I want to read different perspectives and broaden my world view.
+:::
+
+## Picking from lists
+
+![](images/Books1001.jpg){fig-align="center"}
+
+. . .
+
+::: {.callout-warning style="width: 75%; margin: 0 auto;"}
+## Is this a good approach?
+
+Am I actually reading diversely?
+
+Suspicious this might be very biased sample.
+:::
+
+## My approach
+
+::: callout-tip
+## Got a question - Am I reading diversely
+
+-   Now I'm going to try to answer it!
+
+-   One option is to find an open data set, another is I create my own
+    data set for analysis using web scraping
+
+-   I'm going to take a [book list of best
+    sellers](https://en.wikipedia.org/wiki/List_of_best-selling_books)
+    and analyse the
+    [nationalities](https://www.gov.uk/government/publications/nationalities/list-of-nationalities)
+    of different authors
+
+-   Seems simple right - Let's see how this works out!
+:::
+
+## Today's lecture
+
+::: callout-note
+## What we'll cover
+
+-   Cover the basics of navigating around webpages
+-   Learn about when its appropriate to scrape data
+-   Also discover the challenges of working with data from the web
+:::
+
+. . .
+
+::: callout-note
+## Coding Perspective:
+
+-   Learn how to read data from a webpage into R
+-   See some examples of wrapping code in functions
+-   Learn about automating a scraper
+:::
+
+# html basics {background-color="#006DAE"}
+
+## Go to a webpage
+
+[Link to the wikipedia page for a famous Australian
+author](https://en.wikipedia.org/wiki/Tim_Winton)
+
+![](images/wiki_TimWinton.png){width="100%"}
+
+## View html code in Chrome
+
+-   Right click the part of the page you want
+-   Select inpsect
+
+![](images/inspect.png){width="100%"}
+
+## Html code
+
+-   Brings up the html code
+-   Highlights the piece of html code related to your click
+-   Hover over html code to see other features of the web page
+
+![](images/inspect_panel.png){width="90%"}
+
+## Inpsect button
+
+-   Similarly, click the top left button in the side panel
+-   Explore related features of the webpage and html code
+
+![](images/inspect_button.png){width="50%"}
+
+## Basic html types
+
+By browsing you observe the basic **structure** of html webpages
+
+Opening and closing [tags](https://www.w3schools.com/tags/) are used to
+wrap around content and define its purpose and appearance on a webpage.
+
+e.g. \< tag \> some random text \< /tag \>
+
+. . .
+
+::: {.callout-note style="width: 75%; margin: 0 auto;"}
+## Basic tag types
+
+-   div - division or section\
+-   p - paragraph elements\
+-   h - heading\
+-   table - Table\
+-   td - table data\
+-   a - anchor for a hyperlink
+:::
+
+## Breakout Session
+
+::: {.callout-note style="width: 75%; margin: 0 auto;"}
+## Try it yourself time
+
+- Pick an author and find their wikipedia page
+
+- Explore the structure of the webpage
+
+- Look at the different html tags
+
+:::
+
+
+# Web scraping in R {background-color="#006DAE"}
+
+## R Packages
+
+There are lots of packages in R that can be used for web scraping.
+
+:::: {.callout-tip style="width: 75%; margin: 0 auto;"}
+## Two main R packages
+
+::: incremental
+[`rvest`](https://rvest.tidyverse.org/articles/rvest.html) *Focus
+today*\
+
+-   Great for those new to web scraping
+
+-   Works best for static web pages
+
+-   Similar coding syntax to tidyverse packages
+
+[`RSelenium`](https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html)
+
+-   Better for more complex tasks
+
+-   Use it when you have web pages that load dynamically (pop ups, list
+    menus, drop downs etc)
+:::
+::::
+
+## Read a webpage
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-line-numbers: "1-2|3-5"
+
+library(tidyverse) 
+library(rvest)
+author_url <- "https://en.wikipedia.org/wiki/Tim_Winton"
+wiki_data <- read_html(author_url) # Read the webpage into R
+wiki_data
+```
+
+## How to scrape a table - html_table()
+
+So we can read data from the website into R, but we need the data in a
+form we can use.
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "1-3|4-5|6-8"
+
+all_tables <- wiki_data |>
+  html_table(header = FALSE) #Get all tables on the webpage
+
+length(all_tables)
+
+infocard = all_tables |> 
+  pluck(1) #pluck out the first item in the list 
+infocard
+```
+
+## Other approaches - html_elements()
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "1-2|3|4|6|1-6"
+
+infocard <- wiki_data |>
+ html_elements("table") |> # get all tables
+ html_table(header = FALSE) |>
+ pluck(1)
+
+infocard
+```
+## Other approaches - html_element()
+
+Similarly to other functions in the tidyverse there are functions to return all matches, or just one match. 
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "2|1-5"
+
+infocard <- wiki_data |>
+ html_element("table") |> # get the first table
+ html_table(header = FALSE) 
+
+infocard
+```
+
+## Using classes
+
+We can also match specific elements on a web page using classes. 
+
+`<table class="infobox vcard">`
+
+*Notice in the code we use dots instead of spaces in the class string.*
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "2|1-4"
+ 
+infocard <- wiki_data |>
+    html_element(".infobox.vcard") |> # matches the specific table class
+    html_table(header = FALSE) 
+infocard
+```
+
+## Get the Nationality
+
+One more step - Need to get the nationality from the table.
+
+This just requires some basic data wrangling.
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "1|2|3|4|1-5"
+
+author_nationality = infocard |>
+  rename(Category = X1, Response = X2) |>
+  filter(Category == "Nationality") |>
+  pull(Response) 
+author_nationality
+```
+
+. . .
+
+::: {.callout-caution style="width: 75%; margin: 0 auto;"}
+## Real challenge
+
+Can we generalise?
+
+:::
+
+## Breakout Session
+
+::: {.callout-note style="width: 75%; margin: 0 auto;"}
+## Try it yourself time
+
+-   For the author you picked, download their infocard into R
+
+-   Can you get their nationality from the infocard?
+
+-   At your table discuss any challenges you face
+
+:::
+
+## Let's try a different author
+
+[Wikipedia page for author Jane
+Austen](%22https://en.wikipedia.org/wiki/Jane_Austen%22)
+
+![](images/wiki_JaneAusten.png)
+
+## Let's get that infocard
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-line-numbers: "1-3|4-7|8-12|13|1-13"
+
+author_url <- "https://en.wikipedia.org/wiki/Jane_Austen"
+wiki_data <- read_html(author_url)
+
+infocard <- wiki_data |>
+  html_element(".infobox.vcard") |> 
+  html_table(header = FALSE) 
+
+author_nationality = infocard |>
+  rename(Category = X1, Response = X2) |>
+  filter(Category == "Nationality") |>
+  pull(Response) 
+
+author_nationality # :( oh oh
+
+```
+
+## Blocker!!!
+
+::: callout-warning
+**No nationality** category in Jane Austen's infocard
+
+The infocards on wikipedia do not have a standard format!
+
+This is a real barrier automation
+:::
+
+. . .
+
+::: callout-tip
+But her nationality is in the webpage text.\
+I could just scrape her nationality from there.
+:::
+
+## Try another way
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-line-numbers: "2"
+
+para_data <- wiki_data |>
+  html_elements("p") # get all the paragraphs
+head(para_data)
+```
+
+::: callout-caution
+But where exactly do we find her nationality in all this text?
+
+Let's go back to exploring the webpage.
+:::
+
+## Get the text - html_text()
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-line-numbers: "1-2|3"
+ 
+text_data <- para_data |>
+  pluck(2) |> # get the second paragraph
+  html_text() # convert the html paragraph to text
+head(text_data)
+```
+
+. . .
+
+There are more ways we can navigate around a web page, some are very
+useful in combination with string handling.
+
+## Xpath Example
+
+-   Right click html code, copy, copy Xpath
+
+![](images/xpath.png)
+
+## Using an Xpath
+
+```{r, eval = TRUE, echo = TRUE}
+#| eval: true
+#| echo: true
+#| code-line-numbers: "1-2|4|1-6"
+ 
+para_xpath = '//*[@id="mw-content-text"]/div/p[2]'
+
+text_data <- wiki_data |>
+  html_element(xpath = para_xpath) |>
+  html_text()
+text_data
+```
+
+## CSS Selector Example
+
+-   Right click html code, copy, copy selector
+
+![](images/css_selector.png)
+
+## Using CSS ID
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-line-numbers: "1-2|4|1-6"
+
+para_css = "#mw-content-text > div.mw-content-ltr.mw-parser-output > p:nth-child(5)"
+
+text_data <- wiki_data |>
+  html_element(css = para_css) |>
+  html_text()
+text_data
+```
+
+## Back to getting the nationality
+
+Once we have our text need to do some text analysis - could use
+`str_count`
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-line-numbers: "1-2|3-5|6-7"
+ 
+possible_nationalities <- c("Australian", "Chinese", "Mexican", "English", "Ethiopian")
+
+# Count how many time these appear in the text
+count_values = str_count(text_data, possible_nationalities) 
+
+# Get the matching nationalities
+possible_nationalities[count_values > 0] 
+
+```
+
+. . .
+
+::: callout-caution
+-   What do you think of my solution?
+-   Any guesses why I didn't use `str_match`?
+:::
+
+# Automation {background-color="#006DAE"}
+
+## Web scraping Applications 
+
+:::callout-tip 
+## Examples 
+
+In business analytics web there are many scraping applications. Some include:
+
+* **Competitive Intelligence**: Monitoring competitors' pricing, product offerings, and promotions in real-time
+
+* **Market Research**: Gathering customer reviews, sentiment analysis, and identifying trends
+
+* **Price Optimisation**: Analysing price points across markets to inform dynamic pricing strategies
+
+* **Financial Analysis**: Extracting economic indicators, stock performance data, and financial news for investment decisions 
+
+:::
+
+## Why automate?
+
+Web scrapers are used to collect data **regularly, with no to minimal manual effort and typically at scale**.
+
+::: callout-tip 
+
+* Regular Timing: Setting up scrapers to run daily, weekly, or hourly
+
+* Simple Notifications: Getting emails or messages when important data changes
+
+* Saving Data Automatically: Storing collected data in spreadsheets or databases
+
+* Error Handling: Making sure scrapers continue working when websites change
+
+:::
+
+## Functions for automation
+
+Let's automate. 
+
+Any code that gets repeated can be written as function.
+
+Here is a simple example of a function that adds two numbers.
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+#| code-line-numbers: "1|2|3|1-4"
+ 
+add_two_numbers <-function(num1, num2){
+  number_sum = num1 + num2
+  return(number_sum)
+} 
+
+```
+
+## Error handling
+
+Key to automation is carefully handling any errors. A common function
+for this is in R is `tryCatch()`
+
+```{r}
+#| eval: true
+#| echo: true
+
+ans1 = tryCatch(add_two_numbers(1, 1), 
+         error = function(e){return(NA)})
+ans1
+
+ans2 = tryCatch(add_two_numbers("a", 1), 
+         error = function(e){ print(e); return(NA)})
+ans2
+
+ans3 = tryCatch(add_two_numbers(x, 1), 
+         error = function(e){ print(e); return("Your code didn't work")})
+ans3
+```
+
+## Ethical scraping 
+
+::: callout-warning
+## Important
+
+Just because you can scrape - doesn't mean you should! 
+
+As with any data analytics you must to think about ethics!  
+
+::: 
+
+. . . 
+
+::: callout-tip 
+## Think about
+
+* Check the terms and conditions and terms of use
+
+* Look for a data licence
+
+* Review the robots.txt file for the website (e.g. https://www.example.com/robots.txt).
+
+* Be considerate of the volume of queries and query rate limit - see `polite` package in R.
+
+* Am I respecting people's data privacy?
+
+:::
+
+## Breakout Session
+
+::: {.callout-note style="width: 75%; margin: 0 auto;"}
+## Try it yourself time
+
+Is it okay to automate data scraping from: 
+
+- [Wikipedia](wikipedia.org)? 
+
+- [Australian Bureau of Meteorology](http://www.bom.gov.au/)? 
+
+- [realestate.com.au](realestate.com.au)? 
+
+:::
+
+# Back to my author example {background-color="#006DAE"}
+
+## Pseudo code
+
+::: callout-tip 
+## Planning ahead
+
+* Before you start a project it can be a good idea to plan it out 
+
+* Pseudo code is the simplified, informal description of an algorithm
+
+* Pseudo code can contain words and coding syntax 
+
+* Use pseudo code to identify coding building blocks / individual steps, and to identify potential problems or blockers.
+
+:::
+
+## For my project
+
+::: callout-note
+## Pseudo code
+
+1.  Read the wiki webpage about an author.\
+
+2.  Get the info card.\
+
+3.  Try to get the nationality from the infocard.\
+
+4.  If no nationality or infocard, I want to find the first paragraphs containing text.\
+
+5.  Guess the nationality from the text.\
+    *Going to need nationalities for matching.*\
+
+6.  Bring the above all together in a single function so I can
+    automatatically iterate over a list of authors.\
+    *Going to need my list of author web pages.*
+
+**Also need to think about how I handle any errors!**
+
+:::
+
+## Wrap my code chunks
+
+1.  Want a function to read the wiki webpage about an author
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+
+Read_wiki_page <- function(author_url){
+  wiki_data <- read_html(author_url)
+  return(wiki_data)
+}
+```
+
+## More wrapping of code chunks
+
+2.  Want a function to read the info card.
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+
+Get_wiki_infocard <- function(wiki_data){
+  infocard <- wiki_data |>
+    html_element(".infobox.vcard") |>
+    html_table(header = FALSE) 
+  return(infocard)
+}
+```
+
+## More wrapping of code chunks
+
+3.  Want a function to get the nationality from the infocard
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+
+Get_nationality_from_infocard <- function(infocard){
+  nationality <- infocard |>
+    rename(Category = X1, Response = X2) |>
+    filter(Category == "Nationality") |>
+    pull(Response)
+  return(nationality)
+}
+```
+
+## More wrapping of code chunks
+
+4.  Need a function to find the first html paragraph containing text 
+*(Remember I didn't say this was a good idea - we are learning!)*
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+
+Get_first_text <- function(wiki_data){
+  
+  paragraph_data <- wiki_data |>
+    html_elements("p")
+  
+  i = 1
+  no_text = TRUE
+  while(no_text){
+    
+    text_data <- paragraph_data |>
+      purrr::pluck(i) |>
+      html_text() 
+    
+    check_text = gsub("\\s+", "", text_data)
+    
+    if(check_text == ""){ 
+      # keep searching 
+      i = i + 1 
+    }else{ 
+      # end the while loop
+      no_text = FALSE
+    }
+  }
+  return(text_data)
+}
+```
+
+## More wrapping of code chunks
+
+5.  Need another function to "guess" the nationality from the text
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+
+Guess_nationality_from_text <- function(text_data, possible_nationalities){
+
+  num_matches <- str_count(text_data, possible_nationalities)
+
+  prob_matches <- num_matches/sum(num_matches)
+
+  i = which(prob_matches > 0)
+  if(length(i) == 1){
+
+    prob_nationality = possible_nationalities[i]
+
+    return(prob_nationality)
+    
+  }else if(length(i) > 0){
+
+    warning(paste(c("More than one match for the nationality:",
+                    possible_nationalities[i], "\n"), collapse = " "))
+
+    likely_nationality = which.max(prob_matches)
+
+    prob_nationality = possible_nationalities[likely_nationality]
+
+    return(prob_nationality)
+
+  }else{
+
+    return("No nationality matched")
+
+  }
+
+}
+
+```
+
+## More wrapping of code chunks
+
+6.  One function that brings that all together
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+
+Query_nationality_from_wiki <- function(author_url, possible_nationalities){
+
+  wiki_data <- Read_wiki_page(author_url)
+
+  infocard <- Get_wiki_infocard(wiki_data)
+
+  if(is.null(infocard)){
+
+    # missing infocard - get nationality from text 
+    first_paragraph <- Get_first_text(wiki_data)
+
+    nationality <- Guess_nationality_from_text(first_paragraph,
+                                               possible_nationalities)
+
+    return(nationality)
+
+  }
+
+  if(any(infocard[,1] == "Nationality")){
+
+    # info card exists and has nationality
+    nationality <- Get_nationality_from_infocard(infocard)
+
+  }else{
+
+    # no nationality in infocard - find nationality in text
+    text_data <- Get_first_text(wiki_data)
+    nationality <- Guess_nationality_from_text(text_data,
+                                               possible_nationalities)
+
+  }
+
+  return(nationality)
+
+}
+
+```
+
+## Test our code
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+
+author_url = "https://en.wikipedia.org/wiki/Tim_Winton"
+Query_nationality_from_wiki(author_url, c("English", "British", "Australian"))
+
+author_url <- "https://en.wikipedia.org/wiki/Jane_Austen"
+Query_nationality_from_wiki(author_url , c("English", "British", "Australian"))
+
+```
+
+## Do some error handling
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+ 
+Wrapper_nationality_query <- function(author_url, possible_nationalities){
+
+  author_nationality = tryCatch(
+    Query_nationality_from_wiki(author_url, possible_nationalities),
+    error = function(e){print("Encountered an error; returning an error code 99999"); return(99999)})
+
+  return(author_nationality)
+  
+}
+```
+
+## Test our code - try to break it 
+
+```{r}
+#| eval: TRUE
+#| echo: TRUE
+#| code-line-numbers: "1-3 | 4-5" 
+
+author_url <- "not are real web address"
+Wrapper_nationality_query(author_url , c("English", "British", "Australian"))
+
+author_url <- "https://en.wikipedia.org/wiki/Jane_Austen"
+Wrapper_nationality_query(author_url , c("Chinese", "Indian", "Thai"))
+```
+
+# Results {background-color="#006DAE"}
+
+## Data
+
+:::callout-note
+## Data Dictionary 
+
+* `author_name` (character string): Author name . 
+* `author_links` (character string): Url for the author name scraped from the [wikipedia bestseller list](https://en.wikipedia.org/wiki/List_of_best-selling_books). Some of these links are invalid and will partially match `NA` or `character(0)`.
+* `author_nationality` (character string): The nationality is either taken directly from the author's infocard on the `author_link`, or is guessed from corresponding text. If guessed, this is the nationality string that appears most often, where nationalities are matched to the list provided by the [UK government webpage](https://www.gov.uk/government/publications/nationalities/list-of-nationalities) . 
+
+:::
+
+```{r}
+author_df = read_csv("data/author_df.csv") 
+head(author_df)
+```
+
+## Code to pull it all together 
+
+```{r}
+#| eval: false
+#| echo: true
+
+for(i in 1:nrow(author_df)){
+
+  author_url = author_df$author_links[i]
+  author_df$nationality[i] = Wrapper_nationality_query(author_url = author_url,
+                            possible_nationalities = nationalities_data)
+  print(paste(i, author_df$author_name[i], author_df$nationality[i]))
+
+}
+
+```
+
+Here `nationalities_data` is from the UK government website. 
+
+## Not very diverse
+
+Imperfect analysis, but the result is clear. Heavy bias towards America and the UK.
+
+```{r}
+author_df = read_csv("data/author_df.csv")
+print(paste("Total bestsellers:", nrow(author_df)))
+
+author_df |>
+  count(nationality) |>
+  arrange(desc(n)) |>
+  mutate(nationality = if_else(nationality == "99999", "Webpage error", nationality))
+
+```
+
+## Code to get nationality data
+
+Scrape a list of
+[nationalities](%22https://www.gov.uk/government/publications/nationalities/list-of-nationalities%22)
+from the UK Government
+
+```{r}
+#| echo: true
+#| eval: true 
+ 
+nationalities_url = "https://www.gov.uk/government/publications/nationalities/list-of-nationalities"
+
+nationalities_data = read_html(nationalities_url) |>
+  html_elements("td") |>
+  html_text(trim = TRUE)
+
+not_empty = (nationalities_data != "")
+nationalities_data = nationalities_data[not_empty]
+
+nationalities_data
+
+```
+
+## Code to get author webpages from bestellers list
+
+```{r}
+#| eval: true
+#| echo: true 
+
+Get_url_for_author <- function(author_name, scraped_table){
+
+  search_str = paste0("a[title = '", author_name, "']")
+
+  matching_link = tryCatch(
+    scraped_table |>
+      html_elements(search_str) |>
+      html_attr("href"),
+    error = function(e) { NA })
+
+  return(matching_link)
+
+}
+
+Get_url_from_html_table <- function(scraped_table){
+
+  if(is.list(scraped_table)) scraped_table = scraped_table |> pluck(1)
+
+  # get the html table entries
+  table_entries = scraped_table |>
+    html_elements("td")
+
+  # make the table a data frame in R
+  table_df = scraped_table |>
+    html_table()
+  author_vec = table_df$`Author(s)`
+
+  # get the table dimensions
+  table_dim = table_df |>
+    dim()
+  nrows = table_dim[1]
+  ncols = table_dim[2]
+
+  # the authors are in the second row, so get the cell indexes
+  cell_indexes = seq(2, nrows*ncols, by = ncols)
+  if(nrows*ncols == length(table_entries)){
+
+    author_links = table_entries[cell_indexes] |>
+      html_element("a") |>
+      html_attr("href")
+
+  }else{
+
+  # however, some tables aren't standard for
+  # for this we need a different function
+  author_links = sapply(author_vec, Get_url_for_author, scraped_table)
+
+  }
+
+  author_links = paste0("https://en.wikipedia.org", author_links)
+  author_df = data.frame(author_name = author_vec, author_links)
+
+  return(author_df)
+
+}
+
+## Code to scrape the best sellers webpage 
+
+bestsellers_url <- "https://en.wikipedia.org/wiki/List_of_best-selling_books"
+wiki_bestseller_tables = read_html(bestsellers_url) |>
+  html_elements("table.wikitable")
+
+warning("Hard code to avoid unwanted tables - don't want the dictionary!")
+wiki_bestseller_tables_relevant = wiki_bestseller_tables[1:9]
+
+author_df = NULL
+for(i in 1:length(wiki_bestseller_tables_relevant)){
+  result = Get_url_from_html_table(wiki_bestseller_tables_relevant[i])
+  author_df = bind_rows(author_df, result)
+}
+
+author_df$author_links
+```
+
+# What have we learnt {background-color="#006DAE"}
+
+## A Few thoughts
+
+:::callout-note
+## Reflection
+
+:::incremental 
+
+- Many ways to approach this problem   
+  *eg. RSelenium, LLMs, APIs*
+- Here we used the standard `rvest` toolbox
+- Analysis was not perfect - the inconsistent webpage format was a real challenge!
+- Also not ideal to be guessing nationalities from text
+- But **we don't need to approach a problem perfectly to learn** - break stuff, create errors, try and fail!
+
+::: 
+ 
+:::
+
+. . . 
+
+:::callout-tip 
+## Motivation 
+
+We often learn best by picking a question we are passionate about and having some fun! 
+
+:::
+
+
+## A few thoughts ctd.
+
+For assignment 4 I will ask you to answer a question of your choosing using open data. You can web scrape or you can use existing open data sets.
+
+:::callout-caution 
+
+I showed you this example, because I wanted you to know:
+
+1. Sometimes simple questions can be difficult to answer  
+
+2. It's important to evaluate whether you data is fit for purpose early on
+
+3. It's good to check the logic of your approach by writing pseudo code 
+
+:::
+
+## Summary 
+
+:::callout-note
+## What we've learnt 
+
+:::incremental 
+
+- Learnt how to navigate around a web page
+- Learnt different ways to scrape data using the `rvest` package
+- Learnt about important ethical considerations when web scraping 
+- Also wrote our first pseudo code 
+- Covered the basics about automation using functions
+- Practiced some basic error handling 
+- Hopefully also had fun!
+:::
+
+:::
+
+# Questions {background-color="#006DAE"}
