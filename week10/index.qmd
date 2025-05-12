@@ -953,6 +953,7 @@ head(author_df)
 #| eval: false
 #| echo: true
 
+author_df$author_nationality = NA
 for(i in 1:nrow(author_df)){
 
   author_url = author_df$author_links[i]
