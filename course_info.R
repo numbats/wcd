@@ -20,7 +20,7 @@ schedule <- tribble(
     8, "Case Study: Data ethics", "", "",
     9, "Case Study: Data ethics and privacy", "", "",
     10, "Case Study: Introduction to webscraping", "", "", 
-    11, "Case Study: Large Language Models in R", "", "",
+    11, "Case Study: Large Language Models for preparing data in R", "", "",
     12, "Revision: Proper care and feeding of wild caught data", "", "", 
 )
 
