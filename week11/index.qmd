@@ -34,6 +34,8 @@ The slides for Cynthia's guest lecture can be found [here](https://cynthiahqy.qu
 
 To save them to pdf hit the letter "e" key, then go to print, and print to pdf. 
 
+To see the associated quarto file for the slides go to Cynthia's [github folder](https://github.com/cynthiahqy/lecture_llms-preparing-data-ellmer/blob/main/slides.qmd).
+
 Look forward to seeing you this afternoon, 
 
 Kate
