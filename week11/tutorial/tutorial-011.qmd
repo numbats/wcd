@@ -1,0 +1,96 @@
+---
+title: "Week 11 Tutorial"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE
+)
+```
+
+## Learning Objectives
+
+Wild Caught Data is inherently messy. In this tutorial, you will:
+
+-   think about how LLMs can help clean data sets
+-   consider the suitability of using LLMs for different data wrangling and cleaning tasks
+-   verify LLM output
+
+Feel free to chat with an LLM as part of these exercises.
+
+## Exercise 1
+
+Haley has encountered some missing data in the age column of her data set. She tries using ChatGPT to infill the missing data:
+
+- [Chat 1](https://chatgpt.com/share/6828c2ee-a3b0-8000-a956-692974053b43)
+- [Chat 2](https://chatgpt.com/share/6828c268-85e0-8000-91ef-ceb73ed32d6c)
+
+**Examine the two chats. Ask yourself:**
+
+i. Do they return the same data?
+ii. Which answer seems more reliable?
+iii. Is there any important information missing from the chat?
+iv. Would you recommend that Haley use the LLM generated data to infill the missing data for an analysis?
+v. Does your recommendation depend on the type of analysis?
+
+*You may also like to try the same prompts and see what you get.* 
+
+## Exercise 2
+
+You're preparing a data set to analyse customer satisfaction and product feedback collected through surveys, support emails, and live chat transcripts.
+
+In your preparation you encounter the following challenges: 
+
+* Some entries in the data set are missing the product category. You use the product name to cross reference with a generic product database to infill the missing values. 
+
+* Some customers left the "satisfaction rating" blank, but they provided comments like "Very happy with the fast delivery!" You infill these using a basic sentiment analysis (e.g., 4 out of 5 based on the text).
+
+* The "purchase channel" column includes inconsistent entries like: "In Store", "IS", "retail", "shop", "online", "amazon". You harmonise these to create standard labels like "In Store" and "Online" categories.
+
+* You compare customer responses and categorise them into themes, e.g.:
+"Late delivery", "Delayed shipping" → Category: "Delivery Issues" or "Product damaged", "Broken item" → Category: "Product Quality"
+
+* Long customer feedback is summarised into a short sentiment label or theme. "The delivery took over two weeks, and no one responded to my emails." becomes "Slow delivery and poor support".
+
+* From unstructured text (e.g., support emails), you extract structured fields like: Order ID, Product name, Mentioned issues (e.g., "broken", "missing parts")
+
+**Your task:** 
+
+i. Which of these tasks would you feel most confident using an LLM to complete? Why?
+
+ii. Do any of these tasks need help from a human? Which ones and why?
+
+iii. If you use an LLM how would you verify the results?
+
+iv. Would your answers change if the data set you were working with was different?
+
+*You may find answering these question in a group useful to get different perspectives.*
+
+## In your own time: Exercise 3
+
+In Lecture 10, Kate showed an exercise where she guessed nationalities from Wikipedia using web-scraping. We saw that given the complexities of this data, it was difficult to code specific rules to determine a person's nationality. We could use LLMs instead!
+
+On the Moodle you will find the author data set `week11-author_df_llm.csv`. This data set contains the guesses from an LLM model about the authors nationalities. Import this data into R and examine the nationality columns. 
+
+**Your task:** Subset the list of authors into groups based on how confident you are that the author's nationality is correctly identified. 
+
+Hint: You may like to compare with the web-scraped nationalities.
+
+## Optional extension: Tutorial on ellmer and using LLMs in R
+
+The [following tutorial](https://github.com/cynthiahqy/workshop-llm-hackathon/blob/main/slides-1-monash.pdf
+) was given at Monash by Hadley Wickham earlier this year. It showcases further how we can use LLMs in R and extends on the demo you saw in class.
+
+If you'd like to run the code yourself, follow the [instructions here](https://github.com/cynthiahqy/workshop-llm-hackathon/tree/main) to get set up with an API key in R. Note you will need to purchase an API key to query the LLM which will cost you approximately the same price as a coffee. 
+
+**Importantly, it is completely optional for you to try this exercise and will not be examined in this unit. If you'd rather buy a coffee we'll understand. This is just for those who are curious about using an LLM in R directly.**
+
+#### Copyright Monash University
