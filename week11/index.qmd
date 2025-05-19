@@ -30,7 +30,7 @@ editor:
 
 Dear Students,
 
-The slides for Cynthia's guest lecture can be found [here](https://cynthiahqy.quarto.pub/wcd2025_w11/?view=print#/title-slide). 
+The slides for Cynthia's guest lecture can be found [here](https://cynthiahqy.quarto.pub/wcd2025_w11/title-slide). 
 
 To save them to pdf hit the letter "e" key, then go to print, and print to pdf. 
 
