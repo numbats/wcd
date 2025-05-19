@@ -1,0 +1,61 @@
+---
+title: "Tutorial 11 Solutions"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  eval = TRUE
+)
+```
+
+## Exercise 1
+
+Haley has encountered some missing data in the age column of her data set that she is using in her Wild Caught Data tutorial. She tries using ChatGPT to infill the missing data:
+
+- [Chat 1](https://chatgpt.com/share/6828c2ee-a3b0-8000-a956-692974053b43)
+- [Chat 2](https://chatgpt.com/share/6828c268-85e0-8000-91ef-ceb73ed32d6c)
+
+Examine the two chats. Ask yourself:
+
+i. Do they return the same data?
+
+*No, they don't. And if you tried to prompt the LLM yourself you also likely got a different answer.*
+
+ii. Which answer seems more reliable?
+
+*Chat 2 seems more reliable. Through using the LLM Haley has explored different options for data imputation rather than just taking the output as reliable.* 
+
+iii. Is there any important information missing from the chat?
+
+*Context! Whose ages are these, and what type of analysis is Haley doing. Providing this data to the LLM could change the approach it has used to infill the data."* 
+
+iv. Would you recommend that Haley use the LLM generated data to infill the missing data for an analysis?
+
+*As this is a tutorial this is a low stakes example. It may be okay for Haley to infill her data.* 
+
+**However,** *she should be careful about infilling missing data. And she should also think deeper about the structure of her data before she infills the missing values.*
+
+*Data can be missing for a range of reasons and the reason why the data is missing can impact your analysis. Take a look at the different kinds of missing data [here](https://www.ncbi.nlm.nih.gov/books/NBK493614/). Before missing data is imputed, it is important to stop and consider if there is a systematic reason why this data might be missing.*
+
+*It is important to consider the sample of the data you are trying to infill. Knowledge of the sample should inform how you should infill in the missing values.* 
+
+v. Does your recommendation depend on the type of analysis?
+
+*Yes, it 100% should!*
+
+## Exercise 2
+
+
+## Exercise 3
+
+
+#### Copyright Monash University
