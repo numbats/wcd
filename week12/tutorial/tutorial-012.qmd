@@ -1,0 +1,48 @@
+---
+title: 'ETC5512: Care and feeding of open data'
+author: "Lecturer: Kate Saunders"
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Learning Objectives
+
+-   Reflect on the open data resources that you have seen in this unit. We'll consider factors that make this data easy or difficult to use.
+
+-   Place yourself in the role of data curator, based on your experiences as a user think about best practices for data sharing <!-- and collaboratively develop a list of good practices for data sharing. -->
+
+For today's tutorial complete Tasks 1 and 2 in groups.
+
+## Task 1
+
+*This task is designed to mimic the questions on your assignment 4, and for you to consider this week's data curation lecture.*
+
+i.  Pick one of Assignment 1, 2 or 3. What was difficult working with the data on your assignment? (Beyond the difficulties in compiling your report!)
+
+-   Reflect upon what aspects of **your** analysis involved data work that weren't sexy
+
+-   Reflect upon any challenges **you** faced in your completing your analysis
+
+-   Reflect upon the imperfect aspects of **your** work or how you'd like to improve your analysis in the future.
+
+ii. What would you as data curator do to make it easier the data drudgery, detective work or imperfect parts of your analysis easier? (Think about the next wild caught data student!)
+
+## Task 2
+
+i. Brainstorm 3 questions you could try to answer on assignment 4. Also think about where you would need to source the data from to answer your questions. Remember brainstorming is about creativity, so don't censor your ideas yet. Just through them out there.
+
+ii. Share you ideas with your peers. Work together to evaluate if the questions would be easy, reasonable or hard to answer. In answering this, think about the scope of the assignment and challenges you may face with the data.
+
+In this task have fun exploring your different ideas together and be respectful of each others ideas and process.
+
+##### © Copyright Monash University
