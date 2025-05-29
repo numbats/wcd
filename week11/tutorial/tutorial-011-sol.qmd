@@ -166,10 +166,10 @@ authors_joined |>
   filter(fuzzy_match == FALSE)
 ```
 
-It seems we can be fairly confident about 282 of the authors, with another 7 having a fuzzy match. There are 70 authors that don't match at all though. Does this mean the LLM got them wrong or I got them wrong?
+*It seems we can be fairly confident about 282 of the authors, with another 7 having a fuzzy match. There are 70 authors that don't match at all though. Does this mean the LLM got them wrong or I got them wrong?*
 
-Looking at mismatches shows there is more work to do though. I haven't handled my missing values or the nationalities that weren't matched in webscraping.
+*Looking at mismatches shows there is more work to do though. I haven't handled my missing values or the nationalities that weren't matched in web scraping.*
 
-It may be time to try some of the methods from Task 2 (iii)! Like sampling or testing.
+*It may be time to try some of the methods from Task 2 (iii)! Like sampling or testing.*
 
 #### Copyright Monash University
