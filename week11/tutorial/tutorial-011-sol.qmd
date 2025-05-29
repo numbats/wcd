@@ -1,0 +1,175 @@
+---
+title: "Tutorial 11 Solutions"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  eval = TRUE
+)
+```
+
+## Exercise 1
+
+Haley has encountered some missing data in the age column of her data set that she is using in her Wild Caught Data tutorial. She tries using ChatGPT to infill the missing data:
+
+-   [Chat 1](https://chatgpt.com/share/6828c2ee-a3b0-8000-a956-692974053b43)
+-   [Chat 2](https://chatgpt.com/share/6828c268-85e0-8000-91ef-ceb73ed32d6c)
+
+Examine the two chats. Ask yourself:
+
+i.  Do they return the same data?
+
+*No, they don't. And if you tried to prompt the LLM yourself you also likely got a different answer.*
+
+ii. Which answer seems more reliable?
+
+*Chat 2 seems more reliable. Through using the LLM Haley has explored different options for data imputation rather than just taking the output as reliable.*
+
+iii. Is there any important information missing from the chat?
+
+*Context! Whose ages are these, and what type of analysis is Haley doing. Providing this data to the LLM could change the approach it has used to infill the data.*
+
+iv. Would you recommend that Haley use the LLM generated data to infill the missing data for an analysis?
+
+*As this is a tutorial this is a low stakes example. It may be okay for Haley to infill her data.*
+
+**However,** *she think first before infilling missing data. She should consider the structure of her data, the sample and the population. Knowledge of the sample should inform how you should infill in the missing values.*
+
+*She should also consider why the data might be missing. Data can be missing for a range of reasons. Take a look at the different kinds of missing data [here](https://www.ncbi.nlm.nih.gov/books/NBK493614/). Before missing data is imputed, stop and consider if there is a systematic reason (e.g people lie about their age and round down). Systematic reasons change how you approach your missing values.*
+
+v.  Does your recommendation depend on the type of analysis?
+
+*Yes, it 100% should!*
+
+## Exercise 2
+
+You're preparing a data set to analyse customer satisfaction and product feedback collected through surveys, support emails, and live chat transcripts.
+
+In your preparation you encounter the following challenges:
+
+-   Some entries in the data set are missing the product category. You use the product name to cross reference with a generic product database to infill the missing values.
+
+-   Some customers left the "satisfaction rating" blank, but they provided comments like "Very happy with the fast delivery!" You infill these using a basic sentiment analysis (e.g., 4 out of 5 based on the text).
+
+-   The "purchase channel" column includes inconsistent entries like: "In Store", "IS", "retail", "shop", "online", "amazon". You harmonise these to create standard labels like "In Store" and "Online" categories.
+
+-   You compare customer responses and categorise them into themes, e.g.: "Late delivery", "Delayed shipping" → Category: "Delivery Issues" or "Product damaged", "Broken item" → Category: "Product Quality"
+
+-   Long customer feedback is summarised into a short sentiment label or theme. "The delivery took over two weeks, and no one responded to my emails." becomes "Slow delivery and poor support".
+
+-   From unstructured text (e.g., support emails), you extract structured fields like: Order ID, Product name, Mentioned issues (e.g., "broken", "missing parts")
+
+**Your task:**
+
+i.  Which of these tasks would you feel most confident using an LLM to complete? Why?
+
+*Tasks that rely on understanding and generating natural language are well suited to LLMs.*
+
+*This might include:*
+
+-   *Inferring satisfaction ratings from comments: LLMs are likely good at detecting positive or negative tones and converting them to satisifaction scores.*
+
+-   *Categorising customer responses into themes: LLMs can reliably group similar phrases like "Late delivery" and "Delayed shipping".*
+
+-   *Summarising long feedback into short sentiment labels or themes*
+
+-   *Extracting structured information from unstructured text: Given appropriate prompts or few-shot examples, LLMs can extract data such as Order IDs, product names, and issue types from support emails or chat transcripts with good accuracy.*
+
+ii. Do any of these tasks need help from a human? Which ones and why?
+
+**You should always do some form of checking!**
+
+-   *Consider infilling satisfaction ratings from sentiment: While LLMs can provide reasonable estimates, human review is important for borderline or ambiguous cases.*
+
+-   *Thematic categorisation and summarisation: LLMs can produce useful outputs, but humans should validate category definitions.*
+
+-   *Standardising "purchase channel" entries: LLMs can suggest standard labels, but humans are needed to decide on the final controlled vocabulary*
+
+-   *Cross-referencing product names to fill missing product categories: This task may require domain knowledge and precise matching that benefits from human validation, especially where product names are ambiguous or abbreviated.*
+
+iii. If you use an LLM how would you verify the results?
+
+*There are lots of creative options here:*
+
+*Develop a set of test cases to see how the LLM performs: This is a good approach to check how the LLM performs on known edge cases.*
+
+*Sampling and manual review: Randomly check a subset of LLM-generated outputs for accuracy and consistency.*
+
+*Rule-based validation: For structured outputs (e.g., extracted fields), apply validation rules (e.g., Order ID must be numeric and follow a known format).*
+
+*Cross-checking with known data: For tasks like product category infilling or purchase channel harmonisation, compare LLM results against a reference database.*
+
+*Confidence scoring or uncertainty flags: Where possible, use model confidence or flag low-confidence outputs for human review.*
+
+*A/B testing or downstream analysis: For subjective tasks observe whether the results improve the performance or clarity of downstream reports or models.*
+
+iv. Would your answers change if the data set you were working with was different?
+
+*Yes, the answers would change depending on the business application.*
+
+-   *Domain specificity: If the data uses highly technical or domain-specific language (e.g., medical or legal)*
+
+-   *Language diversity: If the dataset includes multiple languages or dialects, LLM performance may vary, and additional language handling might be needed.*
+
+-   *Data volume and consistency: LLMs perform well on patterns seen in large, consistent datasets. Sparse, noisy, or extremely varied data may require more human intervention.*
+
+-   *Regulatory context: In regulated industries (e.g., finance, health), even high-quality LLM outputs may still require human verification due to compliance and accountability concerns.*
+
+*You may find answering these question in a group useful to get different perspectives.*
+
+## In your own time: Exercise 3
+
+In Lecture 10, Kate showed an exercise where she guessed nationalities from Wikipedia using web-scraping. We saw that given the complexities of this data, it was difficult to code specific rules to determine a person's nationality. We could use LLMs instead!
+
+On the Moodle you will find the author data set `week11-author_df_llm.csv`. This data set contains the guesses from an LLM model about the authors nationalities. Import this data into R and examine the nationality columns.
+
+**Your task:** Subset the list of authors into groups based on how confident you are that the author's nationality is correctly identified.
+
+Hint: You may like to compare with the web-scraped nationalities.
+
+```{r}
+#| message: false
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+author_webscrape = read_csv("../data/author_df.csv")
+author_llm = read_csv("../data/week11-author_df_llm.csv")
+
+authors_joined = full_join(author_webscrape, author_llm) |>
+  mutate(nationality = if_else(nationality %in% c("English", "British"),
+                               "English", nationality),
+         nationality_llm = if_else(nationality_llm %in% c("English", "British"),
+                               "English", nationality_llm)) |>
+  mutate(exact_match = nationality == nationality_llm,
+         fuzzy_match = NA)
+
+for(i in 1:nrow(authors_joined)){
+  authors_joined$fuzzy_match[i] = agrepl(authors_joined$nationality[i],
+                                         authors_joined$nationality_llm[i]) 
+}
+
+exact_match = sum(authors_joined$exact_match)
+fuzzy_match = sum(authors_joined$fuzzy_match) - exact_match
+no_match = nrow(authors_joined) - exact_match - fuzzy_match
+
+authors_joined |> 
+  filter(fuzzy_match == FALSE)
+```
+
+It seems we can be fairly confident about 282 of the authors, with another 7 having a fuzzy match. There are 70 authors that don't match at all though. Does this mean the LLM got them wrong or I got them wrong?
+
+Looking at mismatches shows there is more work to do though. I haven't handled my missing values or the nationalities that weren't matched in webscraping.
+
+It may be time to try some of the methods from Task 2 (iii)! Like sampling or testing.
+
+#### Copyright Monash University
