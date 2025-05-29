@@ -15,7 +15,7 @@ editor: visual
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-### Learning Objectives
+## Learning Objectives
 
 -   Reflect on the open data resources that you have seen in this unit. We'll consider factors that make this data easy or difficult to use.
 
@@ -35,11 +35,11 @@ i.  Pick one of Assignment 1, 2 or 3. What was difficult working with the data o
 
 -   Reflect upon the imperfect aspects of **your** work or how you'd like to improve your analysis in the future.
 
-ii. What would you as data curator do to make it easier the data drudgery, detective work or imperfect parts of your analysis easier? (Think about the next wild caught data student!)
+ii. What would you as data curator do to make the data drudgery easier, detective work or imperfect parts of your analysis easier? (Think about the next wild caught data student!)
 
 ## Task 2
 
-i. Brainstorm 3 questions you could try to answer on assignment 4. Also think about where you would need to source the data from to answer your questions. Remember brainstorming is about creativity, so don't censor your ideas yet. Just through them out there.
+i. Brainstorm 3 questions you could try to answer on assignment 4. Also think about where you would need to source the data from to answer your questions. Remember brainstorming is about creativity, so don't censor your ideas yet. Just throw them out there.
 
 ii. Share you ideas with your peers. Work together to evaluate if the questions would be easy, reasonable or hard to answer. In answering this, think about the scope of the assignment and challenges you may face with the data.
 
