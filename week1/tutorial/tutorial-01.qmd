@@ -171,9 +171,9 @@ When you are getting started you should check your understanding of what each pi
 
 -   Copy and paste code chunks in Generative AI and ask it to explain what the code is doing. Here are some examples:
 
-    -   [Example prompt asking about occurrences](https://chatgpt.com/share/699e84ce-8010-8011-a0cc-a7dbca181d00)
+    -   [Example prompt in ChatGPT asking about occurrences](https://chatgpt.com/share/699e84ce-8010-8011-a0cc-a7dbca181d00)
 
-    -   [Example prompt asking about functions in tidyverse](https://claude.ai/share/6666d416-3aa8-40e6-827e-5fc3f4d44458)
+    -   [Example prompt in Claude asking about functions in tidyverse](https://claude.ai/share/6666d416-3aa8-40e6-827e-5fc3f4d44458)
 
 Then to consolidate your learning, go back and add comments to your code using the `#` to explain what the different lines do.
 :::
