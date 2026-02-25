@@ -28,7 +28,7 @@ This unit will equip you with the tools to understand and use different sources 
 
 ## Teachers
 
-* **Kate Saunders** - Lecturer and Chief Examiner
+* **Dr. Kate Saunders** - Lecturer and Chief Examiner
 * **Krisanat Anukarnsakulchularp** - Tutor 
 * **Maliny Po** - Tutor
 
@@ -48,21 +48,26 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Weekly schedule
 
-* Seminar: Monday  2 pm - 4 pm
-* Drop in & practice session: Monday 10 - 11 pm (zoom)
-* Refer to your timetable for your tutorial time
-* Refer to Moodle for room locations and zoom links
+* **Seminar:** Tuesday  2 - 4 pm
+* **Workshop:** Tuesday 9 - 10 am (zoom)
+* Refer to your timetable for room locations and for your tutorial time
+* Refer to Moodle for zoom links
 
-## Consults 
+## Consultation Times 
 
-* Kate: Monday 11 - 12 pm. 
-(Room 64, Level 5, Building H, Caulfield Campus or see Moodle for zoom link)
-* Kris: Tuesday  <span style="color:red;"> **2:00 - 3:00 pm** </span> 
-(Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)
-* Maliny: Wednesday <span style="color:red;"> **3:30 - 4:30 pm** </span>  
-(Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)
-* <span style="color:red;"> **New session** </span> Alternates Kris and Maliny: Thursday 3:30 - 4:30 pm 
-(Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus)
+**Kate:** Tuesday 10:30 - 11:30 am (Location TBA)
+
+**Kris:** (Time and Location TBA)
+
+**Maliny:** (Time and Location TBA)
+
+Consultations are held online and in person. Refer to Moodle for zoom links.
+
+<!-- Wednesday <span style="color:red;"> **3:30 - 4:30 pm** </span>   -->
+<!-- (Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus) -->
+
+<!-- * <span style="color:red;"> **New session** </span> Alternates Kris and Maliny: Thursday 3:30 - 4:30 pm  -->
+<!-- (Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus) -->
 
 ## Schedule
 

@@ -2,25 +2,25 @@
 library(tidyverse)
 
 # Start of semester
-start_semester <- "2025-03-03"
+start_semester <- "2026-03-02"
 
 # Week of mid-semester break
-mid_semester_break <- "2025-04-21"
+mid_semester_break <- "2026-04-06"
 
 # Schedule
 schedule <- tribble(
     ~Week, ~Topic, ~Reference, ~Reference_URL,
     1, "Open data: definitions, sources and examples", "", "",
     2, "Introduction to data collection methods", "", "",
-    3, "Case Study: US airline traffic", "", "",
+    3, "Case Study: TBC", "", "", #US airline traffic
     4, "Case Study: Australian census", "", "",
     5, "Case Study: Australian election data", "", "",
     6, "Case Study: Combining census and election data", "", "",
     7, "Case Study: PD model and credit risk", "", "",
     8, "Case Study: Data ethics", "", "",
     9, "Case Study: Data ethics and privacy", "", "",
-    10, "Case Study: Introduction to webscraping", "", "", 
-    11, "Case Study: Large Language Models for preparing data in R", "", "",
+    10, "Case Study: TBC", "", "", #Introduction to webscraping
+    11, "Case Study: TBC", "", "", #Large Language Models for preparing data in R
     12, "Revision: Proper care and feeding of wild caught data", "", "", 
 )
 
