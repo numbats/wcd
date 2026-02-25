@@ -26,7 +26,7 @@ This unit will equip you with the tools to understand and use different sources 
 
 6. Recognise the components of effective curation needed for open data.
 
-## Teachers
+## Teaching Team
 
 * **Dr. Kate Saunders** - Lecturer and Chief Examiner
 * **Krisanat Anukarnsakulchularp** - Tutor 
@@ -55,11 +55,9 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Consultation Times 
 
-**Kate:** Tuesday 10:30 - 11:30 am (Location TBA)
-
-**Kris:** (Time and Location TBA)
-
-**Maliny:** (Time and Location TBA)
+* **Kate:** Tuesday 10:30 - 11:30 am (Location TBA)
+* **Kris:** (Time and Location TBA)
+* **Maliny:** (Time and Location TBA)
 
 Consultations are held online and in person. Refer to Moodle for zoom links.
 
