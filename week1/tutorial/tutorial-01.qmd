@@ -201,10 +201,10 @@ iv. Find examples of the different flavours of open data we discussed in class.
 ## Citations 
 
 ::: {.callout-tip collapse="true"}
-## Cite your packages! Here's how ...
+## Cite packages you use! Here's how ...
 
-Here's how: 
 ```{r}
+#| eval: false
 citation("galah")
 citation("tidyverse")
 ```
