@@ -198,4 +198,33 @@ iv. Find examples of the different flavours of open data we discussed in class.
 
 -   Look at the meta data.
 
+## Citations 
+
+::: {.callout-tip collapse="true"}
+## Cite your packages! Here's how ...
+
+Here's how: 
+```{r}
+citation("galah")
+citation("tidyverse")
+```
+
+:::
+
+Westgate M, Stevenson M, Kellie D, Newman P
+  (2026). _galah: Biodiversity Data from the
+  GBIF Node Network_. R package version 2.0.2,
+  <https://CRAN.R-project.org/package=galah>
+
+Wickham H, Averick M, Bryan J, Chang W,
+  McGowan LD, François R, Grolemund G, Hayes A,
+  Henry L, Hester J, Kuhn M, Pedersen TL,
+  Miller E, Bache SM, Müller K, Ooms J,
+  Robinson D, Seidel DP, Spinu V, Takahashi K,
+  Vaughan D, Wilke C, Woo K, Yutani H (2019).
+  “Welcome to the tidyverse.” _Journal of Open
+  Source Software_, *4*(43), 1686.
+  doi:10.21105/joss.01686
+  <https://doi.org/10.21105/joss.01686>.
+
 ##### © Copyright Monash University
