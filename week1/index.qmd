@@ -78,6 +78,42 @@ href="`r rmarkdown::metadata[["unit-url"]]`"\>`r rmarkdown::metadata[["unit-url"
 -   Getting you set up in R (Drop In Session)
 :::
 
+## Acknowledgement of Country 
+
+:::{.callout-note}
+## Acknowledgement of Country
+
+I wish to acknowledge the people of the Kulin Nations, on whose land we are gathered today. I pay my respects to their Elders, past and present.
+
+In this unit, we will learn about how data can be transformed into information, and then into knowledge. And the many different types of data that can be used to understand our world.
+
+Using data to understand our world isn't new. 
+
+First nations peoples have been using data to understand country for generations. Through observing the same environment for thousands of years, they identified cause-and-effect relationships, such as subtle changes in ecosystems, and they have developed a deep understanding of native flora and fauna.
+
+:::
+
+See for example: [Indigenous Seasonal Calendar](https://www.bom.gov.au/resources/indigenous-weather-knowledge/indigenous-seasonal-calendars)
+
+## Shout out to past contributors 
+
+:::{.callout-note}
+## Rome wasn't built in a day
+
+This unit has been running since 2022.
+
+Their have been many members of the staff who have contributed to the development of this unit including:
+
+* Prof. Di Cook
+* Dr. Emi Tanaka
+* Dr. Patricia Menendez 
+* Dr. Michael Lydeamore 
+* Dr. Joan Tan 
+* and many, many more ... 
+
+:::
+
+
 # Teaching Team {background-color="#006DAE"}
 
 ## About your Lecturer
@@ -1329,138 +1365,212 @@ Look at these open data examples:
 :::
 ::::
 
-<!-- # Drop In Slides {background-color="#006DAE"} -->
+# Workshop Slides {background-color="#006DAE"}
 
-<!-- ## Learning R -->
+## Learning R
 
-<!-- ::: callout-note -->
+::: callout-note
 
-<!-- ## Getting set up -->
+## Getting set up
 
-<!-- -   By the end of this unit you'll be performing your own analytics case -->
+-   By the end of this unit you'll be performing your own analytics case
 
-<!--     studies -->
+    studies
 
-<!-- -   Before you can do that we need to get you set up with the software -->
+-   Before you can do that we need to get you set up with the software
 
-<!--     you'll use in this unit -->
+    you'll use in this unit
 
-<!-- -   We'll now go through the steps to install R and RStudio -->
+-   We'll now go through the steps to install R and RStudio
 
-<!-- -   Think about R as the engine and RStudio as the dashboard and -->
+-   Think about R as the engine and RStudio as the dashboard and
 
-<!--     controls. -->
+    controls.
 
-<!-- -   We need both to drive a car. -->
+-   We need both to drive a car.
 
-<!-- ::: -->
+:::
 
-<!-- ## Installing R and RStudio -->
+## Installing R and RStudio
 
-<!-- We'll open RStudio to create data visualisations using R. -->
+We'll open RStudio to perform data analytics using R.
 
-<!-- ::: callout-note -->
+::: callout-note
 
-<!-- ## Step 1: Install R -->
+## Step 1: Install R
 
-<!-- -   Got to https://www.r-project.org/ -->
+-   Got to https://www.r-project.org/
 
-<!-- -   Click "download R" -->
+-   Click "download R"
 
-<!-- -   Select a mirror (I use the Melbourne one) -->
+-   Select a mirror (I use the Melbourne one)
 
-<!-- -   Install for your operating system -->
+-   Install for your operating system
 
-<!-- ::: -->
+:::
 
-<!-- ::: callout-note -->
+::: callout-note
 
-<!-- ## Step 2: Install RStudio -->
+## Step 2: Install RStudio
 
-<!-- -   Got to https://www.rstudio.com/products/rstudio/download/ (you only -->
+-   Got to https://www.rstudio.com/products/rstudio/download/ (you only
 
-<!--     need the free version) -->
+    need the free version)
 
-<!-- -   Select download for your system -->
+-   Select download for your system
 
-<!-- -   Follow the prompts to install -->
+-   Follow the prompts to install
 
-<!-- ::: -->
+:::
 
-<!-- ## But Why? -->
+## But Why?
 
-<!-- ::: callout-note -->
+::: callout-note
 
-<!-- ## Why do we need a Programming Language -->
+## Why do we need a Programming Language
 
-<!-- -   It allows us to have reproducible steps, which can be applied for -->
+-   It allows us to have reproducible steps, which can be applied for many different data sets
 
-<!--     many different data sets -->
+-   Make sure the analysis is not just point and click, you can work as a team on it on the same code
 
-<!-- -   Make sure the analysis is not just point and click, you can work as -->
+-   It also means we can more easily perform our own case studies in analytics
 
-<!--     a team on it on the same code -->
+:::
 
-<!-- -   It also means we can more easily perform our own case studies in analytics -->
+::: callout-note
 
-<!-- ::: -->
+## Why do we use R?
 
-<!-- ::: callout-note -->
+-   It has been around for a while.
 
-<!-- ## Why do we use R? -->
+-   It is regularly maintained and is open source.
 
-<!-- -   It has been around for a while. -->
+-   It is beginner friendly
 
-<!-- -   It is regularly maintained and is open source. -->
+-   Even if you use other languages, you might still use R for your data wrangling and visualisations
 
-<!-- -   It is beginner friendly -->
+:::
 
-<!-- -   Even if you use other languages, you might still use R for your data -->
+## Getting Started in R
 
-<!--     visualisations -->
+:::: callout-note
 
-<!-- ::: -->
+## Learning a new language is hard!
 
-<!-- ## Getting Started in R -->
+::: incremental
 
-<!-- :::: callout-note -->
+-   You need to think about grammar and structure, and how to communicate well in it!
 
-<!-- ## Learning a new language is hard! -->
+-   You will make mistakes, lots of them.
 
-<!-- ::: incremental -->
+-   Below you see code that plots points showing the GDP per capita against life expectancy. The points are coloured by country and the size of the points shows the population.
 
-<!-- -   You need to think about grammar and structure, and how to -->
+-   It might look impossible now, but by the end of this semester you will be able to write this yourself!
 
-<!--     communicate well in it! -->
+:::
 
-<!-- -   You will make mistakes, lots of them. -->
+::::
 
-<!-- -   Below you see code that plots points showing the GDP per capita -->
+```{r, eval = FALSE, echo = TRUE}
 
-<!--     against life expectancy. The points are coloured by country and the -->
+library(tidyverse)
 
-<!--     size of the points shows the population. -->
+library(gapminder)
 
-<!-- -   It might look impossible now, but by the end of this semester you -->
+plot <- ggplot(data = gapminder) +
 
-<!--     will be able to write this yourself! -->
+  geom_point(aes(x = gdpPercap, y = lifeExp, size = pop, colour = country)) +
 
-<!-- ::: -->
+  theme(legend.position = "none")
 
-<!-- :::: -->
+plot
 
-<!-- ```{r, eval = FALSE, echo = TRUE} -->
+```
 
-<!-- library(tidyverse) -->
+## Check your understanding
 
-<!-- library(gapminder) -->
+:::callout-note
 
-<!-- plot <- ggplot(data = gapminder) +  -->
+* R vs RStudio
+* Console vs Script
+* Assigning a variable
+* Basic computation
+* Naming variables 
+* Installing and loading packages
+* Setting up an R Project
+* Reading in data
 
-<!--   geom_point(aes(x = gdpPercap, y = lifeExp, size = pop, colour = country)) +  -->
+:::
 
-<!--   theme(legend.position = "none") -->
+## Code from today
 
-<!-- plot  -->
+```{r}
+#| eval: false
+#| echo: true
 
-<!-- ``` -->
+# create a file that I can save and use again
+
+# assign a variable
+x = 2
+y <- 3
+
+# what should I not call my variable
+kates_coolest_variable <- 4 # snake_case
+katescoolestvariable <- 4 # ok but not readable
+KatesCoolestVariable <- 4 # ok but could be easier to read
+123kate <- 5 # bad
+@kate <- 5 # also bad
+
+kates_awesome_variable <- 5
+kate_loves_R <- 6
+
+# what we learn:
+# give variables files/intuitive names
+# don't name variable starting with numbers or 
+# or special characters 
+
+# bunch of inbuilt functions 
+sqrt(2)
+1:10
+mean(1:10)
+
+# load in the functions
+library(cowsay)
+
+# check what they do
+?cowsay
+?say
+
+# look at examples
+say(what = "hot diggity", by = "frog")
+
+say(what = "Happy Lunar New Year", 
+    by = "endlesshorse")
+
+# Summary: 
+# Install the cowsay package (first time use)
+# Load the library
+# print out a say - with an animal and a message
+# past into our meeting chat
+
+# Reading in files 
+
+# Can use the import dataset button
+# but not advisable for reproducible reserach 
+
+# Can also use a direct file path 
+# But if you change the working directory 
+# the data read fails
+library(tidyverse)
+file_path = "Documents/Git/dvac-SSA/assignments/data/tourism_data.csv"
+tourism_data <- read_csv(file_path)
+View(tourism_data)
+
+# Instead set up the project
+# Then the working directory will be that project
+# No need for long path names
+getwd()
+tourism_data <- read_csv("data/tourism_data.csv")
+View(tourism_data)
+```
+
