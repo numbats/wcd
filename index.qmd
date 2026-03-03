@@ -55,11 +55,14 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 
 ## Consultation Times 
 
-* **Kate:** Tuesday 10:30 - 11:30 am (Location TBA)
-* **Kris:** (Time and Location TBA)
-* **Maliny:** (Time and Location TBA)
+* **Kate:** Tuesday 10:30 - 11:30 am 
+* **Maliny:** Monday 4:00 - 5:00 pm
+* **Kris:** Wednesday 4:00 - 5:00 pm
 
-Consultations are held online and in person. Refer to Moodle for zoom links.
+Location for all consults: 232, Level 2, Building 6, Clayton Campus
+
+Consultations are held online and in person. 
+Refer to Moodle for zoom links.
 
 <!-- Wednesday <span style="color:red;"> **3:30 - 4:30 pm** </span>   -->
 <!-- (Room 232A Building 6, 29 Ancora Imparo Way Clayton Campus) -->
