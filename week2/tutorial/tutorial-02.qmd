@@ -1,0 +1,203 @@
+---
+title: 'ETC5512: Finding Open Data and Assessing its Quality'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Learning Objectives
+
+-   \[LO2\] Practice searching for new data sources
+-   \[LO1\] Identify allowable usage and licensing of data
+-   \[LO4\] Learn about a range of different data formats
+-   \[LO6\] Recognise the components needed for effective curation of data.
+
+### Tutorial Context: Bushfires.
+
+There is a lot of different data required to understand bush fires and their impacts on communities. This data ranges from data about the weather, to data about fire exposure, to data about how the fire will interact with peoples socio-personal contexts.
+
+Today we are going to look at one data set that is needed in an emergency bushfire scenario.
+
+::: callout-note
+## What are neighbourhood safer places?
+
+Neighbourhood safer places (NSPs) are a place of last resort if all other fire plans have failed and are places that may provide some protection from direct flame and heat from a fire. They do **not** guarantee safety and are **not** an alternative to planning to leave early or to stay and defend your property in the event of bushfire.
+
+They used to be called bushfire places of last resort. You will see signs for them as you drive around Victoria.
+
+The knowledge of where these locations are is important to communicate with people in fire impacted regions.\
+\
+Looking after this data is therefore in the public interest.
+
+In Lecture 3, we will talk more about the important role of open data for supporting effective early warning systems.
+:::
+
+### Exercise 1: Neighbourhood Safer Places (Victoria)
+
+i.  Find a data set (ideally .csv or equivalent) that provides the locations of Neighbourhood Safer Places in Victoria?
+
+*Do this exercise as a class and search different places. Discuss what data your find and what data is most suitable.*
+
+:::callout-tip
+## Some places to start looking ...
+
+-   <https://www.data.vic.gov.au/>
+
+-   <https://data.gov.au/>
+
+-   Use a Search Engine
+:::
+
+<!-- :::{.callout-note collapse="true"} -->
+<!-- ## Solution -->
+
+<!-- -   The data can be found on Country Fire Fighters Authority Website: <https://www.cfa.vic.gov.au/plan-prepare/your-local-area-info-and-advice/neighbourhood-safer-places>. -->
+
+<!-- -   There is some data found on the [Australian open data portal](https://data.gov.au/data/dataset/?q=Neighbourhood+Safer+Places&sort=score+desc%2C+metadata_modified+desc&ext_bbox=&ext_bbox_lga=), but this mainly for New South Wales. -->
+
+<!-- -   There is also data found on the [Victoria data portal](https://discover.data.vic.gov.au/dataset/?sort=score+desc%2C+metadata_modified+desc&q=Neighbourhood+Safer+Places&organization=&groups=&res_format=) but that is only for the Municipality of Casey and for their Fire Management Plan. -->
+
+<!-- -   You might start to notice that while there is data available on Neighbourhood Safer Places, it is not necessarily easy to find, well maintained, or necessarily up-to-date. -->
+<!-- ::: -->
+
+ii. When is this data accurate to?
+
+<!-- :::{.callout-note collapse="true"} -->
+<!-- ## Solution -->
+
+<!-- The 2nd of February 2026 - that's very recent and suggests good maintenance of this dataset! -->
+<!-- ::: -->
+
+iii. Is this data machine readable?
+
+<!-- :::{.callout-note collapse="true"} -->
+<!-- ## Solution -->
+
+<!-- Sadly no - This data set is a pdf. That means if we wanted to use this data and combine it with other data it would be more difficult. -->
+<!-- ::: -->
+
+iv. What is the licence of this data?
+
+<!-- :::{.callout-note collapse="true"} -->
+<!-- ## Solution -->
+
+<!-- It doesn't appear as though the CFA has their own data licence. Instead it appears to default to the Victorian Government Licence. -->
+
+<!-- The licence for the Victorian government is a bespoke licence. It is is mainly creative commons licence (CC4.0), but contains a couple of exceptions, for full details see here: <https://www.vic.gov.au/copyright>. -->
+
+<!-- In this instance, the data we are interested in is covered by CC4.0. -->
+<!-- ::: -->
+
+v.  Does this data set have meta data?
+
+<!-- :::{.callout-note collapse="true"} -->
+<!-- ## Solution -->
+
+<!-- No there is no obvious meta data. -->
+
+<!-- Take a look at the slides from Lecture 1 to see what ideally should be contained and shared alongside this data. -->
+
+<!-- Feeling up for a challenge - practice writing up meta data for this data set. -->
+<!-- ::: -->
+
+## Exercise 2: Data Best Practices
+
+::: callout-tip
+## FAIR Data and 5-star quality
+
+Remember: Back in lecture 1 we learnt about FAIR data and 5-star quality data.
+:::
+
+i.  Would you say the data in exercise 1 is:
+
+-   Findable - Yes / No / Partly
+-   Accessible - Yes / No / Partly
+-   Interopable - Yes / No / Partly
+-   Reusable - Yes / No / Partly
+
+<!-- :::{.callout-note collapse="true"} -->
+<!-- ## Solution -->
+
+<!-- -   Findable (partly) - We could find the data (it wasn't easy though), But there is no meta data. -->
+
+<!-- -   Accessible (no) - As this data isn't it a machine readable format, its not in a readily accessible format. -->
+
+<!-- -   Interopable (no) - As it's not accessible, it's not interoperable. It can't be used with other data. -->
+
+<!-- -   Resuable (partly) - It would be difficult to reuse this data confidently without appropriate meta data. However, it does have a licence that allows us to reuse the data. -->
+<!-- ::: -->
+
+ii. What star rating would you give this data?
+
+<!-- :::{.callout-note collapse="true"} -->
+<!-- ## Solution -->
+
+<!-- Sadly this data only gets 1 star. -->
+
+<!-- It is available under an open licence, but the data isn't in a (easily) reusable format. It's not machine readable. -->
+
+<!-- The format of the data is structured however, and there are tools that you can use to help you recover the table from the pdf. However, in it's current form - 1 star. -->
+<!-- ::: -->
+
+## Checking our understanding of AI
+
+::: callout-warning
+## Can AI do this same exercise?
+
+No - [Take a look at this prompt](https://chatgpt.com/share/69a4f1af-22e0-8011-979f-a34613af68aa)
+
+It tried, but it returned data that was not up-to-date! In an emergency scenario out of date data or providing people with the incorrect information could impact people's lives.
+
+It also returned a made up pdf link.
+
+AI can help you along with your thinking, but you must always critically evaluate the answers it gives you and whether they are suitable!
+
+It is recommended that you refer to the linked resources that the AI cites as its training data to see if these are verified sources of information.
+:::
+
+## In your own time
+
+### R practice
+
+Work through the following [startR modules](https://startr.numbat.space/):
+
+-   Do the module on Projects and Paths (Module 4). *From this week onward we will assume you know how to use RProjects and why these help us organise our analytics work.*
+
+-   Do the module on Strategies for troubleshooting R (Module 5).
+
+-   Do the Moodle quiz to revise your getting started in R basics.
+
+These should take you \~ 50 minutes.
+
+### Additional exercises
+
+Repeat the above exercise for New South Wales or South Australia (see links at the bottom of the CFA website for Victoria). You'll find similar, but different issues with the data available.
+
+What other data sets do you think might be needed in a emergency bushfire scenario? Is that data open?
+
+## Citations
+
+::: {.callout-tip collapse="true"}
+## How to cite data?
+
+Anytime you use a data set we expect you to cite it.
+
+We don't mind what citation style you use, provided you use it consistently across your references.
+
+There are lots of resources available from [Monash Library](https://www.monash.edu/library/help/citing-and-referencing).
+
+Here are links for [APA7](https://guides.lib.monash.edu/apa-7/other-sources) and [Harvard styles](https://guides.lib.monash.edu/harvard/other-sources).
+:::
+
+Country Fire Authority Victoria. (2026). NSP-BPLR - List of Locations. \[Data set\]. Retrieved March 4th, 2026, from <https://www.cfa.vic.gov.au/ArticleDocuments/441/Designated%20NSP-BPLR%20-%20CFA%20Website%20complete%20list%20%2002-02-2026.pdf>
+
+##### © Copyright Monash University
