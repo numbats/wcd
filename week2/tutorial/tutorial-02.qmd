@@ -119,6 +119,15 @@ v.  Does this data set have meta data?
 
 <!-- ::: -->
 
+vi. Is there a legal requirement to provide this data?
+
+<!-- :::{.callout-note collapse="true"} -->
+<!-- ## Solution -->
+
+<!-- Yes, see [Section 50L of the Country Authority Act 1958](https://www.legislation.vic.gov.au/in-force/acts/country-fire-authority-act-1958/160) -->
+
+<!-- ::: -->
+
 ## Exercise 2: Data Best Practices
 
 ::: callout-tip
