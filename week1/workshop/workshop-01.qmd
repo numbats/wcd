@@ -1,0 +1,13 @@
+---
+title: 'ETC5512: Getting started in R and R Studio'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+The workshop was a live demo providing an introduction to R and RStudio. Refer to the recording.
