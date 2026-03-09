@@ -17,12 +17,15 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 <!-- ### Learning Objectives -->
 
 <!-- -   \[LO2\] Practice searching for new data sources -->
+
 <!-- -   \[LO1\] Identify allowable usage and licensing of data -->
+
 <!-- -   \[LO4\] Learn about a range of different data formats -->
+
 <!-- -   \[LO6\] Recognise the components needed for effective curation of data. -->
 
 ### Where to find the data
- 
+
 -   Navigate to the airline ontime performance data base by going to <https://www.transtats.bts.gov/>
 
 -   Select "Aviation" from left box
@@ -33,17 +36,17 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE)
 
 This will bring you to an interface that allows you to select a subset of the data for download.
 
-:::callout-warning 
+::: callout-warning
 The data is very big, so follow the instructions below to download a small subset.
 :::
 
-### Download a subset 
+### Download a subset
 
 -   Choose 2020 and January (before the pandemic hit the USA)
 
 -   Select these variables: Year, Month, DayofMonth, DayOfWeek, FlightDate, Reporting_Airline, Tail_Number, Origin, Dest, CRSDepTime, DepTime, DepDelay, CRSArrTime, ArrTime, ArrDelay.
 
--   Click the "Download" button to get it onto your laptop. (No need to check pre-zipped. You may like to select documentation.) 
+-   Click the "Download" button to get it onto your laptop. (No need to check pre-zipped. You may like to select documentation.)
 
 -   The resulting file is about 50Mb.
 
@@ -51,13 +54,13 @@ The data is very big, so follow the instructions below to download a small subse
 
 First things first, whenever you read in the data you should check it looks like what you expect and the data has read in correctly and is in the right format.
 
-:::{.callout-tip collapse="true"}
-## Helpful functions to check your data 
-*  `View()` - Opens your data in the viewer
-* `glimpse()` and `head()` - Prints out a quick data summary
-* `summary()` and `str()` - Shows a summary of the variables types and ranges
-* `names()`, `dim()`, `ncol()` and `nrow()` - Tells you about different properties of your data
+::: {.callout-tip collapse="true"}
+## Helpful functions to check your data
 
+-   `View()` - Opens your data in the viewer
+-   `glimpse()` and `head()` - Prints out a quick data summary
+-   `summary()` and `str()` - Shows a summary of the variables types and ranges
+-   `names()`, `dim()`, `ncol()` and `nrow()` - Tells you about different properties of your data
 :::
 
 ```{r}
@@ -67,27 +70,27 @@ raw_flights <- read_csv(here("data", "T_ONTIME_REPORTING.csv"))
 dim(raw_flights)
 glimpse(raw_flights)
 ```
-:::{.callout-note collapse="true"}
-## Notice anything? 
+
+::: {.callout-note collapse="true"}
+## Notice anything?
 
 The column names are slightly different to the variable names you selected for download, but still recongisable as the requested variables: `YEAR`, `MONTH`, `DAY_OF_MONTH`, `DAY_OF_WEEK`, `FL_DATE`, `OP_UNIQUE_CARRIER`, `TAIL_NUM`, `ORIGIN`, `DEST`, `CRS_DEP_TIME`, `DEP_TIME`, `DEP_DELAY`,`CRS_ARR_TIME`,`ARR_TIME`, `ARR_DELAY`
-
 :::
 
-:::callout-important
+::: callout-important
 ## Understanding your data
+
 Make sure you understand what each row, column and cell entry represents?"
 :::
 
 ## Check the dates
 
-Let's sanity check we have the right date range. 
+Let's sanity check we have the right date range.
 
-:::{.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 ## Helpful package for dealing with dates
 
 The `lubridate` package, which is a part of the tidyverse, has lots of useful functions for dealing with dates. For example: `as_date()`, `as_datetime()` and `ymd()`.
-
 :::
 
 But first note, R read in `FL_DATE` as a `character` variable not a `date`, so we'll need to update that variable. For that we'll use the `mutate()` function.
@@ -105,24 +108,23 @@ date_range <- range(flights$FL_DATE)
 date_range
 ```
 
-:::{.callout-caution collapse="true"}
-## Timezones 
+::: {.callout-caution collapse="true"}
+## Time zones
 
-How many time zones are there in the USA? 
+How many time zones are there in the USA?
 
 Do you think the dates in the data are all in the same time zone or are they in local time zones - would this matter for analysis?
 
 The default here was to UTC but we should check if we need to change that.
-
-::: 
+:::
 
 <!-- What do we think about the data format? Is it [tidy data](https://tidyr.tidyverse.org/articles/tidy-data.html)? -->
 
-### Let's get curious about our data 
+### Let's get curious about our data
 
 (i) Count number of flights by carrier. Who has the most flights?
 
-:::{.callout-note collapse="true"}
+::: {.callout-note collapse="true"}
 ## Solution
 
 ```{r}
@@ -135,17 +137,12 @@ flights |>
 
 Top 5 carriers in January 2020
 
-WN - Southwest Airlines
-AA - American Airlines
-DL - Delta Airlines
-OO - Skywest Airlines
-UA - United Airlines
-
+WN - Southwest Airlines AA - American Airlines DL - Delta Airlines OO - Skywest Airlines UA - United Airlines
 :::
 
-(ii) Which airports have the most traffic? 
+(ii) Which airports have the most traffic?
 
-:::{.callout-note collapse="true"}
+::: {.callout-note collapse="true"}
 ## Solution
 
 ```{r}
@@ -157,19 +154,15 @@ flights_long |>
   count(sort = TRUE) |>
   slice(1:10)
 ```
+
 Top 5 busiest airports in January 2020
 
-10397 - Atlanta/ATL -  "Hartsfield–Jackson Atlanta International Airport"
-13930 - Chicago/ORD - "O'Hare International Airport"
-11298 -  Dallas/DAL - "Dallas/Fort Worth International Airport"
-11292 - Denver/DEN - "Denver International Airport"
-11057 - Charlotte/CLT - "Charlotte Douglas International Airport"
-
+10397 - Atlanta/ATL - "Hartsfield–Jackson Atlanta International Airport" 13930 - Chicago/ORD - "O'Hare International Airport" 11298 - Dallas/DAL - "Dallas/Fort Worth International Airport" 11292 - Denver/DEN - "Denver International Airport" 11057 - Charlotte/CLT - "Charlotte Douglas International Airport"
 :::
 
 (iii) Does every airport have the same number of incoming and outgoing flights?
 
-:::{.callout-note collapse="true"}
+::: {.callout-note collapse="true"}
 ## Solution
 
 ```{r}
@@ -193,7 +186,7 @@ ggplot(traffic, aes(x=num_outgoing, y=num_incoming)) +
   coord_equal()
 ```
 
-Yes - most airports have the same number of incoming and outgoing flights in January 2020. There were a few small differences, but relative to the total number of flights at the busier airports these differences were inconsequential. 
+Yes - most airports have the same number of incoming and outgoing flights in January 2020. There were a few small differences, but relative to the total number of flights at the busier airports these differences were inconsequential.
 :::
 
 ### In your own time: Review how the data was collected
@@ -207,5 +200,3 @@ You can check the ["Data profile"](https://www.transtats.bts.gov/DatabaseInfo.as
 (iii) How is the data collected?
 
 (iv) Is this open data? What type of license is provided? What are you allowed to do with the data?
-
-
