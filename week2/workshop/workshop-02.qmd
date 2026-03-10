@@ -122,7 +122,7 @@ The default here was to UTC but we should check if we need to change that.
 
 ### Let's get curious about our data
 
-(i) Count number of flights by carrier. Who has the most flights?
+(i) Count number of flights by carrier. Which carriers have the most flights?
 
 ::: {.callout-note collapse="true"}
 ## Solution
@@ -131,6 +131,7 @@ The default here was to UTC but we should check if we need to change that.
 flights |> 
   group_by(OP_UNIQUE_CARRIER) |>
   count() |>
+  ungroup() |>
   arrange(desc(n)) |>
   slice(1:10)
 ```
@@ -152,6 +153,7 @@ flights_long = flights |>
 flights_long |> 
   group_by(AIRPORT_ID) |>
   count(sort = TRUE) |>
+  ungroup() |>
   slice(1:10)
 ```
 
