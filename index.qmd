@@ -85,12 +85,16 @@ schedule |>
         Show = file.exists(glue::glue("./week{Week}/index.qmd")),
         Show_Tutorial = file.exists(glue::glue("./week{Week}/tutorial/tutorial-0{Week}.qmd")),
         Show_Solution = file.exists(glue::glue("./week{Week}/tutorial/tutorial-0{Week}-sol.qmd")),
+        Show_Workshop = file.exists(glue::glue("./week{Week}/workshop/workshop-0{Week}.qmd")),
         Topic = if_else(!Show, Topic, glue::glue('[{{Topic}}](./week{{Week}}/index.html){target="_blank"}', .open = "{{", .close = "}}")),
         Tutorial = if_else(!Show_Tutorial, "", glue::glue('[{{< fa list-check >}}](./week{{{Week}}}/tutorial/tutorial-0{{{Week}}}.html){target="_blank"}', .open = "{{{", .close = "}}}")),
-        Solution = if_else(!Show_Solution, "", glue::glue('[{{< fa lightbulb >}}](./week{{{Week}}}/tutorial/tutorial-0{{{Week}}}-sol.html){target="_blank"}', .open = "{{{", .close = "}}}"))
+        Solution = if_else(!Show_Solution, "", glue::glue('[{{< fa lightbulb >}}](./week{{{Week}}}/tutorial/tutorial-0{{{Week}}}-sol.html){target="_blank"}', .open = "{{{", .close = "}}}")),
+       Workshop = if_else(!Show_Workshop, "",
+      glue::glue('[{{< fa laptop-code >}}](./week{{{Week}}}/workshop/workshop-0{{{Week}}}.html){target="_blank"}',
+      .open = "{{{", .close = "}}}"))
         # Reference = glue::glue("[{Reference}]({Reference_URL})")
         # Assessments = if_else(is.na(Assignment), Assignment, glue::glue("[{Assignment}]({File})"))
     ) |>
-    select(-Show, -Show_Tutorial, -Show_Solution) |>
+    select(-Show, -Show_Tutorial, -Show_Solution, -Show_Workshop) |>
     knitr::kable(format = "markdown")
 ```
