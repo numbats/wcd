@@ -1,0 +1,38 @@
+---
+title: 'ETC5512: Week 2 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## An Introduction to Data Colllection
+
+#### Mon 9 Mar 26 - Sun 15 Mar 26
+
+**Seminar:**\
+Last week we learnt what open data is. This week we cover how that data is collected. \
+By developing a better understanding of how data is collected, we can better understand when it is appropriate to use a given dataset and how to turn our data into knowledge.\
+\
+**Tutorial:\
+**This week we'll practice searching for data. You'll hunt down a data set related to bushfires, assess whether that data is open and assess quality aspects related to that data. This exercise will help you learn about some of the common challenges to finding and accessing open data.\
+\
+**Workshop:**\
+We'll run through the basic functions for data wrangling in R - check out the [posit cheat sheets](https://posit.co/resources/cheatsheets/) on [tidyr](https://rstudio.github.io/cheatsheets/html/tidyr.html) and [dplyr](https://rstudio.github.io/cheatsheets/html/data-transformation.html).\
+We'll be using the US airlines flights database.\
+\
+**In your own time:**\
+Complete the [startR modules](https://startr.numbat.space/) 4 and 5 in the Basics section, and the module on Quarto in the Writing Section.\
+\
+**Assessment:\
+**Assignment 1 will be released this week (how exciting!).\
+\
+**Help:**\
+Don't forget to use the consultation times as a chance to ask questions and get clarifications. \
+Lastly, the discussion board is a great place for to ask general questions and get help. \
+\
+Hope you are enjoying learning about wild caught data! 
