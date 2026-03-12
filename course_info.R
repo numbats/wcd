@@ -12,7 +12,7 @@ schedule <- tribble(
     ~Week, ~Topic, ~Reference, ~Reference_URL,
     1, "Open data: definitions, sources and examples", "", "",
     2, "Introduction to data collection methods", "", "",
-    3, "Case Study: TBC", "", "", #US airline traffic
+    3, "Case Study: Natural Hazards and Impact Warnings", "", "", #US airline traffic
     4, "Case Study: Australian census", "", "",
     5, "Case Study: Australian election data", "", "",
     6, "Case Study: Combining census and election data", "", "",
