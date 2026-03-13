@@ -1,0 +1,41 @@
+---
+title: 'ETC5512: Week 2 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Case study: Natural Hazards and Impact Warnings
+
+#### Mon 16 Mar 26 - Sun 22 Mar 26
+
+**Seminar:**
+This will be our first case study lecture. We will discuss the importance of open data for natural hazards and impact warnings based on the [Perspective paper](https://www.cell.com/one-earth/fulltext/S2590-3322(25)00100-9). Slides will be released shortly but take a look at the paper in the meantime.
+
+**Tutorial:**
+This tutorial will build on Seminar 2. You'll practice identifying the different types of data collection, differentiating between population vs sample and identifying features of experimental design. You'll also build more skills data wrangling in R.
+
+**Workshop:**
+We'll run through the basics of Quarto and how to use your assignment template.
+
+**In your own time:**
+Complete the [startR modules](https://startr.numbat.space/) on Tidy Data Analysis 1-3. These modules are on reading data, tidying data and wrangling data.
+
+**Assessment:**
+Assignment 1 is out! Hopefully you've gotten started. 
+
+In the seminar, I'll explain more about what is a suitable region for Question 1 as I don't want you to go too crazy downloading data.
+
+I've also added a discussion forum on Moodle for you to ask general questions and get assignment help. Remember to direct general questions here not the unit email.
+
+**Concept Check:**
+You should have completed all the introductory startR modules now. From this point onward, we will therefore assume that the concepts on R Basics and R projects / paths all make sense. 
+
+If you are having any troubles at all with these topics please come to consultation and let us help you! Learning to code is hard and we are friendly - we promise! Don't get left behind if these concepts aren't making sense to you. We are happy to help.
+
+*Hope you are enjoying learning about wild caught data!*
