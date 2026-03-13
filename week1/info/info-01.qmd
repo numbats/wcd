@@ -1,0 +1,55 @@
+---
+title: 'ETC5512: Week 1 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Open data: definitions, sources and examples
+
+#### Mon 2 Mar 26 - Sun 8 Mar 26
+
+Welcome to Wild Caught Data!!! 
+
+**Seminar:**
+
+In our first seminar I'll explain what wild caught data is and introduce you to open data. 
+
+We will also go through the administrative details for the ETC5512.
+
+**Seminar Details:** 
+
+Time & Location details are available under the Unit Information Tab on Moodle.
+
+This seminar is in person, but a recording will be made available online following the lecture.
+
+**Tutorial:**
+
+You'll be looking at an example of open data and be using R for the first time.  
+This will include learning how to read in data in R.
+
+**Before your tutorial:**
+
+Please install both R and RStudio. 
+If you have any difficulties installing R or RStudio, you can use this resource.
+
+**Workshop:**
+
+This weeks workshop, I will demo how I use R and show you how to load data.
+Time: Tuesday 9 - 10 am  
+Location: Online (see unit details for zoom link).
+
+**Help:**
+
+If you have questions remember you can use the discussion forum or email ETC5512.Clayton-x [at] monash [dot] edu
+
+*I'm looking forward to meeting you all,*
+
+*Kate*
+
+
