@@ -1,0 +1,35 @@
+# Second release (R2) of GCP contains the following amendments
+
+Note - The R3 data content is the same as R2, so also applies to the impacted data items listed below between R1 and R3 data tables although the geography is only for Remoteness Areas in R3 and is not comparable against Geography outputs for R1 and R2.
+
+LFSP data populated into G22 table for LFSP component.
+
+Following amendments to R1 and R2 tables in R2 re-release (Dec 22) from original R2 release (Oct 12, 2022) are as follows:
+
+Table G08: A perturbed total has been introduced for this table for totalling birthplace of parents cohort for 'Total responses', replacing the summed total from what was supplied in the original R2 release.  Impact is slight differences to the aggregated data in this total field for all geography levels as supplied in original R2 release.
+
+Table G11: A change in the column header for year of arrival range that was '2006 - 2010' is now '2005 - 2010'.  Both long and short descriptors have been updated in the Metadata descriptor file and also in the G11 A - D CSV DataPack files.
+
+Table G19: A perturbed total has been introduced for this table for totalling age cohorts for 'Total responses', replacing the summed total from what was supplied in the original R2 release.  Impact is slight differences to the aggregated data in this total field for all geography levels as supplied in original R2 release.
+
+Table G62: 'Train and two other methods' has been added to sequential template for sequential cell 16961 - 16963. This has added 3 extra cells to template and the G62 file, now ending in 16984.
+
+Table G62: Train and Bus data items have been subtracted from grouped data items 'Other two methods' and 'Other three methods' and regrouped into 'Train and other' and 'Bus and other' respectively and where applicable for two methods and a similar regrouping for train and bus has occurred for three methods.  This in turn has also changed the sub totals for 'Total two methods' and 'Total three methods'.
+Data items that have changed - 
+Two methods
+	> Train and other (Increase in count.  Regrouped data items that are Train + remaining data item not listed in table, eg 'Train & bus', 'Train & ferry', etc - were originally coded to 'Other two methods')
+	> Train Total (Subtotal.  Increase in count, due to more data items being added to 'Train and other')
+	> Bus and other (Increase in count.  Regrouped data items that are Bus + remaining data item not listed in table, eg 'Bus & ferry', 'Bus & Tram/light rail', etc - were originally coded to 'Other two methods')
+	> Bus Total (Subtotal.  Increase in count, due to more data items being added to 'Bus and other')
+	> Other two methods (Decrease in count.  Data items for both Train + another method and Bus + another method have been subtracted from this grouped data item where applicable)
+	> Total two methods (Decrease in count.  Some data items that were Train + 2 other methods were originally coded to 'Other two methods' and have since been subtracted.  The result is a decrease for 'Total two methods' and an increase in 'Total three methods')
+Three methods
+	> Train and other two methods (Increase in count.  Data items that are Train + 2 other methods were coded to 'Other two methods' and 'Train and other'.  These data items have been subtracted from both sub groups and added to 'Train and two other methods')
+	> Bus and other two methods (Increase in count.  Data items that are Bus + 2 other methods were coded to 'Other two methods' and 'Bus and other'.  These data items have been subtracted from both sub groups and added to 'Bus and two other methods (excludes train)')
+	> Total three methods (Increase in count, due to Train/Bus and other two method data items being subtracted from two method data groups and added to three method data groups for Train and Bus)
+
+Note - the above G62 data items that have changed in reference to increase/decrease in counts are observations at the Australia level.  For smaller area data, may be different to this observation, pending on which data items are populated specific to each method of travel to work for that specific area.  For example, it is unlikely that Bus's + taxi ride/share services will operate in remote communities.
+
+For a full list of the travel to work methods, refer to the Census Dictionary and search for 'MTWP' in the 'Variables Index' navigator - or copy and paste url - https://www.abs.gov.au/census/guide-census-data/census-dictionary/2021/variables-topic/transport/method-travel-work-mtwp
+
+The changes between ASGS 2016 and ASGS 2021 are recorded in the "changes from the previous edition of the ASGS" section of ASGS 2021 Edition 3 publication from https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3/jul2021-jun2026/main-structure-and-greater-capital-city-statistical-areas/changes-previous-edition-asgs
