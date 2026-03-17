@@ -1,0 +1,42 @@
+---
+title: 'ETC5512: Quarto Basics'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+execute: 
+  eval: true
+  echo: true
+---
+
+The workshop was a live demo providing an introduction to Quarto. Refer to the recording.
+
+:::callout-note
+## Topics covered include: 
+
+* Using the assignment template (.zip, .Proj, .qmd)
+* What is a Quarto file
+* Difference between source versus visual editor
+* How to render your .qmd file
+* Setting up your `yaml` header
+* How to write code and text together
+* Setting up a code chunk 
+* Setting code chunk options (globally and locally)
+* Naming your code chunks
+* Tips for debugging your Quarto file
+* How to specify different rendering outputs 
+* Markdown basics 
+
+::: 
+
+This demo should have provided a practical extension to the [startR module](https://startr.numbat.space/modules/writing/quarto-basics/) on Quarto basics. 
+
+For more support refer to the [Quarto Website](https://quarto.org/docs/guide/).
+You'll find there a link to [Quarto basics](https://quarto.org/docs/authoring/markdown-basics.html).
+
+
+
