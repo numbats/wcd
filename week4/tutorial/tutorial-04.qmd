@@ -315,13 +315,16 @@ tbl_G17_tidy = tbl_G17_tidy |>
 
 Take time to note here just how many different steps we needed to do to wrangle our data into a useful format for our filtering and plotting needs. Figuring out all these steps yourself would take a lot of time! To get quicker at understanding what is in your data and how to format it for an analysis will come with time and practice.
 
-## In your own time: Exercise 3
+## Exercise 3 
 
 **Quality check your census data**
 
 -   According to the data from Exercise 2, how many people are there in Victoria? If you check [http://www.population.net.au](http://www.population.net.au/population-of-victoria/), there are 6.62 million people in 2021 at Victoria. Does it look right? Are we missing some people in the data? If so, what kinds of people are we missing?
 
 -   What is the minimum and maximum of values for `count`? Do the range and categories for each column look right?
+
+
+## In your own time: Exercise 3
 
 -   Draw a barplot (using `ggplot` or otherwise) of the number people in Victoria by:
 
