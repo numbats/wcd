@@ -1,0 +1,46 @@
+---
+title: 'ETC5512: Week 4 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Case study: Australian Election Data
+
+#### Sun 23 Mar 25 - Sun 30 Mar 25
+
+**Seminar:**
+
+We will continue on our journey to take wild data and tame it. This week we'll be looking at the Australian census data. We'll be tackling issues of (i) how do I find the data we need (ii) how do we understand how the data is organised and (iii) how do I tell the computer how to organise the data so we can analyse it.
+
+**Before your tutorial:**
+
+Make sure to read the preparation details for the tutorial and download the data you will be using ahead of time. 
+
+**Tutorial:**
+
+In this week's tutorial, you'll download data from the 2021 census and practice some of the wrangling skills from the lecture. Don't skip this tutorial, you need it for your assignment 2!
+
+**Workshop:**
+
+I'll run an extra long consult for anyone needing help with their assignment.
+If you have questions you are welcome to ask during the workshop or if you feel shy email them to me ahead of time. 
+
+**AI use:**
+
+In both the workshop and the tutorial, the teaching team will also give you some more guidance around how to use AI to support your learning and how to appropriately acknowledge your AI use on your assignment. If you are confused about appropriate AI use PLEASE ASK! Refer also to the [Monash guidelines](https://www.monash.edu/student-academic-success/learning-with-ai/foundations-of-ai/responsible-and-ethical-use-of-ai).
+
+**Assessment:**
+
+Assignment 1 is due at the end of this week. Make sure you've started!
+
+**Help:**
+
+If you have questions about the assignment and think they might be common to other students - don't forget to use the discussion board. Otherwise, see you in consultation.
+
+
