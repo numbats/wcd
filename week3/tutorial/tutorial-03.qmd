@@ -20,10 +20,8 @@ knitr::opts_chunk$set(echo = TRUE)
 -   Delineate the data collection methods
 -   Logically suggest the population that a sample represents
 
-:::callout-warning 
-
-This tutorial is on the long side. Don't expect to  finish all the exercises in your tutorial. You will likely need to follow up in your own time.
-
+::: callout-warning
+This tutorial is on the long side. Don't expect to finish all the exercises in your tutorial. You will likely need to follow up in your own time.
 :::
 
 ### Before your tutorial
@@ -34,7 +32,7 @@ This tutorial is on the long side. Don't expect to  finish all the exercises in 
 
 -   [Tidy data and restructuring](https://startr.numbat.space/modules/analysis/tidyr/)
 
-- [Data manipulation](https://startr.numbat.space/modules/analysis/dplyr/)
+-   [Data manipulation](https://startr.numbat.space/modules/analysis/dplyr/)
 
 These should take you \~ 1 hour and 30 minutes.
 
