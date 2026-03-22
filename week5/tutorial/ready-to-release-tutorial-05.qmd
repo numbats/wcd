@@ -1,0 +1,403 @@
+---
+title: "Week 5 Tutorial"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE
+)
+```
+
+## Learning Objectives
+
+In this tutorial, you will be using data about the Australia Election. You will be learning how to:
+
+-   Work with map data in R
+-   Visualise map data in R
+-   Modify map projections
+
+We are using the 2021 election data here for practice. On your assignment you will use the more recent election data.
+
+### Before your tutorial
+
+:::callout-warning
+
+There is lots of data to download for this tutorial. Please do it before you arrive at class! 
+
+:::
+
+##### 1.  Installing relevant R-packages
+
+```{r, eval = FALSE}
+install.packages(c("sf", "spData", "terra"))
+```
+
+##### 2. Get the distribution of preferences by candidate by division for the 2022 Australian Federal Election
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## To download the preference data 
+
+Follow these instructions to download this data:
+
+-   Go to <https://results.aec.gov.au>
+
+-   2022 federal election
+
+-   Downloads
+
+-   Distribution of preferences by candidate by division
+
+**Or** 
+
+Directly use the url here: <https://results.aec.gov.au/27966/Website/Downloads/HouseDopByDivisionDownload-27966.csv>
+
+:::
+
+##### 3. Get the electoral district geographical boundaries
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## To download the electoral boundaries 
+
+    -   Go to <https://www.aec.gov.au/electorates/gis/licence.htm> to agree with the license
+    -   Download the ESRI (.shp) zip file for Victoria where Federal election boundary applied in 2022.
+    
+:::
+
+
+##### 4. Look up the colours of the current political parties
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## To download party colours
+
+-   Go to <https://handbook.aph.gov.au/StatisticalInformation/Parties>
+-   Filter your results to Victoria and for the most recent parliament elected
+
+:::
+
+##### 5. To speed things up for Mac users
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## For Mac users 
+
+Run the following code if you use Mac. This is to help speed up the spatial visualisation.
+
+```{r}
+# For speeding up geom_sf
+if (!identical(getOption("bitmapType"), "cairo") && isTRUE(capabilities()[["cairo"]])) {
+  options(bitmapType = "cairo")
+}
+```
+
+:::
+
+## Exercise 1
+
+:::callout-note 
+## Objective
+
+Download, combine and wrangle the election data so it is ready for mapping!.
+
+We will need this for the second exercise.
+
+:::
+
+##### 1.1  Load the packages you need
+
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(sf)
+```
+
+##### 1.2  Import the election data
+
+```{r, message = FALSE, warning = FALSE}
+url = "https://results.aec.gov.au/27966/Website/Downloads/HouseDopByDivisionDownload-27966.csv"
+
+election_data <- read_csv(url,
+  skip = 1
+) 
+```
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Check your understanding of the code
+
+Why do we set `skip=1`? Take a look at the file and look at help menu for what `skip` does.
+
+:::
+
+##### 1.3  Wrangle your data so we only keep the winners from the election.
+
+```{r, message = FALSE, warning = FALSE}
+election_data = election_data |>
+  filter(CalculationType == "Preference Count" &
+    Elected == "Y" &
+    CountNumber == 0) |>
+  mutate(DivisionNm = toupper(DivisionNm))
+```
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Check your understanding of the code 
+
+* Why do we filter by `Elected == Y`?
+
+* Why do we filter by `CountNumber == 0`?
+
+* What does the `toupper()` function do and why do we need it? 
+
+::: 
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Answers
+
+* We want to select winning candidate only
+
+* This is preferential voting, so we will end up with repeat rows for each count. As there are different numbers of candidates in each electorate a solution that works for everywhere is `CountNumber == 0`. There are other ways to do this - but this piggybacks off the code from class.
+
+* The `toupper` functions makes everything upper case (e.g. hi to HI). We use this as small differences in naming conventions are taken care of (e.g. MC vs Mc). When we join with the map data later we are less likely to have small issues with naming. 
+
+:::
+
+##### 1.4  Read the map data using the code below.
+
+:::callout-important 
+We do not use `read_csv` here. We need to use `read_sf` as this is a map.
+:::
+
+```{r}
+vic_map_path = "data/vic-july-2021-esri/E_VIC21_region.shp" 
+vic_election_map <- read_sf(here::here(vic_map_path)) |>
+  # to match up with election data
+  mutate(DivisionNm = toupper(Elect_div)) |>
+  sf::st_simplify(dTolerance = 100)
+```
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Check your understanding of the code
+
+Why might I want `st_simplify`? 
+
+Read about it using the help menu and suitable values for setting `dTolerance`.
+
+:::
+
+##### 1.5  Combine the election data with the election boundaries.
+
+```{r}
+vic_election_map = vic_election_map |>
+  left_join(election_data, by = "DivisionNm")
+```
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Do you remember how joins work? 
+
+You can refresh how to combine to data sets together by reviewing the [tidyverse cheat sheet](https://rstudio.github.io/cheatsheets/tidyr.pdf). Try some toy examples yourself, ask your tutor or get some guidance from Generative AI.
+
+::: 
+
+##### 1.6  Determine an appropriate colour for the political parties. 
+
+We will need these to colour code our map.
+
+```{r}
+election_data |> 
+  filter(StateAb == "VIC") |> 
+  select(PartyAb) |> 
+  distinct(PartyAb)
+```
+
+Using the parliamentary handbook, we can match the political party with their associated colour.
+
+```{r}
+party_colors <- c(
+  "ALP" = "#DE3533",
+  "GVIC" = "#10C25B",
+  "IND" = "#000000",
+  "LP" = "#0047AB",
+  "NP" = "#FFFF00"
+)
+
+```
+
+You can change these if you'd like to. Many of the inner city independents used the teal colour.
+
+```{r vicmap19, eval = FALSE, echo = FALSE}
+vic_election_map |>
+  ggplot() +
+  geom_sf(aes(geometry = geometry, fill = PartyAb),
+    color = "white"
+  ) +
+  coord_sf(xlim = c(144.8, 145.2), ylim = c(-38.1, -37.6)) +
+  scale_fill_manual(values = party_colors) +
+  ggtitle("Winners of Australian Federal Election in 2021",
+    subtitle = "Victoria"
+  )
+```
+
+
+::: {.callout-note appearance="minimal" collapse="true"}
+## Check your understanding of the code
+
+How many and which political parties do we need colours for? Will this coded solution work everywhere?
+
+If we change region there may be additional political parties that we need to add colours for!
+
+:::
+
+## Exercise 2
+
+Draw a map of Victoria and colour the electorate districts with the political party that won that district in the 2022 federal election.
+
+##### 2.1   Draw a map that looks like below.
+
+```{r vicmap19, eval = TRUE, echo = FALSE}
+```
+
+To do this we need to use mapping functions that work with `ggplot2`.
+
+-   The function `geom_sf` is used to define the aesthetics of how to plot the map.
+
+-   The function `coord_sf` is used to define the coordinate range of the plot.
+
+<details style="padding-left:50px;">
+
+<summary>Hint 1</summary>
+
+```{r hint1, eval = F, echo = TRUE}
+vic_election_map |>
+  ggplot() +
+  geom_sf(aes(geometry = ???, fill = ???), color = "black") 
+```
+
+</details>
+
+<details style="padding-left:50px;">
+
+<summary>Hint 2</summary>
+
+```{r hint2, eval = F, echo = TRUE}
+vic_election_map |>
+  ggplot() +
+  geom_sf(aes(geometry = geometry, fill = PartyAb), color = "black") + 
+  coord_sf(xlim = c(???, ???), ylim = c(???, ???)) +
+```
+
+</details>
+
+<details style="padding-left:50px;">
+
+<summary>Solution</summary>
+
+```{r vicmap19, eval = F, echo = T}
+```
+
+</details>
+
+<br>
+
+##### 2.2   Modify the map drawn in 2.1. so that the legend only shows the parties shown in the visualisation.
+
+You may find the function `st_crop` useful here.
+
+<details style="padding-left:50px;">
+
+<summary>Hint 3</summary>
+
+```{r hint3, eval = F, echo = TRUE}
+vic_election_map |>
+    st_crop(xmin = ???, xmax = ???,
+          ymin = ???, ymax = ???)
+```
+
+</details>
+
+##### 2.3   Finally add the text labels of the name of the electoral division for Melbourne, Menzies and Macnamara, like below.
+
+The function `geom_sf_label` can be used to add labels to a map.
+
+<details style="padding-left:50px;">
+
+<summary>Hint 4</summary>
+
+```{r hint4, eval = F, echo = TRUE}
+vic_map_subset = vic_election_map %>% 
+      filter(Elect_div %in% c("Melbourne", "Menzies", "Macnamara"))
+             
+vic_election_map |>
+  ggplot() +
+  geom_sf(aes(geometry = geometry), color = "black") + 
+  geom_sf_label(data = vic_map_subset, aes(label = ???, geometry = ???))
+```
+
+</details>
+
+## Exercise 3: In your own time
+
+**Learn to modify the map projection** The world is not flat. Let's learn how to deal with that in the mapping world.
+
+Load the world map data contained in `spData`.
+
+```{r}
+library(spData)
+data(world, package = "spData")
+```
+
+<details style="padding-left:50px;">
+
+<summary>Stuck on where to start:</summary>
+
+```{r hint5, eval = F, echo = TRUE}
+## Look at the last example in the help 
+?geom_sf
+```
+
+</details>
+
+3.1  Plot the map data `world` using `ggplot2`.
+
+```{r world-map, echo = FALSE}
+ggplot(world) +
+  geom_sf()
+```
+
+3.2  Mollweide projection is a map projection that preserves area relationships. Apply this projection by setting`crs = "+proj=moll"` in the `st_transform` function and visualise the result.
+
+```{r moll, echo = FALSE}
+world |>
+  st_transform(crs = "+proj=moll") %>%
+  ggplot() +
+  geom_sf()
+```
+
+3.3  Modify the projection so that it transforms the coordinates to the Lambert azimuthal equal-area projection with Australia in the center (25.27°S, 133.78°E).
+
+```{r laea, echo = FALSE}
+world |>
+  st_transform(crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=133.78 +lat_0=-25.27") %>%
+  ggplot() +
+  geom_sf()
+```
+
+
+## Exercise 4: Extend yourself!
+
+Repeat exercises 1 and 2 above but for all of Australia.
+
+There will be a few things you should watch our for:
+
+-   The increase in map size will make reading the files and plotting the data much slower compared to Victoria. So be sure to use `st_simplify()`.
+
+-   You may also encounter an odd error with this map where you need to use `st_valid()` to redraw the polygons correctly.
+
+-   For the whole of Australia there may be other parties for which we have yet to download the colours.
+
+-   There may also be some small differences in how the electoral divisions are named. You may need to handle some edge cases.
+
+##### Copyright Monash University
