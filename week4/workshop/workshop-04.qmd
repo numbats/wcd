@@ -75,6 +75,8 @@ For example: “What are some R coding best practices I could implement for writ
 
 This helps you develop good habits without short cutting the learning process. 
 
+# Some final remarks
+
 :::callout-important 
 ## Remember: AI is not a subsitute for thinking
 
