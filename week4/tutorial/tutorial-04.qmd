@@ -323,8 +323,7 @@ Take time to note here just how many different steps we needed to do to wrangle 
 
 -   What is the minimum and maximum of values for `count`? Do the range and categories for each column look right?
 
-
-## In your own time: Exercise 3
+## In your own time: Exercise 4
 
 -   Draw a barplot (using `ggplot` or otherwise) of the number people in Victoria by:
 
@@ -363,7 +362,7 @@ tbl_G17_tidy %>%
 -   Do the graphs meet your expectations of the data? Discuss with your classmates.
 -   Is it easier to answer these questions because we made our data tidy?
 
-## In your own time: Exercise 4
+## In your own time: Exercise 5
 
 **Extract statistics from your tidy census data**
 
