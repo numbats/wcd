@@ -10,9 +10,9 @@ format:
 editor: visual
 ---
 
-## Case study: Australian Election Data
+## Case study: Australian Census Data
 
-#### Sun 23 Mar 25 - Sun 30 Mar 25
+#### Mon 23 Mar 25 - Sun 29 Mar 25
 
 **Seminar:**
 
@@ -20,7 +20,7 @@ We will continue on our journey to take wild data and tame it. This week we'll b
 
 **Before your tutorial:**
 
-Make sure to read the preparation details for the tutorial and download the data you will be using ahead of time. 
+Make sure to read the preparation details for the tutorial and download the data you will be using ahead of time.
 
 **Tutorial:**
 
@@ -28,8 +28,7 @@ In this week's tutorial, you'll download data from the 2021 census and practice 
 
 **Workshop:**
 
-I'll run an extra long consult for anyone needing help with their assignment.
-If you have questions you are welcome to ask during the workshop or if you feel shy email them to me ahead of time. 
+I'll run an extra long consult for anyone needing help with their assignment. If you have questions you are welcome to ask during the workshop or if you feel shy email them to me ahead of time.
 
 **AI use:**
 
@@ -42,5 +41,3 @@ Assignment 1 is due at the end of this week. Make sure you've started!
 **Help:**
 
 If you have questions about the assignment and think they might be common to other students - don't forget to use the discussion board. Otherwise, see you in consultation.
-
-

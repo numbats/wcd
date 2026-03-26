@@ -1,0 +1,43 @@
+---
+title: 'ETC5512: Week 5 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Case study: Australian Census Data
+
+#### Mon 30 Mar 26 - Sun 5 Mar 26
+
+**Seminar:**
+
+This week our open data case study will use Australian election data. We we learn how to analyse election counts in Australia by working with preferential voting. We will also learn how to plot the winners of the electorates and start understanding the nuances of working with electoral boundaries. 
+
+**Before your tutorial:**
+
+Install the required mapping packages and download the data you need.
+
+**Tutorial:**
+
+You'll practice what we do in the lecture, drawing maps of the federal election winners in Victoria for 2022. You are also going to have a look at the different coordinate systems. For those ahead, you can practice repeating the exercises on an Australian scale.
+
+**Workshop:**
+
+A core part of analytics is visualising your results. I'll take you through the basics of how ggplot() works, and we'll go through the additional exercises from Tutorial 4 where you create plots of census data.
+
+**Assessment:**
+
+Assignment 2 will be out in Week 5. You will have until Week 7 to complete this. At the end of Week 5 you should be able to the first two tasks on the assignment.
+
+**Consults and getting help:\
+**\
+If you're having problems, don't forget to use the discussion board. Otherwise, I'll be in consultation at the usual time.
+
+Also, I have heard your feedback around tutorial consultation times and I will aim to have these rescheduled at a better time after the mid-semester break.\
+\
+Kate
