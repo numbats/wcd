@@ -83,14 +83,17 @@ Directly use the url here: <https://results.aec.gov.au/27966/Website/Downloads/H
 ::: {.callout-note appearance="minimal" collapse="true"}
 ## For Mac users
 
-Run the following code if you use Mac. This is to help speed up the spatial visualisation.
+You will need to install [XQuartz](https://www.xquartz.org/) to display the maps for today's tutorial. 
 
-```{r}
-# For speeding up geom_sf
-if (!identical(getOption("bitmapType"), "cairo") && isTRUE(capabilities()[["cairo"]])) {
-  options(bitmapType = "cairo")
-}
-```
+<!-- Run the following code if you use Mac. This is to help speed up the spatial visualisation. -->
+
+<!-- ```{r} -->
+<!-- # For speeding up geom_sf -->
+<!-- if (!identical(getOption("bitmapType"), "cairo") && isTRUE(capabilities()[["cairo"]])) { -->
+<!--   options(bitmapType = "cairo") -->
+<!-- } -->
+<!-- ``` -->
+
 :::
 
 ## Exercise 1
@@ -115,16 +118,8 @@ library(sf)
 ```{r, message = FALSE, warning = FALSE}
 url = "https://results.aec.gov.au/27966/Website/Downloads/HouseDopByDivisionDownload-27966.csv"
 
-election_data <- read_csv(url,
-  skip = 1
-) 
+election_data <- read_csv(url, skip = 1) 
 ```
-
-::: {.callout-note appearance="minimal" collapse="true"}
-## Check your understanding of the code
-
-Why do we set `skip=1`? Take a look at the file and look at help menu for what `skip` does.
-:::
 
 ##### 1.3 Wrangle your data so we only keep the winners from the election.
 
@@ -144,6 +139,7 @@ election_data = election_data |>
 -   Why do we filter by `CountNumber == 0`?
 
 -   What does the `toupper()` function do and why do we need it?
+
 :::
 
 ::: {.callout-note appearance="minimal" collapse="true"}
@@ -171,9 +167,9 @@ vic_election_map <- read_sf(here::here(vic_map_path)) |>
 ```
 
 ::: {.callout-note appearance="minimal" collapse="true"}
-## Check your understanding of the code
+## Tips for dealing with polygons
 
-Why might I want `st_simplify`?
+Why might I want `st_simplify`? Sometimes you don't need all the fine details, particularly if the map is zoomed out. This function will simplify the number of vertices in the polygon drawn.
 
 Read about it using the help menu and suitable values for setting `dTolerance`.
 :::
@@ -188,7 +184,7 @@ vic_election_map = vic_election_map |>
 ::: {.callout-note appearance="minimal" collapse="true"}
 ## Do you remember how joins work?
 
-You can refresh how to combine to data sets together by reviewing the [tidyverse cheat sheet](https://rstudio.github.io/cheatsheets/tidyr.pdf). Try some toy examples yourself, ask your tutor or get some guidance from Generative AI.
+You can refresh your knowledge of how to combine to data sets together by reviewing the [tidyverse cheat sheet on tidyr](https://rstudio.github.io/cheatsheets/tidyr.pdf). Try some toy examples yourself, ask your tutor or get some guidance from Generative AI if you are still not sure.
 :::
 
 ##### 1.6 Determine an appropriate colour for the political parties.
@@ -231,11 +227,12 @@ vic_election_map |>
 ```
 
 ::: {.callout-note appearance="minimal" collapse="true"}
-## Check your understanding of the code
+## Are these all the colours?
 
-How many and which political parties do we need colours for? Will this coded solution work everywhere?
+Think about how many and which political parties do we need colours for? Will this coded solution work everywhere?
 
-If we change region there may be additional political parties that we need to add colours for!
+No - If we change region or election year there may be additional political parties that we need to add colours for!
+
 :::
 
 ## Exercise 2
