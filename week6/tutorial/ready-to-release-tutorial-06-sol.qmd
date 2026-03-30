@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   out.width = "100%",
   fig.retina = 3,
   echo = TRUE,
-  eval = FALSE
+  eval = FALSE #hacky sf fix
 )
 ```
 
