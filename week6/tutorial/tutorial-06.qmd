@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   out.width = "100%",
   fig.retina = 3,
   echo = TRUE,
-  eval = TRUE 
+  eval = FALSE 
 )
 ```
 
@@ -21,20 +21,19 @@ knitr::opts_chunk$set(
 
 In this tutorial, you will be combining data from the Australia election and the Australian census.
 
-:::callout-note
+::: callout-note
 ## You will be learning how to:
 
 -   Integrate data from different source to make exploratory inferences
 -   Compare summary statistics by region using different geographical statistics
 -   We will use the 2016 census data (you will use 2021 data on your assignment)
-
-::: 
+:::
 
 ### Before your tutorial
 
 **1. Get the geographical boundaries for 2016 census regions**.
 
-:::{.callout-note collapse="true" appearance="minimal"}
+::: {.callout-note collapse="true" appearance="minimal"}
 ## Download Instructions
 
 Go to <https://www.abs.gov.au/census/find-census-data/geopackages> select the following options:
@@ -43,18 +42,16 @@ Go to <https://www.abs.gov.au/census/find-census-data/geopackages> select the fo
 -   Victoria\
 -   Employment, Income and Unpaid Work (EIUW).\
 -   EIUW GeoPackage A.
-
 :::
 
 **2. You will also need the data for the 2018 electoral boundaries**.
 
-:::{.callout-note collapse="true" appearance="minimal"}
+::: {.callout-note collapse="true" appearance="minimal"}
 ## Download Instructions
 
-You have a copy of the 2022 boundaries from Tutorial 5, but for today download the [2018 boundaries](https://www.aec.gov.au/electorates/gis/gis_datadownload.htm) from here. 
+You have a copy of the 2022 boundaries from Tutorial 5, but for today download the [2018 boundaries](https://www.aec.gov.au/electorates/gis/gis_datadownload.htm) from here.
 
 These are closer to the 2016 year of the census.
-
 :::
 
 ### Exercise 1
@@ -99,13 +96,13 @@ ggplot() +
   theme_minimal()
 ```
 
-<!-- ![](../images/lecture-06/tute-06-fig.jpeg){fig-align="center"} -->
+![](../images/lecture-06/tute-06-fig.jpeg){fig-align="center"}
 
 v.  Estimate a median weekly personal income for the Melbourne district.
 
-### For discussion 
+### For discussion
 
-:::callout-note
+::: callout-note
 ## Think about your results
 
 -   Looking at the map above, there is one electorate won by the Green party. Notice, this is where a lot of wealthy individuals live.
@@ -115,7 +112,6 @@ v.  Estimate a median weekly personal income for the Melbourne district.
 -   Why do some geographical regions look sparse in terms of the census reported median weekly personal income?
 
 -   What is **ecological fallacy**? How does it relate to your conclusions from before?
-
 :::
 
 ### Exercise 3: In your own time
@@ -129,10 +125,8 @@ SEDmap <- read_sf(here::here("data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuw
                   layer = "census2016_eiuwa_vic_sed_short")
 ```
 
-:::callout-important 
-
+::: callout-important
 Reminder the SED regions are NOT the same as the electoral boundaries!!!
-
 :::
 
 #### Copyright Monash University
