@@ -542,7 +542,7 @@ Watch out for mismatched Division Names
 
 * e.g. "McEwen" vs "Mcewen" 
 
-* That caught me out last year, but it seems like its fixed.
+* This seems like its fixed now (?), but it was a problem in the past.
 
 * For cases like these you might need fuzzy/partial string matching 
 
