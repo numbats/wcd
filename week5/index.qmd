@@ -424,8 +424,9 @@ The [geographical boundaries of the electoral divisions]{.monash-blue} are deter
 ## Electoral Boundaries
 
 ::: {.callout-warning}
-## Warning!
-Electoral boundaries can change across years
+## Electoral boundaries can change across years
+
+[Click here](https://www.aec.gov.au/redistributions/) for a video explainer on how electoral boundaries are decided and redrawn.
 
 :::
 
