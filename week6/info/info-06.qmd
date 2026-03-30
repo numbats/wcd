@@ -1,0 +1,46 @@
+---
+title: 'ETC5512: Week 6 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Case study: Combining Australian census and election data
+
+#### Mon April 13th 26 - Sun April 19th 26
+
+**Seminar:**
+
+This week we'll be combining what we've learnt about census data and election data over the last couple of weeks. This will involve learning about the challenges of integrating data different sources. 
+
+**Before your tutorial:**
+
+Be sure to download the relevant packages and the geopackage data in preparation.
+
+**Tutorial:**
+
+To consolidate the lecture material, you'll be analysing at voter behaviour and weekly median income.
+
+**Workshop:**
+
+We'll have a special presentation by Linh Ngo a former student in Wild Caught Data. She will be helping us learn more about the voter distribution between independents and the major parties and she'll share her work on creating new tools to visualise election data.
+
+**Assessment:**
+
+Assignment 1 is being graded.
+
+Assignment 2 is out. By the end of this week you'll have learnt you'll have learnt everything you need to finish the assignment.
+
+**Help:\
+**\
+Remember the discussion board is always there should you have questions. I've opened a new forum for \[assignment 2 questions\](<https://learning.monash.edu/mod/forum/view.php?id=5183628>)\
+\
+Also come along to consultation and get help. **Note** **Maliny's consult time has moved!** This was in reponse to the number of students who reported a clash.
+
+\
+\

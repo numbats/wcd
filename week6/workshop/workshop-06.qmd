@@ -1,0 +1,17 @@
+---
+title: 'ETC5512: Visualising Election Data'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+For this week's workshop I've organised for a special presentation by Linh Ngo. Linh is a former student in Wild Caught Data.
+
+More recently she has been doing a research project with A. Prof. Damjan Vukcevic and Prof. Di Cook. Her research is focused on creating an R package that can be used to visualise election data. In particular, she is working on creating plots to show the vote distribution between different parties and across different electorates.\
+\
+See [this article](https://www.abc.net.au/news/2025-04-24/election-data-rise-independents-major-party-drift/105144918) for examples of the sorts of plots Linh is working on, and for more information on the changing relationship between the major parties and the independents.
