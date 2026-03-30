@@ -1,45 +1,41 @@
 ---
 format: revealjs
 editor: visual
+execute: 
+  eval: true
+  echo: true
+  warning: false
 ---
 
 # Getting started in ggplot2 {background-color="#006DAE"}
 
-*Based on notes from Kate's unit on data Visualisation and Communication ETX2250/ETF5922
+\*Based on notes from Kate's unit on data Visualisation and Communication ETX2250/ETF5922
 
 ## Shrek
 
-::: {.columns}
-
-::: {.column width="60%"}
-
+:::::: columns
+:::: {.column width="60%"}
 ::: callout-tip
 ### Shrek and ggplot2
 
-`ggplot2` is just like Shrek! 
+`ggplot2` is just like Shrek!
 
-It has layers!  
+It has layers!
 
-Once you get to know it better you'll love it! 
-
+Once you get to know it better you'll love it!
 :::
 
 > "Ogres have layers. Onions have layers. You get it? We both have layers" - Shrek
-
-:::
+::::
 
 ::: {.column width="40%"}
-
 ![](../images/lecture-05/Shrek.png){fig-align="center"}
-
 :::
-
-:::
+::::::
 
 ## The Layers
 
-::::{.callout-note appearance="minimal"}
-
+:::: {.callout-note appearance="minimal"}
 ::: incremental
 -   **Data**:
     -   The dataset you're visualising.\
@@ -69,19 +65,13 @@ ggplot()
 
 ## Data Layer
 
-::: {.callout-note}
+::: callout-note
 ## Data
 
 -   First step is to add our data
 
 -   I'm going to use the data we tidied in Tutorial 4
 :::
-
-```{r echo = FALSE}
-boston_celtics = read_csv(here::here("data/boston_celtics.csv")) |> 
-   filter(season == 2025)
-# head(boston_celtics)
-```
 
 ```{r}
 #| echo: TRUE
@@ -133,13 +123,13 @@ tbl_G17_tidy <- tbl_G17_long_formatted |>
 
 ```
 
-## Data view 
+## Data view
 
 ```{r}
 head(tbl_G17_tidy, 20)
 ```
 
-## Wrangle data for plotting 
+## Wrangle data for plotting
 
 Create frequency data grouped by `sex` and `income`.
 
@@ -173,9 +163,9 @@ data_for_plotting |>
 ggplot(data = data_for_plotting) 
 ```
 
-. . . 
+. . .
 
-:::{.callout-note appearance="minimal"}
+::: {.callout-note appearance="minimal"}
 It's still an empty plot because we haven't told R what to do with the data yet.
 :::
 
@@ -185,8 +175,8 @@ It's still an empty plot because we haven't told R what to do with the data yet.
 ## geom
 
 ::: incremental
-- The geometry is the type of plot you want to create  
-*(e.g line, scatter, bar, heatmap etc.)*
+-   The geometry is the type of plot you want to create\
+    *(e.g line, scatter, bar, heatmap etc.)*
 
 -   Let's create a coloumn plot
 
@@ -195,7 +185,6 @@ It's still an empty plot because we haven't told R what to do with the data yet.
 -   Similar to `geom_bar` (but does slightly different things)
 
 -   If you type `?geom_` in your Console and hit tab to scroll through a list of all the different plot geometries
-
 :::
 ::::
 
@@ -250,7 +239,7 @@ The common parts are:
 
 ## Adding the aesthetic layer
 
-Let's start with x and y. 
+Let's start with x and y.
 
 ```{r echo = TRUE, fig.align = 'center'}
 ggplot(data = data_for_plotting, aes(x = income, y = count)) +
@@ -259,7 +248,7 @@ ggplot(data = data_for_plotting, aes(x = income, y = count)) +
 
 ## Another Option
 
-:::{.callout-note appearance="minimal"}
+::: {.callout-note appearance="minimal"}
 If you are going to use multiple data types or need multiple aesthetics layers it is better to put the code about the data and the aesthetics in the same geom layer.
 :::
 
@@ -276,7 +265,8 @@ Set the [bar colour](https://r-graph-gallery.com/42-colors-names.html) to blue
 ggplot(data_for_plotting, aes(x = income, y = count)) +
   geom_col(col = "blue") 
 ```
-:::{.callout-note appearance="minimal"}
+
+::: {.callout-note appearance="minimal"}
 Note `col` in `geom_col` is short of column, but typically `col` stands for colour.
 :::
 
@@ -310,16 +300,14 @@ ggplot(data_for_plotting, aes(x = income, y = count, fill = sex)) +
 -   Depending on what geom you use, there may be a difference between colour and fill
 
 -   Both spellings of colour and color will work
-
 :::
 
 ## Scale Layer
 
-:::callout-note
-## Scales 
+::: callout-note
+## Scales
 
 Next layer in the visual elements is scale. *e.g. axis limits and color scales*
-
 :::
 
 Let's try a silly example where we manually assign colours.
@@ -436,7 +424,7 @@ final_plot <- ggplot(data_for_plotting, aes(x = income, y = count, fill = sex)) 
 final_plot
 ```
 
-## One last example: Facets 
+## One last example: Facets
 
 ```{r}
 #| eval: false
@@ -456,7 +444,7 @@ ggplot(data_for_plotting, aes(x = income, y = count, fill = sex)) +
   
 ```
 
-## One last example: Facets 
+## One last example: Facets
 
 ```{r}
 #| echo: false
@@ -474,4 +462,3 @@ ggplot(data_for_plotting, aes(x = income, y = count, fill = sex)) +
         axis.text.x = element_text(angle = 45, vjust = 0.3)) 
   
 ```
-
