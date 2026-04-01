@@ -78,22 +78,26 @@ Directly use the url here: <https://results.aec.gov.au/27966/Website/Downloads/H
 -   Filter your results to Victoria and for the most recent parliament elected
 :::
 
-##### 5. To speed things up for Mac users
+##### 5. For Mac users
 
 ::: {.callout-note appearance="minimal" collapse="true"}
-## For Mac users
+## Downloading XQuartz
 
-You will need to install [XQuartz](https://www.xquartz.org/) to display the maps for today's tutorial. 
+You will need to install [XQuartz](https://www.xquartz.org/) to display the maps for today's tutorial.
 
 <!-- Run the following code if you use Mac. This is to help speed up the spatial visualisation. -->
 
 <!-- ```{r} -->
-<!-- # For speeding up geom_sf -->
-<!-- if (!identical(getOption("bitmapType"), "cairo") && isTRUE(capabilities()[["cairo"]])) { -->
-<!--   options(bitmapType = "cairo") -->
-<!-- } -->
-<!-- ``` -->
 
+<!-- # For speeding up geom_sf -->
+
+<!-- if (!identical(getOption("bitmapType"), "cairo") && isTRUE(capabilities()[["cairo"]])) { -->
+
+<!--   options(bitmapType = "cairo") -->
+
+<!-- } -->
+
+<!-- ``` -->
 :::
 
 ## Exercise 1
@@ -139,7 +143,6 @@ election_data = election_data |>
 -   Why do we filter by `CountNumber == 0`?
 
 -   What does the `toupper()` function do and why do we need it?
-
 :::
 
 ::: {.callout-note appearance="minimal" collapse="true"}
@@ -232,7 +235,6 @@ vic_election_map |>
 Think about how many and which political parties do we need colours for? Will this coded solution work everywhere?
 
 No - If we change region or election year there may be additional political parties that we need to add colours for!
-
 :::
 
 ## Exercise 2
