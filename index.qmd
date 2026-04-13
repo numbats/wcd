@@ -56,8 +56,8 @@ week <- as.integer(1 + ((Sys.Date() - as_date(start_semester))/7))
 ## Consultation Times 
 
 * **Kate:** Tuesday 10:30 - 11:30 am 
-* **Maliny:** Monday 4:00 - 5:00 pm
 * **Kris:** Wednesday 4:00 - 5:00 pm
+* **Maliny:** Friday 10:00 - 11:00 am (Moved as requested from Monday)
 
 Location for all consults: 232, Level 2, Building 6, Clayton Campus
 
