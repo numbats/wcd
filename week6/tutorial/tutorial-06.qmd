@@ -126,7 +126,7 @@ SEDmap <- read_sf(here::here("data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuw
 ```
 
 ::: callout-important
-Reminder the SED regions are NOT the same as the electoral boundaries!!!
+Reminder the SED regions are NOT the same as the commonwealth electoral boundaries!!! And CED regions are not exactly the same as the federal electoral boundaries either!!!
 :::
 
 #### Copyright Monash University
