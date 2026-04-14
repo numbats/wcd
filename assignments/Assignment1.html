@@ -128,8 +128,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
-  <li><a href="#case-study-1-15-marks" id="toc-case-study-1-15-marks" class="nav-link" data-scroll-target="#case-study-1-15-marks">Case Study 1 (15 marks)</a></li>
-  <li><a href="#case-study-2-15-marks" id="toc-case-study-2-15-marks" class="nav-link" data-scroll-target="#case-study-2-15-marks">Case Study 2 (15 marks)</a></li>
+  <li><a href="#case-study-1-20-marks" id="toc-case-study-1-20-marks" class="nav-link" data-scroll-target="#case-study-1-20-marks">Case Study 1 (20 marks)</a></li>
+  <li><a href="#case-study-2-25-marks" id="toc-case-study-2-25-marks" class="nav-link" data-scroll-target="#case-study-2-25-marks">Case Study 2 (25 marks)</a></li>
   <li><a href="#submission-10-marks" id="toc-submission-10-marks" class="nav-link" data-scroll-target="#submission-10-marks">Submission (10 marks)</a></li>
   </ul>
 </nav>
@@ -160,62 +160,70 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="scenario">Scenario</h3>
 <p>You are commissioned as an independent business analyst to consult with the Victorian Department of Transport and Planning.</p>
 <p>The Victorian Department of Transport and Planning is considering following the lead of New South Wales Transport and Main Roads, and making data on past road incidents available for public download. But, they are yet to be convinced of the benefits of open data.</p>
-<p>Your job will be to download, document and process data needed to create case study examples that can be used in a showcase.</p>
-<p>In this hypothetical scenario, you are preparing this data for use by another team member who has experience working with road data types. Be sure to organise the data so that is useful for that team member, and so your documentation can be included as part of a larger report.</p>
+<p>Your job will be to download, document and process data needed to create examples that can be used in a showcase.</p>
+<p>In this hypothetical scenario, you are preparing this data for use by another team member who has experience working with road data types. Be sure to organise the data so that it is useful for that team member, and perpare your documentation professionally so it can be included as part of a larger report.</p>
 </section>
-<section id="case-study-1-15-marks" class="level2">
-<h2 class="anchored" data-anchor-id="case-study-1-15-marks">Case Study 1 (15 marks)</h2>
-<p>The public voted for NSW’s worst roads in the <a href="https://www.mynrma.com.au/media/press-releases/2023/rate-your-road---2023-results-revealed">2023 NRMA Rate your road Survey</a>. <strong>You are tasked with investigating if these are indeed the worst roads.</strong></p>
-<p><em>Note do not to over complicate this! Roads are recorded in segments and you do not need to combine the segments for this task. That is a job for your team member. Also note, there is no single one answer to how to define worst road.</em></p>
+<section id="case-study-1-20-marks" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-1-20-marks">Case Study 1 (20 marks)</h2>
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+Never drive into floodwater:<br><br>- A small car can be moved by floodwater only 15cm deep<br>- Your safety can be compromised<br>- Conditions can change quickly<br>- It can cause unrepairable damage to your vehicle<br><br>If it’s flooded, forget it.<br><br>Follow <a href="https://twitter.com/NSWSES?ref_src=twsrc%5Etfw"><span class="citation" data-cites="NSWSES">@NSWSES</span></a> for the latest updates. <a href="https://t.co/xPhuBwX6ce">pic.twitter.com/xPhuBwX6ce</a>
+</p>
+— Transport for NSW (<span class="citation" data-cites="TransportforNSW">@TransportforNSW</span>) <a href="https://twitter.com/TransportforNSW/status/1898882768706179292?ref_src=twsrc%5Etfw">March 9, 2025</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p><strong>You have been tasked with identifying roads that were impacted when ex-Tropical Cyclone Alfred made landfall.</strong></p>
 <ol type="a">
-<li>(5 marks) You have been assigned one of the problem roads flagged in the survey (see Moodle). Using the <a href="https://www.livetraffic.com/historical-data-search/">NSW Goverment Portal</a> create a data set for that extended region (50 km radius) that records past traffic incidents.</li>
+<li>(5 marks) Use the <a href="https://www.livetraffic.com/historical-data-search/">NSW Goverment Portal</a> to create a data set that records road closures related to ex-Tropical Cyclone Alfred.</li>
 </ol>
 <ul>
-<li><p>Include only the <strong>relevant</strong> incident types in your data set.</p></li>
-<li><p>Restrict your data to an appropriate sample period. Only 3 months of data can be downloaded at one time.</p></li>
-<li><p>Combine data from before and after the survey so incident numbers can be compared.</p></li>
+<li><p>Choose ONE location to centre your data download, and you will have to decide upon a suitable radius and date range to download your data.</p></li>
+<li><p>Include only the incident types in your data set <strong>relevant</strong> to impacts from the ex-Tropical Cyclone Alfred.</p></li>
 <li><p>Save your data as a <code>.csv</code> file.</p></li>
 </ul>
 <ol start="2" type="a">
-<li>(5 marks) Document the download process.</li>
+<li>(8 marks) Document the download process.</li>
 </ol>
 <ul>
-<li><p>Describe the steps you took to download your data, so your process is fully reproducible.</p></li>
-<li><p>Describe how you processed your data, this should include which variables you selected and and if you filtered any rows.</p></li>
-<li><p>Be sure to explain how you defined the worst road.</p></li>
+<li><p>Describe the steps you took to download your data, so your process is fully reproducible. (<em>There is an API key you can use to download this data, but for now just use the portal.</em>)</p></li>
+<li><p>Describe any additional steps you took to process your data, this should include which variables you selected and and if you filtered any rows.</p></li>
 </ul>
 <ol start="3" type="a">
-<li>(5 marks) Provide a data set description.</li>
+<li>(7 marks) Provide a data set description.</li>
 </ol>
 <ul>
-<li><p>This must include an explanation of the relevant variables (meta data)</p></li>
+<li><p>This must include the meta data, and explanation of any relevant variables.</p></li>
+<li><p>In your description, include why you selected your region and why you chose your date range.</p></li>
+<li><p>Be sure to explain how you decided if the road closure was due to ex-Tropical Cyclone Alfred.</p></li>
 <li><p>Explain if your data sample is representative of the population. Also define what the population is.</p></li>
 <li><p>Be sure to include any limitations of the data.</p></li>
 <li><p>Provide a brief explanation of the usage permission (inferred from the database usage policy details).</p></li>
 </ul>
 </section>
-<section id="case-study-2-15-marks" class="level2">
-<h2 class="anchored" data-anchor-id="case-study-2-15-marks">Case Study 2 (15 marks)</h2>
-<p>Kangaroo’s are the <a href="https://www.theage.com.au/national/victoria/the-animal-that-causes-the-most-car-crashes-in-victoria-20160412-go46rw.html">leading animal cause behind car crashes</a> in Victoria. <strong>You will also investigate whether your region is at risk from kangaroo collisions</strong>.</p>
+<section id="case-study-2-25-marks" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-2-25-marks">Case Study 2 (25 marks)</h2>
+<p>Kangaroo’s are one of the <a href="https://www.dinggo.com.au/blog/kangaroo-accident-statistics">leading animal causes behind car crashes</a>.</p>
+<p><strong>In this separate case study, you will investigate areas where drivers are at heightened risk from kangaroo collisions</strong>.</p>
 <ol type="a">
-<li>(5 marks) Using the atlas of living Australia download occurrence records of kangaroos within your region of interest. (Note 50 km is approximately to 0.5 degrees of both long and lat).</li>
+<li>(5 marks) Using the atlas of living Australia download occurrence records of kangaroos in NSW. This will be used later by your colleague to cross reference road incidents involving animals.</li>
 </ol>
 <ul>
+<li><p>You will have to determine a suitable region and you will have to determine a suitable date range to filter your data. (<em>We do not need you to be exact with the NSW border.</em>)</p></li>
 <li><p>Include only the <strong>relevant</strong> variables types in your data set.</p></li>
 <li><p>Save your data as a <code>.csv</code> file.</p></li>
 </ul>
 <ol start="2" type="a">
-<li>(5 marks) Document the download process.</li>
+<li>(8 marks) Document the download process.</li>
 </ol>
 <ul>
 <li><p>Describe the steps you took to download your data, so your process is fully reproducible.</p></li>
-<li><p>Describe how you processed your data, this should include which variables you selected and and if you filtered any rows.</p></li>
+<li><p>Describe any additional steps you took to process your data. This should include which variables you selected and and if you filtered any rows.</p></li>
 </ul>
 <ol start="3" type="a">
-<li>(5 marks) Provide a data set description.</li>
+<li>(7 marks) Provide a data set description.</li>
 </ol>
 <ul>
-<li><p>This must include an explanation of the relevant variables (meta data)</p></li>
+<li><p>This must include the meta data, and explanation of any relevant variables.</p></li>
 <li><p>Explain if your data sample is representative of the population. Also define what the population is.</p></li>
 <li><p>Be sure to include any limitations of the data.</p></li>
 <li><p>Provide a brief explanation of the usage permission (inferred from the database usage policy details).</p></li>
@@ -226,13 +234,31 @@ ul.task-list li input[type="checkbox"] {
 <section id="submission-10-marks" class="level2">
 <h2 class="anchored" data-anchor-id="submission-10-marks">Submission (10 marks)</h2>
 <ul>
-<li><p>Answer the questions and submit your report about the data using the Quarto template provided. We do not use word documents in this unit as we want our work to be fully reproducible.</p></li>
+<li><p>Answer the questions and submit your report about the data using the Quarto template provided. We <em>do not</em> use word documents in this unit as we want our work to be fully reproducible.</p></li>
 <li><p>Submit all code needed to process the data to create the subset.</p></li>
-<li><p>Ensure your code will run, and you report will build on another computer. This is important so we can reproduce your report. (Do not submit direct file paths!)</p></li>
+<li><p>Ensure your code will run, and that your report will build on another computer (your markers!). This is important so we can reproduce your report. Use an R Project and do not submit direct file paths!</p></li>
 <li><p>Ensure your code is neat and tidy.</p></li>
+<li><p>Ensure your writing is clear and concise.</p></li>
 <li><p>Include an AI acknowledgement and include links to all queries. Here is <a href="https://chatgpt.com/share/67aea3e0-ddd4-8011-912c-3619d09dff1d">an example of some queries</a>. These contain important assignment hints.</p></li>
 <li><p>Include all relevant citations and be sure to cite all R packages used. The function <code>?citation()</code> will be helpful here.</p></li>
 </ul>
+<!-- ## Case Study 1 (15 marks) -->
+<!-- The public voted for NSW's worst roads in the [2023 NRMA Rate your road Survey](https://www.mynrma.com.au/media/press-releases/2023/rate-your-road---2023-results-revealed). **You are tasked with investigating if these are indeed the worst roads.** -->
+<!-- *Note do not to over complicate this! Roads are recorded in segments and you do not need to combine the segments for this task. That is a job for your team member. Also note, there is no single one answer to how to define worst road.* -->
+<!-- a.  (5 marks) You have been assigned one of the problem roads flagged in the survey. Using the [NSW Goverment Portal](https://www.livetraffic.com/historical-data-search/) create a data set for that extended region (50 km radius) that records past traffic incidents. -->
+<!-- -   Include only the incident types in your data set **relevant** to your definition of worst road. -->
+<!-- -   Restrict your data to an appropriate sample period. Only 3 months of data can be downloaded at one time. -->
+<!-- -   Combine data from before and after the survey so incident numbers can be compared. -->
+<!-- -   Save your data as a `.csv` file. -->
+<!-- b.  (5 marks) Document the download process. -->
+<!-- -   Describe the steps you took to download your data, so your process is fully reproducible. -->
+<!-- -   Describe how you processed your data, this should include which variables you selected and and if you filtered any rows. -->
+<!-- -   Be sure to explain how you defined the worst road. -->
+<!-- c.  (5 marks) Provide a data set description. -->
+<!-- -   This must include an explanation of the relevant variables (meta data) -->
+<!-- -   Explain if your data sample is representative of the population. Also define what the population is. -->
+<!-- -   Be sure to include any limitations of the data. -->
+<!-- -   Provide a brief explanation of the usage permission (inferred from the database usage policy details). -->
 
 
 </section>
