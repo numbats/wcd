@@ -29,71 +29,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="../assets/custom.css">
@@ -858,7 +793,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <section id="tables-g17a-g17c" class="slide level2">
 <h2>Tables G17A-G17C</h2>
 <p><span class="f3 monash-gray80">2021Census_G17</span>A<span class="monash-gray80 f3">_VIC_STE.csv</span></p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  STE_CODE_2021 M_Neg_Nil_income_15_19_yrs M_Neg_Nil_income_20_24_yrs
 1             2                      88386                      21186</code></pre>
@@ -866,7 +801,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 </div>
 <p><br></p>
 <p><span class="f3 monash-gray80">2021Census_G17</span>B<span class="monash-gray80 f3">_VIC_STE.csv</span></p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  STE_CODE_2021 F_300_399_15_19_yrs F_300_399_20_24_yrs
 1             2                8810               19537</code></pre>
@@ -874,7 +809,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 </div>
 <p><br></p>
 <p><span class="f3 monash-gray80">2021Census_G17</span>C<span class="monash-gray80 f3">_VIC_STE.csv</span></p>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  STE_CODE_2021 P_650_799_15_19_yrs P_650_799_20_24_yrs
 1             2                7670               45029</code></pre>
@@ -922,7 +857,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li>Ideally we want the data to look like:</li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  age_min age_max gender income_min income_max count
 1      15      19 female        400        499  4020</code></pre>
@@ -947,20 +882,15 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li>The <code>stringr</code><sup>1</sup> package provides a set of functions designed to help with string manipulation.</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">library</span>(tidyverse) <span class="co"># includes `stringr`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <div class="fragment">
 <ul>
 <li><p>Main functions in <code>stringr</code> begin with the <strong>prefix with <code>str_</code></strong> and the first input into the functions is a string (or a vector of strings)</p></li>
 <li><p>What do you think <code>str_trim</code> and <code>str_squish</code> do?</p></li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">str_trim</span>(<span class="fu">c</span>(<span class="st">"    Apple "</span>, <span class="st">"  Goji    Berry     "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Apple"         "Goji    Berry"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">str_squish</span>(<span class="fu">c</span>(<span class="st">"    Apple "</span>, <span class="st">"  Goji    Berry     "</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Apple"      "Goji Berry"</code></pre>
 </div>
@@ -977,23 +907,20 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <h2>Some other examples</h2>
 <p>These are <code>stringr</code> functions we’ll need for our census application.</p>
 <p>Splitting strings by a pattern:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">str_split</span>(<span class="at">string =</span> <span class="st">"Hi_everyone_in_ETC5512"</span>, <span class="at">pattern =</span> <span class="st">"_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] "Hi"       "everyone" "in"       "ETC5512" </code></pre>
 </div>
 </div>
 <p>Replacing parts of strings with a different pattern:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">str_replace</span>(<span class="at">string =</span> <span class="st">"we_want_fourwords"</span>, <span class="at">pattern =</span> <span class="st">"rw"</span>, <span class="at">replace =</span> <span class="st">"r_w"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "we_want_four_words"</code></pre>
 </div>
 </div>
 <p>Deleting parts of strings that aren’t imporant:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">str_remove</span>(<span class="at">string =</span> <span class="st">"we_want_to_remove_the_extra_stuff"</span>, <span class="at">pattern =</span> <span class="st">"to_remove_the_extra_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "we_want_stuff"</code></pre>
 </div>
@@ -1007,25 +934,19 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <li><strong>Regular expression</strong>, or <strong>regex</strong>, is a string of characters that define a search pattern for text</li>
 <li>Regular expression is… hard, but comes up often enough that it’s worth learning</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>ozanimals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"koala"</span>, <span class="st">"kangaroo"</span>, <span class="st">"kookaburra"</span>, <span class="st">"numbat"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Basic match</strong></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">str_detect</span>(ozanimals, <span class="st">"oo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a><span class="fu">str_extract</span>(ozanimals, <span class="st">"oo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA   "oo" "oo" NA  </code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">str_match</span>(ozanimals, <span class="st">"oo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1]
 [1,] NA  
@@ -1043,8 +964,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"."</code> a wildcard to match any character except a new line</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">str_starts</span>(<span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"colouur"</span>, <span class="st">"colour"</span>, <span class="st">"red-column"</span>), <span class="st">"col..."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE  TRUE FALSE</code></pre>
 </div>
@@ -1053,8 +973,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"(.|.)"</code> a marked subexpression with alternate possibilites marked with <code>|</code></li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">str_replace</span>(<span class="fu">c</span>(<span class="st">"lovelove"</span>, <span class="st">"move"</span>, <span class="st">"stove"</span>, <span class="st">"drove"</span>), <span class="st">"(l|dr|st)o"</span>, <span class="st">"ha"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "havelove" "move"     "have"     "have"    </code></pre>
 </div>
@@ -1064,8 +983,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"[...]"</code> matches a single character contained in the bracket</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">str_replace_all</span>(<span class="fu">c</span>(<span class="st">"cake"</span>, <span class="st">"cookie"</span>, <span class="st">"lamington"</span>), <span class="st">"[aeiou]"</span>, <span class="st">"_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "c_k_"      "c__k__"    "l_m_ngt_n"</code></pre>
 </div>
@@ -1079,8 +997,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"?"</code> zero or one occurence of preceding element</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a><span class="fu">str_extract</span>(<span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"colouur"</span>, <span class="st">"colour"</span>, <span class="st">"red"</span>), <span class="st">"colou?r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "color"  NA       "colour" NA      </code></pre>
 </div>
@@ -1089,8 +1006,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"*"</code> zero or more occurence of preceding element</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">str_extract</span>(<span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"colouur"</span>, <span class="st">"colour"</span>, <span class="st">"red"</span>), <span class="st">"colou*r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "color"   "colouur" "colour"  NA       </code></pre>
 </div>
@@ -1100,8 +1016,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"+"</code> one or more occurence of preceding element</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a><span class="fu">str_extract</span>(<span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"colouur"</span>, <span class="st">"colour"</span>, <span class="st">"red"</span>), <span class="st">"colou+r"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA        "colouur" "colour"  NA       </code></pre>
 </div>
@@ -1114,8 +1029,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"{n}"</code> preceding element is matched exactly <code>n</code> times</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">str_replace</span>(<span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"bananana"</span>, <span class="st">"bana"</span>, <span class="st">"banananana"</span>), <span class="st">"ba(na){2}"</span>, <span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-"     "-na"   "bana"  "-nana"</code></pre>
 </div>
@@ -1124,8 +1038,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"{min,}"</code> preceding element is matched <code>min</code> times or more</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a><span class="fu">str_replace</span>(<span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"bananana"</span>, <span class="st">"bana"</span>, <span class="st">"banananana"</span>), <span class="st">"ba(na){2,}"</span>, <span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-"    "-"    "bana" "-"   </code></pre>
 </div>
@@ -1135,8 +1048,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <ul>
 <li><code>"{min,max}"</code> preceding element is matched at least <code>min</code> times but no more than <code>max</code> times</li>
 </ul>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a></a><span class="fu">str_replace</span>(<span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"bananana"</span>, <span class="st">"bana"</span>, <span class="st">"banananana"</span>), <span class="st">"ba(na){1,2}"</span>, <span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "-"     "-na"   "-"     "-nana"</code></pre>
 </div>
@@ -1163,8 +1075,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 </section>
 <section id="view-matches-with-regular-expressions" class="slide level2">
 <h2>View matches with regular expressions</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a></a><span class="fu">str_view</span>(<span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"bananana"</span>, <span class="st">"bana"</span>, <span class="st">"banabanana"</span>), <span class="st">"ba(na){1,2}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;banana&gt;
 [2] │ &lt;banana&gt;na
@@ -1172,8 +1083,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 [4] │ &lt;bana&gt;&lt;banana&gt;</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a></a><span class="fu">str_view_all</span>(<span class="fu">c</span>(<span class="st">"banana"</span>, <span class="st">"bananana"</span>, <span class="st">"bana"</span>, <span class="st">"banabanana"</span>), <span class="st">"ba(na){1,2}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;banana&gt;
 [2] │ &lt;banana&gt;na
@@ -1205,19 +1115,16 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <h2>Weird characters</h2>
 <p>Characters we use to define the regex, e.g.&nbsp;*,.,!,?,),] need to be defined differently when we are trying to match them.</p>
 <p>This doesn’t work:</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a></a><span class="fu">str_extract</span>(<span class="st">"Let's get the character and the brackets (A)"</span>, <span class="st">"([:alpha:])"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "L"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a></a><span class="fu">str_view</span>(<span class="st">"Let's get the character and the brackets (A)"</span>, <span class="st">"([:alpha:])"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] │ &lt;L&gt;&lt;e&gt;&lt;t&gt;'&lt;s&gt; &lt;g&gt;&lt;e&gt;&lt;t&gt; &lt;t&gt;&lt;h&gt;&lt;e&gt; &lt;c&gt;&lt;h&gt;&lt;a&gt;&lt;r&gt;&lt;a&gt;&lt;c&gt;&lt;t&gt;&lt;e&gt;&lt;r&gt; &lt;a&gt;&lt;n&gt;&lt;d&gt; &lt;t&gt;&lt;h&gt;&lt;e&gt; &lt;b&gt;&lt;r&gt;&lt;a&gt;&lt;c&gt;&lt;k&gt;&lt;e&gt;&lt;t&gt;&lt;s&gt; (&lt;A&gt;)</code></pre>
 </div>
 </div>
 <p>But this does.</p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a></a><span class="fu">str_extract</span>(<span class="st">"Let's get the character and the brackets (A)"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">([:alpha:]</span><span class="sc">\\</span><span class="st">)"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "(A)"</code></pre>
 </div>
@@ -1238,7 +1145,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 <li>When the summary statistics are counts then it is often called <span class="monash-blue"><strong>frequency data</strong></span>.</li>
 <li>The raw data collected would be similar to the form</li>
 </ul>
-<div class="cell" data-layout-align="center">
+<div class="cell">
 <div class="cell-output-display">
 <div class="datatables html-widget html-fill-item" id="htmlwidget-4c04074611e2bbf54762" style="width:100%;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-4c04074611e2bbf54762">{"x":{"filter":"none","vertical":false,"data":[[1,1,1,1,2,2],["John Smith","Jane Smith","David Smith","Mary Smith","John Citizen","Jane Citizen"],["F","M","M","F","M","F"],[40,39,10,8,32,33],["Married","Married","Never married","Never married","Never married","Never married"],["400-499","300-399","Nil","Nil","400-499","1750-1999"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>household_id<\/th>\n      <th>person<\/th>\n      <th>gender<\/th>\n      <th>age<\/th>\n      <th>maritial_status<\/th>\n      <th>income_per_week<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"lengthChange":false,"dom":"t","columnDefs":[{"className":"dt-right","targets":[0,3]},{"name":"household_id","targets":0},{"name":"person","targets":1},{"name":"gender","targets":2},{"name":"age","targets":3},{"name":"maritial_status","targets":4},{"name":"income_per_week","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
@@ -1360,9 +1267,7 @@ There’s far more attention in “catching criminals” / praise for the cool d
 </section>
 <section id="case-study-aussie-local-government-area-3" class="slide level2 smaller">
 <h2><span class="orange">Case study <i class="fas fa-search-plus"></i></span> Aussie Local Government Area <sup>1</sup></h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a>LGA <span class="ot">&lt;-</span> ozmaps<span class="sc">::</span>abs_lga <span class="sc">|&gt;</span> <span class="fu">pull</span>(NAME)</span>
-<span id="cb51-2"><a></a>LGA[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Broken Hill (C)" "Waroona (S)"     "Toowoomba (R)"   "West Arthur (S)"
 [5] "Moreton Bay (R)" "Etheridge (S)"   "Cleve (DC)"     </code></pre>
@@ -1423,8 +1328,7 @@ How?
 </center><aside><ol class="aside-footnotes"><li id="fn3"><p>Michael Sumner (2020). ozmaps: Australia Maps. R package version 0.3.6.</p></li></ol></aside></section>
 <section id="extracting-the-string" class="slide level2">
 <h2>Extracting the string</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">str_extract</span>(LGA, <span class="st">"</span><span class="sc">\\</span><span class="st">(.+</span><span class="sc">\\</span><span class="st">)"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "(C)"        "(S)"        "(R)"        "(S)"        "(R)"       
   [6] "(S)"        "(DC)"       "(R)"        "(DC)"       "(C)"       
@@ -1564,8 +1468,7 @@ How?
 </section>
 <section id="back-to-extracting-the-string" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"><span class="font_small">Back to</span> Extracting the string</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb55-1" class="hljs-ln-code"><a></a><span class="fu">str_extract</span>(LGA, <span class="st">"</span><span class="sc">\\</span><span class="st">(.+</span><span class="sc">\\</span><span class="st">)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] "(C)"        "(S)"        "(R)"        "(S)"        "(R)"       
   [6] "(S)"        "(DC)"       "(R)"        "(DC)"       "(C)"       
@@ -1682,9 +1585,7 @@ How?
 </section>
 <section id="back-to-extracting-the-string-1" class="slide level2">
 <h2><span class="font_small">Back to</span> Extracting the string</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a></a><span class="fu">str_extract</span>(LGA, <span class="st">"</span><span class="sc">\\</span><span class="st">(.+</span><span class="sc">\\</span><span class="st">)"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb57-2"><a></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
        (A)       (AC)        (B)        (C)  (C) (NSW)   (C) (SA) (C) (Vic.) 
@@ -1704,9 +1605,7 @@ Where the same Local Government Area name appears in different States or Territo
 </section>
 <section id="retry-extracting-the-string" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"><span class="font_small">Retry</span> Extracting the string</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb59-1" class="hljs-ln-code"><a></a><span class="fu">str_extract</span>(LGA, <span class="st">"</span><span class="sc">\\</span><span class="st">([^)]+</span><span class="sc">\\</span><span class="st">)"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb59-2" class="hljs-ln-code"><a></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
    (A)   (AC)    (B)    (C)   (DC)    (M)    (R)   (RC) (RegC)    (S)    (T) 
@@ -1717,11 +1616,7 @@ Where the same Local Government Area name appears in different States or Territo
 </section>
 <section id="retry-extracting-the-string-1" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title"><span class="font_small">Retry</span> Extracting the string</h2>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy" data-id="quarto-animate-code"><code class="sourceCode r hljs"><span id="cb61-1" class="hljs-ln-code"><a></a><span class="fu">str_extract</span>(LGA, <span class="st">"</span><span class="sc">\\</span><span class="st">([^)]+</span><span class="sc">\\</span><span class="st">)"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb61-2" class="hljs-ln-code"><a></a>  <span class="co"># remove the brackets</span></span>
-<span id="cb61-3" class="hljs-ln-code"><a></a>  <span class="fu">str_replace_all</span>(<span class="st">"[</span><span class="sc">\\</span><span class="st">(</span><span class="sc">\\</span><span class="st">)]"</span>, <span class="st">""</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb61-4" class="hljs-ln-code"><a></a>  <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
    A   AC    B    C   DC    M    R   RC RegC    S    T 

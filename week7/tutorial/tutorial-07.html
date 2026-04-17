@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -223,9 +189,6 @@ You will be learning how to:</p>
 </ol>
 <p><strong><em>Note:</em></strong> This file has been pre-processed for you to work on the exercises in this tutorial - but it will still take time to read in.</p>
 <p>This data contains the Fannie Mae Single Home Loan data from year 2016Q1 to 2022Q3.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>alldata <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"final data"</span>, <span class="st">"2016_22_data.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -255,19 +218,45 @@ Do you observe something peculiar from the table? Explain why.</p></li>
 <li><p>Draw a histogram to show the distribution of FICO Scores in different years. What do you notice?</p></li>
 <li><p>The way FICO score is being interpreted is very tricky. A small increase at higher score does not have the same meaning as a small increase at the lower score. Therefore, regrouping the variable is needed. Regroup the variable of FICO scores as below (you need to use the variable as your independent variable to complete the exercise in your own time).</p></li>
 </ol>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Credit.Score</th>
+<th style="text-align: center;">Rating</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">300-579</td>
+<td style="text-align: center;">Poor</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">580-669</td>
+<td style="text-align: center;">Fair</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">670-739</td>
+<td style="text-align: center;">Good</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">740-799</td>
+<td style="text-align: center;">Very Good</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">800-850</td>
+<td style="text-align: center;">Exceptional</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </section>
 <section id="optional-in-your-own-time" class="level2">
 <h2 class="anchored" data-anchor-id="optional-in-your-own-time">Optional: In your own time</h2>
 <p>The data that you have used so far is pre-processed from the raw data that you can get from <a href="https://capitalmarkets.fanniemae.com/credit-risk-transfer/single-family-credit-risk-transfer/fannie-mae-single-family-loan-performance-data">Fannie Mae Single-Family Homeloan Data</a>. Try the steps below to pre-process the data by yourself by just using the data from 2016Q1 to 2022Q3 as an exercise.</p>
 <p>Before you get started, install relevant R-packages.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Required packages</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>list.of.packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"MASS"</span>, <span class="st">"data.table"</span>, <span class="st">"tidyverse"</span>, <span class="st">"here"</span>, <span class="st">"stringr"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"lubridate"</span>, <span class="st">"ggplot2"</span>, <span class="st">"usmap"</span>, <span class="st">"gganimate"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>new.packages <span class="ot">&lt;-</span> list.of.packages[<span class="sc">!</span>(list.of.packages <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[,<span class="st">"Package"</span>])]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="fu">length</span>(new.packages)) <span class="fu">install.packages</span>(new.packages)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(list.of.packages, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <ol type="1">
 <li><strong>Download the data</strong>
 <ul>
