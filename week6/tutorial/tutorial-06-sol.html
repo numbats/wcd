@@ -164,6 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link active" data-scroll-target="#exercise-1">Exercise 1</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   <li><a href="#for-discussion" id="toc-for-discussion" class="nav-link" data-scroll-target="#for-discussion">For discussion</a></li>
+  <li><a href="#exercise-3-in-your-own-time" id="toc-exercise-3-in-your-own-time" class="nav-link" data-scroll-target="#exercise-3-in-your-own-time">Exercise 3: In your own time</a></li>
   </ul>
 </nav>
     </div>
@@ -231,15 +232,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">144.8</span>, <span class="fl">145.2</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">38.1</span>, <span class="sc">-</span><span class="fl">37.6</span>)) <span class="sc">+</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">name =</span> <span class="st">"Median weekly</span><span class="sc">\n</span><span class="st">person income"</span>, <span class="at">option =</span> <span class="st">"magma"</span>) <span class="sc">+</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
+</div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="tutorial-06-sol_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="../images/lecture-06/tute-06-fig.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-</div>
-</div>
-<!-- ![](../images/lecture-06/tute-06-fig.jpeg){fig-align="center"} -->
 <ol start="22" type="a">
 <li>Estimate a median weekly personal income for the Melbourne district.</li>
 </ol>
@@ -252,22 +250,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(<span class="fu">st_intersects</span>(centroid, melb_geometry, <span class="at">sparse =</span> <span class="cn">FALSE</span>)[, <span class="dv">1</span>]) <span class="sc">|&gt;</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Median_age_persons <span class="sc">!=</span> <span class="dv">0</span>)</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">fivenum</span>(melb_SA1<span class="sc">$</span>Median_tot_prsnl_inc_weekly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]    0.0  589.0  947.0 1130.5 1613.0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(melb_SA1, <span class="fu">aes</span>(<span class="at">x =</span> Median_tot_prsnl_inc_weekly)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Median of Total Personal Weekly Income"</span>) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial-06-sol_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">fivenum</span>(melb_SA1<span class="sc">$</span>Median_tot_prsnl_inc_weekly)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(melb_SA1, <span class="fu">aes</span>(<span class="at">x =</span> Median_tot_prsnl_inc_weekly)) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Median of Total Personal Weekly Income"</span>) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="for-discussion" class="level3">
@@ -294,40 +283,34 @@ Think about your results
 <br>
 <em>An ecological fallacy is a mistaken statistical interpretation of data when inferences about the individuals are deduced from the group to which those individuals belong. For example, the Melbourne electorate has many wealthy individuals which make the median weekly personal income high in that electorate. It is wrong to conclude that a typical person selected in the Melbourne electorate will be wealthy.</em></p></li>
 </ul>
+</div>
+</div>
+</section>
 <section id="exercise-3-in-your-own-time" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-3-in-your-own-time">Exercise 3: In your own time</h3>
 <p><strong>Compare with different a layer</strong></p>
 <p>Repeat Exercise 2 using now the SED regions. How does the estimate of median weekly personal income for the Melbourne district differ? What about estimates in other districts?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>SEDmap <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuwa_vic_short.gpkg"</span>), </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">layer =</span> <span class="st">"census2016_eiuwa_vic_sed_short"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>SEDmap <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuwa_vic_short.gpkg"</span>), </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">layer =</span> <span class="st">"census2016_eiuwa_vic_sed_short"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Reminder the SED regions are NOT the same as the electoral boundaries.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>SEDmap <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuwa_vic_short.gpkg"</span>),</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">layer =</span> <span class="st">"census2016_eiuwa_vic_sed_short"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">centroid =</span> <span class="fu">st_centroid</span>(geom))</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>melb_SED <span class="ot">&lt;-</span> SEDmap <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(<span class="fu">st_intersects</span>(centroid, melb_geometry, <span class="at">sparse =</span> <span class="cn">FALSE</span>)[, <span class="dv">1</span>])</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">fivenum</span>(melb_SED<span class="sc">$</span>Median_tot_prsnl_inc_weekly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  577.0  577.0  816.5 1056.0 1056.0</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(melb_SED, <span class="fu">aes</span>(<span class="at">x =</span> Median_tot_prsnl_inc_weekly)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Median of Total Personal Weekly Income"</span>) <span class="sc">+</span> </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial-06-sol_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>SEDmap <span class="ot">&lt;-</span> <span class="fu">read_sf</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/Geopackage_2016_EIUWA_for_VIC/census2016_eiuwa_vic_short.gpkg"</span>),</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>   <span class="at">layer =</span> <span class="st">"census2016_eiuwa_vic_sed_short"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">centroid =</span> <span class="fu">st_centroid</span>(geom))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>melb_SED <span class="ot">&lt;-</span> SEDmap <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(<span class="fu">st_intersects</span>(centroid, melb_geometry, <span class="at">sparse =</span> <span class="cn">FALSE</span>)[, <span class="dv">1</span>])</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">fivenum</span>(melb_SED<span class="sc">$</span>Median_tot_prsnl_inc_weekly)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(melb_SED, <span class="fu">aes</span>(<span class="at">x =</span> Median_tot_prsnl_inc_weekly)) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_histogram</span>() <span class="sc">+</span> </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Median of Total Personal Weekly Income"</span>) <span class="sc">+</span> </span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br>
 <em>An estimate of the median total person weekly income is $947 using SA1 data and $816.5 using the SED data.</em></p>
@@ -336,9 +319,6 @@ Think about your results
 
 
 </section>
-</section>
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->

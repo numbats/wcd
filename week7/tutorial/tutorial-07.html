@@ -160,9 +160,8 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="learning-objectives" class="level2">
 <h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
-<p>In this tutorial, you will looking at the Fannie Mae performance data on single family loans.<br>
-<br>
-You will be learning how to:</p>
+<p>In this tutorial, you will looking at the Fannie Mae performance data on single family loans.</p>
+<p>You will be learning how to:</p>
 <ul>
 <li>import large data</li>
 <li>compare the default risk for different periods</li>
@@ -187,8 +186,6 @@ You will be learning how to:</p>
 <ol start="2" type="1">
 <li>Import the data by loading the R data file, it has file type .rds . See <code>?readRDS</code>.</li>
 </ol>
-<p><strong><em>Note:</em></strong> This file has been pre-processed for you to work on the exercises in this tutorial - but it will still take time to read in.</p>
-<p>This data contains the Fannie Mae Single Home Loan data from year 2016Q1 to 2022Q3.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -210,12 +207,25 @@ RDS files
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>The file instructions provided above download the Fannie Mae Single Home Loan data from year 2016Q1 to 2022Q3.</p>
+<p>This data has been pre-processed for you to use in the exercises below.</p>
+<p>Be warned the file is large so it will still take time to read in.</p>
+<p>Read in the data and familiarise yourself with the dimension before you get started.</p>
+</div>
+</div>
+</div>
 <ol type="a">
 <li><p>Create a table of default rate (based on 60, 90, 120 and 180 days of delinquency) by origination year and quarter. Hint: You might want to convert the <code>ORIG_DTE</code> to a date format first.<br>
 <br>
 Do you observe something peculiar from the table? Explain why.</p></li>
 <li><p>Draw a U.S. map to show the default rate based on 90 days delinquency just for the year of 2016. Which states are having the top 3 highest default rate?</p></li>
-<li><p>Draw a histogram to show the distribution of FICO Scores in different years. What do you notice?</p></li>
+<li><p>Draw a histogram to show the distribution of FICO Scores (<code>CSCORE_B</code>) in different years. What do you notice?</p></li>
 <li><p>The way FICO score is being interpreted is very tricky. A small increase at higher score does not have the same meaning as a small increase at the lower score. Therefore, regrouping the variable is needed. Regroup the variable of FICO scores as below (you need to use the variable as your independent variable to complete the exercise in your own time).</p></li>
 </ol>
 <div class="cell">
