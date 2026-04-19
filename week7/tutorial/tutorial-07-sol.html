@@ -161,7 +161,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exercies" id="toc-exercies" class="nav-link active" data-scroll-target="#exercies">Exercies</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link active" data-scroll-target="#exercises">Exercises</a></li>
   <li><a href="#in-your-own-time-extra" id="toc-in-your-own-time-extra" class="nav-link" data-scroll-target="#in-your-own-time-extra">In your own time: Extra</a></li>
   </ul>
 </nav>
@@ -188,11 +188,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<!-- ```{r setup, include=FALSE} -->
+<!-- knitr::opts_chunk$set( -->
+<!--   message = FALSE, -->
+<!--   warning = FALSE,  -->
+<!--   error = FALSE, -->
+<!--   fig.width = 8, -->
+<!--   fig.height = 6, -->
+<!--   out.width = "100%", -->
+<!--   fig.retina = 3, -->
+<!--   echo = TRUE, -->
+<!--   eval = FALSE -->
+<!-- ) -->
+<!-- ``` -->
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>alldata <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"final data"</span>, <span class="st">"2016_22_data.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="exercies" class="level2">
-<h2 class="anchored" data-anchor-id="exercies">Exercies</h2>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
 <ol type="a">
 <li>Create a table of default rate (based on 60, 90, 120 and 180 days of delinquency) by origination year and quarter. You might want to convert the <code>ORIG_DTE</code> to a date format first. Do you observe something peculiar from the table? Explain why.</li>
 </ol>
