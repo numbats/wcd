@@ -1,0 +1,130 @@
+---
+title: "Week 9 Tutorial Solutions"
+editor: visual
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE, 
+  error = FALSE,
+  fig.width = 8,
+  fig.height = 6,
+  out.width = "100%",
+  fig.retina = 3,
+  echo = TRUE,
+  eval = FALSE
+)
+```
+
+## Excercies 9A
+
+a.  Read the data into R and use your exploratory data tools to explore the data.
+
+```{r}
+library(tidyverse)
+
+survey_data <- read.csv(here::here("tutorials/images/survey_data.csv"))
+```
+
+```{r}
+# Make sure everything is in the correct type
+survey_data <- survey_data |>
+  mutate(time = as.factor(time),
+         blood_sugar = as.factor(blood_sugar),
+         sex = as.factor(sex),
+         date = as.Date(date))
+```
+
+```{r}
+summary(survey_data)
+```
+
+b.  What do you notice about the date of study?
+
+*There is only one day covered*
+
+c.  To de-identify the data, the researchers removed directly identifying information, aggregated blood sugar into a binary variable, aggregated testing time into clinically meaningful bins and released only a sample of their data, where they only released one day's worth - 40 participants. Do you think this is sufficient given what you know of the data environment?
+
+*Given the data environment, this might be sufficient for public identification as we do not know much about the data population/sampling. However, a family member (or the participant themselves) could identify with private data. All they would need to know is the age of the respondent and that they participated on the 11th of February.*
+
+d.  Now consider the second dataset. As participants were leaving the trial, they were asked if they would consider giving blood to save lives. All said yes. As part of a promotion run by the center, blood donors were asked if they would consider giving their age, sex and name to be published on the website to encourage others to give blood. All consented and data was uploaded in real time (which is represented by date and time in the dataset). Read in the second data set and explore.
+
+```{r}
+blood_donation <- read.csv(here::here("tutorials/images/blood_donation.csv"))
+```
+
+```{r}
+library(lubridate)
+#make sure correct types
+blood_donation <- blood_donation |>
+  mutate(sex= as.factor(sex),
+         data_time = ymd_hms(date_time))
+```
+
+e.  Given this more complex data context, can you use your skills in tidyverse to identify the participants in the data?
+
+*This is relatively simple. The different ages are unique in each dataset, so we can left_join by age and identify all individuals. Now all individuals are identifiable with public data information.*
+
+```{r}
+identified_data <- left_join(blood_donation, survey_data, by = "age")
+```
+
+## Exercise 9B
+
+a. Which variables(s) made is possible to identify individuals in the data?
+
+*Age made it possible to link all cases in the two datasets. However, there are other variables (time of day and sex) that also correspond to relatively rare cells.* 
+
+b. What de-identification tools would be most appropriate to solve the challenges caused by these variables?
+
+*Age was the variable that caused the most immediate difficulty. We could remove it from the dataset entirely, but this would result in considerable loss of information. As one of the challenges associated with age is that there are a number of different values it can be (increasing the chance of unique values), a first step is* *aggregation*. 
+
+```{r}
+
+survey_data_di <- survey_data |>
+  mutate(age_group = cut(age,breaks = c(18,30,45,65,100))) |> # break age along these lines
+  select(-age) #remove age
+
+```
+
+c. Is it possible to remove all possible risk? Consider the balance between reducing risk and reducing utility. 
+
+*There is still potential risk as the combination of time, sex and age_group will result in some small cells in the sample.*
+
+```{r}
+survey_data_di |>
+  group_by(time, sex, age_group) |>
+  mutate(Freq = n()) |>
+  ungroup() |>
+  filter(Freq == 1)
+```
+
+*There are 8 individuals that are potentially identifiable based on these cross tabulations. It would decrease the utility of the dataset to remove time and sex from the data. We could instead consider fewer age groups to create larger groups to reduce this problem. Currently there are four age groups, what if we moved to three (losing information and utility)? It's better, but people are still identified - we'll have to keep trying.*
+ 
+```{r}
+survey_data_di2 <- survey_data |>
+  mutate(age_group = cut(age,breaks = c(18,40,60,100))) |> # break age along these lines
+  # select(-age)  |>
+  group_by(time, sex, age_group) |>
+  mutate(Freq = n()) |>
+  ungroup() |>
+  filter(Freq == 1)
+
+survey_data_di2
+
+```
+
+## In your own time: Excerise 9C
+
+a. Can you identify individuals using your friend's de-identified data?
+
+*Assuming your friend has made the same decisions as I have, you shouldn't be able to identify any individuals from the data.* 
+
+b. Did you and your friend make the same decisions to de-identify the data? If not, what are the pros and cons of each?
+
+*The approach that I took meant that I lost quite a lot of age data in order to reduce risk. Other suitable approaches would have been to create a synthetic dataset or to add a small amount of noise to age in order to make it more difficult to identify individuals.* 
+
+c. How do you think peer review can assist data de-identification procedures?
+
+*Peer review can be used within institutes to identify potential data risks and solutions.*

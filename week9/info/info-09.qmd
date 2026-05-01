@@ -1,0 +1,39 @@
+---
+title: 'ETC5512: Week 9 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Case study: Data Ethics and Privacy
+
+#### Mon 4th May - Sun May 10th
+
+**Seminar:**
+
+This week we will be delving into the data privacy and privacy risk, a closely related topic to data ethics. We will also be learning about common methods to de-identify data to protect people's privacy.
+
+**Tutorial:**
+
+In the tutorial, you'll be playing with some practice data sets to help you practice how to de-identify data. You'll need to download the data for the tutorial from Moodle.
+
+**Workshop:**
+
+We'll look at a data set together and discuss how we might best preserve the utility of the data, while also ensuring data privacy.
+
+**Assessment:**
+
+- We are marking your assignment 2s. We'll have those back to you before the next assignment is due.
+
+- Assignment 3 is out.
+
+**Help:\**
+\
+Remember consult is there should you have questions and there is now a discussion forum set up for assignment 3 questions. \
+
+\
