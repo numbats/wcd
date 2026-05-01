@@ -1,0 +1,51 @@
+---
+title: 'ETC5512: Week 8 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Case study: Data Ethics
+
+#### Mon April 27th - Sun May 1st
+
+**Seminar:**
+
+This week we are taking a break from coding and will be discussing data ethics. Data ethics will form an important part of whatever your future career path is, so be prepared to come and discuss different ideas.
+
+**Tutorial:**
+
+In the tutorial, you'll explore a data ethics case study as a group.
+
+**Before your tutorial:**
+
+-   Read \[the data science checklist\](<https://deon.drivendata.org/#default-checklist>)
+
+-   Read through the scenario that will be discussed (2 - 5 minutes). 
+
+-   Take time to reflect individually about the case study (15 - 20 minutes).
+
+-   Come prepared to discuss your reflection with your classmates
+
+**Workshop:**
+
+We'll review two AI coded solutions that tidy data from assignment 1. We'll look at how they smell and discuss what they get right, what they get wrong and what we'd want to them to do differently if we were rolling out a solution.
+
+**Assessment:**
+
+-   We are marking your assignment 2s. We'll have those back to you in 2 weeks.
+
+-   Assignment 3 will be out shortly.
+
+**Help:\
+**\
+We are happy to answer any questions you have in consult.\
+**\
+**
+
+\

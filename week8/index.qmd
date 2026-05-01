@@ -1,0 +1,1128 @@
+---
+pagetitle: "ETC5512"
+subtitle: "Case Study: Data Ethics"
+author: "Kate Saunders"
+email: "ETC5512.Clayton-x@monash.edu"
+date: "Wild Caught Data"
+department: "Department of Econometrics and Business Statistics"
+unit-url: "wcd.numbat.space"
+footer: "ETC5512"
+format: 
+  revealjs: 
+    embed-resources: true
+    logo: images/monash-one-line-black-rgb.png
+    slide-number: c
+    multiplex: false
+    theme: ../assets/monash.scss
+    show-slide-number: all
+    show-notes: false
+    controls: true
+    width: 1280
+    height: 720
+    css: [../assets/custom.css, ../assets/lecture-01.css]
+    include-after-body: "../assets/after-body.html"
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+## <br> [ETC5512]{.monash-blue} {#etc5512-title background-image="images/bg-01.png"}
+
+### Case Study: Data Ethics
+
+Lecturer: *Kate Saunders*
+
+Department of Econometrics and Business Statistics
+
+::: tl
+<br>
+
+<ul class="fa-ul">
+
+<li><i class="fas fa-envelope"></i> ETC5512.Clayton-x@monash.edu </li>
+
+<li><i class="fas fa-calendar-alt"></i>
+April 28th 2026 </li>
+
+<li><i class="fas fa-globe"></i>
+wcd.numbat.space </li>
+
+</ul>
+
+<br>
+
+:::
+
+## Trolley problem 
+
+Do you pull the lever? How did you decide what to do?
+
+<center>
+![](images/lecture-08/trolley_pic.png)
+</center>
+
+[Link to TEDx Explainer on Youtube](https://www.youtube.com/embed/yg16u_bzjPE): 
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/yg16u_bzjPE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+## Learning Objectives
+
+<br>
+
+::: callout-note
+## Today you will:
+
+-   Learn about different schools of ethical thought
+-   Examine case studies and examples in data ethics
+-   Understand our responsibility as ethical analysts
+:::
+
+# Ethical Perspectives {background-color="#006DAE"}
+
+3 common perspectives
+
+## Ethical Perspectives
+
+:::: callout-note
+## 1. Deontological Ethics (Immanuel Kant)
+
+An ethical philosophy that says actions are good or bad according to a
+clear [**set of rules**]{style="color:blue"}
+
+::: incremental
+-   Focus on rights, principles, and duties
+-   Preserve human autonomy and dignity, justice, fairness, transparency
+    and many more. (However rules can conflict with each other
+    sometimes!)
+-   This dignity creates an ethic that prevents us from acting in
+    certain ways either toward other people or toward ourselves
+-   [**Rules should apply to everyone**]{style="color:blue"} (universal ethical rules)
+:::
+::::
+
+## Deontogological Ethics
+
+> "Act only according to that maxim whereby you can at the same time
+> will that it should become a universal law." — Immanuel Kant
+
+::: callout-note
+## Deon what?
+
+-   Its name comes from the Greek word deon, meaning
+    [**duty**]{style="color:blue"}.
+
+-   Actions that align with these rules are ethical, while actions that
+    don't aren't.
+:::
+
+[Read more here](https://ethics.org.au/ethics-explainer-deontology/)
+
+## Ask yourself
+
+<br>
+
+::: callout-note
+## In your project:
+
+-   How might the [**dignity and fairness of each stakeholder**]{style="color:blue"} be impacted
+    by your project?
+
+-   Are there any issues of [**trust and justice**]{style="color:blue"} relevant to your project?
+
+-   Does your project involve any conflicting [**moral duties**]{style="color:blue"} to the
+    participants or stakeholder rights?
+:::
+
+## Deontology: ✅ Differential Privacy
+
+::: callout-tip
+## What is differential privacy?
+
+Usage data is scrambled **on-device** before it ever leaves your phone.
+Google/apple's servers never see raw personal data. Sharing aggregated
+level data is opt-in only.
+:::
+
+. . .
+
+::: {.callout-tip appearance="minimal"}
+Privacy is treated as a **duty** owed to the user — not a trade-off.
+:::
+
+::: ref
+[Differential
+Privacy](https://theconversation.com/explainer-what-is-differential-privacy-and-how-can-it-protect-your-data-90686)
+$\cdot$ [Apple ML
+Research](https://machinelearning.apple.com/research/learning-with-privacy-at-scale)
+:::
+
+## Deontology — ❌ Clearview AI
+
+::: callout-important
+## What did Clearview AI do?
+
+Scraped **3+ billion photos** from social media without consent to build
+a facial recognition database sold to law enforcement.
+:::
+
+. . .
+
+::: {.callout-important appearance="minimal"}
+Clearview violated their ethical **duty** and biometric privacy acts.
+Countries around the globe have been fined Clearview AI millions of
+dollars.
+:::
+
+::: ref
+[ACLU
+Illinois](https://www.aclu-il.org/big-win-settlement-ensures-clearview-ai-complies-groundbreaking-illinois-biometric-privacy-law/)
+$\cdot$ [Clearview in
+Australia](https://theconversation.com/australias-privacy-regulator-just-dropped-its-case-against-troubling-facial-recognition-company-clearview-ai-now-what-237231)
+:::
+
+## Ethical Perspectives ctd.
+
+:::: callout-note
+## 2. Consequentialist ethics
+
+An ethical philosophy that considers the [**outcomes**]{style="color:blue"}
+rather than the intentions.
+
+Two main examples of consequentialism:
+
+::: incremental
+-   **Utilitarianism** judges consequences by a [greatest good for the
+    greatest number]{style="color:blue"} standard.
+
+-   **Hedonism** considers something is "good" if the consequence
+    [produces pleasure or avoids pain]{style="color:blue"}.
+:::
+::::
+
+## Ask yourself
+
+<br>
+
+::: callout-note
+## In your project:
+
+-   Which option will produce the [**most good**]{style="color:blue"} and do the least harm?
+-   Which option best serves the community as a whole?
+-   Are you willing to [**accept difficult trade-offs**]{style="color:blue"}?
+
+<!-- - For example: let’s suppose we will know the cause of a cancer and would cure million of patients, if we just have to sacrifice 1% of the cancer patient for the study. -->
+:::
+
+## Utilitarianism — ✅ Population Breast Cancer Screening (Voluntary)
+
+::: callout-tip
+## Greater good
+
+**Early
+detection means reduced mortality.**  
+
+Mass screening programs knowingly produce **false positives**
+(overdiagnosis).
+
+Programs continue because of the population-level benefit.  
+
+:::
+
+. . .
+
+::: {.callout-tip appearance="minimal"}
+Benefit outweighs the cost to individuals who receive incorrect results.  
+This is a transparent, accepted trade-off.
+:::
+
+::: ref
+[NCI: false positives and screening
+behaviour](https://www.cancer.gov/news-events/cancer-currents-blog/2024/mammogram-false-positives-affect-future-screening)
+· [PMC: overdiagnosis and
+trade-offs](https://pmc.ncbi.nlm.nih.gov/articles/PMC5365181/)
+:::
+
+## Utilitarianism — ❌ Health Insurer AI Claim Denials
+
+::: callout-important
+## AI and Health
+
+Active lawsuit alleging UnitedHealth illegally denied care by using an
+AI model to override determinations made by the patients' physicians.
+
+There are also allegations about an unacceptably high false-positive
+rate.
+:::
+
+. . .
+
+::: {.callout-important appearance="minimal"}
+UnitedHealth has maximised an **outcome** related to greatest financial
+benefit, while also accepting a high false-positive rate that causes harm their customers.
+:::
+
+::: ref
+[CBS
+News](https://www.cbsnews.com/news/unitedhealth-lawsuit-ai-deny-claims-medicare-advantage-health-insurance-denials/)
+· [Healthcare Finance
+News](https://www.healthcarefinancenews.com/news/class-action-lawsuit-against-unitedhealths-ai-claim-denials-advances)
+:::
+
+## Ethical Perspectives ctd.
+
+:::: callout-note
+## 3. Virtue Based Ethics (Plato, Aristotle, Confucius, Mencius)
+
+An ethical philosophy centred on the study of what [behavior is morally right]{style="color:blue"} versus what people ought to do.
+
+::: incremental
+-   Virtue ethics is a philosophy developed by Aristotle and other
+    ancient Greeks
+-   It is the quest to understand and live a life of moral character 
+-   [Act in a way that makes you a better person]{style="color:blue"}  (culturally based)
+-   Careful: The same aim can lead to conflicting actions
+
+:::
+::::
+
+## Ask yourself
+
+::: callout-note
+## In your project:
+
+-   Am I honest about my findings accurately, even when they don't support the desired conclusion?
+
+-   Do I acknowledge uncertainty and the limitations of my model?
+
+-   Will I [raise concerns even when it's uncomfortable]{style="color:blue"} ?
+
+-   Am I handling people's data with care and dignity?
+:::
+
+## Virtue Ethics — ✅ Māori Data Sovereignty
+
+::: callout-tip
+## Data sovereignty
+
+Te Mana Raraunga asserts that Māori data should be governed by Māori —
+built on *whanaungatanga* (trust), *rangatiratanga*
+(self-determination), and *kotahitanga* (collective benefit).
+:::
+
+. . .
+
+::: {.callout-tip appearance="minimal"}
+Data governance as an expression of identity, not compliance. Important for culturally sensitive data management.
+:::
+
+::: ref
+[Te Mana Raraunga](https://www.temanararaunga.maori.nz/) · [Principles
+of Māori Data
+Sovereignty](https://www.temanararaunga.maori.nz/principles-of-maori-data-sovereignty)
+:::
+
+## Quick Question
+
+<br><br>
+
+::: callout-warning
+## Indigenous Data Sovereignty
+
+Does this work the same way in Australia?
+:::
+
+. . .
+
+::: ref
+[ARDC](https://ardc.edu.au/resource/indigenous-data/) $\cdot$
+[NIAA](https://www.niaa.gov.au/sites/default/files/documents/2024-05/framework-governance-indigenous-data.pdf)
+:::
+
+## Virtue Ethics — ❌ Australia's COVIDSafe App
+
+::: callout-important
+## COVIDSafe Data tracking
+
+COVIDSafe was designed to track people who may have come into contact
+with an active COVID case. Large-scale act of genuine civic care and
+collective responsibility at a moment of national crisis.
+:::
+
+. . .
+
+::: {.callout-important appearance="minimal"}
+While COVIDSafe was made with good intentions, one must consider whether
+governments have earned the trust for this type of large-scale
+data-tracing?
+:::
+
+::: ref
+[Australian
+Government](https://www.health.gov.au/ministers/the-hon-mark-butler-mp/media/failed-covidsafe-app-deleted)
+· [RMIT](https://www.rmit.edu.au/news/acumen/covidsafe_app)
+:::
+
+## Ethical Perspectives
+
+Summary so far: 
+
+::: callout-note
+## Differences between these school of ethics
+
+-   Deontologist emphasizes duties or rules;
+-   Consequentialist emphasizes the consequences of actions;
+-   Virtue ethics emphasizes the moral character.
+:::
+
+. . . 
+
+:::callout-note
+## No single school of ethical thought is perfect! 
+
+The different forms of ethical philosophy provide a guide for living life!
+
+:::
+
+. . . 
+
+Still need more examples? Here is an [video explainer using Batman](https://www.youtube.com/watch?v=NMblKpkKYao)
+
+::: footer
+O'Keefe, K., & Brien, D. O. (2018). Ethical data and information
+management: concepts, tools and methods. Kogan Page Publishers, chapter
+2
+:::
+
+## The Avengers
+
+:::::: columns
+::: {.column width="33%"}
+**Iron Man**
+
+![](images/lecture-08/ironman.png){width="300"}
+
+-   Utilitarian
+-   Bring the most happiness or well-being for the greatest number of
+    people.
+:::
+
+::: {.column width="33%"}
+**Captain America**
+
+![](images/lecture-08/captain.jpeg){width="300"}
+
+-   Deontology
+-   Focus on right or wrong rather than better or worse.
+:::
+
+::: {.column width="33%"}
+**Thor**
+
+![](images/lecture-08/thor.png){width="300"}
+
+-   Virture ethics
+-   Seek to be the best person he could be
+:::
+::::::
+
+::: footer
+What would an Avenger Do? by Mark D. White.
+https://media.wiley.com/product_data/excerpt/72/11180745/1118074572-234.pdf
+:::
+
+
+# Ethical Perspectives {background-color="#006DAE"}
+
+Some further ethical perspectives for business
+
+## Ethical Perspectives
+
+::: callout-note
+## 4. Common good and justice based ethics
+
+-   Action should contribute to some greater good
+:::
+
+. . .
+
+::: callout-note
+## 5. Shareholder/stockholder theory (Milton Friedman)
+
+-   Increase value to shareholders by maximizing profits
+:::
+
+. . .
+
+::: callout-note
+## 6. Stakeholder theory
+
+-   Organization responsible to stakeholders
+-   Employees, stockholders, society, environment
+:::
+
+## What ethical schools of thought apply?
+
+::: callout-note
+## Scenario
+
+A large company surveys all of their current employees, measuring
+demographics and personality factors.
+
+They hope to identify key personality factors that correspond with a
+successful time with the company.
+
+Their hope is to use this data to identify which prospective employees
+they should hire.
+:::
+
+. . .
+
+**Stakeholder theory**
+
+. . .
+
+**Shareholder theory**
+
+. . .
+
+**Deontological Ethics**
+
+## Why consider ethical data practices?
+
+::: callout-note
+## Data is increasingly accessible and available
+
+-   Can use for understanding our world
+-   Can use to make decisions (data driven decision making)
+-   Can use to inform policy decisions
+:::
+
+. . .
+
+::: callout-note
+## Research ethics is often discussed in experimental settings
+
+-   The fundamental ethical concerns do not change for data ethics
+:::
+
+. . .
+
+::: callout-note
+## Data has an increasing impact on our lives
+
+-   Data for good initiatives
+-   Unethical uses of data
+-   Open data increases the reach of data but also risks privacy
+:::
+
+## A real world example
+
+:::::: columns
+::: {.column width="50%"}
+Are rewards programs at supermarkets ethical? [ABC
+news](https://www.youtube.com/watch?v=oFdr1Iqfsfg)
+
+And more recently, is their approach to discount pricing misleading? [ABC
+news](https://www.youtube.com/shorts/zucI2urV9Xs)
+
+<center>
+![](images/lecture-08/woolies.png){width=60%}
+</center>
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/oFdr1Iqfsfg?si=5db1SPYgbQcH862q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen> -->
+
+<!-- </iframe> -->
+
+:::
+
+:::: {.column width="50%"}
+::: callout-caution
+## Breakout discussion
+
+What issues are raised with the data ethics of rewards programs in
+Australia currently?
+
+Were you aware of all of these?
+
+What schools of ethics are relevant?
+
+The ACCC concluded that people can opt-out of rewards programs. What do you think given the cost of living crisis? 
+
+:::
+::::
+::::::
+
+# Ethics and Data {background-color="#006DAE"}
+
+In your job and your responsibility
+
+## Data Ethics
+
+::: callout-important
+## Data science models affect everyone of us
+
+-   getting a job
+-   loan application
+-   dating
+-   social life
+-   buying car insurance
+-   medical screening
+:::
+
+. . .
+
+<!-- - Data is constantly being collected; facebook track our voice while we open the app, social media studying our click and like, mobile app tracks your location and time, cameras are everywhere and the list goes on and on... -->
+
+<!-- . . . -->
+
+Ask yourself: **Is your data ethically sourced?** and **Is the data
+being used ethically?**
+
+## Data scientist's responsibility
+
+::: callout-note
+## Data scientist's responsibility
+
+-   Informed Consent
+-   Privacy
+-   Fairness
+-   Transparency
+-   Accountability
+-   Bias
+:::
+
+. . .
+
+::: {.callout-important}
+## A good data scientist understands ethical issues across the entire data pipeline! 
+
+This includes how data are collected, data privacy and
+any biases in the data. It also includes building accountable algorithms and
+evaluating the impact of your analysis on people!
+
+:::
+
+## Application of ethics for data scientist
+
+::: callout-note
+## Ethics on data
+
+-   make sure data has informed consent from the participants
+-   read the term and conditions
+-   privacy screening has been done
+
+::: 
+
+. . .
+
+::: callout-note
+## Ethics on models/algorithm
+   
+-   make sure training data is representative
+-   past population is not representative of the future population
+-   algorithm that imposed fairness (no discrimination on any
+        individual and aggregate outcome)
+
+:::
+
+. . . 
+
+See more [checklist](https://deon.drivendata.org/#default-checklist)
+
+## Guidelines for research involving people
+
+**Belmont report (1979)**
+
+-   It was written by the National Commission for the Protection of
+    Human Subjects of Biomedical and Behavioral Research.
+
+. . .
+
+-   It was created under the National Research Act of 1974.
+
+. . .
+
+-   Identifies basic ethical principles and guidelines that address
+    ethical issues arising from the conduct of reaseach with human
+    subject
+
+. . .
+
+-   Application to demonstrate the use of these principles
+
+::: footer
+https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbound
+:::
+
+## What constitutes as research?
+
+Defined in the report: 
+
+> "Research" - an activity designed to test an hypothesis, permit conclusions to be drawn, and thereby to develop or contribute to generalizable knowledge"
+
+and 
+
+> "Practice" - interventions that are designed solely to enhance the well-being of an
+individual patient or client and that have a reasonable expectation of
+success"
+
+::: footer
+https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbound
+:::
+
+## Basic Ethical Principles
+
+::: callout-note
+## Autonomy 
+Being able to deliberate and make personal goals or choices, and then act upon them
+:::
+
+. . . 
+
+::: callout-note 
+## Basic Ethical Principles 
+
+1.  **Respect for Persons**
+    -   Acknowledge and respect autonomy
+    -   Protect those with diminished autonomy
+
+2.  **Beneficence**
+    -   Do not cause harm
+    -   Minimize possible harms and maximise possible benefits
+
+3.  **Justice**
+    -   Who ought to receive the benefits of research and bear its
+        burdens?
+
+:::
+
+::: footer
+https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbound
+:::
+
+## Applications
+
+::: callout-note 
+## Applied ethical conduct
+
+**1.  Informed consent**
+
+-   Participants have a right to understand what is going to happen
+-   Application of respect for persons
+
+
+**2.  Assessment of Risks and Benefits**
+
+-   Are the risks justified?
+-   Is the study well designed?
+-   Are there alternative lower risk designs possible?
+-   Are potential benefits and risks communicated to participants?
+-   Application of beneficence
+
+:::
+
+::: footer
+https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbound
+:::
+
+## Applications
+
+::: callout-note 
+## Applied ethical conduct ctd.
+
+**3. Selection of Subjects**
+
+-   Fairly offer research participation to all eligible
+-   Some subjects preferred to as best able to bear risk (e.g., adults)
+-   "injustice arises from social, racial, sexual and cultural biases
+    institutionalized in society"
+-   Careful not to overburden vulnerable subjects
+
+:::
+
+::: footer
+https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbound
+:::
+
+## More on Consent
+
+::: callout-note
+## Informed concent
+
+-   Information
+-   Comprehension
+-   Voluntary (without cohersion)
+:::
+
+. . .
+
+**National Statement on ethical conduct in research involving humans**
+
+> "...consent should be a voluntary choice, and should be based on
+sufficient information and adequate understanding of both the proposed
+research and the implications of participation in it."
+
+
+::: footer
+https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/read-the-belmont-report/index.html#xbound
+:::
+
+## Ethical Principles — ❌ Robodebt
+
+::: callout-important
+## What happened with Robodebt
+
+Robodebt was an Australian government welfare compliance scheme that automatically matched tax office income data against welfare recipients' records to raise debt notices. 
+
+It was found to be unlawful because it used income averaging to calculate debts that often didn't actually exist.
+
+:::
+
+. . .
+
+::: {.callout-important appearance="minimal"}
+Violated all of the basic ethical principles!
+:::
+
+::: ref
+[Royal Commission Recommendations](https://robodebt.royalcommission.gov.au/publications/report) $\cdot$ [Class Action](https://ministers.ag.gov.au/media-centre/robodebt-class-action-appeal-settlement-04-09-2025)
+:::
+
+## Data Protection Laws and Regulations
+
+[Australia: Privacy Act 1988](https://www.oaic.gov.au/privacy/privacy-legislation/the-privacy-act) which includes the Australian Privacy Principles (APPs) -- principal data protection legislation.
+
+. . .
+
+[Europe: General Data Protection Regulation (GDPR)](https://gdpr.eu/what-is-gdpr/) adopted by the European Parliament which regulates "personal data".
+
+-   Passed in 2018 to provide strong protection on the collections,
+        use and management of data
+-   Rights of the individual
+-   Information and access: you can access your data and see how it is processed
+-   Right to request erasure of data
+- Need to comply if you offer goods and services in EU, collect data from EU individuals or are established in the EU
+
+
+<!-- ::: footer -->
+<!-- https://iclg.com/practice-areas/data-protection-laws-and-regulations/australia\ -->
+<!-- https://gdpr-info.eu/ -->
+<!-- ::: -->
+
+## General Data Protection Regulation (GDPR)
+
+:::callout-important 
+## One of the most influential data privacy regulations
+
+It defines 8 user rights to privacy under the law. 
+
+-   The right to be informed.
+-   The right of access.
+-   The right to rectification.
+-   The right to erasure.
+-   The right to restrict processing.
+-   The right to data portability.
+-   The right to object.
+-   The right to avoid automated decision-making.
+    
+:::    
+
+::: footer
+https://www.freeprivacypolicy.com/blog/8-user-rights-gdpr/
+:::
+
+## Your turn
+
+<br>
+
+::: callout-caution
+## Scenario: Social Media and teen health
+
+A study investigates the impact of social media content on mental health in teenagers aged 13–17. 
+
+The study uses data about screen time collected via a tracking app and periodic mood surveys over 6 months.
+
+Discuss risks, benefits and approaches to mitigation/management.
+
+:::
+
+
+<!-- ::: callout-caution -->
+<!-- ## Scenario  -->
+
+<!-- A study investigates whether there has been an increased occurrence in -->
+<!-- loneliness during the COVID-19 lockdowns in Melbourne, Australia. The -->
+<!-- research method uses a survey administered during lockdown and -->
+<!-- non-lockdown periods to measure participant loneliness. What is one -->
+<!-- potential risk? How could this risk be minimized/managed/monitored? Are -->
+<!-- there benefits that justify this risk? -->
+<!-- ::: -->
+
+<!-- . . . -->
+
+<!-- -   **RISK:** Respondents reports extreme psychological stress -->
+
+<!-- . . . -->
+
+<!-- -   **BENEFIT:** Understanding loneliness patterns can assist in -->
+<!--     providing preventitive and other mental health services -->
+
+<!-- . . . -->
+
+<!-- -   **MITIGATION/MANAGEMENT:** Respondents are given a list of freely -->
+<!--     available mental health services to use if needed at the end of the -->
+<!--     study. -->
+
+## Justice, data sources and representation
+
+:::callout-note 
+## Ctd. From the Belmont report 
+
+Justice relates to the  risks/benefits of the study at the same probability for all participants
+
+:::incremental 
+
+- Careful not to exhaust vulnerable
+    populations by overstudying.
+    
+-   Big data sets often have challenges of representation *not everyone in the population has an equal chance of representation*
+
+-   This can be one cause of biased predictions and unfair algorithms 
+
+- Algorithms may be less accurate for particular subsets of the population
+
+-   Much of big data doesn't cost the participant. It's created through scraping which will reflect the lack of representation in society or sociological and cultural power imbalances
+    
+:::
+:::
+
+## Your turn
+
+::: callout-caution
+## Scenario: Employment Demographics
+
+A large company surveys all of their current employees, measuring
+demographics and personality factors.
+
+They hope to identify key
+personality factors that correspond with a successful time with the
+company. 
+
+Their hope is to use this data to identify which prospective
+employees they should hire.
+
+**Discuss:** 
+What might be the ethical concerns with the data and this approach?
+    
+:::
+
+. . . 
+
+:::{.callout-note appearance="minimal"}
+## Reinforce Bias
+Existing employee data reinforce any previous discriminatory hiring patterns
+:::
+
+ . . . 
+ 
+:::{.callout-note appearance="minimal"}
+## Counterfactual 
+What would have happened if we hired people who were different to those previously hired?
+:::
+
+## Focussing on statistical and data practices
+
+-   So far we've focused on ethical and data practice in research
+    generally.
+
+. . .
+
+-   The basic principles apply to ALL research, but many of the examples
+    focus on experimental research
+
+. . .
+
+-   How can we translate this principles to a more statistical/data
+    focus?
+
+## Ethical guidelines for statisticians
+
+::: footer
+https://www.amstat.org/asa/files/pdfs/EthicalGuidelines.pdf
+:::
+
+1.  Professional Integrity and Accountability
+
+. . .
+
+2.  Integrity of data and method
+
+. . .
+
+3.  Responsibilities to Science/Public/Funder/Client
+
+. . .
+
+4.  Responsibilities to Research Subjects
+
+. . .
+
+5.  Responsibilities to Research Team Colleagues
+
+. . .
+
+6.  Responsibilities to Other Statisticians or Statistics Practitioners
+
+. . .
+
+7.  Responsibilities Regarding Allegations of Misconduct
+
+## Alternative view
+
+::: footer
+Gelman (2018). Ethics in statistical practice and communication: Five
+recommendations. Significance
+:::
+
+1.  Prioritize open data and methods
+
+. . .
+
+2.  Be clear about the information and assumptions that go into
+    statistical methods
+
+. . .
+
+3.  Respect for data
+
+. . .
+
+4.  Publication of criticisms
+
+. . .
+
+5.  Respect the limitations of statistics
+
+## Yet another perspective
+
+::: footer
+https://deon.drivendata.org/
+:::
+
+-   Much of what we spent the first half of the lecture discussing
+    surrounds data collection and modeling
+
+. . .
+
+-   Identify other areas including:
+    -   Storage
+    -   Analysis
+    -   Deployment
+
+. . .
+
+-   These areas are less likely to be mentioned, but are equally
+    important.
+
+# Wrap Up {background-color="#006DAE"}
+
+## How to be an ethical data scientist
+
+1.  Ensure that you are following the ethical frameworks of the company
+    you work for *(e.g., I work for Monash, so I ensure that my research
+    conforms to Australian standards through Monash procedures)*
+
+. . .
+
+2.  Ensure you understand the different areas where unethical
+    thinking/practices can be introduced
+
+. . .
+
+3.  Data ethics checklists [like this](https://deon.drivendata.org/#default-checklist) can be useful!
+
+. . .
+
+4.  Keep learning and exploring different ethical
+    perspectives on your own
+
+## Summary
+
+<br>
+
+::: callout-note
+## Takeaways
+
+-   Developed an understanding for data ethics principles
+-   Developed some checks and balances for any future analysis
+-   Started our journey to towards conducting ethical analytics
+:::
+
+## Example answer
+
+:::{.callout-note collapse="true"}
+## RISKS
+Participants may report extreme psychological stress. 
+
+App usage could reveal sensitive information about mental health struggles, identity, or relationships.
+
+::: 
+
+:::{.callout-note collapse="true"}
+## BENEFIT
+Understanding how algorithmic content affects teen well-being could inform platform design regulations and school-based digital literacy programs. 
+:::
+
+:::{.callout-note collapse="true"}
+## MITIGATION/MANAGEMENT 
+* Provide mental health referral resources throughout the study, not just at the end!
+* Obtain informed consent from both the teenager and a parent/guardian with plain-language explanations of what data is collected. 
+* Allow withdrawal at any time with data deletion 
+* Use appropriate data anonymisation
+
+:::
+
+
+## Extended Reference List
+
+**Deontology**
+
+-   ✅ Differential Privacy — privacy by design, opt-in consent,
+    on-device data processing
+-   ❌ Clearview AI — biometric data scraped without consent; \$51.75M
+    US settlement, €34M EU fine
+-   ❌ Optus Data Breach (AU, 2022) — 10 million records exposed;
+    over-retention, no privacy-by-design
+-   ❌ DoorDash (CA, 2024) — sold customer data without notice or
+    opt-out; CCPA violation
+
+## Extended Reference List (cont.)
+
+**Utilitarianism**
+
+-   ✅ Stats NZ IDI — linked government data for public benefit, with
+    strong access controls
+-   ❌ US Health Insurer AI Claim Denials (Cigna, UnitedHealth, Humana)
+    — algorithmic denial of care
+-   ❌ Facebook Emotional Contagion Experiment — manipulated 700,000
+    users' feeds without consent for research benefit
+-   ❌ OpenAI/Microsoft Copyright Lawsuits (2024) — training on
+    copyrighted content; benefits to many, costs borne by few
+-   ❌ UNHCR Rohingya Biometric Data — aid registration data shared with
+    Myanmar military; 830,000 records
+
+## Extended Reference List (cont.)
+
+**Virtue Ethics**
+
+-   ✅ Māori Data Sovereignty / Te Mana Raraunga (NZ) — data governance
+    as cultural expression and community self-determination
+-   ✅ Helsinki AI Register (Finland) — public transparency into every
+    AI system used by city government
+-   ❌ COVIDSafe App (AU, 2020) — good intentions, poor architectural
+    prudence; failed to achieve contact tracing goal
+-   ❌ Robodebt (AU, 2015–2020) — automated welfare debt system; lack of
+    courage, care, and practical wisdom in design and escalation
+-   ❌ Queensland Police AI Domestic Violence Prediction — virtuous
+    goal, but insufficient humility about algorithmic bias against
+    over-policed communities
