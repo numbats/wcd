@@ -1730,8 +1730,7 @@ We love it, it's great, but you need to guide AI!
 
 . . . 
 
-Let's take a closer look at Joan's code now and decide if it's smelly!
-
+Let's take a closer look at the code we inherited and decide if we like how it smells!
 
 
 # Analysing Credit Risk {background-color="#006DAE"}
