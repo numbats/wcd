@@ -1,20 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wcd.numbat.space/week6/index.html</loc>
-    <lastmod>2026-04-14T01:59:40.159Z</lastmod>
+    <loc>https://wcd.numbat.space/week9/tutorial/tutorial-09.html</loc>
+    <lastmod>2026-05-01T07:03:27.881Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week5/workshop/workshop-05.html</loc>
-    <lastmod>2026-03-30T23:01:01.638Z</lastmod>
+    <loc>https://wcd.numbat.space/week9/info/info-09.html</loc>
+    <lastmod>2026-05-01T07:10:43.586Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week4/tutorial/tutorial-04.html</loc>
-    <lastmod>2026-03-17T01:17:35.780Z</lastmod>
+    <loc>https://wcd.numbat.space/week8/tutorial/tutorial-08.html</loc>
+    <lastmod>2026-04-22T06:29:27.127Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week5/index.html</loc>
-    <lastmod>2026-03-30T23:38:24.003Z</lastmod>
+    <loc>https://wcd.numbat.space/week8/info/info-08.html</loc>
+    <lastmod>2026-04-22T08:16:48.641Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week7/tutorial/tutorial-07.html</loc>
+    <lastmod>2026-04-19T06:04:01.864Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week7/info/info-07.html</loc>
+    <lastmod>2026-04-17T06:30:22.197Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week6/tutorial/tutorial-06.html</loc>
+    <lastmod>2026-04-02T06:04:15.410Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week6/info/info-06.html</loc>
+    <lastmod>2026-03-30T01:56:25.956Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week5/tutorial/tutorial-05.html</loc>
+    <lastmod>2026-04-01T10:01:13.993Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week5/info/info-05.html</loc>
+    <lastmod>2026-03-26T00:58:01.424Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week4/workshop/workshop-04.html</loc>
+    <lastmod>2026-03-23T06:05:22.387Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week4/tutorial/tutorial-04-sol.html</loc>
+    <lastmod>2026-03-17T01:18:10.055Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week4/index.html</loc>
+    <lastmod>2026-03-10T00:41:25.589Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week3/tutorial/tutorial-03.html</loc>
+    <lastmod>2026-03-16T06:25:57.580Z</lastmod>
   </url>
   <url>
     <loc>https://wcd.numbat.space/week3/tutorial/old-tutorial-03.html</loc>
@@ -25,16 +65,20 @@
     <lastmod>2026-03-10T00:41:25.564Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week4/tutorial/tutorial-04-sol.html</loc>
-    <lastmod>2026-03-17T01:18:10.055Z</lastmod>
+    <loc>https://wcd.numbat.space/week3/index.html</loc>
+    <lastmod>2026-03-16T03:24:04.967Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week3/tutorial/tutorial-03-sol.html</loc>
-    <lastmod>2025-03-23T03:09:23.843Z</lastmod>
+    <loc>https://wcd.numbat.space/week2/tutorial/tutorial-02.html</loc>
+    <lastmod>2026-03-05T05:22:23.620Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week2/workshop/workshop-02.html</loc>
-    <lastmod>2026-03-10T00:35:38.265Z</lastmod>
+    <loc>https://wcd.numbat.space/week2/info/info-02.html</loc>
+    <lastmod>2026-03-12T23:26:25.343Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week1/workshop/workshop-01.html</loc>
+    <lastmod>2026-03-09T06:06:04.372Z</lastmod>
   </url>
   <url>
     <loc>https://wcd.numbat.space/week1/tutorial/tutorial-01-sol.html</loc>
@@ -45,131 +89,91 @@
     <lastmod>2026-03-03T02:01:08.332Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week8/workshop/workshop-08.html</loc>
-    <lastmod>2026-04-22T08:25:55.714Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week3/index.html</loc>
-    <lastmod>2026-03-16T03:24:04.967Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week2/tutorial/tutorial-02-sol.html</loc>
-    <lastmod>2026-03-11T23:39:46.123Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week8/info/info-08.html</loc>
-    <lastmod>2026-04-22T08:16:48.641Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week7/info/info-07.html</loc>
-    <lastmod>2026-04-17T06:30:22.197Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week6/temp-index.html</loc>
-    <lastmod>2026-04-13T08:09:35.911Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week5/info/info-05.html</loc>
-    <lastmod>2026-03-26T00:58:01.424Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week4/info/info-04.html</loc>
-    <lastmod>2026-03-26T00:58:26.870Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week3/info/info-03.html</loc>
-    <lastmod>2026-03-17T01:22:02.235Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week1/workshop/workshop-01.html</loc>
-    <lastmod>2026-03-09T06:06:04.372Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week8/tutorial/tutorial-08-sol.html</loc>
-    <lastmod>2026-03-10T00:41:25.800Z</lastmod>
+    <loc>https://wcd.numbat.space/index.html</loc>
+    <lastmod>2026-04-18T04:25:28.338Z</lastmod>
   </url>
   <url>
     <loc>https://wcd.numbat.space/week1/info/info-01.html</loc>
     <lastmod>2026-03-13T00:10:18.048Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week2/info/info-02.html</loc>
-    <lastmod>2026-03-12T23:26:25.343Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week3/workshop/workshop-03.html</loc>
-    <lastmod>2026-03-17T00:36:45.541Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week4/workshop/workshop-04.html</loc>
-    <lastmod>2026-03-23T06:05:22.387Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week6/info/info-06.html</loc>
-    <lastmod>2026-03-30T01:56:25.956Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week6/workshop/workshop-06.html</loc>
-    <lastmod>2026-03-30T01:43:28.877Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week7/workshop/workshop-07.html</loc>
-    <lastmod>2026-04-18T03:41:14.468Z</lastmod>
+    <loc>https://wcd.numbat.space/week1/tutorial/tutorial-01.html</loc>
+    <lastmod>2026-02-25T06:31:26.034Z</lastmod>
   </url>
   <url>
     <loc>https://wcd.numbat.space/week2/index.html</loc>
     <lastmod>2026-03-15T22:50:14.662Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week2/tutorial/tutorial-02.html</loc>
-    <lastmod>2026-03-05T05:22:23.620Z</lastmod>
+    <loc>https://wcd.numbat.space/week2/tutorial/tutorial-02-sol.html</loc>
+    <lastmod>2026-03-11T23:39:46.123Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week8/tutorial/tutorial-08.html</loc>
-    <lastmod>2026-04-22T06:29:27.127Z</lastmod>
+    <loc>https://wcd.numbat.space/week2/workshop/workshop-02.html</loc>
+    <lastmod>2026-03-10T00:35:38.265Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/index.html</loc>
-    <lastmod>2026-04-18T04:25:28.338Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week7/tutorial/tutorial-07.html</loc>
-    <lastmod>2026-04-19T06:04:01.864Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week6/tutorial/tutorial-06.html</loc>
-    <lastmod>2026-04-02T06:04:15.410Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week6/tutorial/tutorial-06-sol.html</loc>
-    <lastmod>2026-04-19T08:18:14.951Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week3/tutorial/tutorial-03.html</loc>
-    <lastmod>2026-03-16T06:25:57.580Z</lastmod>
-  </url>
-  <url>
-    <loc>https://wcd.numbat.space/week7/tutorial/tutorial-07-sol.html</loc>
-    <lastmod>2026-04-19T05:33:47.886Z</lastmod>
+    <loc>https://wcd.numbat.space/week3/info/info-03.html</loc>
+    <lastmod>2026-03-17T01:22:02.235Z</lastmod>
   </url>
   <url>
     <loc>https://wcd.numbat.space/week3/tutorial/old-tutorial-03-sol.html</loc>
     <lastmod>2026-03-10T00:41:25.565Z</lastmod>
   </url>
   <url>
+    <loc>https://wcd.numbat.space/week3/tutorial/tutorial-03-sol.html</loc>
+    <lastmod>2025-03-23T03:09:23.843Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week3/workshop/workshop-03.html</loc>
+    <lastmod>2026-03-17T00:36:45.541Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week4/info/info-04.html</loc>
+    <lastmod>2026-03-26T00:58:26.870Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week4/tutorial/tutorial-04.html</loc>
+    <lastmod>2026-03-17T01:17:35.780Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week5/index.html</loc>
+    <lastmod>2026-03-30T23:38:24.003Z</lastmod>
+  </url>
+  <url>
     <loc>https://wcd.numbat.space/week5/tutorial/tutorial-05-sol.html</loc>
     <lastmod>2026-03-22T23:34:13.399Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week1/tutorial/tutorial-01.html</loc>
-    <lastmod>2026-02-25T06:31:26.034Z</lastmod>
+    <loc>https://wcd.numbat.space/week5/workshop/workshop-05.html</loc>
+    <lastmod>2026-03-30T23:01:01.638Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week5/tutorial/tutorial-05.html</loc>
-    <lastmod>2026-04-01T10:01:13.993Z</lastmod>
+    <loc>https://wcd.numbat.space/week6/tutorial/tutorial-06-sol.html</loc>
+    <lastmod>2026-04-19T08:18:14.951Z</lastmod>
   </url>
   <url>
-    <loc>https://wcd.numbat.space/week4/index.html</loc>
-    <lastmod>2026-03-10T00:41:25.589Z</lastmod>
+    <loc>https://wcd.numbat.space/week6/workshop/workshop-06.html</loc>
+    <lastmod>2026-03-30T01:43:28.877Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week7/tutorial/tutorial-07-sol.html</loc>
+    <lastmod>2026-04-19T05:33:47.886Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week7/workshop/workshop-07.html</loc>
+    <lastmod>2026-04-18T03:41:14.468Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week8/tutorial/tutorial-08-sol.html</loc>
+    <lastmod>2026-03-10T00:41:25.800Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week8/workshop/workshop-08.html</loc>
+    <lastmod>2026-04-27T07:06:34.146Z</lastmod>
+  </url>
+  <url>
+    <loc>https://wcd.numbat.space/week9/tutorial/ready-to-release-tutorial-09-sol.html</loc>
+    <lastmod>2025-05-03T04:31:26.375Z</lastmod>
   </url>
 </urlset>
