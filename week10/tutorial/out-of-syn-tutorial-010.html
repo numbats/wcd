@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 9 Tutorial Solutions – ETC5512: Wild Caught Data</title>
+<title>Week 10 Tutorial – ETC5512: Wild Caught Data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -166,9 +131,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#excercies-9a" id="toc-excercies-9a" class="nav-link active" data-scroll-target="#excercies-9a">Excercies 9A</a></li>
-  <li><a href="#exercise-9b" id="toc-exercise-9b" class="nav-link" data-scroll-target="#exercise-9b">Exercise 9B</a></li>
-  <li><a href="#in-your-own-time-excerise-9c" id="toc-in-your-own-time-excerise-9c" class="nav-link" data-scroll-target="#in-your-own-time-excerise-9c">In your own time: Excerise 9C</a></li>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background">Background</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#in-your-own-time-exercise-3" id="toc-in-your-own-time-exercise-3" class="nav-link" data-scroll-target="#in-your-own-time-exercise-3">In your own time: Exercise 3</a></li>
   </ul>
 </nav>
     </div>
@@ -177,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 9 Tutorial Solutions</h1>
+<h1 class="title">Week 10 Tutorial</h1>
 </div>
 
 
@@ -194,111 +161,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="excercies-9a" class="level2">
-<h2 class="anchored" data-anchor-id="excercies-9a">Excercies 9A</h2>
-<ol type="a">
-<li>Read the data into R and use your exploratory data tools to explore the data.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>survey_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"tutorials/images/survey_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure everything is in the correct type</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>survey_data <span class="ot">&lt;-</span> survey_data <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">as.factor</span>(time),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">blood_sugar =</span> <span class="fu">as.factor</span>(blood_sugar),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">sex =</span> <span class="fu">as.factor</span>(sex),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">date =</span> <span class="fu">as.Date</span>(date))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(survey_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="2" type="a">
-<li>What do you notice about the date of study?</li>
-</ol>
-<p><em>There is only one day covered</em></p>
-<ol start="3" type="a">
-<li>To de-identify the data, the researchers removed directly identifying information, aggregated blood sugar into a binary variable, aggregated testing time into clinically meaningful bins and released only a sample of their data, where they only released one day’s worth - 40 participants. Do you think this is sufficient given what you know of the data environment?</li>
-</ol>
-<p><em>Given the data environment, this might be sufficient for public identification as we do not know much about the data population/sampling. However, a family member (or the participant themselves) could identify with private data. All they would need to know is the age of the respondent and that they participated on the 11th of February.</em></p>
-<ol start="4" type="a">
-<li>Now consider the second dataset. As participants were leaving the trial, they were asked if they would consider giving blood to save lives. All said yes. As part of a promotion run by the center, blood donors were asked if they would consider giving their age, sex and name to be published on the website to encourage others to give blood. All consented and data was uploaded in real time (which is represented by date and time in the dataset). Read in the second data set and explore.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>blood_donation <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"tutorials/images/blood_donation.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#make sure correct types</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>blood_donation <span class="ot">&lt;-</span> blood_donation <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span> <span class="fu">as.factor</span>(sex),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">data_time =</span> <span class="fu">ymd_hms</span>(date_time))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="5" type="a">
-<li>Given this more complex data context, can you use your skills in tidyverse to identify the participants in the data?</li>
-</ol>
-<p><em>This is relatively simple. The different ages are unique in each dataset, so we can left_join by age and identify all individuals. Now all individuals are identifiable with public data information.</em></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>identified_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(blood_donation, survey_data, <span class="at">by =</span> <span class="st">"age"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<p>In this tutorial, you will practice:</p>
+<ul>
+<li>identifying html structures on a web page</li>
+<li>reading data from a web page into R</li>
+</ul>
 </section>
-<section id="exercise-9b" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-9b">Exercise 9B</h2>
-<ol type="a">
-<li>Which variables(s) made is possible to identify individuals in the data?</li>
-</ol>
-<p><em>Age made it possible to link all cases in the two datasets. However, there are other variables (time of day and sex) that also correspond to relatively rare cells.</em></p>
-<ol start="2" type="a">
-<li>What de-identification tools would be most appropriate to solve the challenges caused by these variables?</li>
-</ol>
-<p><em>Age was the variable that caused the most immediate difficulty. We could remove it from the dataset entirely, but this would result in considerable loss of information. As one of the challenges associated with age is that there are a number of different values it can be (increasing the chance of unique values), a first step is</em> <em>aggregation</em>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>survey_data_di <span class="ot">&lt;-</span> survey_data <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">cut</span>(age,<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">30</span>,<span class="dv">45</span>,<span class="dv">65</span>,<span class="dv">100</span>))) <span class="sc">|&gt;</span> <span class="co"># break age along these lines</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>age) <span class="co">#remove age</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="3" type="a">
-<li>Is it possible to remove all possible risk? Consider the balance between reducing risk and reducing utility.</li>
-</ol>
-<p><em>There is still potential risk as the combination of time, sex and age_group will result in some small cells in the sample.</em></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>survey_data_di <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time, sex, age_group) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Freq =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Freq <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><em>There are 8 individuals that are potentially identifiable based on these cross tabulations. It would decrease the utility of the dataset to remove time and sex from the data. We could instead consider fewer age groups to create larger groups to reduce this problem. Currently there are four age groups, what if we moved to three (losing information and utility)? It’s better, but people are still identified - we’ll have to keep trying.</em></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>survey_data_di2 <span class="ot">&lt;-</span> survey_data <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">cut</span>(age,<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">100</span>))) <span class="sc">|&gt;</span> <span class="co"># break age along these lines</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select(-age)  |&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time, sex, age_group) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Freq =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Freq <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>survey_data_di2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background">Background</h2>
+<p><em>Alone is an American survival competition series on History. It follows the self-documented daily struggles of 10 individuals (seven paired teams in season 4) as they survive alone in the wilderness for as long as possible using a limited amount of survival equipment. With the exception of medical check-ins, the participants are isolated from each other and all other humans. They may “tap out” at any time, or be removed due to failing a medical check-in. The contestant who remains the longest wins a grand prize of $500,000 (USD) (increasing to $1 million in season 7).</em></p>
+<p>From <a href="https://en.wikipedia.org/wiki/Alone_(TV_series)">Alone wikipedia</a></p>
 </section>
-<section id="in-your-own-time-excerise-9c" class="level2">
-<h2 class="anchored" data-anchor-id="in-your-own-time-excerise-9c">In your own time: Excerise 9C</h2>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
+<p>Visit the wikipedia page for the Alone TV Series and identify the basic elements that make up the page.</p>
 <ol type="a">
-<li>Can you identify individuals using your friend’s de-identified data?</li>
+<li><p>How many tables are on there on the page?</p></li>
+<li><p>How many paragraphs are there?</p></li>
+<li><p>Identify and scrape the table containing the past Series winners.</p></li>
+<li><p>Identify and scrape the text that was used to create the Background text for this tutorial.</p></li>
 </ol>
-<p><em>Assuming your friend has made the same decisions as I have, you shouldn’t be able to identify any individuals from the data.</em></p>
-<ol start="2" type="a">
-<li>Did you and your friend make the same decisions to de-identify the data? If not, what are the pros and cons of each?</li>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<p>Explore the data you’ve pulled down from the webpage.</p>
+<ol type="a">
+<li><p>Process the table and extract how long the winners spent in the Wild on each season.</p></li>
+<li><p>Plot your result. Is the time winners spent in the wild increasing as the seasons go on?</p></li>
 </ol>
-<p><em>The approach that I took meant that I lost quite a lot of age data in order to reduce risk. Other suitable approaches would have been to create a synthetic dataset or to add a small amount of noise to age in order to make it more difficult to identify individuals.</em></p>
-<ol start="3" type="a">
-<li>How do you think peer review can assist data de-identification procedures?</li>
+</section>
+<section id="in-your-own-time-exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="in-your-own-time-exercise-3">In your own time: Exercise 3</h2>
+<p>Think about how you would you automate getting the time all contestants spent in the wild from Seasons 1 - 10.</p>
+<ol type="a">
+<li><p>Write some pseudo code.</p></li>
+<li><p>Identify potential edge cases that would need to be handled to web scrape the time contestants spent in the wild from Seasons 1 - 10.</p></li>
+<li><p>Pull this data into R and plot how long contestants were in the wild on season one. (This will require some more advanced string handling.)</p></li>
+<li><p>ADVANCED Generalise your approach to all seasons.</p></li>
+<li><p>ADVANCED The reasons people leave the show can be quite varied, from medical reasons, to fear, accidents and to missing family. Is there any easy way to scrape and analyse the common reasons people leave? Think about the challenges.</p></li>
 </ol>
-<p><em>Peer review can be used within institutes to identify potential data risks and solutions.</em></p>
+<section id="copyright-monash-university" class="level4">
+<h4 class="anchored" data-anchor-id="copyright-monash-university">Copyright Monash University</h4>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 9 Tutorial Solutions – ETC5512: Wild Caught Data</title>
+<title>Tutorial 11 Solutions – ETC5512: Wild Caught Data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -166,9 +166,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#excercies-9a" id="toc-excercies-9a" class="nav-link active" data-scroll-target="#excercies-9a">Excercies 9A</a></li>
-  <li><a href="#exercise-9b" id="toc-exercise-9b" class="nav-link" data-scroll-target="#exercise-9b">Exercise 9B</a></li>
-  <li><a href="#in-your-own-time-excerise-9c" id="toc-in-your-own-time-excerise-9c" class="nav-link" data-scroll-target="#in-your-own-time-excerise-9c">In your own time: Excerise 9C</a></li>
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link active" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#in-your-own-time-exercise-3" id="toc-in-your-own-time-exercise-3" class="nav-link" data-scroll-target="#in-your-own-time-exercise-3">In your own time: Exercise 3</a></li>
   </ul>
 </nav>
     </div>
@@ -177,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 9 Tutorial Solutions</h1>
+<h1 class="title">Tutorial 11 Solutions</h1>
 </div>
 
 
@@ -194,111 +194,132 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="excercies-9a" class="level2">
-<h2 class="anchored" data-anchor-id="excercies-9a">Excercies 9A</h2>
-<ol type="a">
-<li>Read the data into R and use your exploratory data tools to explore the data.</li>
+<section id="exercise-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1">Exercise 1</h2>
+<p>Haley has encountered some missing data in the age column of her data set that she is using in her Wild Caught Data tutorial. She tries using ChatGPT to infill the missing data:</p>
+<ul>
+<li><a href="https://chatgpt.com/share/6828c2ee-a3b0-8000-a956-692974053b43">Chat 1</a></li>
+<li><a href="https://chatgpt.com/share/6828c268-85e0-8000-91ef-ceb73ed32d6c">Chat 2</a></li>
+</ul>
+<p>Examine the two chats. Ask yourself:</p>
+<ol type="i">
+<li>Do they return the same data?</li>
 </ol>
+<p><em>No, they don’t. And if you tried to prompt the LLM yourself you also likely got a different answer.</em></p>
+<ol start="2" type="i">
+<li>Which answer seems more reliable?</li>
+</ol>
+<p><em>Chat 2 seems more reliable. Through using the LLM Haley has explored different options for data imputation rather than just taking the output as reliable.</em></p>
+<ol start="3" type="i">
+<li>Is there any important information missing from the chat?</li>
+</ol>
+<p><em>Context! Whose ages are these, and what type of analysis is Haley doing. Providing this data to the LLM could change the approach it has used to infill the data.</em></p>
+<ol start="4" type="i">
+<li>Would you recommend that Haley use the LLM generated data to infill the missing data for an analysis?</li>
+</ol>
+<p><em>As this is a tutorial this is a low stakes example. It may be okay for Haley to infill her data.</em></p>
+<p><strong>However,</strong> <em>she think first before infilling missing data. She should consider the structure of her data, the sample and the population. Knowledge of the sample should inform how you should infill in the missing values.</em></p>
+<p><em>She should also consider why the data might be missing. Data can be missing for a range of reasons. Take a look at the different kinds of missing data <a href="https://www.ncbi.nlm.nih.gov/books/NBK493614/">here</a>. Before missing data is imputed, stop and consider if there is a systematic reason (e.g people lie about their age and round down). Systematic reasons change how you approach your missing values.</em></p>
+<ol start="22" type="a">
+<li>Does your recommendation depend on the type of analysis?</li>
+</ol>
+<p><em>Yes, it 100% should!</em></p>
+</section>
+<section id="exercise-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2">Exercise 2</h2>
+<p>You’re preparing a data set to analyse customer satisfaction and product feedback collected through surveys, support emails, and live chat transcripts.</p>
+<p>In your preparation you encounter the following challenges:</p>
+<ul>
+<li><p>Some entries in the data set are missing the product category. You use the product name to cross reference with a generic product database to infill the missing values.</p></li>
+<li><p>Some customers left the “satisfaction rating” blank, but they provided comments like “Very happy with the fast delivery!” You infill these using a basic sentiment analysis (e.g., 4 out of 5 based on the text).</p></li>
+<li><p>The “purchase channel” column includes inconsistent entries like: “In Store”, “IS”, “retail”, “shop”, “online”, “amazon”. You harmonise these to create standard labels like “In Store” and “Online” categories.</p></li>
+<li><p>You compare customer responses and categorise them into themes, e.g.: “Late delivery”, “Delayed shipping” → Category: “Delivery Issues” or “Product damaged”, “Broken item” → Category: “Product Quality”</p></li>
+<li><p>Long customer feedback is summarised into a short sentiment label or theme. “The delivery took over two weeks, and no one responded to my emails.” becomes “Slow delivery and poor support”.</p></li>
+<li><p>From unstructured text (e.g., support emails), you extract structured fields like: Order ID, Product name, Mentioned issues (e.g., “broken”, “missing parts”)</p></li>
+</ul>
+<p><strong>Your task:</strong></p>
+<ol type="i">
+<li>Which of these tasks would you feel most confident using an LLM to complete? Why?</li>
+</ol>
+<p><em>Tasks that rely on understanding and generating natural language are well suited to LLMs.</em></p>
+<p><em>This might include:</em></p>
+<ul>
+<li><p><em>Inferring satisfaction ratings from comments: LLMs are likely good at detecting positive or negative tones and converting them to satisifaction scores.</em></p></li>
+<li><p><em>Categorising customer responses into themes: LLMs can reliably group similar phrases like “Late delivery” and “Delayed shipping”.</em></p></li>
+<li><p><em>Summarising long feedback into short sentiment labels or themes</em></p></li>
+<li><p><em>Extracting structured information from unstructured text: Given appropriate prompts or few-shot examples, LLMs can extract data such as Order IDs, product names, and issue types from support emails or chat transcripts with good accuracy.</em></p></li>
+</ul>
+<ol start="2" type="i">
+<li>Do any of these tasks need help from a human? Which ones and why?</li>
+</ol>
+<p><strong>You should always do some form of checking!</strong></p>
+<ul>
+<li><p><em>Consider infilling satisfaction ratings from sentiment: While LLMs can provide reasonable estimates, human review is important for borderline or ambiguous cases.</em></p></li>
+<li><p><em>Thematic categorisation and summarisation: LLMs can produce useful outputs, but humans should validate category definitions.</em></p></li>
+<li><p><em>Standardising “purchase channel” entries: LLMs can suggest standard labels, but humans are needed to decide on the final controlled vocabulary</em></p></li>
+<li><p><em>Cross-referencing product names to fill missing product categories: This task may require domain knowledge and precise matching that benefits from human validation, especially where product names are ambiguous or abbreviated.</em></p></li>
+</ul>
+<ol start="3" type="i">
+<li>If you use an LLM how would you verify the results?</li>
+</ol>
+<p><em>There are lots of creative options here:</em></p>
+<p><em>Develop a set of test cases to see how the LLM performs: This is a good approach to check how the LLM performs on known edge cases.</em></p>
+<p><em>Sampling and manual review: Randomly check a subset of LLM-generated outputs for accuracy and consistency.</em></p>
+<p><em>Rule-based validation: For structured outputs (e.g., extracted fields), apply validation rules (e.g., Order ID must be numeric and follow a known format).</em></p>
+<p><em>Cross-checking with known data: For tasks like product category infilling or purchase channel harmonisation, compare LLM results against a reference database.</em></p>
+<p><em>Confidence scoring or uncertainty flags: Where possible, use model confidence or flag low-confidence outputs for human review.</em></p>
+<p><em>A/B testing or downstream analysis: For subjective tasks observe whether the results improve the performance or clarity of downstream reports or models.</em></p>
+<ol start="4" type="i">
+<li>Would your answers change if the data set you were working with was different?</li>
+</ol>
+<p><em>Yes, the answers would change depending on the business application.</em></p>
+<ul>
+<li><p><em>Domain specificity: If the data uses highly technical or domain-specific language (e.g., medical or legal)</em></p></li>
+<li><p><em>Language diversity: If the dataset includes multiple languages or dialects, LLM performance may vary, and additional language handling might be needed.</em></p></li>
+<li><p><em>Data volume and consistency: LLMs perform well on patterns seen in large, consistent datasets. Sparse, noisy, or extremely varied data may require more human intervention.</em></p></li>
+<li><p><em>Regulatory context: In regulated industries (e.g., finance, health), even high-quality LLM outputs may still require human verification due to compliance and accountability concerns.</em></p></li>
+</ul>
+<p><em>You may find answering these question in a group useful to get different perspectives.</em></p>
+</section>
+<section id="in-your-own-time-exercise-3" class="level2">
+<h2 class="anchored" data-anchor-id="in-your-own-time-exercise-3">In your own time: Exercise 3</h2>
+<p>In Lecture 10, Kate showed an exercise where she guessed nationalities from Wikipedia using web-scraping. We saw that given the complexities of this data, it was difficult to code specific rules to determine a person’s nationality. We could use LLMs instead!</p>
+<p>On the Moodle you will find the author data set <code>week11-author_df_llm.csv</code>. This data set contains the guesses from an LLM model about the authors nationalities. Import this data into R and examine the nationality columns.</p>
+<p><strong>Your task:</strong> Subset the list of authors into groups based on how confident you are that the author’s nationality is correctly identified.</p>
+<p>Hint: You may like to compare with the web-scraped nationalities.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>survey_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"tutorials/images/survey_data.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>author_webscrape <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"../data/author_df.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>author_llm <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"../data/week11-author_df_llm.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>authors_joined <span class="ot">=</span> <span class="fu">full_join</span>(author_webscrape, author_llm) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nationality =</span> <span class="fu">if_else</span>(nationality <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"English"</span>, <span class="st">"British"</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"English"</span>, nationality),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">nationality_llm =</span> <span class="fu">if_else</span>(nationality_llm <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"English"</span>, <span class="st">"British"</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"English"</span>, nationality_llm)) <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">exact_match =</span> nationality <span class="sc">==</span> nationality_llm,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">fuzzy_match =</span> <span class="cn">NA</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(authors_joined)){</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  authors_joined<span class="sc">$</span>fuzzy_match[i] <span class="ot">=</span> <span class="fu">agrepl</span>(authors_joined<span class="sc">$</span>nationality[i],</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                                         authors_joined<span class="sc">$</span>nationality_llm[i]) </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>exact_match <span class="ot">=</span> <span class="fu">sum</span>(authors_joined<span class="sc">$</span>exact_match)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>fuzzy_match <span class="ot">=</span> <span class="fu">sum</span>(authors_joined<span class="sc">$</span>fuzzy_match) <span class="sc">-</span> exact_match</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>no_match <span class="ot">=</span> <span class="fu">nrow</span>(authors_joined) <span class="sc">-</span> exact_match <span class="sc">-</span> fuzzy_match</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>authors_joined <span class="sc">|&gt;</span> </span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(fuzzy_match <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure everything is in the correct type</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>survey_data <span class="ot">&lt;-</span> survey_data <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">time =</span> <span class="fu">as.factor</span>(time),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">blood_sugar =</span> <span class="fu">as.factor</span>(blood_sugar),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">sex =</span> <span class="fu">as.factor</span>(sex),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">date =</span> <span class="fu">as.Date</span>(date))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(survey_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="2" type="a">
-<li>What do you notice about the date of study?</li>
-</ol>
-<p><em>There is only one day covered</em></p>
-<ol start="3" type="a">
-<li>To de-identify the data, the researchers removed directly identifying information, aggregated blood sugar into a binary variable, aggregated testing time into clinically meaningful bins and released only a sample of their data, where they only released one day’s worth - 40 participants. Do you think this is sufficient given what you know of the data environment?</li>
-</ol>
-<p><em>Given the data environment, this might be sufficient for public identification as we do not know much about the data population/sampling. However, a family member (or the participant themselves) could identify with private data. All they would need to know is the age of the respondent and that they participated on the 11th of February.</em></p>
-<ol start="4" type="a">
-<li>Now consider the second dataset. As participants were leaving the trial, they were asked if they would consider giving blood to save lives. All said yes. As part of a promotion run by the center, blood donors were asked if they would consider giving their age, sex and name to be published on the website to encourage others to give blood. All consented and data was uploaded in real time (which is represented by date and time in the dataset). Read in the second data set and explore.</li>
-</ol>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>blood_donation <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"tutorials/images/blood_donation.csv"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#make sure correct types</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>blood_donation <span class="ot">&lt;-</span> blood_donation <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex=</span> <span class="fu">as.factor</span>(sex),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">data_time =</span> <span class="fu">ymd_hms</span>(date_time))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="5" type="a">
-<li>Given this more complex data context, can you use your skills in tidyverse to identify the participants in the data?</li>
-</ol>
-<p><em>This is relatively simple. The different ages are unique in each dataset, so we can left_join by age and identify all individuals. Now all individuals are identifiable with public data information.</em></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>identified_data <span class="ot">&lt;-</span> <span class="fu">left_join</span>(blood_donation, survey_data, <span class="at">by =</span> <span class="st">"age"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="exercise-9b" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-9b">Exercise 9B</h2>
-<ol type="a">
-<li>Which variables(s) made is possible to identify individuals in the data?</li>
-</ol>
-<p><em>Age made it possible to link all cases in the two datasets. However, there are other variables (time of day and sex) that also correspond to relatively rare cells.</em></p>
-<ol start="2" type="a">
-<li>What de-identification tools would be most appropriate to solve the challenges caused by these variables?</li>
-</ol>
-<p><em>Age was the variable that caused the most immediate difficulty. We could remove it from the dataset entirely, but this would result in considerable loss of information. As one of the challenges associated with age is that there are a number of different values it can be (increasing the chance of unique values), a first step is</em> <em>aggregation</em>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>survey_data_di <span class="ot">&lt;-</span> survey_data <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">cut</span>(age,<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">30</span>,<span class="dv">45</span>,<span class="dv">65</span>,<span class="dv">100</span>))) <span class="sc">|&gt;</span> <span class="co"># break age along these lines</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>age) <span class="co">#remove age</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<ol start="3" type="a">
-<li>Is it possible to remove all possible risk? Consider the balance between reducing risk and reducing utility.</li>
-</ol>
-<p><em>There is still potential risk as the combination of time, sex and age_group will result in some small cells in the sample.</em></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>survey_data_di <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time, sex, age_group) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Freq =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Freq <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><em>There are 8 individuals that are potentially identifiable based on these cross tabulations. It would decrease the utility of the dataset to remove time and sex from the data. We could instead consider fewer age groups to create larger groups to reduce this problem. Currently there are four age groups, what if we moved to three (losing information and utility)? It’s better, but people are still identified - we’ll have to keep trying.</em></p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>survey_data_di2 <span class="ot">&lt;-</span> survey_data <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">cut</span>(age,<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">18</span>,<span class="dv">40</span>,<span class="dv">60</span>,<span class="dv">100</span>))) <span class="sc">|&gt;</span> <span class="co"># break age along these lines</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># select(-age)  |&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time, sex, age_group) <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Freq =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Freq <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>survey_data_di2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="in-your-own-time-excerise-9c" class="level2">
-<h2 class="anchored" data-anchor-id="in-your-own-time-excerise-9c">In your own time: Excerise 9C</h2>
-<ol type="a">
-<li>Can you identify individuals using your friend’s de-identified data?</li>
-</ol>
-<p><em>Assuming your friend has made the same decisions as I have, you shouldn’t be able to identify any individuals from the data.</em></p>
-<ol start="2" type="a">
-<li>Did you and your friend make the same decisions to de-identify the data? If not, what are the pros and cons of each?</li>
-</ol>
-<p><em>The approach that I took meant that I lost quite a lot of age data in order to reduce risk. Other suitable approaches would have been to create a synthetic dataset or to add a small amount of noise to age in order to make it more difficult to identify individuals.</em></p>
-<ol start="3" type="a">
-<li>How do you think peer review can assist data de-identification procedures?</li>
-</ol>
-<p><em>Peer review can be used within institutes to identify potential data risks and solutions.</em></p>
+<p><em>It seems we can be fairly confident about 282 of the authors, with another 7 having a fuzzy match. There are 70 authors that don’t match at all though. Does this mean the LLM got them wrong or I got them wrong?</em></p>
+<p><em>Looking at mismatches shows there is more work to do though. I haven’t handled my missing values or the nationalities that weren’t matched in web scraping.</em></p>
+<p><em>It may be time to try some of the methods from Task 2 (iii)! Like sampling or testing.</em></p>
+<section id="copyright-monash-university" class="level4">
+<h4 class="anchored" data-anchor-id="copyright-monash-university">Copyright Monash University</h4>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
