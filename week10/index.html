@@ -1,0 +1,2387 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="Kate Saunders">
+  <title>ETC5512</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-dfca62d0828719dab713b36730c25011.css">
+  <link rel="stylesheet" href="../assets/custom.css">
+  <link rel="stylesheet" href="../assets/lecture-01.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="etc5523-title" class="slide level2" data-background-image="images/bg-01.png">
+<h2><br><span class="monash-blue">ETC5512</span></h2>
+<h3 id="introduction-to-web-scraping">Introduction to web scraping</h3>
+<p>Lecturer: <em>Kate Saunders</em></p>
+<p>Department of Econometrics and Business Statistics</p>
+<div class="tl">
+<p><br></p>
+<ul class="fa-ul">
+<li>
+<i class="fas fa-envelope"></i>ETC5512.Clayton-x@monash.edu
+</li>
+<li>
+<i class="fas fa-calendar-alt"></i> Wild Caught Data
+</li>
+<li>
+<i class="fas fa-globe"></i> wcd.numbat.space
+</li>
+</ul>
+<p><br></p>
+</div>
+</section>
+<section id="journey-so-far" class="slide level2">
+<h2>Journey so far</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Journey</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Weeks 1 - 2: Introducing you to open data and data collection</p></li>
+<li><p>Weeks 4 - 7: Different data case studies (cakes!!!)</p></li>
+<li><p>Weeks 8 - 9: Data ethics and data privacy</p></li>
+<li><p>Week 10: <strong>Today two goals:</strong> Show you web-scraping &amp; have some fun!</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="motivation" class="slide level2">
+<h2>Motivation</h2>
+<center>
+<blockquote class="twitter-tweet" data-lang="en">
+<p lang="en" dir="ltr">
+</p><p>The most important thing I’ve ever done for learning R is to paradoxically stop “learning” (e.g.&nbsp;classes and problem sets) and start doing. Take a problem you have at work or school or a dataset you find interesting and get to work. Then write it up and post on githib or a blog. <a href="https://t.co/9aQZJRrlFK">https://t.co/9aQZJRrlFK</a></p>
+<p></p>
+<p>— We are R-Ladies (<span class="citation" data-cites="WeAreRLadies">@WeAreRLadies</span>) <a href="https://twitter.com/WeAreRLadies/status/1110229736956067840?ref_src=twsrc%5Etfw">March 25, 2019</a></p>
+</blockquote>
+<!-- <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+</center></section>
+<section id="after-my-phd---i-wanted-to-read-more" class="slide level2">
+<h2>After my PhD - I wanted to read more!</h2>
+<center>
+<iframe src="https://giphy.com/embed/WoWm8YzFQJg5i" width="480" height="351" frameborder="0" class="giphy-embed" allowfullscreen="">
+</iframe>
+<p>
+<a href="https://giphy.com/gifs/cartoons-comics-sea-reading-WoWm8YzFQJg5i"></a>
+</p>
+</center>
+<div class="fragment">
+<div style="width: 75%; margin: 0 auto;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Question</strong></p>
+</div>
+<div class="callout-content">
+<p>How should I choose what to read?</p>
+<p>I want to read different perspectives and broaden my world view.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="picking-from-lists" class="slide level2">
+<h2>Picking from lists</h2>
+
+<img data-src="images/Books1001.jpg" class="quarto-figure quarto-figure-center r-stretch"><div class="fragment">
+<div style="width: 75%; margin: 0 auto;">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Is this a good approach?</strong></p>
+</div>
+<div class="callout-content">
+<p>Am I actually reading diversely?</p>
+<p>Suspicious this might be very biased sample.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="my-approach" class="slide level2">
+<h2>My approach</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Got a question - Am I reading diversely</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Now I’m going to try to answer it!</p></li>
+<li><p>One option is to find an open data set, another is I create my own data set for analysis using web scraping</p></li>
+<li><p>I’m going to take a <a href="https://en.wikipedia.org/wiki/List_of_best-selling_books">book list of best sellers</a> and analyse the <a href="https://www.gov.uk/government/publications/nationalities/list-of-nationalities">nationalities</a> of different authors</p></li>
+<li><p>Seems simple right - Let’s see how this works out!</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="todays-lecture" class="slide level2">
+<h2>Today’s lecture</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What we’ll cover</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Cover the basics of navigating around webpages</li>
+<li>Learn about when its appropriate to scrape data</li>
+<li>Also discover the challenges of working with data from the web</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Coding Perspective:</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Learn how to read data from a webpage into R</li>
+<li>See some examples of wrapping code in functions</li>
+<li>Learn about automating a scraper</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<section id="html-basics" class="title-slide slide level1 center" data-background-color="#006DAE">
+<h1>html basics</h1>
+
+</section>
+<section id="go-to-a-webpage" class="slide level2">
+<h2>Go to a webpage</h2>
+<p><a href="https://en.wikipedia.org/wiki/Tim_Winton">Link to the wikipedia page for a famous Australian author</a></p>
+
+<img data-src="images/wiki_TimWinton.png" style="width:100.0%" class="r-stretch"></section>
+<section id="view-html-code-in-chrome" class="slide level2">
+<h2>View html code in Chrome</h2>
+<ul>
+<li>Right click the part of the page you want</li>
+<li>Select inpsect</li>
+</ul>
+
+<img data-src="images/inspect.png" style="width:100.0%" class="r-stretch"></section>
+<section id="html-code" class="slide level2">
+<h2>Html code</h2>
+<ul>
+<li>Brings up the html code</li>
+<li>Highlights the piece of html code related to your click</li>
+<li>Hover over html code to see other features of the web page</li>
+</ul>
+
+<img data-src="images/inspect_panel.png" style="width:90.0%" class="r-stretch"></section>
+<section id="inpsect-button" class="slide level2">
+<h2>Inpsect button</h2>
+<ul>
+<li>Similarly, click the top left button in the side panel</li>
+<li>Explore related features of the webpage and html code</li>
+</ul>
+
+<img data-src="images/inspect_button.png" style="width:50.0%" class="r-stretch"></section>
+<section id="basic-html-types" class="slide level2">
+<h2>Basic html types</h2>
+<p>By browsing you observe the basic <strong>structure</strong> of html webpages</p>
+<p>Opening and closing <a href="https://www.w3schools.com/tags/">tags</a> are used to wrap around content and define its purpose and appearance on a webpage.</p>
+<p>e.g.&nbsp;&lt; tag &gt; some random text &lt; /tag &gt;</p>
+<div class="fragment">
+<div style="width: 75%; margin: 0 auto;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Basic tag types</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>div - division or section<br>
+</li>
+<li>p - paragraph elements<br>
+</li>
+<li>h - heading<br>
+</li>
+<li>table - Table<br>
+</li>
+<li>td - table data<br>
+</li>
+<li>a - anchor for a hyperlink</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="breakout-session" class="slide level2">
+<h2>Breakout Session</h2>
+<div style="width: 75%; margin: 0 auto;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Try it yourself time</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Pick an author and find their wikipedia page</p></li>
+<li><p>Explore the structure of the webpage</p></li>
+<li><p>Look at the different html tags</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="web-scraping-in-r" class="title-slide slide level1 center" data-background-color="#006DAE">
+<h1>Web scraping in R</h1>
+
+</section>
+<section id="r-packages" class="slide level2">
+<h2>R Packages</h2>
+<p>There are lots of packages in R that can be used for web scraping.</p>
+<div style="width: 75%; margin: 0 auto;">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Two main R packages</strong></p>
+</div>
+<div class="callout-content">
+<p><a href="https://rvest.tidyverse.org/articles/rvest.html"><code>rvest</code></a> <em>Focus today</em><br>
+</p>
+<ul>
+<li class="fragment"><p>Great for those new to web scraping</p></li>
+<li class="fragment"><p>Works best for static web pages</p></li>
+<li class="fragment"><p>Similar coding syntax to tidyverse packages</p></li>
+</ul>
+<p><a href="https://cran.r-project.org/web/packages/RSelenium/vignettes/basics.html"><code>RSelenium</code></a></p>
+<ul>
+<li class="fragment"><p>Better for more complex tasks</p></li>
+<li class="fragment"><p>Use it when you have web pages that load dynamically (pop ups, list menus, drop downs etc)</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="read-a-webpage" class="slide level2">
+<h2>Read a webpage</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1-2|3-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb1-2"><a href=""></a><span class="fu">library</span>(rvest)</span>
+<span id="cb1-3"><a href=""></a>author_url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/Tim_Winton"</span></span>
+<span id="cb1-4"><a href=""></a>wiki_data <span class="ot">&lt;-</span> <span class="fu">read_html</span>(author_url) <span class="co"># Read the webpage into R</span></span>
+<span id="cb1-5"><a href=""></a>wiki_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{html_document}
+&lt;html class="client-nojs vector-feature-language-in-header-enabled vector-feature-language-in-main-menu-disabled vector-feature-language-in-main-page-header-disabled vector-feature-page-tools-pinned-disabled vector-feature-toc-pinned-clientpref-1 vector-feature-main-menu-pinned-disabled vector-feature-limited-width-clientpref-1 vector-feature-limited-width-content-enabled vector-feature-custom-font-size-clientpref-1 vector-feature-appearance-pinned-clientpref-1 skin-theme-clientpref-day vector-sticky-header-enabled vector-toc-available skin-theme-clientpref-thumb-standard" lang="en" dir="ltr"&gt;
+[1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+[2] &lt;body class="skin--responsive skin-vector skin-vector-search-vue mediawik ...</code></pre>
+</div>
+</div>
+</section>
+<section id="how-to-scrape-a-table---html_table" class="slide level2">
+<h2>How to scrape a table - html_table()</h2>
+<p>So we can read data from the website into R, but we need the data in a form we can use.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-code-line-numbers="1-3|4-5|6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>all_tables <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href=""></a>  <span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">FALSE</span>) <span class="co">#Get all tables on the webpage</span></span>
+<span id="cb3-3"><a href=""></a></span>
+<span id="cb3-4"><a href=""></a><span class="fu">length</span>(all_tables)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="1-3|4-5|6-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>infocard <span class="ot">=</span> all_tables <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">pluck</span>(<span class="dv">1</span>) <span class="co">#pluck out the first item in the list </span></span>
+<span id="cb5-3"><a href=""></a>infocard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+  X1                                             X2                             
+  &lt;chr&gt;                                          &lt;chr&gt;                          
+1 Tim WintonAO                                   Tim WintonAO                   
+2 Winton at the launch of Breath in London, 2008 Winton at the launch of Breath…
+3 Born                                           Timothy John Winton4 August 19…
+4 Occupation                                     Novelist                       
+5 Nationality                                    Australian                     
+6 Period                                         1982–present                   
+7 Genre                                          Literature, children's, non-fi…
+8 Notable works                                  Cloudstreet Dirt Music Breath …
+9 Notable awards                                 Miles Franklin  1984, 1992, 20…</code></pre>
+</div>
+</div>
+</section>
+<section id="other-approaches---html_elements" class="slide level2">
+<h2>Other approaches - html_elements()</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" data-code-line-numbers="1-2|3|4|6|1-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>infocard <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href=""></a> <span class="fu">html_elements</span>(<span class="st">"table"</span>) <span class="sc">|&gt;</span> <span class="co"># get all tables</span></span>
+<span id="cb7-3"><a href=""></a> <span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href=""></a> <span class="fu">pluck</span>(<span class="dv">1</span>)</span>
+<span id="cb7-5"><a href=""></a></span>
+<span id="cb7-6"><a href=""></a>infocard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+  X1                                             X2                             
+  &lt;chr&gt;                                          &lt;chr&gt;                          
+1 Tim WintonAO                                   Tim WintonAO                   
+2 Winton at the launch of Breath in London, 2008 Winton at the launch of Breath…
+3 Born                                           Timothy John Winton4 August 19…
+4 Occupation                                     Novelist                       
+5 Nationality                                    Australian                     
+6 Period                                         1982–present                   
+7 Genre                                          Literature, children's, non-fi…
+8 Notable works                                  Cloudstreet Dirt Music Breath …
+9 Notable awards                                 Miles Franklin  1984, 1992, 20…</code></pre>
+</div>
+</div>
+</section>
+<section id="other-approaches---html_element" class="slide level2">
+<h2>Other approaches - html_element()</h2>
+<p>Similarly to other functions in the tidyverse there are functions to return all matches, or just one match.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" data-code-line-numbers="2|1-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>infocard <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href=""></a> <span class="fu">html_element</span>(<span class="st">"table"</span>) <span class="sc">|&gt;</span> <span class="co"># get the first table</span></span>
+<span id="cb9-3"><a href=""></a> <span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb9-4"><a href=""></a></span>
+<span id="cb9-5"><a href=""></a>infocard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+  X1                                             X2                             
+  &lt;chr&gt;                                          &lt;chr&gt;                          
+1 Tim WintonAO                                   Tim WintonAO                   
+2 Winton at the launch of Breath in London, 2008 Winton at the launch of Breath…
+3 Born                                           Timothy John Winton4 August 19…
+4 Occupation                                     Novelist                       
+5 Nationality                                    Australian                     
+6 Period                                         1982–present                   
+7 Genre                                          Literature, children's, non-fi…
+8 Notable works                                  Cloudstreet Dirt Music Breath …
+9 Notable awards                                 Miles Franklin  1984, 1992, 20…</code></pre>
+</div>
+</div>
+</section>
+<section id="using-classes" class="slide level2">
+<h2>Using classes</h2>
+<p>We can also match specific elements on a web page using classes.</p>
+<p><code>&lt;table class="infobox vcard"&gt;</code></p>
+<p><em>Notice in the code we use dots instead of spaces in the class string.</em></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" data-code-line-numbers="2|1-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>infocard <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href=""></a>    <span class="fu">html_element</span>(<span class="st">".infobox.vcard"</span>) <span class="sc">|&gt;</span> <span class="co"># matches the specific table class</span></span>
+<span id="cb11-3"><a href=""></a>    <span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb11-4"><a href=""></a>infocard</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 2
+  X1                                             X2                             
+  &lt;chr&gt;                                          &lt;chr&gt;                          
+1 Tim WintonAO                                   Tim WintonAO                   
+2 Winton at the launch of Breath in London, 2008 Winton at the launch of Breath…
+3 Born                                           Timothy John Winton4 August 19…
+4 Occupation                                     Novelist                       
+5 Nationality                                    Australian                     
+6 Period                                         1982–present                   
+7 Genre                                          Literature, children's, non-fi…
+8 Notable works                                  Cloudstreet Dirt Music Breath …
+9 Notable awards                                 Miles Franklin  1984, 1992, 20…</code></pre>
+</div>
+</div>
+</section>
+<section id="get-the-nationality" class="slide level2">
+<h2>Get the Nationality</h2>
+<p>One more step - Need to get the nationality from the table.</p>
+<p>This just requires some basic data wrangling.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" data-code-line-numbers="1|2|3|4|1-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>author_nationality <span class="ot">=</span> infocard <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">rename</span>(<span class="at">Category =</span> X1, <span class="at">Response =</span> X2) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href=""></a>  <span class="fu">filter</span>(Category <span class="sc">==</span> <span class="st">"Nationality"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href=""></a>  <span class="fu">pull</span>(Response) </span>
+<span id="cb13-5"><a href=""></a>author_nationality</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Australian"</code></pre>
+</div>
+</div>
+<div class="fragment">
+<div style="width: 75%; margin: 0 auto;">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Real challenge</strong></p>
+</div>
+<div class="callout-content">
+<p>Can we generalise?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="breakout-session-1" class="slide level2">
+<h2>Breakout Session</h2>
+<div style="width: 75%; margin: 0 auto;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Try it yourself time</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>For the author you picked, download their infocard into R</p></li>
+<li><p>Can you get their nationality from the infocard?</p></li>
+<li><p>At your table discuss any challenges you face</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="lets-try-a-different-author" class="slide level2">
+<h2>Let’s try a different author</h2>
+<p><a href="%22https://en.wikipedia.org/wiki/Jane_Austen%22">Wikipedia page for author Jane Austen</a></p>
+
+<img data-src="images/wiki_JaneAusten.png" class="r-stretch"></section>
+<section id="lets-get-that-infocard" class="slide level2">
+<h2>Let’s get that infocard</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" data-code-line-numbers="1-3|4-7|8-12|13|1-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>author_url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/Jane_Austen"</span></span>
+<span id="cb15-2"><a href=""></a>wiki_data <span class="ot">&lt;-</span> <span class="fu">read_html</span>(author_url)</span>
+<span id="cb15-3"><a href=""></a></span>
+<span id="cb15-4"><a href=""></a>infocard <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href=""></a>  <span class="fu">html_element</span>(<span class="st">".infobox.vcard"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb15-6"><a href=""></a>  <span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb15-7"><a href=""></a></span>
+<span id="cb15-8"><a href=""></a>author_nationality <span class="ot">=</span> infocard <span class="sc">|&gt;</span></span>
+<span id="cb15-9"><a href=""></a>  <span class="fu">rename</span>(<span class="at">Category =</span> X1, <span class="at">Response =</span> X2) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href=""></a>  <span class="fu">filter</span>(Category <span class="sc">==</span> <span class="st">"Nationality"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-11"><a href=""></a>  <span class="fu">pull</span>(Response) </span>
+<span id="cb15-12"><a href=""></a></span>
+<span id="cb15-13"><a href=""></a>author_nationality <span class="co"># :( oh oh</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>character(0)</code></pre>
+</div>
+</div>
+</section>
+<section id="blocker" class="slide level2">
+<h2>Blocker!!!</h2>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>No nationality</strong> category in Jane Austen’s infocard</p>
+<p>The infocards on wikipedia do not have a standard format!</p>
+<p>This is a real barrier automation</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>But her nationality is in the webpage text.<br>
+I could just scrape her nationality from there.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="try-another-way" class="slide level2">
+<h2>Try another way</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>para_data <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">html_elements</span>(<span class="st">"p"</span>) <span class="co"># get all the paragraphs</span></span>
+<span id="cb17-3"><a href=""></a><span class="fu">head</span>(para_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{xml_nodeset (6)}
+[1] &lt;p class="mw-empty-elt"&gt;\n\n\n\n&lt;/p&gt;
+[2] &lt;p&gt;&lt;b&gt;Jane Austen&lt;/b&gt; (&lt;span class="rt-commentedText nowrap"&gt;&lt;span class= ...
+[3] &lt;p&gt;Austen's plots often explore the dependence of women on marriage for t ...
+[4] &lt;p&gt;Austen wrote major novels before the age of 22, but she was not publis ...
+[5] &lt;p&gt;Since her death Austen's novels have rarely been out of print. A signi ...
+[6] &lt;p&gt;Her novels have been frequently adapted into film and television. Nota ...</code></pre>
+</div>
+</div>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<p>But where exactly do we find her nationality in all this text?</p>
+<p>Let’s go back to exploring the webpage.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="get-the-text---html_text" class="slide level2">
+<h2>Get the text - html_text()</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19" data-code-line-numbers="1-2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>text_data <span class="ot">&lt;-</span> para_data <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href=""></a>  <span class="fu">pluck</span>(<span class="dv">2</span>) <span class="sc">|&gt;</span> <span class="co"># get the second paragraph</span></span>
+<span id="cb19-3"><a href=""></a>  <span class="fu">html_text</span>() <span class="co"># convert the html paragraph to text</span></span>
+<span id="cb19-4"><a href=""></a><span class="fu">head</span>(text_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Jane Austen (/ˈɒstɪn, ˈɔːstɪn/ OST-in, AW-stin; 16 December 1775&nbsp;– 18 July 1817) was an English writer known primarily for her six novels, which implicitly interpret, critique, and comment on the English landed gentry at the end of the 18th century.\n"</code></pre>
+</div>
+</div>
+<div class="fragment">
+<p>There are more ways we can navigate around a web page, some are very useful in combination with string handling.</p>
+</div>
+</section>
+<section id="xpath-example" class="slide level2">
+<h2>Xpath Example</h2>
+<ul>
+<li>Right click html code, copy, copy Xpath</li>
+</ul>
+
+<img data-src="images/xpath.png" class="r-stretch"></section>
+<section id="using-an-xpath" class="slide level2">
+<h2>Using an Xpath</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21" data-code-line-numbers="1-2|4|1-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>para_xpath <span class="ot">=</span> <span class="st">'//*[@id="mw-content-text"]/div/p[2]'</span></span>
+<span id="cb21-2"><a href=""></a></span>
+<span id="cb21-3"><a href=""></a>text_data <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href=""></a>  <span class="fu">html_element</span>(<span class="at">xpath =</span> para_xpath) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href=""></a>  <span class="fu">html_text</span>()</span>
+<span id="cb21-6"><a href=""></a>text_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Jane Austen (/ˈɒstɪn, ˈɔːstɪn/ OST-in, AW-stin; 16 December 1775&nbsp;– 18 July 1817) was an English writer known primarily for her six novels, which implicitly interpret, critique, and comment on the English landed gentry at the end of the 18th century.\n"</code></pre>
+</div>
+</div>
+</section>
+<section id="css-selector-example" class="slide level2">
+<h2>CSS Selector Example</h2>
+<ul>
+<li>Right click html code, copy, copy selector</li>
+</ul>
+
+<img data-src="images/css_selector.png" class="r-stretch"></section>
+<section id="using-css-id" class="slide level2">
+<h2>Using CSS ID</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" data-code-line-numbers="1-2|4|1-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>para_css <span class="ot">=</span> <span class="st">"#mw-content-text &gt; div.mw-content-ltr.mw-parser-output &gt; p:nth-child(5)"</span></span>
+<span id="cb23-2"><a href=""></a></span>
+<span id="cb23-3"><a href=""></a>text_data <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href=""></a>  <span class="fu">html_element</span>(<span class="at">css =</span> para_css) <span class="sc">|&gt;</span></span>
+<span id="cb23-5"><a href=""></a>  <span class="fu">html_text</span>()</span>
+<span id="cb23-6"><a href=""></a>text_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Jane Austen (/ˈɒstɪn, ˈɔːstɪn/ OST-in, AW-stin; 16 December 1775&nbsp;– 18 July 1817) was an English writer known primarily for her six novels, which implicitly interpret, critique, and comment on the English landed gentry at the end of the 18th century.\n"</code></pre>
+</div>
+</div>
+</section>
+<section id="back-to-getting-the-nationality" class="slide level2">
+<h2>Back to getting the nationality</h2>
+<p>Once we have our text need to do some text analysis - could use <code>str_count</code></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" data-code-line-numbers="1-2|3-5|6-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>possible_nationalities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Australian"</span>, <span class="st">"Chinese"</span>, <span class="st">"Mexican"</span>, <span class="st">"English"</span>, <span class="st">"Ethiopian"</span>)</span>
+<span id="cb25-2"><a href=""></a></span>
+<span id="cb25-3"><a href=""></a><span class="co"># Count how many time these appear in the text</span></span>
+<span id="cb25-4"><a href=""></a>count_values <span class="ot">=</span> <span class="fu">str_count</span>(text_data, possible_nationalities) </span>
+<span id="cb25-5"><a href=""></a></span>
+<span id="cb25-6"><a href=""></a><span class="co"># Get the matching nationalities</span></span>
+<span id="cb25-7"><a href=""></a>possible_nationalities[count_values <span class="sc">&gt;</span> <span class="dv">0</span>] </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "English"</code></pre>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>What do you think of my solution?</li>
+<li>Any guesses why I didn’t use <code>str_match</code>?</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="automation" class="title-slide slide level1 center" data-background-color="#006DAE">
+<h1>Automation</h1>
+
+</section>
+<section id="web-scraping-applications" class="slide level2">
+<h2>Web scraping Applications</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Examples</strong></p>
+</div>
+<div class="callout-content">
+<p>In business analytics web there are many scraping applications. Some include:</p>
+<ul>
+<li><p><strong>Competitive Intelligence</strong>: Monitoring competitors’ pricing, product offerings, and promotions in real-time</p></li>
+<li><p><strong>Market Research</strong>: Gathering customer reviews, sentiment analysis, and identifying trends</p></li>
+<li><p><strong>Price Optimisation</strong>: Analysing price points across markets to inform dynamic pricing strategies</p></li>
+<li><p><strong>Financial Analysis</strong>: Extracting economic indicators, stock performance data, and financial news for investment decisions</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="why-automate" class="slide level2">
+<h2>Why automate?</h2>
+<p>Web scrapers are used to collect data <strong>regularly, with no to minimal manual effort and typically at scale</strong>.</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Regular Timing: Setting up scrapers to run daily, weekly, or hourly</p></li>
+<li><p>Simple Notifications: Getting emails or messages when important data changes</p></li>
+<li><p>Saving Data Automatically: Storing collected data in spreadsheets or databases</p></li>
+<li><p>Error Handling: Making sure scrapers continue working when websites change</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="functions-for-automation" class="slide level2">
+<h2>Functions for automation</h2>
+<p>Let’s automate.</p>
+<p>Any code that gets repeated can be written as function.</p>
+<p>Here is a simple example of a function that adds two numbers.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" data-code-line-numbers="1|2|3|1-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>add_two_numbers <span class="ot">&lt;-</span><span class="cf">function</span>(num1, num2){</span>
+<span id="cb27-2"><a href=""></a>  number_sum <span class="ot">=</span> num1 <span class="sc">+</span> num2</span>
+<span id="cb27-3"><a href=""></a>  <span class="fu">return</span>(number_sum)</span>
+<span id="cb27-4"><a href=""></a>} </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="error-handling" class="slide level2">
+<h2>Error handling</h2>
+<p>Key to automation is carefully handling any errors. A common function for this is in R is <code>tryCatch()</code></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a>ans1 <span class="ot">=</span> <span class="fu">tryCatch</span>(<span class="fu">add_two_numbers</span>(<span class="dv">1</span>, <span class="dv">1</span>), </span>
+<span id="cb28-2"><a href=""></a>         <span class="at">error =</span> <span class="cf">function</span>(e){<span class="fu">return</span>(<span class="cn">NA</span>)})</span>
+<span id="cb28-3"><a href=""></a>ans1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a>ans2 <span class="ot">=</span> <span class="fu">tryCatch</span>(<span class="fu">add_two_numbers</span>(<span class="st">"a"</span>, <span class="dv">1</span>), </span>
+<span id="cb30-2"><a href=""></a>         <span class="at">error =</span> <span class="cf">function</span>(e){ <span class="fu">print</span>(e); <span class="fu">return</span>(<span class="cn">NA</span>)})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in num1 + num2: non-numeric argument to binary operator&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a>ans2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href=""></a>ans3 <span class="ot">=</span> <span class="fu">tryCatch</span>(<span class="fu">add_two_numbers</span>(x, <span class="dv">1</span>), </span>
+<span id="cb34-2"><a href=""></a>         <span class="at">error =</span> <span class="cf">function</span>(e){ <span class="fu">print</span>(e); <span class="fu">return</span>(<span class="st">"Your code didn't work"</span>)})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;simpleError in eval(expr, envir): object 'x' not found&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href=""></a>ans3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Your code didn't work"</code></pre>
+</div>
+</div>
+</section>
+<section id="ethical-scraping" class="slide level2">
+<h2>Ethical scraping</h2>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Just because you can scrape - doesn’t mean you should!</p>
+<p>As with any data analytics you must to think about ethics!</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Think about</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Check the terms and conditions and terms of use</p></li>
+<li><p>Look for a data licence</p></li>
+<li><p>Review the robots.txt file for the website (e.g.&nbsp;https://www.example.com/robots.txt).</p></li>
+<li><p>Be considerate of the volume of queries and query rate limit - see <code>polite</code> package in R.</p></li>
+<li><p>Am I respecting people’s data privacy?</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="breakout-session-2" class="slide level2">
+<h2>Breakout Session</h2>
+<div style="width: 75%; margin: 0 auto;">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Try it yourself time</strong></p>
+</div>
+<div class="callout-content">
+<p>Is it okay to automate data scraping from:</p>
+<ul>
+<li><p><a href="wikipedia.org">Wikipedia</a>?</p></li>
+<li><p><a href="http://www.bom.gov.au/">Australian Bureau of Meteorology</a>?</p></li>
+<li><p><a href="realestate.com.au">realestate.com.au</a>?</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="back-to-my-author-example" class="title-slide slide level1 center" data-background-color="#006DAE">
+<h1>Back to my author example</h1>
+
+</section>
+<section id="pseudo-code" class="slide level2">
+<h2>Pseudo code</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Planning ahead</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Before you start a project it can be a good idea to plan it out</p></li>
+<li><p>Pseudo code is the simplified, informal description of an algorithm</p></li>
+<li><p>Pseudo code can contain words and coding syntax</p></li>
+<li><p>Use pseudo code to identify coding building blocks / individual steps, and to identify potential problems or blockers.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="for-my-project" class="slide level2">
+<h2>For my project</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pseudo code</strong></p>
+</div>
+<div class="callout-content">
+<ol type="1">
+<li><p>Read the wiki webpage about an author.<br>
+</p></li>
+<li><p>Get the info card.<br>
+</p></li>
+<li><p>Try to get the nationality from the infocard.<br>
+</p></li>
+<li><p>If no nationality or infocard, I want to find the first paragraphs containing text.<br>
+</p></li>
+<li><p>Guess the nationality from the text.<br>
+<em>Going to need nationalities for matching.</em><br>
+</p></li>
+<li><p>Bring the above all together in a single function so I can automatatically iterate over a list of authors.<br>
+<em>Going to need my list of author web pages.</em></p></li>
+</ol>
+<p><strong>Also need to think about how I handle any errors!</strong></p>
+</div>
+</div>
+</div>
+</section>
+<section id="wrap-my-code-chunks" class="slide level2">
+<h2>Wrap my code chunks</h2>
+<ol type="1">
+<li>Want a function to read the wiki webpage about an author</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href=""></a>Read_wiki_page <span class="ot">&lt;-</span> <span class="cf">function</span>(author_url){</span>
+<span id="cb38-2"><a href=""></a>  wiki_data <span class="ot">&lt;-</span> <span class="fu">read_html</span>(author_url)</span>
+<span id="cb38-3"><a href=""></a>  <span class="fu">return</span>(wiki_data)</span>
+<span id="cb38-4"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="more-wrapping-of-code-chunks" class="slide level2">
+<h2>More wrapping of code chunks</h2>
+<ol start="2" type="1">
+<li>Want a function to read the info card.</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>Get_wiki_infocard <span class="ot">&lt;-</span> <span class="cf">function</span>(wiki_data){</span>
+<span id="cb39-2"><a href=""></a>  infocard <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb39-3"><a href=""></a>    <span class="fu">html_element</span>(<span class="st">".infobox.vcard"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb39-4"><a href=""></a>    <span class="fu">html_table</span>(<span class="at">header =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb39-5"><a href=""></a>  <span class="fu">return</span>(infocard)</span>
+<span id="cb39-6"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="more-wrapping-of-code-chunks-1" class="slide level2">
+<h2>More wrapping of code chunks</h2>
+<ol start="3" type="1">
+<li>Want a function to get the nationality from the infocard</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a>Get_nationality_from_infocard <span class="ot">&lt;-</span> <span class="cf">function</span>(infocard){</span>
+<span id="cb40-2"><a href=""></a>  nationality <span class="ot">&lt;-</span> infocard <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href=""></a>    <span class="fu">rename</span>(<span class="at">Category =</span> X1, <span class="at">Response =</span> X2) <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href=""></a>    <span class="fu">filter</span>(Category <span class="sc">==</span> <span class="st">"Nationality"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb40-5"><a href=""></a>    <span class="fu">pull</span>(Response)</span>
+<span id="cb40-6"><a href=""></a>  <span class="fu">return</span>(nationality)</span>
+<span id="cb40-7"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="more-wrapping-of-code-chunks-2" class="slide level2">
+<h2>More wrapping of code chunks</h2>
+<ol start="4" type="1">
+<li>Need a function to find the first html paragraph containing text <em>(Remember I didn’t say this was a good idea - we are learning!)</em></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>Get_first_text <span class="ot">&lt;-</span> <span class="cf">function</span>(wiki_data){</span>
+<span id="cb41-2"><a href=""></a>  </span>
+<span id="cb41-3"><a href=""></a>  paragraph_data <span class="ot">&lt;-</span> wiki_data <span class="sc">|&gt;</span></span>
+<span id="cb41-4"><a href=""></a>    <span class="fu">html_elements</span>(<span class="st">"p"</span>)</span>
+<span id="cb41-5"><a href=""></a>  </span>
+<span id="cb41-6"><a href=""></a>  i <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb41-7"><a href=""></a>  no_text <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb41-8"><a href=""></a>  <span class="cf">while</span>(no_text){</span>
+<span id="cb41-9"><a href=""></a>    </span>
+<span id="cb41-10"><a href=""></a>    text_data <span class="ot">&lt;-</span> paragraph_data <span class="sc">|&gt;</span></span>
+<span id="cb41-11"><a href=""></a>      purrr<span class="sc">::</span><span class="fu">pluck</span>(i) <span class="sc">|&gt;</span></span>
+<span id="cb41-12"><a href=""></a>      <span class="fu">html_text</span>() </span>
+<span id="cb41-13"><a href=""></a>    </span>
+<span id="cb41-14"><a href=""></a>    check_text <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">s+"</span>, <span class="st">""</span>, text_data)</span>
+<span id="cb41-15"><a href=""></a>    </span>
+<span id="cb41-16"><a href=""></a>    <span class="cf">if</span>(check_text <span class="sc">==</span> <span class="st">""</span>){ </span>
+<span id="cb41-17"><a href=""></a>      <span class="co"># keep searching </span></span>
+<span id="cb41-18"><a href=""></a>      i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span> </span>
+<span id="cb41-19"><a href=""></a>    }<span class="cf">else</span>{ </span>
+<span id="cb41-20"><a href=""></a>      <span class="co"># end the while loop</span></span>
+<span id="cb41-21"><a href=""></a>      no_text <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb41-22"><a href=""></a>    }</span>
+<span id="cb41-23"><a href=""></a>  }</span>
+<span id="cb41-24"><a href=""></a>  <span class="fu">return</span>(text_data)</span>
+<span id="cb41-25"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="more-wrapping-of-code-chunks-3" class="slide level2">
+<h2>More wrapping of code chunks</h2>
+<ol start="5" type="1">
+<li>Need another function to “guess” the nationality from the text</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>Guess_nationality_from_text <span class="ot">&lt;-</span> <span class="cf">function</span>(text_data, possible_nationalities){</span>
+<span id="cb42-2"><a href=""></a></span>
+<span id="cb42-3"><a href=""></a>  num_matches <span class="ot">&lt;-</span> <span class="fu">str_count</span>(text_data, possible_nationalities)</span>
+<span id="cb42-4"><a href=""></a></span>
+<span id="cb42-5"><a href=""></a>  prob_matches <span class="ot">&lt;-</span> num_matches<span class="sc">/</span><span class="fu">sum</span>(num_matches)</span>
+<span id="cb42-6"><a href=""></a></span>
+<span id="cb42-7"><a href=""></a>  i <span class="ot">=</span> <span class="fu">which</span>(prob_matches <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb42-8"><a href=""></a>  <span class="cf">if</span>(<span class="fu">length</span>(i) <span class="sc">==</span> <span class="dv">1</span>){</span>
+<span id="cb42-9"><a href=""></a></span>
+<span id="cb42-10"><a href=""></a>    prob_nationality <span class="ot">=</span> possible_nationalities[i]</span>
+<span id="cb42-11"><a href=""></a></span>
+<span id="cb42-12"><a href=""></a>    <span class="fu">return</span>(prob_nationality)</span>
+<span id="cb42-13"><a href=""></a>    </span>
+<span id="cb42-14"><a href=""></a>  }<span class="cf">else</span> <span class="cf">if</span>(<span class="fu">length</span>(i) <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb42-15"><a href=""></a></span>
+<span id="cb42-16"><a href=""></a>    <span class="fu">warning</span>(<span class="fu">paste</span>(<span class="fu">c</span>(<span class="st">"More than one match for the nationality:"</span>,</span>
+<span id="cb42-17"><a href=""></a>                    possible_nationalities[i], <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>), <span class="at">collapse =</span> <span class="st">" "</span>))</span>
+<span id="cb42-18"><a href=""></a></span>
+<span id="cb42-19"><a href=""></a>    likely_nationality <span class="ot">=</span> <span class="fu">which.max</span>(prob_matches)</span>
+<span id="cb42-20"><a href=""></a></span>
+<span id="cb42-21"><a href=""></a>    prob_nationality <span class="ot">=</span> possible_nationalities[likely_nationality]</span>
+<span id="cb42-22"><a href=""></a></span>
+<span id="cb42-23"><a href=""></a>    <span class="fu">return</span>(prob_nationality)</span>
+<span id="cb42-24"><a href=""></a></span>
+<span id="cb42-25"><a href=""></a>  }<span class="cf">else</span>{</span>
+<span id="cb42-26"><a href=""></a></span>
+<span id="cb42-27"><a href=""></a>    <span class="fu">return</span>(<span class="st">"No nationality matched"</span>)</span>
+<span id="cb42-28"><a href=""></a></span>
+<span id="cb42-29"><a href=""></a>  }</span>
+<span id="cb42-30"><a href=""></a></span>
+<span id="cb42-31"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="more-wrapping-of-code-chunks-4" class="slide level2">
+<h2>More wrapping of code chunks</h2>
+<ol start="6" type="1">
+<li>One function that brings that all together</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>Query_nationality_from_wiki <span class="ot">&lt;-</span> <span class="cf">function</span>(author_url, possible_nationalities){</span>
+<span id="cb43-2"><a href=""></a></span>
+<span id="cb43-3"><a href=""></a>  wiki_data <span class="ot">&lt;-</span> <span class="fu">Read_wiki_page</span>(author_url)</span>
+<span id="cb43-4"><a href=""></a></span>
+<span id="cb43-5"><a href=""></a>  infocard <span class="ot">&lt;-</span> <span class="fu">Get_wiki_infocard</span>(wiki_data)</span>
+<span id="cb43-6"><a href=""></a></span>
+<span id="cb43-7"><a href=""></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(infocard)){</span>
+<span id="cb43-8"><a href=""></a></span>
+<span id="cb43-9"><a href=""></a>    <span class="co"># missing infocard - get nationality from text </span></span>
+<span id="cb43-10"><a href=""></a>    first_paragraph <span class="ot">&lt;-</span> <span class="fu">Get_first_text</span>(wiki_data)</span>
+<span id="cb43-11"><a href=""></a></span>
+<span id="cb43-12"><a href=""></a>    nationality <span class="ot">&lt;-</span> <span class="fu">Guess_nationality_from_text</span>(first_paragraph,</span>
+<span id="cb43-13"><a href=""></a>                                               possible_nationalities)</span>
+<span id="cb43-14"><a href=""></a></span>
+<span id="cb43-15"><a href=""></a>    <span class="fu">return</span>(nationality)</span>
+<span id="cb43-16"><a href=""></a></span>
+<span id="cb43-17"><a href=""></a>  }</span>
+<span id="cb43-18"><a href=""></a></span>
+<span id="cb43-19"><a href=""></a>  <span class="cf">if</span>(<span class="fu">any</span>(infocard[,<span class="dv">1</span>] <span class="sc">==</span> <span class="st">"Nationality"</span>)){</span>
+<span id="cb43-20"><a href=""></a></span>
+<span id="cb43-21"><a href=""></a>    <span class="co"># info card exists and has nationality</span></span>
+<span id="cb43-22"><a href=""></a>    nationality <span class="ot">&lt;-</span> <span class="fu">Get_nationality_from_infocard</span>(infocard)</span>
+<span id="cb43-23"><a href=""></a></span>
+<span id="cb43-24"><a href=""></a>  }<span class="cf">else</span>{</span>
+<span id="cb43-25"><a href=""></a></span>
+<span id="cb43-26"><a href=""></a>    <span class="co"># no nationality in infocard - find nationality in text</span></span>
+<span id="cb43-27"><a href=""></a>    text_data <span class="ot">&lt;-</span> <span class="fu">Get_first_text</span>(wiki_data)</span>
+<span id="cb43-28"><a href=""></a>    nationality <span class="ot">&lt;-</span> <span class="fu">Guess_nationality_from_text</span>(text_data,</span>
+<span id="cb43-29"><a href=""></a>                                               possible_nationalities)</span>
+<span id="cb43-30"><a href=""></a></span>
+<span id="cb43-31"><a href=""></a>  }</span>
+<span id="cb43-32"><a href=""></a></span>
+<span id="cb43-33"><a href=""></a>  <span class="fu">return</span>(nationality)</span>
+<span id="cb43-34"><a href=""></a></span>
+<span id="cb43-35"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="test-our-code" class="slide level2">
+<h2>Test our code</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a>author_url <span class="ot">=</span> <span class="st">"https://en.wikipedia.org/wiki/Tim_Winton"</span></span>
+<span id="cb44-2"><a href=""></a><span class="fu">Query_nationality_from_wiki</span>(author_url, <span class="fu">c</span>(<span class="st">"English"</span>, <span class="st">"British"</span>, <span class="st">"Australian"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Australian"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>author_url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/Jane_Austen"</span></span>
+<span id="cb46-2"><a href=""></a><span class="fu">Query_nationality_from_wiki</span>(author_url , <span class="fu">c</span>(<span class="st">"English"</span>, <span class="st">"British"</span>, <span class="st">"Australian"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "English"</code></pre>
+</div>
+</div>
+</section>
+<section id="do-some-error-handling" class="slide level2">
+<h2>Do some error handling</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a>Wrapper_nationality_query <span class="ot">&lt;-</span> <span class="cf">function</span>(author_url, possible_nationalities){</span>
+<span id="cb48-2"><a href=""></a></span>
+<span id="cb48-3"><a href=""></a>  author_nationality <span class="ot">=</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb48-4"><a href=""></a>    <span class="fu">Query_nationality_from_wiki</span>(author_url, possible_nationalities),</span>
+<span id="cb48-5"><a href=""></a>    <span class="at">error =</span> <span class="cf">function</span>(e){<span class="fu">print</span>(<span class="st">"Encountered an error; returning an error code 99999"</span>); <span class="fu">return</span>(<span class="dv">99999</span>)})</span>
+<span id="cb48-6"><a href=""></a></span>
+<span id="cb48-7"><a href=""></a>  <span class="fu">return</span>(author_nationality)</span>
+<span id="cb48-8"><a href=""></a>  </span>
+<span id="cb48-9"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="test-our-code---try-to-break-it" class="slide level2">
+<h2>Test our code - try to break it</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49" data-code-line-numbers="1-3 | 4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>author_url <span class="ot">&lt;-</span> <span class="st">"not are real web address"</span></span>
+<span id="cb49-2"><a href=""></a><span class="fu">Wrapper_nationality_query</span>(author_url , <span class="fu">c</span>(<span class="st">"English"</span>, <span class="st">"British"</span>, <span class="st">"Australian"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Encountered an error; returning an error code 99999"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 99999</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52" data-code-line-numbers="1-3 | 4-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a>author_url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/Jane_Austen"</span></span>
+<span id="cb52-2"><a href=""></a><span class="fu">Wrapper_nationality_query</span>(author_url , <span class="fu">c</span>(<span class="st">"Chinese"</span>, <span class="st">"Indian"</span>, <span class="st">"Thai"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "No nationality matched"</code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="results" class="title-slide slide level1 center" data-background-color="#006DAE">
+<h1>Results</h1>
+
+</section>
+<section id="data" class="slide level2">
+<h2>Data</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Data Dictionary</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><code>author_name</code> (character string): Author name .</li>
+<li><code>author_links</code> (character string): Url for the author name scraped from the <a href="https://en.wikipedia.org/wiki/List_of_best-selling_books">wikipedia bestseller list</a>. Some of these links are invalid and will partially match <code>NA</code> or <code>character(0)</code>.</li>
+<li><code>author_nationality</code> (character string): The nationality is either taken directly from the author’s infocard on the <code>author_link</code>, or is guessed from corresponding text. If guessed, this is the nationality string that appears most often, where nationalities are matched to the list provided by the <a href="https://www.gov.uk/government/publications/nationalities/list-of-nationalities">UK government webpage</a> .</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a>author_df <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/author_df.csv"</span>) </span>
+<span id="cb54-2"><a href=""></a><span class="fu">head</span>(author_df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  author_name              author_links                              nationality
+  &lt;chr&gt;                    &lt;chr&gt;                                     &lt;chr&gt;      
+1 Charles Dickens          https://en.wikipedia.org/wiki/Charles_Di… English    
+2 Antoine de Saint-Exupéry https://en.wikipedia.org/wiki/Antoine_de… French     
+3 Paulo Coelho             https://en.wikipedia.org/wiki/Paulo_Coel… Brazilian  
+4 J. K. Rowling            https://en.wikipedia.org/wiki/J._K._Rowl… British    
+5 Agatha Christie          https://en.wikipedia.org/wiki/Agatha_Chr… English    
+6 Cao Xueqin               https://en.wikipedia.org/wiki/Cao_Xueqin  Chinese    </code></pre>
+</div>
+</div>
+</section>
+<section id="code-to-pull-it-all-together" class="slide level2">
+<h2>Code to pull it all together</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a>author_df<span class="sc">$</span>author_nationality <span class="ot">=</span> <span class="cn">NA</span></span>
+<span id="cb56-2"><a href=""></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(author_df)){</span>
+<span id="cb56-3"><a href=""></a></span>
+<span id="cb56-4"><a href=""></a>  author_url <span class="ot">=</span> author_df<span class="sc">$</span>author_links[i]</span>
+<span id="cb56-5"><a href=""></a>  author_df<span class="sc">$</span>nationality[i] <span class="ot">=</span> <span class="fu">Wrapper_nationality_query</span>(<span class="at">author_url =</span> author_url,</span>
+<span id="cb56-6"><a href=""></a>                            <span class="at">possible_nationalities =</span> nationalities_data)</span>
+<span id="cb56-7"><a href=""></a>  <span class="fu">print</span>(<span class="fu">paste</span>(i, author_df<span class="sc">$</span>author_name[i], author_df<span class="sc">$</span>nationality[i]))</span>
+<span id="cb56-8"><a href=""></a></span>
+<span id="cb56-9"><a href=""></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Here <code>nationalities_data</code> is from the UK government website.</p>
+</section>
+<section id="not-very-diverse" class="slide level2">
+<h2>Not very diverse</h2>
+<p>Imperfect analysis, but the result is clear. Heavy bias towards America and the UK.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>author_df <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"data/author_df.csv"</span>)</span>
+<span id="cb57-2"><a href=""></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">"Total bestsellers:"</span>, <span class="fu">nrow</span>(author_df)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Total bestsellers: 293"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a>author_df <span class="sc">|&gt;</span></span>
+<span id="cb59-2"><a href=""></a>  <span class="fu">count</span>(nationality) <span class="sc">|&gt;</span></span>
+<span id="cb59-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb59-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">nationality =</span> <span class="fu">if_else</span>(nationality <span class="sc">==</span> <span class="st">"99999"</span>, <span class="st">"Webpage error"</span>, nationality))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 41 × 2
+   nationality                n
+   &lt;chr&gt;                  &lt;int&gt;
+ 1 American                 112
+ 2 Webpage error             32
+ 3 British                   27
+ 4 English                   24
+ 5 Japanese                  18
+ 6 No nationality matched    11
+ 7 French                     6
+ 8 Russian                    6
+ 9 German                     5
+10 Swedish                    5
+# ℹ 31 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="code-to-get-nationality-data" class="slide level2">
+<h2>Code to get nationality data</h2>
+<p>Scrape a list of <a href="%22https://www.gov.uk/government/publications/nationalities/list-of-nationalities%22">nationalities</a> from the UK Government</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>nationalities_url <span class="ot">=</span> <span class="st">"https://www.gov.uk/government/publications/nationalities/list-of-nationalities"</span></span>
+<span id="cb61-2"><a href=""></a></span>
+<span id="cb61-3"><a href=""></a>nationalities_data <span class="ot">=</span> <span class="fu">read_html</span>(nationalities_url) <span class="sc">|&gt;</span></span>
+<span id="cb61-4"><a href=""></a>  <span class="fu">html_elements</span>(<span class="st">"td"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb61-5"><a href=""></a>  <span class="fu">html_text</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb61-6"><a href=""></a></span>
+<span id="cb61-7"><a href=""></a>not_empty <span class="ot">=</span> (nationalities_data <span class="sc">!=</span> <span class="st">""</span>)</span>
+<span id="cb61-8"><a href=""></a>nationalities_data <span class="ot">=</span> nationalities_data[not_empty]</span>
+<span id="cb61-9"><a href=""></a></span>
+<span id="cb61-10"><a href=""></a>nationalities_data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "Afghan"                            "Albanian"                         
+  [3] "Algerian"                          "American"                         
+  [5] "Andorran"                          "Angolan"                          
+  [7] "Anguillan"                         "Citizen of Antigua and Barbuda"   
+  [9] "Argentine"                         "Armenian"                         
+ [11] "Australian"                        "Austrian"                         
+ [13] "Azerbaijani"                       "Bahamian"                         
+ [15] "Bahraini"                          "Bangladeshi"                      
+ [17] "Barbadian"                         "Belarusian"                       
+ [19] "Belgian"                           "Belizean"                         
+ [21] "Beninese"                          "Bermudian"                        
+ [23] "Bhutanese"                         "Bolivian"                         
+ [25] "Citizen of Bosnia and Herzegovina" "Botswanan"                        
+ [27] "Brazilian"                         "British"                          
+ [29] "British Virgin Islander"           "Bruneian"                         
+ [31] "Bulgarian"                         "Burkinan"                         
+ [33] "Burmese"                           "Burundian"                        
+ [35] "Cambodian"                         "Cameroonian"                      
+ [37] "Canadian"                          "Cape Verdean"                     
+ [39] "Cayman Islander"                   "Central African"                  
+ [41] "Chadian"                           "Chilean"                          
+ [43] "Chinese"                           "Colombian"                        
+ [45] "Comoran"                           "Congolese (Congo)"                
+ [47] "Congolese (DRC)"                   "Cook Islander"                    
+ [49] "Costa Rican"                       "Croatian"                         
+ [51] "Cuban"                             "Cymraes"                          
+ [53] "Cymro"                             "Cypriot"                          
+ [55] "Czech"                             "Danish"                           
+ [57] "Djiboutian"                        "Dominican"                        
+ [59] "Citizen of the Dominican Republic" "Dutch"                            
+ [61] "East Timorese"                     "Ecuadorean"                       
+ [63] "Egyptian"                          "Emirati"                          
+ [65] "English"                           "Equatorial Guinean"               
+ [67] "Eritrean"                          "Estonian"                         
+ [69] "Ethiopian"                         "Faroese"                          
+ [71] "Fijian"                            "Filipino"                         
+ [73] "Finnish"                           "French"                           
+ [75] "Gabonese"                          "Gambian"                          
+ [77] "Georgian"                          "German"                           
+ [79] "Ghanaian"                          "Gibraltarian"                     
+ [81] "Greek"                             "Greenlandic"                      
+ [83] "Grenadian"                         "Guamanian"                        
+ [85] "Guatemalan"                        "Citizen of Guinea-Bissau"         
+ [87] "Guinean"                           "Guyanese"                         
+ [89] "Haitian"                           "Honduran"                         
+ [91] "Hong Konger"                       "Hungarian"                        
+ [93] "Icelandic"                         "Indian"                           
+ [95] "Indonesian"                        "Iranian"                          
+ [97] "Iraqi"                             "Irish"                            
+ [99] "Israeli"                           "Italian"                          
+[101] "Ivorian"                           "Jamaican"                         
+[103] "Japanese"                          "Jordanian"                        
+[105] "Kazakh"                            "Kenyan"                           
+[107] "Kittitian"                         "Citizen of Kiribati"              
+[109] "Kosovan"                           "Kuwaiti"                          
+[111] "Kyrgyz"                            "Lao"                              
+[113] "Latvian"                           "Lebanese"                         
+[115] "Liberian"                          "Libyan"                           
+[117] "Liechtenstein citizen"             "Lithuanian"                       
+[119] "Luxembourger"                      "Macanese"                         
+[121] "Macedonian"                        "Malagasy"                         
+[123] "Malawian"                          "Malaysian"                        
+[125] "Maldivian"                         "Malian"                           
+[127] "Maltese"                           "Marshallese"                      
+[129] "Martiniquais"                      "Mauritanian"                      
+[131] "Mauritian"                         "Mexican"                          
+[133] "Micronesian"                       "Moldovan"                         
+[135] "Monegasque"                        "Mongolian"                        
+[137] "Montenegrin"                       "Montserratian"                    
+[139] "Moroccan"                          "Mosotho"                          
+[141] "Mozambican"                        "Namibian"                         
+[143] "Nauruan"                           "Nepalese"                         
+[145] "New Zealander"                     "Nicaraguan"                       
+[147] "Nigerian"                          "Nigerien"                         
+[149] "Niuean"                            "North Korean"                     
+[151] "Northern Irish"                    "Norwegian"                        
+[153] "Omani"                             "Pakistani"                        
+[155] "Palauan"                           "Palestinian"                      
+[157] "Panamanian"                        "Papua New Guinean"                
+[159] "Paraguayan"                        "Peruvian"                         
+[161] "Pitcairn Islander"                 "Polish"                           
+[163] "Portuguese"                        "Prydeinig"                        
+[165] "Puerto Rican"                      "Qatari"                           
+[167] "Romanian"                          "Russian"                          
+[169] "Rwandan"                           "Salvadorean"                      
+[171] "Sammarinese"                       "Samoan"                           
+[173] "Sao Tomean"                        "Saudi Arabian"                    
+[175] "Scottish"                          "Senegalese"                       
+[177] "Serbian"                           "Citizen of Seychelles"            
+[179] "Sierra Leonean"                    "Singaporean"                      
+[181] "Slovak"                            "Slovenian"                        
+[183] "Solomon Islander"                  "Somali"                           
+[185] "South African"                     "South Korean"                     
+[187] "South Sudanese"                    "Spanish"                          
+[189] "Sri Lankan"                        "St Helenian"                      
+[191] "St Lucian"                         "Stateless"                        
+[193] "Sudanese"                          "Surinamese"                       
+[195] "Swazi"                             "Swedish"                          
+[197] "Swiss"                             "Syrian"                           
+[199] "Taiwanese"                         "Tajik"                            
+[201] "Tanzanian"                         "Thai"                             
+[203] "Togolese"                          "Tongan"                           
+[205] "Trinidadian"                       "Tristanian"                       
+[207] "Tunisian"                          "Turkish"                          
+[209] "Turkmen"                           "Turks and Caicos Islander"        
+[211] "Tuvaluan"                          "Ugandan"                          
+[213] "Ukrainian"                         "Uruguayan"                        
+[215] "Uzbek"                             "Vatican citizen"                  
+[217] "Citizen of Vanuatu"                "Venezuelan"                       
+[219] "Vietnamese"                        "Vincentian"                       
+[221] "Wallisian"                         "Welsh"                            
+[223] "Yemeni"                            "Zambian"                          
+[225] "Zimbabwean"                       </code></pre>
+</div>
+</div>
+</section>
+<section id="code-to-get-author-webpages-from-bestellers-list" class="slide level2">
+<h2>Code to get author webpages from bestellers list</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a>Get_url_for_author <span class="ot">&lt;-</span> <span class="cf">function</span>(author_name, scraped_table){</span>
+<span id="cb63-2"><a href=""></a></span>
+<span id="cb63-3"><a href=""></a>  search_str <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"a[title = '"</span>, author_name, <span class="st">"']"</span>)</span>
+<span id="cb63-4"><a href=""></a></span>
+<span id="cb63-5"><a href=""></a>  matching_link <span class="ot">=</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb63-6"><a href=""></a>    scraped_table <span class="sc">|&gt;</span></span>
+<span id="cb63-7"><a href=""></a>      <span class="fu">html_elements</span>(search_str) <span class="sc">|&gt;</span></span>
+<span id="cb63-8"><a href=""></a>      <span class="fu">html_attr</span>(<span class="st">"href"</span>),</span>
+<span id="cb63-9"><a href=""></a>    <span class="at">error =</span> <span class="cf">function</span>(e) { <span class="cn">NA</span> })</span>
+<span id="cb63-10"><a href=""></a></span>
+<span id="cb63-11"><a href=""></a>  <span class="fu">return</span>(matching_link)</span>
+<span id="cb63-12"><a href=""></a></span>
+<span id="cb63-13"><a href=""></a>}</span>
+<span id="cb63-14"><a href=""></a></span>
+<span id="cb63-15"><a href=""></a>Get_url_from_html_table <span class="ot">&lt;-</span> <span class="cf">function</span>(scraped_table){</span>
+<span id="cb63-16"><a href=""></a></span>
+<span id="cb63-17"><a href=""></a>  <span class="cf">if</span>(<span class="fu">is.list</span>(scraped_table)) scraped_table <span class="ot">=</span> scraped_table <span class="sc">|&gt;</span> <span class="fu">pluck</span>(<span class="dv">1</span>)</span>
+<span id="cb63-18"><a href=""></a></span>
+<span id="cb63-19"><a href=""></a>  <span class="co"># get the html table entries</span></span>
+<span id="cb63-20"><a href=""></a>  table_entries <span class="ot">=</span> scraped_table <span class="sc">|&gt;</span></span>
+<span id="cb63-21"><a href=""></a>    <span class="fu">html_elements</span>(<span class="st">"td"</span>)</span>
+<span id="cb63-22"><a href=""></a></span>
+<span id="cb63-23"><a href=""></a>  <span class="co"># make the table a data frame in R</span></span>
+<span id="cb63-24"><a href=""></a>  table_df <span class="ot">=</span> scraped_table <span class="sc">|&gt;</span></span>
+<span id="cb63-25"><a href=""></a>    <span class="fu">html_table</span>()</span>
+<span id="cb63-26"><a href=""></a>  author_vec <span class="ot">=</span> table_df<span class="sc">$</span><span class="st">`</span><span class="at">Author(s)</span><span class="st">`</span></span>
+<span id="cb63-27"><a href=""></a></span>
+<span id="cb63-28"><a href=""></a>  <span class="co"># get the table dimensions</span></span>
+<span id="cb63-29"><a href=""></a>  table_dim <span class="ot">=</span> table_df <span class="sc">|&gt;</span></span>
+<span id="cb63-30"><a href=""></a>    <span class="fu">dim</span>()</span>
+<span id="cb63-31"><a href=""></a>  nrows <span class="ot">=</span> table_dim[<span class="dv">1</span>]</span>
+<span id="cb63-32"><a href=""></a>  ncols <span class="ot">=</span> table_dim[<span class="dv">2</span>]</span>
+<span id="cb63-33"><a href=""></a></span>
+<span id="cb63-34"><a href=""></a>  <span class="co"># the authors are in the second row, so get the cell indexes</span></span>
+<span id="cb63-35"><a href=""></a>  cell_indexes <span class="ot">=</span> <span class="fu">seq</span>(<span class="dv">2</span>, nrows<span class="sc">*</span>ncols, <span class="at">by =</span> ncols)</span>
+<span id="cb63-36"><a href=""></a>  <span class="cf">if</span>(nrows<span class="sc">*</span>ncols <span class="sc">==</span> <span class="fu">length</span>(table_entries)){</span>
+<span id="cb63-37"><a href=""></a></span>
+<span id="cb63-38"><a href=""></a>    author_links <span class="ot">=</span> table_entries[cell_indexes] <span class="sc">|&gt;</span></span>
+<span id="cb63-39"><a href=""></a>      <span class="fu">html_element</span>(<span class="st">"a"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb63-40"><a href=""></a>      <span class="fu">html_attr</span>(<span class="st">"href"</span>)</span>
+<span id="cb63-41"><a href=""></a></span>
+<span id="cb63-42"><a href=""></a>  }<span class="cf">else</span>{</span>
+<span id="cb63-43"><a href=""></a></span>
+<span id="cb63-44"><a href=""></a>  <span class="co"># however, some tables aren't standard for</span></span>
+<span id="cb63-45"><a href=""></a>  <span class="co"># for this we need a different function</span></span>
+<span id="cb63-46"><a href=""></a>  author_links <span class="ot">=</span> <span class="fu">sapply</span>(author_vec, Get_url_for_author, scraped_table)</span>
+<span id="cb63-47"><a href=""></a></span>
+<span id="cb63-48"><a href=""></a>  }</span>
+<span id="cb63-49"><a href=""></a></span>
+<span id="cb63-50"><a href=""></a>  author_links <span class="ot">=</span> <span class="fu">paste0</span>(<span class="st">"https://en.wikipedia.org"</span>, author_links)</span>
+<span id="cb63-51"><a href=""></a>  author_df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">author_name =</span> author_vec, author_links)</span>
+<span id="cb63-52"><a href=""></a></span>
+<span id="cb63-53"><a href=""></a>  <span class="fu">return</span>(author_df)</span>
+<span id="cb63-54"><a href=""></a></span>
+<span id="cb63-55"><a href=""></a>}</span>
+<span id="cb63-56"><a href=""></a></span>
+<span id="cb63-57"><a href=""></a><span class="do">## Code to scrape the best sellers webpage </span></span>
+<span id="cb63-58"><a href=""></a></span>
+<span id="cb63-59"><a href=""></a>bestsellers_url <span class="ot">&lt;-</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_best-selling_books"</span></span>
+<span id="cb63-60"><a href=""></a>wiki_bestseller_tables <span class="ot">=</span> <span class="fu">read_html</span>(bestsellers_url) <span class="sc">|&gt;</span></span>
+<span id="cb63-61"><a href=""></a>  <span class="fu">html_elements</span>(<span class="st">"table.wikitable"</span>)</span>
+<span id="cb63-62"><a href=""></a></span>
+<span id="cb63-63"><a href=""></a><span class="fu">warning</span>(<span class="st">"Hard code to avoid unwanted tables - don't want the dictionary!"</span>)</span>
+<span id="cb63-64"><a href=""></a>wiki_bestseller_tables_relevant <span class="ot">=</span> wiki_bestseller_tables[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>]</span>
+<span id="cb63-65"><a href=""></a></span>
+<span id="cb63-66"><a href=""></a>author_df <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb63-67"><a href=""></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(wiki_bestseller_tables_relevant)){</span>
+<span id="cb63-68"><a href=""></a>  result <span class="ot">=</span> <span class="fu">Get_url_from_html_table</span>(wiki_bestseller_tables_relevant[i])</span>
+<span id="cb63-69"><a href=""></a>  author_df <span class="ot">=</span> <span class="fu">bind_rows</span>(author_df, result)</span>
+<span id="cb63-70"><a href=""></a>}</span>
+<span id="cb63-71"><a href=""></a></span>
+<span id="cb63-72"><a href=""></a>author_df<span class="sc">$</span>author_links</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "https://en.wikipedia.org/wiki/Charles_Dickens"                                             
+  [2] "https://en.wikipedia.org/wiki/Antoine_de_Saint-Exup%C3%A9ry"                               
+  [3] "https://en.wikipedia.org/wiki/Paulo_Coelho"                                                
+  [4] "https://en.wikipedia.org/wiki/J._K._Rowling"                                               
+  [5] "https://en.wikipedia.org/wiki/Agatha_Christie"                                             
+  [6] "https://en.wikipedia.org/wiki/Cao_Xueqin"                                                  
+  [7] "https://en.wikipedia.org/wiki/J._R._R._Tolkien"                                            
+  [8] "https://en.wikipedia.org/wiki/Lewis_Carroll"                                               
+  [9] "https://en.wikipedia.org/wiki/H._Rider_Haggard"                                            
+ [10] "https://en.wikipedia.org/wiki/Dan_Brown"                                                   
+ [11] "https://en.wikipedia.org/wiki/J._K._Rowling"                                               
+ [12] "https://en.wikipedia.org/wiki/J._D._Salinger"                                              
+ [13] "https://en.wikipedia.org/wiki/J._K._Rowling"                                               
+ [14] "https://en.wikipedia.org/wiki/J._K._Rowling"                                               
+ [15] "https://en.wikipedia.org/wiki/J._K._Rowling"                                               
+ [16] "https://en.wikipedia.org/wiki/J._K._Rowling"                                               
+ [17] "https://en.wikipedia.org/wiki/J._K._Rowling"                                               
+ [18] "https://en.wikipedia.org/wiki/Jostein_Gaarder"                                             
+ [19] "https://en.wikipedia.org/wiki/Robert_James_Waller"                                         
+ [20] "https://en.wikipedia.org/wiki/Gabriel_Garc%C3%ADa_M%C3%A1rquez"                            
+ [21] "https://en.wikipedia.org/wiki/Vladimir_Nabokov"                                            
+ [22] "https://en.wikipedia.org/wiki/Johanna_Spyri"                                               
+ [23] "https://en.wikipedia.org/wiki/Benjamin_Spock"                                              
+ [24] "https://en.wikipedia.org/wiki/Lucy_Maud_Montgomery"                                        
+ [25] "https://en.wikipedia.org/wiki/Anna_Sewell"                                                 
+ [26] "https://en.wikipedia.org/wiki/Umberto_Eco"                                                 
+ [27] "https://en.wikipedia.org/wiki/Jack_Higgins"                                                
+ [28] "https://en.wikipedia.org/wiki/Richard_Adams"                                               
+ [29] "https://en.wikipedia.org/wiki/Shere_Hite"                                                  
+ [30] "https://en.wikipedia.org/wiki/E._B._White"                                                 
+ [31] "https://en.wikipedia.org/wiki/J._P._Donleavy"                                              
+ [32] "https://en.wikipedia.org/wiki/Rick_Warren"                                                 
+ [33] "https://en.wikipedia.org/wiki/Beatrix_Potter"                                              
+ [34] "https://en.wikipedia.org/wiki/Richard_Bach"                                                
+ [35] "https://en.wikipedia.org/wiki/Eric_Carle"                                                  
+ [36] "https://en.wikipedia.org/wiki/Elbert_Hubbard"                                              
+ [37] "https://en.wikipedia.org/wiki/Harper_Lee"                                                  
+ [38] "https://en.wikipedia.org/wiki/V._C._Andrews"                                               
+ [39] "https://en.wikipedia.org/wiki/Carl_Sagan"                                                  
+ [40] "https://en.wikipedia.org/wiki/Dan_Brown"                                                   
+ [41] "https://en.wikipedia.org/wiki/Bill_W."                                                     
+ [42] "https://en.wikipedia.org/wiki/Jeffrey_Archer"                                              
+ [43] "https://en.wikipedia.org/wiki/Erica_Jong"                                                  
+ [44] "https://en.wikipedia.org/wiki/Nikolai_Ostrovsky"                                           
+ [45] "https://en.wikipedia.org/wiki/Leo_Tolstoy"                                                 
+ [46] "https://en.wikipedia.org/wiki/Carlo_Collodi"                                               
+ [47] "https://en.wikipedia.org/wiki/Anne_Frank"                                                  
+ [48] "https://en.wikipedia.org/wiki/Wayne_Dyer"                                                  
+ [49] "https://en.wikipedia.org/wiki/Colleen_McCullough"                                          
+ [50] "https://en.wikipedia.org/wiki/Khaled_Hosseini"                                             
+ [51] "https://en.wikipedia.org/wiki/Jacqueline_Susann"                                           
+ [52] "https://en.wikipedia.org/wiki/Dale_Carnegie"                                               
+ [53] "https://en.wikipedia.org/wiki/F._Scott_Fitzgerald"                                         
+ [54] "https://en.wikipedia.org/wiki/Margaret_Mitchell"                                           
+ [55] "https://en.wikipedia.org/wiki/Daphne_du_Maurier"                                           
+ [56] "https://en.wikipedia.org/wiki/William_Bradford_Huie"                                       
+ [57] "https://en.wikipedia.org/wiki/Stieg_Larsson"                                               
+ [58] "https://en.wikipedia.org/wiki/Dan_Brown"                                                   
+ [59] "https://en.wikipedia.org/wiki/Suzanne_Collins"                                             
+ [60] "https://en.wikipedia.org/wiki/Roald_Dahl"                                                  
+ [61] "https://en.wikipedia.org/wiki/Lew_Wallace"                                                 
+ [62] "https://en.wikipedia.org/wiki/Alexander_Alexandrovich_Fadeyev"                             
+ [63] "https://en.wikipedia.org/wiki/Spencer_Johnson_(writer)"                                    
+ [64] "https://en.wikipedia.org/wiki/Stephen_Hawking"                                             
+ [65] "https://en.wikipedia.org/wiki/Jacques-Henri_Bernardin_de_Saint-Pierre"                     
+ [66] "https://en.wikipedia.org/wiki/Irving_Stone"                                                
+ [67] "https://en.wikipedia.org/wiki/Kenneth_Grahame"                                             
+ [68] "https://en.wikipedia.org/wiki/Stephen_R._Covey"                                            
+ [69] "https://en.wikipedia.org/wiki/Tetsuko_Kuroyanagi"                                          
+ [70] "https://en.wikipedia.org/wiki/Mikhail_Sholokhov"                                           
+ [71] "https://en.wikipedia.org/wiki/James_Redfield"                                              
+ [72] "https://en.wikipedia.org/wiki/John_Green"                                                  
+ [73] "https://en.wikipedia.org/wiki/Paula_Hawkins_(author)"                                      
+ [74] "https://en.wikipedia.org/wiki/William_P._Young"                                            
+ [75] "https://en.wikipedia.org/wiki/Sergey_Mikhalkov"                                            
+ [76] "https://en.wikipedia.org/wiki/Mario_Puzo"                                                  
+ [77] "https://en.wikipedia.org/wiki/Erich_Segal"                                                 
+ [78] "https://en.wikipedia.org/wiki/Suzanne_Collins"                                             
+ [79] "https://en.wikipedia.org/wiki/Suzanne_Collins"                                             
+ [80] "https://en.wikipedia.org/wiki/Banana_Yoshimoto"                                            
+ [81] "https://en.wikipedia.org/wiki/Ivan_Yefremov"                                               
+ [82] "https://en.wikipedia.org/wiki/Gillian_Flynn"                                               
+ [83] "https://en.wikipedia.org/wiki/Charles_Berlitz"                                             
+ [84] "https://en.wikipedia.org/wiki/Chinua_Achebe"                                               
+ [85] "https://en.wikipedia.org/wiki/Jiang_Rong"                                                  
+ [86] "https://en.wikipedia.org/wiki/Xaviera_Hollander"                                           
+ [87] "https://en.wikipedia.org/wiki/Peter_Benchley"                                              
+ [88] "https://en.wikipedia.org/wiki/Robert_Munsch"                                               
+ [89] "https://en.wikipedia.org/wiki/Marilyn_French"                                              
+ [90] "https://en.wikipedia.org/wiki/Arlene_Eisenberg"                                            
+ [91] "https://en.wikipedia.org/wiki/Mark_Twain"                                                  
+ [92] "https://en.wikipedia.org/wiki/Sue_Townsend"                                                
+ [93] "https://en.wikipedia.org/wiki/Jane_Austen"                                                 
+ [94] "https://en.wikipedia.org/wiki/Thor_Heyerdahl"                                              
+ [95] "https://en.wikipedia.org/wiki/Jaroslav_Ha%C5%A1ek"                                         
+ [96] "https://en.wikipedia.org/wiki/Maurice_Sendak"                                              
+ [97] "https://en.wikipedia.org/wiki/Norman_Vincent_Peale"                                        
+ [98] "https://en.wikipedia.org/wiki/Rhonda_Byrne"                                                
+ [99] "https://en.wikipedia.org/wiki/Frank_Herbert"                                               
+[100] "https://en.wikipedia.org/wiki/Roald_Dahl"                                                  
+[101] "https://en.wikipedia.org/wiki/Desmond_Morris"                                              
+[102] "https://en.wikipedia.org/wiki/Natsume_S%C5%8Dseki"                                         
+[103] "https://en.wikipedia.org/wiki/Delia_Owens"                                                 
+[104] "https://en.wikipedia.org/wiki/Susanna_Tamaro"                                              
+[105] "https://en.wikipedia.org/wiki/Roald_Dahl"                                                  
+[106] "https://en.wikipedia.org/wiki/Markus_Zusak"                                                
+[107] "https://en.wikipedia.org/wiki/Nicholas_Evans"                                              
+[108] "https://en.wikipedia.org/wiki/Margaret_Wise_Brown"                                         
+[109] "https://en.wikipedia.org/wiki/Michael_Ende"                                                
+[110] "https://en.wikipedia.org/wiki/Anthony_Doerr"                                               
+[111] "https://en.wikipedia.org/wiki/E._L._James"                                                 
+[112] "https://en.wikipedia.org/wiki/S._E._Hinton"                                                
+[113] "https://en.wikipedia.org/wiki/Sam_McBratney"                                               
+[114] "https://en.wikipedia.org/wiki/James_Clavell"                                               
+[115] "https://en.wikipedia.org/wiki/Janette_Sebring_Lowrey"                                      
+[116] "https://en.wikipedia.org/wiki/Ken_Follett"                                                 
+[117] "https://en.wikipedia.org/wiki/Patrick_S%C3%BCskind"                                        
+[118] "https://en.wikipedia.org/wiki/John_Steinbeck"                                              
+[119] "https://en.wikipedia.org/wiki/Carlos_Ruiz_Zaf%C3%B3n"                                      
+[120] "https://en.wikipedia.org/wiki/Jhumpa_Lahiri"                                               
+[121] "https://en.wikipedia.org/wiki/Michelle_Obama"                                              
+[122] "https://en.wikipedia.org/wiki/Douglas_Adams"                                               
+[123] "https://en.wikipedia.org/wiki/Mitch_Albom"                                                 
+[124] "https://en.wikipedia.org/wiki/Erskine_Caldwell"                                            
+[125] "https://en.wikipedia.org/wiki/Madeleine_L%27Engle"                                         
+[126] "https://en.wikipedia.org/wiki/Nelson_Mandela"                                              
+[127] "https://en.wikipedia.org/wiki/Ernest_Hemingway"                                            
+[128] "https://en.wikipedia.org/wiki/Raymond_Moody"                                               
+[129] "https://en.wikipedia.org/wiki/Michael_Ende"                                                
+[130] "https://en.wikipedia.org/wiki/Grace_Metalious"                                             
+[131] "https://en.wikipedia.org/wiki/Lois_Lowry"                                                  
+[132] "https://en.wikipedia.org/wiki/Jojo_Moyes"                                                  
+[133] "https://en.wikipedia.org/wiki/Haruki_Murakami"                                             
+[134] "https://en.wikipedia.org/wiki/Albert_Camus"                                                
+[135] "https://en.wikipedia.org/wiki/Osamu_Dazai"                                                 
+[136] "https://en.wikipedia.org/wiki/Viktor_Frankl"                                               
+[137] "https://en.wikipedia.org/wiki/Mark_Manson"                                                 
+[138] "https://en.wikipedia.org/wiki/Dante_Alighieri"                                             
+[139] "https://en.wikipedia.org/wiki/Lynley_Dodd"                                                 
+[140] "https://en.wikipedia.org/wiki/Kahlil_Gibran"                                               
+[141] "https://en.wikipedia.org/wiki/John_Boyne"                                                  
+[142] "https://en.wikipedia.org/wiki/William_Peter_Blatty"                                        
+[143] "https://en.wikipedia.org/wiki/Julia_Donaldson"                                             
+[144] "https://en.wikipedia.org/wiki/E._L._James"                                                 
+[145] "https://en.wikipedia.org/wiki/Erskine_Caldwell"                                            
+[146] "https://en.wikipedia.org/wiki/Astrid_Lindgren"                                             
+[147] "https://en.wikipedia.org/wiki/Dr._Seuss"                                                   
+[148] "https://en.wikipedia.org/wiki/Andrew_Morton_(writer)"                                      
+[149] "https://en.wikipedia.org/wiki/Kathryn_Stockett"                                            
+[150] "https://en.wikipedia.org/wiki/Joseph_Heller"                                               
+[151] "https://en.wikipedia.org/wiki/Albert_Camus"                                                
+[152] "https://en.wikipedia.org/wiki/Ken_Follett"                                                 
+[153] "https://en.wikipedia.org/wiki/Alice_Sebold"                                                
+[154] "https://en.wikipedia.org/wiki/Jung_Chang"                                                  
+[155] "https://en.wikipedia.org/wiki/Tom%C3%A1s_Eloy_Mart%C3%ADnez"                               
+[156] "https://en.wikipedia.org/wiki/Elie_Wiesel"                                                 
+[157] "https://en.wikipedia.org/wiki/Yu_Dan_(academic)"                                           
+[158] "https://en.wikipedia.org/wiki/Marabel_Morgan"                                              
+[159] "https://en.wikipedia.org/wiki/Taichi_Sakaiya"                                              
+[160] "https://en.wikipedia.org/wiki/Xue_Muqiao"                                                  
+[161] "https://en.wikipedia.org/wiki/Richard_Nelson_Bolles"                                       
+[162] "https://en.wikipedia.org/wiki/Pierre_Dukan"                                                
+[163] "https://en.wikipedia.org/wiki/Alex_Comfort"                                                
+[164] "https://en.wikipedia.org/wiki/Robert_L._Short"                                             
+[165] "https://en.wikipedia.org/wiki/Yann_Martel"                                                 
+[166] "https://en.wikipedia.org/wiki/Patricia_Nell_Warren"                                        
+[167] "https://en.wikipedia.org/wiki/Eliyahu_M._Goldratt"                                         
+[168] "https://en.wikipedia.org/wiki/Ray_Bradbury"                                                
+[169] "https://en.wikipedia.org/wiki/Frank_McCourt"                                               
+[170] "https://en.wikipedia.org/wiki/Mohandas_Karamchand_Gandhi"                                  
+[171] "https://en.wikipedia.org/wiki/Helen_Fielding"                                              
+[172] "https://en.wikipedia.org/wiki/Colleen_Hoover"                                              
+[173] "https://en.wikipedia.org/wiki/Elena_Ferrante"                                              
+[174] "https://en.wikipedia.org/wiki/J._K._Rowling"                                               
+[175] "https://en.wikipedia.org/wiki/R._L._Stine"                                                 
+[176] "https://en.wikipedia.org/wiki/Erle_Stanley_Gardner"                                        
+[177] "https://en.wikipedia.org/wiki/Jeff_Kinney_(writer)"                                        
+[178] "https://en.wikipedia.org/wiki/Stan_and_Jan_Berenstain"                                     
+[179] "https://en.wikipedia.orgNA"                                                                
+[180] "https://en.wikipedia.org/wiki/Francine_Pascal"                                             
+[181] "https://en.wikipedia.org/wiki/Enid_Blyton"                                                 
+[182] "https://en.wikipedia.org/wiki/Lee_Child"                                                   
+[183] "https://en.wikipedia.org/wiki/Wilbert_Awdry"                                               
+[184] "https://en.wikipedia.org/wiki/Carolyn_Keene"                                               
+[185] "https://en.wikipedia.org/wiki/Fr%C3%A9d%C3%A9ric_Dard"                                     
+[186] "https://en.wikipedia.org/wiki/Dan_Brown"                                                   
+[187] "https://en.wikipedia.org/wiki/Elisabetta_Dami"                                             
+[188] "https://en.wikipedia.org/wiki/Rick_Riordan"                                                
+[189] "https://en.wikipedia.org/wiki/Ann_M._Martin"                                               
+[190] "https://en.wikipedia.orgNA"                                                                
+[191] "https://en.wikipedia.org/wiki/Stephenie_Meyer"                                             
+[192] "https://en.wikipedia.orgNA"                                                                
+[193] "https://en.wikipedia.org/wiki/Mercer_Mayer"                                                
+[194] "https://en.wikipedia.org/wiki/Beatrix_Potter"                                              
+[195] "https://en.wikipedia.org/wiki/E._L._James"                                                 
+[196] "https://en.wikipedia.org/wiki/Jack_Canfield"                                               
+[197] "https://en.wikipedia.org/wiki/Norman_Bridwell"                                             
+[198] "https://en.wikipedia.org/wiki/Gilbert_Patten"                                              
+[199] "https://en.wikipedia.org/wiki/Clive_Cussler"                                               
+[200] "https://en.wikipedia.org/wiki/Eiji_Yoshikawa"                                              
+[201] "https://en.wikipedia.org/wiki/C._S._Lewis"                                                 
+[202] "https://en.wikipedia.org/wiki/Roger_Hargreaves"                                            
+[203] "https://en.wikipedia.org/wiki/G%C3%A9rard_de_Villiers"                                     
+[204] "https://en.wikipedia.org/wiki/Suzanne_Collins"                                             
+[205] "https://en.wikipedia.org/wiki/Ian_Fleming"                                                 
+[206] "https://en.wikipedia.org/wiki/Gilbert_Delahaye"                                            
+[207] "https://en.wikipedia.org/wiki/Stieg_Larsson"                                               
+[208] "https://en.wikipedia.org/wiki/George_R._R._Martin"                                         
+[209] "https://en.wikipedia.org/wiki/Robert_Jordan"                                               
+[210] "https://en.wikipedia.org/wiki/Terry_Pratchett"                                             
+[211] "https://en.wikipedia.org/wiki/Dick_Bruna"                                                  
+[212] "https://en.wikipedia.org/wiki/James_Patterson"                                             
+[213] "https://en.wikipedia.org/wiki/Takashi_Yanase"                                              
+[214] "https://en.wikipedia.org/wiki/Dav_Pilkey"                                                  
+[215] "https://en.wikipedia.org/wiki/R._L._Stine"                                                 
+[216] "https://en.wikipedia.org/wiki/Astrid_Lindgren"                                             
+[217] "https://en.wikipedia.org/wiki/Anne_Rice"                                                   
+[218] "https://en.wikipedia.org/wiki/Jean_Bruce"                                                  
+[219] "https://en.wikipedia.org/wiki/A._A._Milne"                                                 
+[220] "https://en.wikipedia.org/wiki/Mary_Pope_Osborne"                                           
+[221] "https://en.wikipedia.org/wiki/Tim_LaHaye"                                                  
+[222] "https://en.wikipedia.org/wiki/Lemony_Snicket"                                              
+[223] "https://en.wikipedia.org/wiki/Marc_Brown_(author)"                                         
+[224] "https://en.wikipedia.org/wiki/Laura_Ingalls_Wilder"                                        
+[225] "https://en.wikipedia.org/wiki/James_Herriot"                                               
+[226] "https://en.wikipedia.org/wiki/Joanna_Cole_(author)"                                        
+[227] "https://en.wikipedia.org/wiki/Martin_Handford"                                             
+[228] "https://en.wikipedia.org/wiki/John_Gray_(U.S._author)"                                     
+[229] "https://en.wikipedia.org/wiki/Franklin_W._Dixon"                                           
+[230] "https://en.wikipedia.org/wiki/Laura_Lee_Hope"                                              
+[231] "https://en.wikipedia.org/wiki/Edgar_Rice_Burroughs"                                        
+[232] "https://en.wikipedia.org/wiki/Cassandra_Clare"                                             
+[233] "https://en.wikipedia.org/wiki/Jean_M._Auel"                                                
+[234] "https://en.wikipedia.orgNA"                                                                
+[235] "https://en.wikipedia.org/wiki/Barbara_Park"                                                
+[236] "https://en.wikipedia.org/wiki/Michael_Connelly"                                            
+[237] "https://en.wikipedia.org/wiki/Jo_Nesb%C3%B8"                                               
+[238] "https://en.wikipedia.org/wiki/Erin_Hunter"                                                 
+[239] "https://en.wikipedia.org/w/index.php?title=Liu_Zhixia&amp;action=edit&amp;redlink=1"               
+[240] "https://en.wikipedia.org/wiki/Yutaka_Hara"                                                 
+[241] "https://en.wikipedia.org/wiki/Michael_Bond"                                                
+[242] "https://en.wikipedia.org/wiki/K_A_Applegate"                                               
+[243] "https://en.wikipedia.org/wiki/Veronica_Roth"                                               
+[244] "https://en.wikipedia.org/wiki/Sachiko_Kiyono"                                              
+[245] "https://en.wikipedia.org/wiki/Kaoru_Kurimoto"                                              
+[246] "https://en.wikipedia.org/wiki/Christopher_Paolini"                                         
+[247] "https://en.wikipedia.org/wiki/Robert_Kiyosaki"                                             
+[248] "https://en.wikipedia.org/wiki/Kazuma_Kamachi"                                              
+[249] "https://en.wikipedia.org/wiki/S%C5%8Dhachi_Yamaoka"                                        
+[250] "https://en.wikipedia.org/wiki/Beverly_Cleary"                                              
+[251] "https://en.wikipedia.org/wiki/Stephen_King"                                                
+[252] "https://en.wikipedia.org/wiki/Rachel_Renee_Russell"                                        
+[253] "https://en.wikipedia.org/wiki/Warren_Murphy"                                               
+[254] "https://en.wikipedia.org/wiki/Christian_Jacq"                                              
+[255] "https://en.wikipedia.org/wiki/Liu_Cixin"                                                   
+[256] "https://en.wikipedia.org/wiki/Jir%C5%8D_Akagawa"                                           
+[257] "https://en.wikipedia.orgcharacter(0)"                                                      
+[258] "https://en.wikipedia.org/wiki/Terry_Brooks"                                                
+[259] "https://en.wikipedia.org/wiki/Henning_Mankell"                                             
+[260] "https://en.wikipedia.org/wiki/Margit_Sandemo"                                              
+[261] "https://en.wikipedia.org/wiki/Terry_Goodkind"                                              
+[262] "https://en.wikipedia.org/wiki/Diana_Gabaldon"                                              
+[263] "https://en.wikipedia.org/wiki/Masamoto_Nasu"                                               
+[264] "https://en.wikipedia.org/wiki/Sh%C5%8Dtar%C5%8D_Ikenami"                                   
+[265] "https://en.wikipedia.orgcharacter(0)"                                                      
+[266] "https://en.wikipedia.org/wiki/Arthur_Agatston"                                             
+[267] "https://en.wikipedia.org/wiki/Philip_Pullman"                                              
+[268] "https://en.wikipedia.org/wiki/Reki_Kawahara"                                               
+[269] "https://en.wikipedia.org/wiki/Ry%C5%8Dtar%C5%8D_Shiba"                                     
+[270] "https://en.wikipedia.org/wiki/Eoin_Colfer"                                                 
+[271] "https://en.wikipedia.org/wiki/Brandon_Sanderson"                                           
+[272] "https://en.wikipedia.org/wiki/Frank_Herbert"                                               
+[273] "https://en.wikipedia.org/wiki/Lauren_Tarshis"                                              
+[274] "https://en.wikipedia.orgcharacter(0)"                                                      
+[275] "https://en.wikipedia.org/wiki/Brian_Jacques"                                               
+[276] "https://en.wikipedia.org/wiki/Lucy_Cousins"                                                
+[277] "https://en.wikipedia.orgcharacter(0)"                                                      
+[278] "https://en.wikipedia.orgcharacter(0)"                                                      
+[279] "https://en.wikipedia.org/wiki/Hiroyuki_Itsuki"                                             
+[280] "https://en.wikipedia.org/wiki/Hajime_Kanzaka"                                              
+[281] "https://en.wikipedia.org/wiki/Isaac_Asimov"                                                
+[282] "https://en.wikipedia.org/wiki/Terry_Deary"                                                 
+[283] "https://en.wikipedia.org/wiki/Daisy_Meadows"                                               
+[284] "https://en.wikipedia.org/wiki/Louis_Masterson"                                             
+[285] "https://en.wikipedia.org/wiki/Charlaine_Harris"                                            
+[286] "https://en.wikipedia.org/wiki/Lester_Dent"                                                 
+[287] "https://en.wikipedia.org/wiki/Nagaru_Tanigawa"                                             
+[288] "https://en.wikipedia.org/w/index.php?title=Anita_G%C5%82owi%C5%84ska&amp;action=edit&amp;redlink=1"
+[289] "https://en.wikipedia.orgNA"                                                                
+[290] "https://en.wikipedia.orgNA"                                                                
+[291] "https://en.wikipedia.org/wiki/Shotaro_Ikenami"                                             
+[292] "https://en.wikipedia.org/wiki/Boris_Akunin"                                                
+[293] "https://en.wikipedia.org/wiki/Anne_McCaffrey"                                              
+[294] "https://en.wikipedia.org/wiki/Hideyuki_Kikuchi"                                            
+[295] "https://en.wikipedia.org/wiki/Douglas_Adams"                                               
+[296] "https://en.wikipedia.org/w/index.php?title=Osamu_Soda&amp;action=edit&amp;redlink=1"               
+[297] "https://en.wikipedia.org/wiki/Helen_Fielding"                                              
+[298] "https://en.wikipedia.org/wiki/Yoshiki_Tanaka"                                              
+[299] "https://en.wikipedia.org/wiki/Alexander_McCall_Smith"                                      
+[300] "https://en.wikipedia.org/wiki/Marcus_Pfister"                                              
+[301] "https://en.wikipedia.org/wiki/Raymond_E._Feist"                                            
+[302] "https://en.wikipedia.org/wiki/Timothy_Zahn"                                                
+[303] "https://en.wikipedia.org/wiki/Andrzej_Sapkowski"                                           
+[304] "https://en.wikipedia.org/w/index.php?title=Kazuo_Iwamura&amp;action=edit&amp;redlink=1"            </code></pre>
+</div>
+</div>
+</section></section>
+<section>
+<section id="what-have-we-learnt" class="title-slide slide level1 center" data-background-color="#006DAE">
+<h1>What have we learnt</h1>
+
+</section>
+<section id="a-few-thoughts" class="slide level2">
+<h2>A Few thoughts</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Reflection</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment">Many ways to approach this problem<br>
+<em>eg. RSelenium, LLMs, APIs</em></li>
+<li class="fragment">Here we used the standard <code>rvest</code> toolbox</li>
+<li class="fragment">Analysis was not perfect - the inconsistent webpage format was a real challenge!</li>
+<li class="fragment">Also not ideal to be guessing nationalities from text</li>
+<li class="fragment">But <strong>we don’t need to approach a problem perfectly to learn</strong> - break stuff, create errors, try and fail!</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Motivation</strong></p>
+</div>
+<div class="callout-content">
+<p>We often learn best by picking a question we are passionate about and having some fun!</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="a-few-thoughts-ctd." class="slide level2">
+<h2>A few thoughts ctd.</h2>
+<p>For assignment 4 I will ask you to think about writing your own open data case study. You will build upon the case studies we have done in case, but you may want to supplement your analysis with data you web scrape or other existing open data sets.</p>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caution</strong></p>
+</div>
+<div class="callout-content">
+<p>I showed you this example, because I wanted you to know:</p>
+<ol type="1">
+<li><p>Sometimes simple questions can be difficult to answer</p></li>
+<li><p>It’s important to evaluate whether you data is fit for purpose early on</p></li>
+<li><p>It’s good to check the logic of your approach by writing pseudo code</p></li>
+<li><p>Even in projects that are fun there are aspects of data ethics to consider!</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>What we’ve learnt</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li class="fragment">Learnt how to navigate around a web page</li>
+<li class="fragment">Learnt different ways to scrape data using the <code>rvest</code> package</li>
+<li class="fragment">Learnt about important ethical considerations when web scraping</li>
+<li class="fragment">Also wrote our first pseudo code</li>
+<li class="fragment">Covered the basics about automation using functions</li>
+<li class="fragment">Practiced some basic error handling</li>
+<li class="fragment">Hopefully also had fun!</li>
+</ul>
+</div>
+</div>
+</div>
+</section></section>
+<section id="questions" class="title-slide slide level1 center" data-background-color="#006DAE">
+<h1>Questions</h1>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="images/monash-one-line-black-rgb.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>ETC5512</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true,"boardmarkerWidth":5},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <link rel="stylesheet" href="assets/syntax-highlight.css">
+    <link rel="stylesheet" href="assets/monash-after-body.css">
+    <link rel="stylesheet" href="assets/fontawesome-free-6.1.1-web/css/all.css">
+    <script src="assets/fontawesome-free-6.1.1-web/js/all.js"></script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

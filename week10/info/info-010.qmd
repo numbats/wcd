@@ -1,0 +1,36 @@
+---
+title: 'ETC5512: Week 10 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Case study: Web scraping
+
+#### Mon 11th May - Sun 17th May
+
+**Seminar:**
+
+This week we will be learning the basics of web scraping. We'll learn how to download and collect own wild data.
+
+**Tutorial:**
+
+In the tutorial, you'll be exploring examples where large language models are well suited to helping you in your data analytics.
+
+**Workshop:**
+
+I’ll be running an extended consultation for you to ask questions about your assignment. Remember to post questions to the discuss forum ahead of time.
+
+**Assessment:**
+
+Assignment 3 is out and is due end of the week.
+
+**Help:\**
+\
+Remember the discussion board is always there should you have questions. \
+\
