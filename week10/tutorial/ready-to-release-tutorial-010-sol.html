@@ -284,9 +284,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="in-your-own-time-exercise-3" class="level2">
 <h2 class="anchored" data-anchor-id="in-your-own-time-exercise-3">In your own time: Exercise 3</h2>
 <p>In Lecture 10, Kate showed an exercise where she guessed nationalities from Wikipedia using web-scraping. We saw that given the complexities of this data, it was difficult to code specific rules to determine a person’s nationality. We could use LLMs instead!</p>
-<p>On the Moodle you will find the author data set <code>week11-author_df_llm.csv</code>. This data set contains the guesses from an LLM model about the authors nationalities. Import this data into R and examine the nationality columns.</p>
+<p>On the Moodle in Week 10 you will find the author data set <code>author_df_llm.csv</code>. This data set contains the guesses from an LLM model about the authors nationalities. Import this data into R and examine the nationality columns.</p>
 <p><strong>Your task:</strong> Subset the list of authors into groups based on how confident you are that the author’s nationality is correctly identified.</p>
-<p>Hint: You may like to compare with the web-scraped nationalities.</p>
+<p>You may like to compare with the web-scraped nationalities.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>author_webscrape <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"../data/author_df.csv"</span>)</span>
@@ -312,8 +312,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>authors_joined <span class="sc">|&gt;</span> </span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(fuzzy_match <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><em>It seems we can be fairly confident about 282 of the authors, with another 7 having a fuzzy match. There are 70 authors that don’t match at all though. Does this mean the LLM got them wrong or I got them wrong?</em></p>
-<p><em>Looking at mismatches shows there is more work to do though. I haven’t handled my missing values or the nationalities that weren’t matched in web scraping.</em></p>
+<p><em>It seems we can be fairly confident about 282 of the authors, with another 7 having a fuzzy match. There are 70 authors that don’t match at all though. Does this mean the LLM got them wrong or the web scraping approach was bad?</em></p>
+<p><em>Looking at mismatches shows there is more work to do. The web-scraped approach hasn’t handled the missing values or the nationalities that weren’t matched.</em></p>
 <p><em>It may be time to try some of the methods from Task 2 (iii)! Like sampling or testing.</em></p>
 <section id="copyright-monash-university" class="level4">
 <h4 class="anchored" data-anchor-id="copyright-monash-university">Copyright Monash University</h4>
