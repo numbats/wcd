@@ -21,8 +21,8 @@ knitr::opts_chunk$set(
 
 Haley has encountered some missing data in the age column of her data set that she is using in her Wild Caught Data tutorial. She tries using ChatGPT to infill the missing data:
 
--   [Chat 1](https://chatgpt.com/share/6828c2ee-a3b0-8000-a956-692974053b43)
--   [Chat 2](https://chatgpt.com/share/6828c268-85e0-8000-91ef-ceb73ed32d6c)
+- [Chat 1](https://chatgpt.com/share/6828c2ee-a3b0-8000-a956-692974053b43)
+- [Chat 2](https://chatgpt.com/share/6828c268-85e0-8000-91ef-ceb73ed32d6c)
 
 Examine the two chats. Ask yourself:
 
@@ -56,17 +56,17 @@ You're preparing a data set to analyse customer satisfaction and product feedbac
 
 In your preparation you encounter the following challenges:
 
--   Some entries in the data set are missing the product category. You use the product name to cross reference with a generic product database to infill the missing values.
+- Some entries in the data set are missing the product category. You use the product name to cross reference with a generic product database to infill the missing values.
 
--   Some customers left the "satisfaction rating" blank, but they provided comments like "Very happy with the fast delivery!" You infill these using a basic sentiment analysis (e.g., 4 out of 5 based on the text).
+- Some customers left the "satisfaction rating" blank, but they provided comments like "Very happy with the fast delivery!" You infill these using a basic sentiment analysis (e.g., 4 out of 5 based on the text).
 
--   The "purchase channel" column includes inconsistent entries like: "In Store", "IS", "retail", "shop", "online", "amazon". You harmonise these to create standard labels like "In Store" and "Online" categories.
+- The "purchase channel" column includes inconsistent entries like: "In Store", "IS", "retail", "shop", "online", "amazon". You harmonise these to create standard labels like "In Store" and "Online" categories.
 
--   You compare customer responses and categorise them into themes, e.g.: "Late delivery", "Delayed shipping" → Category: "Delivery Issues" or "Product damaged", "Broken item" → Category: "Product Quality"
+- You compare customer responses and categorise them into themes, e.g.: "Late delivery", "Delayed shipping" → Category: "Delivery Issues" or "Product damaged", "Broken item" → Category: "Product Quality"
 
--   Long customer feedback is summarised into a short sentiment label or theme. "The delivery took over two weeks, and no one responded to my emails." becomes "Slow delivery and poor support".
+- Long customer feedback is summarised into a short sentiment label or theme. "The delivery took over two weeks, and no one responded to my emails." becomes "Slow delivery and poor support".
 
--   From unstructured text (e.g., support emails), you extract structured fields like: Order ID, Product name, Mentioned issues (e.g., "broken", "missing parts")
+- From unstructured text (e.g., support emails), you extract structured fields like: Order ID, Product name, Mentioned issues (e.g., "broken", "missing parts")
 
 **Your task:**
 
@@ -76,25 +76,25 @@ i.  Which of these tasks would you feel most confident using an LLM to complete?
 
 *This might include:*
 
--   *Inferring satisfaction ratings from comments: LLMs are likely good at detecting positive or negative tones and converting them to satisifaction scores.*
+- *Inferring satisfaction ratings from comments: LLMs are likely good at detecting positive or negative tones and converting them to satisifaction scores.*
 
--   *Categorising customer responses into themes: LLMs can reliably group similar phrases like "Late delivery" and "Delayed shipping".*
+- *Categorising customer responses into themes: LLMs can reliably group similar phrases like "Late delivery" and "Delayed shipping".*
 
--   *Summarising long feedback into short sentiment labels or themes*
+- *Summarising long feedback into short sentiment labels or themes*
 
--   *Extracting structured information from unstructured text: Given appropriate prompts or few-shot examples, LLMs can extract data such as Order IDs, product names, and issue types from support emails or chat transcripts with good accuracy.*
+- *Extracting structured information from unstructured text: Given appropriate prompts or few-shot examples, LLMs can extract data such as Order IDs, product names, and issue types from support emails or chat transcripts with good accuracy.*
 
 ii. Do any of these tasks need help from a human? Which ones and why?
 
 **You should always do some form of checking!**
 
--   *Consider infilling satisfaction ratings from sentiment: While LLMs can provide reasonable estimates, human review is important for borderline or ambiguous cases.*
+- *Consider infilling satisfaction ratings from sentiment: While LLMs can provide reasonable estimates, human review is important for borderline or ambiguous cases.*
 
--   *Thematic categorisation and summarisation: LLMs can produce useful outputs, but humans should validate category definitions.*
+- *Thematic categorisation and summarisation: LLMs can produce useful outputs, but humans should validate category definitions.*
 
--   *Standardising "purchase channel" entries: LLMs can suggest standard labels, but humans are needed to decide on the final controlled vocabulary*
+- *Standardising "purchase channel" entries: LLMs can suggest standard labels, but humans are needed to decide on the final controlled vocabulary*
 
--   *Cross-referencing product names to fill missing product categories: This task may require domain knowledge and precise matching that benefits from human validation, especially where product names are ambiguous or abbreviated.*
+- *Cross-referencing product names to fill missing product categories: This task may require domain knowledge and precise matching that benefits from human validation, especially where product names are ambiguous or abbreviated.*
 
 iii. If you use an LLM how would you verify the results?
 
@@ -116,13 +116,13 @@ iv. Would your answers change if the data set you were working with was differen
 
 *Yes, the answers would change depending on the business application.*
 
--   *Domain specificity: If the data uses highly technical or domain-specific language (e.g., medical or legal)*
+- *Domain specificity: If the data uses highly technical or domain-specific language (e.g., medical or legal)*
 
--   *Language diversity: If the dataset includes multiple languages or dialects, LLM performance may vary, and additional language handling might be needed.*
+- *Language diversity: If the dataset includes multiple languages or dialects, LLM performance may vary, and additional language handling might be needed.*
 
--   *Data volume and consistency: LLMs perform well on patterns seen in large, consistent datasets. Sparse, noisy, or extremely varied data may require more human intervention.*
+- *Data volume and consistency: LLMs perform well on patterns seen in large, consistent datasets. Sparse, noisy, or extremely varied data may require more human intervention.*
 
--   *Regulatory context: In regulated industries (e.g., finance, health), even high-quality LLM outputs may still require human verification due to compliance and accountability concerns.*
+- *Regulatory context: In regulated industries (e.g., finance, health), even high-quality LLM outputs may still require human verification due to compliance and accountability concerns.*
 
 *You may find answering these question in a group useful to get different perspectives.*
 
@@ -130,11 +130,11 @@ iv. Would your answers change if the data set you were working with was differen
 
 In Lecture 10, Kate showed an exercise where she guessed nationalities from Wikipedia using web-scraping. We saw that given the complexities of this data, it was difficult to code specific rules to determine a person's nationality. We could use LLMs instead!
 
-On the Moodle you will find the author data set `week11-author_df_llm.csv`. This data set contains the guesses from an LLM model about the authors nationalities. Import this data into R and examine the nationality columns.
+On the Moodle in Week 10 you will find the author data set `author_df_llm.csv`. This data set contains the guesses from an LLM model about the authors nationalities. Import this data into R and examine the nationality columns.
 
 **Your task:** Subset the list of authors into groups based on how confident you are that the author's nationality is correctly identified.
 
-Hint: You may like to compare with the web-scraped nationalities.
+You may like to compare with the web-scraped nationalities.
 
 ```{r}
 #| message: false
@@ -166,9 +166,9 @@ authors_joined |>
   filter(fuzzy_match == FALSE)
 ```
 
-*It seems we can be fairly confident about 282 of the authors, with another 7 having a fuzzy match. There are 70 authors that don't match at all though. Does this mean the LLM got them wrong or I got them wrong?*
+*It seems we can be fairly confident about 282 of the authors, with another 7 having a fuzzy match. There are 70 authors that don't match at all though. Does this mean the LLM got them wrong or the web scraping approach was bad?*
 
-*Looking at mismatches shows there is more work to do though. I haven't handled my missing values or the nationalities that weren't matched in web scraping.*
+*Looking at mismatches shows there is more work to do. The web-scraped approach hasn't handled the missing values or the nationalities that weren't matched.*
 
 *It may be time to try some of the methods from Task 2 (iii)! Like sampling or testing.*
 
