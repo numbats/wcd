@@ -1348,7 +1348,7 @@
     "href": "index.html#schedule",
     "title": "ETC5512: Wild Caught Data",
     "section": "Schedule",
-    "text": "Schedule\n\n\n\n\nWeek\nDate\nOverview\nTopic\nTutorial\nSolution\nWorkshop\n\n\n\n\n1\n02 Mar\n\nOpen data: definitions, sources and examples\n\n\n\n\n\n2\n09 Mar\n\nIntroduction to data collection methods\n\n\n\n\n\n3\n16 Mar\n\nCase Study: Natural Hazards and Impact Warnings\n\n\n\n\n\n4\n23 Mar\n\nCase Study: Australian census\n\n\n\n\n\n5\n30 Mar\n\nCase Study: Australian election data\n\n\n\n\n\n\n06 Apr\n\nMid-semester break\n\n\n\n\n\n6\n13 Apr\n\nCase Study: Combining census and election data\n\n\n\n\n\n7\n20 Apr\n\nCase Study: PD model and credit risk\n\n\n\n\n\n8\n27 Apr\n\nCase Study: Data ethics\n\n\n\n\n\n9\n04 May\n\nCase Study: Data ethics and privacy\n\n\n\n\n\n10\n11 May\n\nCase Study: Introduction to web scraping\n\n\n\n\n\n11\n18 May\n\nCase Study: TBC\n\n\n\n\n\n12\n25 May\n\nRevision: Proper care and feeding of wild caught data"
+    "text": "Schedule\n\n\n\n\nWeek\nDate\nOverview\nTopic\nTutorial\nSolution\nWorkshop\n\n\n\n\n1\n02 Mar\n\nOpen data: definitions, sources and examples\n\n\n\n\n\n2\n09 Mar\n\nIntroduction to data collection methods\n\n\n\n\n\n3\n16 Mar\n\nCase Study: Natural Hazards and Impact Warnings\n\n\n\n\n\n4\n23 Mar\n\nCase Study: Australian census\n\n\n\n\n\n5\n30 Mar\n\nCase Study: Australian election data\n\n\n\n\n\n\n06 Apr\n\nMid-semester break\n\n\n\n\n\n6\n13 Apr\n\nCase Study: Combining census and election data\n\n\n\n\n\n7\n20 Apr\n\nCase Study: PD model and credit risk\n\n\n\n\n\n8\n27 Apr\n\nCase Study: Data ethics\n\n\n\n\n\n9\n04 May\n\nCase Study: Data ethics and privacy\n\n\n\n\n\n10\n11 May\n\nCase Study: Introduction to web scraping\n\n\n\n\n\n11\n18 May\n\nCase Study: LLMs for data analysis\n\n\n\n\n\n12\n25 May\n\nRevision: Proper care and feeding of wild caught data"
   },
   {
     "objectID": "week1/index.html#etc5523-title",
@@ -1383,21 +1383,21 @@
     "href": "week1/index.html#about-your-lecturer",
     "title": "ETC5512: Wild Caught Data",
     "section": "About your Lecturer",
-    "text": "About your Lecturer\n\n\n\n\n\nKate Saunders\nLecturer at Monash University\n\n\n\n👨‍🎓 PhD in Statistics\n🌏 Home State is Queensland\n👨‍💻 Research is in statistics of climate extremes\n👨‍💻 Passionate about open data, data visualisation and data ethics\n👩‍💻 Started R coding in 2012 (before tidyverse!)\n❤️ Hobby is playing basketball."
+    "text": "About your Lecturer\n\n\n\n\n\nKate Saunders\nLecturer at Monash University\n\n\n\n👩‍🎓 PhD in Statistics\n🌐 Home State is Queensland\n👩‍💻 Research is in statistics of climate extremes\n👩‍💻 Passionate about open data, data visualisation and data ethics\n👩‍💻 Started R coding in 2012 (before tidyverse!)\n❤️ Hobby is playing basketball."
   },
   {
     "objectID": "week1/index.html#about-your-instructor",
     "href": "week1/index.html#about-your-instructor",
     "title": "ETC5512: Wild Caught Data",
     "section": "About your Instructor",
-    "text": "About your Instructor\n\n\n\n\n\nKrisanat Anukarnsakulchularp\nPhD Student at Monash University\n\n\n\n👩‍🎓 Graduated in Masters in Business Analytics\n🎓 Monash local since undergrad\n🌏 Home Country is Thailand\n👩‍💻 PhD research is on network visualisation\n👩‍💻 Published an R package called animbook!\n❤️ Hobby is playing music."
+    "text": "About your Instructor\n\n\n\n\n\nKrisanat Anukarnsakulchularp\nPhD Student at Monash University\n\n\n\n🎓 Graduated in Masters in Business Analytics\n🎓 Monash local since undergrad\n🌍 Home Country is Thailand\n👩‍💻 PhD research is on network visualisation\n👨‍💻 Published an R package called animbook!\n❤️ Hobby is playing music."
   },
   {
     "objectID": "week1/index.html#about-your-instructor-1",
     "href": "week1/index.html#about-your-instructor-1",
     "title": "ETC5512: Wild Caught Data",
     "section": "About your Instructor",
-    "text": "About your Instructor\n\n\n\n\n\nMaliny Po\nGraduated in Masters in Business Analytics\n\n\n\n👨‍🎓 Undergraduate degree in International Trade and Business Logistics. \n👩‍💻 Former Student in Wild Caught Data.\n👨‍💻 Published a data viz package called Sugarglider, as part of the Google Summer of Code program.\n❤️ Enjoys reading books, lego and a good cup of coffee."
+    "text": "About your Instructor\n\n\n\n\n\nMaliny Po\nGraduated in Masters in Business Analytics\n\n\n\n👨‍🎓 Undergraduate degree in International Trade and Business Logistics. \n👨‍💻 Former Student in Wild Caught Data.\n👨‍💻 Published a data viz package called Sugarglider, as part of the Google Summer of Code program.\n❤️ Enjoys reading books, lego and a good cup of coffee."
   },
   {
     "objectID": "week1/index.html#lets-get-to-know-each-other",
