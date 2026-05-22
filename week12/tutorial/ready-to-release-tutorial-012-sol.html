@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Lecturer: Kate Saunders">
 
-<title>ETC5512: Extended Consultation – ETC5512: Wild Caught Data</title>
+<title>ETC5512: Care and feeding of open data – ETC5512: Wild Caught Data</title>
 <style>
 
 code{white-space: pre-wrap;}
@@ -4147,20 +4148,34 @@ font-family: monospace;
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="workshop-07.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives">Learning Objectives</a></li>
+  <li><a href="#task-1" id="toc-task-1" class="nav-link" data-scroll-target="#task-1">Task 1</a></li>
+  <li><a href="#task-2" id="toc-task-2" class="nav-link" data-scroll-target="#task-2">Task 2</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ready-to-release-tutorial-012-sol.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ETC5512: Extended Consultation</h1>
+<h1 class="title">ETC5512: Care and feeding of open data</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Lecturer: Kate Saunders </p>
+          </div>
+  </div>
     
   
     
@@ -4171,12 +4186,74 @@ font-family: monospace;
 </header>
 
 
-<p>Hi everyone,</p>
-<p>I’ll be running an extended consultation this week for your assignment.</p>
-<p>Remember to post your questions in advance on the discussion forum.</p>
-<p>Kate</p>
+<section id="learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li><p>Reflect on the open data resources that you have seen in this unit. We’ll consider factors that make this data easy or difficult to use.</p></li>
+<li><p>Place yourself in the role of data curator, based on your experiences as a user think about best practices for data sharing <!-- and collaboratively develop a list of good practices for data sharing. --></p></li>
+</ul>
+<p>For today’s tutorial complete Tasks 1 and 2 in groups.</p>
+</section>
+<section id="task-1" class="level2">
+<h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
+<p><em>This task is designed to mimic the questions on your assignment 4, and for you to consider this week’s data curation lecture.</em></p>
+<ol type="i">
+<li>Pick one of Assignment 1, 2 or 3. What was difficult working with the data on your assignment? (Beyond the difficulties in compiling your report!)</li>
+</ol>
+<ul>
+<li>Reflect upon what aspects of <strong>your</strong> analysis involved data work that weren’t sexy</li>
+</ul>
+<p><em>Here is an example from Assignment 2.</em></p>
+<p><em>The G17 census data is contained in three different spreadsheets. These are G17A, G17B and G17C. To work with this data, these spreadsheets first need to be read in and combined together.</em></p>
+<p><em>The format of these spreadsheets is also not tidy. Column names encode information about gender, income brackets and age brackets (e.g. F_300_399_55_64_yrs). These columns need to be split so that there is a column for each of these separate variables.</em></p>
+<p><em>The age brackets and income brackets also contain top and bottom coding. This requires a large amount of string handling to fix that is particularly tedious.</em></p>
+<ul>
+<li>Reflect upon any challenges <strong>you</strong> faced in your completing your analysis</li>
+</ul>
+<p><em>Part of this analysis required filtering first preferences won by the non-major parties. This is trickier than what it appears.</em></p>
+<p><em>Firstly there is an issue with data harmonisation. Party acronyms like ALP may be written with full stops, A.L.P, and this prevents exact matching.</em></p>
+<p><em>There are also issues where the Labour party has slightly different party names and acronym variants for branches in different states. This means an exact matching with ALP or Labour does not work. Instead a fuzzy matching is needed.</em></p>
+<p><em>And even with a fuzzy matching there were still edge cases that needed manual handling. This meant it was very difficult to automate this analysis.</em></p>
+<p><em>If I was to approach this problem again I would create a reference data frame containing all variants of party names and abbreviations, along with a variable classification of major, minor or independent party.</em></p>
+<ul>
+<li>Reflect upon the imperfect aspects of <strong>your</strong> work or how you’d like to improve your analysis in the future.</li>
+</ul>
+<p><em>Each SA1 region has slightly different characteristics. Some of these have zero median age, as no one lives there. I also found out some SA1 regions in WA have an area of 0 square metres. This is very odd! Finding artefacts like these makes me think I should search this data more for other types of peculiarities.</em></p>
+<p><em>While this isn’t strictly necessary, as taking a median to be robust to a few SA1 region with a 0 median age. I would still like to improve the screening of which SA1 regions were being including in my analysis.</em></p>
+<p><em>In terms of future work, I’d also like to consider how changes in electoral boundaries impact voter demographics. This is very interesting and I’m almost certainly going to set this as the assignment question next year! Lucky ETC5512 students.</em></p>
+<ol start="2" type="i">
+<li>What would you as data curator do to make the data drudgery easier, detective work or imperfect parts of your analysis easier? (Think about the next wild caught data student!)</li>
+</ol>
+<ul>
+<li><p><em>I would create a data set taht contains information about all past parties that could be used to cross reference with the 2022 election data. This would help people understand whether a party was major, minor or independent. As part of this I could also include references to specfics that might be important for understanding the data and its context.</em></p></li>
+<li><p><em>I would create a set of rules about my expectations for SA1 regions. For example people must live there and there must be some area. This would allow me to screen for SA1 regions that might need investigation for use in a given analysis.</em></p></li>
+</ul>
+</section>
+<section id="task-2" class="level2">
+<h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
+<ol type="i">
+<li>Brainstorm 3 questions you could try to answer on assignment 4. Also think about where you would need to source the data from to answer your questions. Remember brainstorming is about creativity, so don’t censor your ideas yet. Just throw them out there.</li>
+</ol>
+<ul>
+<li><p><em>How diversely do I read? An analysis of author nationalities in booklists.</em></p></li>
+<li><p><em>How long do people last on the TV series Alone?</em></p></li>
+<li><p><em>Is it true that most small businesses in Melbourne don’t survive two years?</em></p></li>
+</ul>
+<ol start="2" type="i">
+<li>Share you ideas with your peers. Work together to evaluate if the questions would be easy, reasonable or hard to answer. In answering this, think about the scope of the assignment and challenges you may face with the data.</li>
+</ol>
+<p>In this task have fun exploring your different ideas together and be respectful of each others ideas and process.</p>
+<ul>
+<li><p><em>Refer to Lecture 10 to see why Question 1 on authors is hard to answer! There are definitely easier questions I can ask, and I should have stopped when I realised web-scraping wasn’t going to provide an adequate data set for analysis as I had lots of missing data.</em></p></li>
+<li><p><em>Question 2 is much easier to answer! The data is formatted in nice tables on wikipedia. The challenge with this question will be showing appropriate depths of skills and analysis. I might need to find ways to challenge myself to get good marks.</em></p></li>
+<li><p><em>Question 3 seems approachable if I can find good data. There is an open data set on businesses in Victoria that could be used to answer this question. I may find filtering out the different types of businesses challenging, but this seems doable. It likely will also lead to interesting analysis when coupled with looking at trends in space and time. But I haven’t tried - so that will be part of the adventure.</em></p></li>
+</ul>
+<section id="copyright-monash-university" class="level5">
+<h5 class="anchored" data-anchor-id="copyright-monash-university">© Copyright Monash University</h5>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
