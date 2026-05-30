@@ -1,0 +1,46 @@
+---
+title: 'ETC5512: Week 12 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## On the proper care and feeding of wild caught data
+
+#### Mon 25th May - Sun 31st May
+
+It's our last week of wild caught data lectures!\
+It's gone so fast, but hopefully you've enjoyed lectures and will come away with many new skills important for your future careers.
+
+**Seminar:**
+
+We'll recap a few of the things we've learnt so far and review best practice principles of data curation.
+
+**Tutorial:**
+
+This as a chance to discuss assignment 4 ideas with your tutor.\
+You'll also take time to think about important data curation takeaways from the unit.
+
+**Workshop**
+
+We'll review the marking rubric and blog post examples so you have an idea of what to deliver on assignment 4.
+
+**Consultation:**
+
+Run as normal, both online and in person. Please make sure you attend your tutorial before coming for one-on-one advice and also tune into the workshop. This will help streamline the communication.
+
+**Assessment:**
+
+- Assignment 4 early check in is due end of the week
+
+- Assignment 3 is being marked and results will be out this week
+
+**Help:\**
+\
+Remember the discussion board is always there should you have questions. \
+\

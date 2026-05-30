@@ -1,0 +1,22 @@
+---
+title: 'ETC5512: Extended Consultation'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+execute: 
+  eval: true
+  echo: true
+---
+
+Hi everyone,
+
+I'll be running an extended consultation this week for your assignment.
+
+Remember to post your questions in advance on the discussion forum.
+
+Kate
