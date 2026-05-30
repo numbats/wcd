@@ -78,6 +78,10 @@ Refer to Moodle for zoom links.
 #| warning: false
 #| echo: false
 #| output: asis
+#| execute:
+#|   cache: false
+#|   freeze: false
+
 schedule |>
     transmute(
         Week = if_else(Topic == "Mid-semester break", NA, Week, missing = Week),
