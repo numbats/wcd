@@ -1,0 +1,38 @@
+---
+title: 'ETC5512: Week 11 Unit Info'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+---
+
+## Case study: Web scraping
+
+#### Mon 18th May - Sun 24th May
+
+**Seminar:**
+
+We will be examining how Large Language Models can help with data analysis in R, as well as using LLMs to directly augment existing data. We will also discuss verification of results.
+
+**Tutorial:**
+
+In the tutorial, you'll be practicing web scraping in R.
+
+**Workshop / Consultation:**
+
+For this week only I'll be at Cafe Cinque Lire at Monash Clayton from 9 - 11. Drop by, grab a coffee and come have a chat.\
+\
+I want to know how you are finding the unit and if I can do anything else to support you in your studies. We can also chat research or business analytics in general.
+
+**Assessment:**
+
+Assignment 3 is being marked.\
+Assignment 4 is out this week.
+
+\*\*Help:\*\*\
+Remember the discussion board is always there should you have questions. \
+\

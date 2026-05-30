@@ -1,0 +1,20 @@
+---
+title: 'ETC5512: In Person Catch Up'
+format: 
+  html:
+    toc: true
+    css: ../../assets/tutorial.css
+    embed-resources: true
+  pdf:
+    toc: true
+editor: visual
+execute: 
+  eval: true
+  echo: true
+---
+
+For this week only I'll be at Cafe Cinque Lire at Monash Clayton from 9 - 11 am. Drop by, grab a coffee and come have a chat.
+
+I want to know how you are finding the unit and if I can do anything else to support you in your studies. 
+
+We can also chat research or business analytics in general.
