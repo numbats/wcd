@@ -34,7 +34,7 @@ if(!require(emoji))
 library(emoji)
 ```
 
-## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue} {#etc5523-title background-image="images/bg-01.png"}
+## <br>[`r rmarkdown::metadata$pagetitle`]{.monash-blue} {#etc5512-title background-image="images/bg-01.png"}
 
 ### `r rmarkdown::metadata$subtitle`
 
